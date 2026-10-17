@@ -1,0 +1,223 @@
+==============================================================================================================
+REGIME ENGINE: worlds with a KNOWN momentum / neutral / snap-back truth   (2026-10-10 15:58)
+==============================================================================================================
+Base = day-shuffled real days; every market switches between spells of 20-130 days; LEAK-FREE dial (each day keeps
+its size, range and shape; only its direction is chosen). Strength d = how much more often a day goes WITH (momentum)
+or AGAINST (snap-back) its last 20 days. Worlds: d=0.15: 3, d=0.25: 3
+Synth shows what is detectable IF the market works like this model; winners still need one check on real data.
+
+##############################################################################################################
+STRENGTH d = 0.15   (3 worlds)
+##############################################################################################################
+
+R0. THE WORLDS by true state: days | realized 20-day variance ratio | median |daily move| | median daily ATR (% of price)
+    The dial keeps every day's size exactly (verified against the base world day by day, 2026-10-10); size
+    differences between states here come only from WHICH base days landed in which spells (chance, shrinks
+    with more seeds). The variance ratio is what the dial changes.
+    mom   days   8657 | VR20 1.78 | median |move| 0.429% | median ATR 1.265%
+    none  days   9102 | VR20 0.66 | median |move| 0.398% | median ATR 1.176%
+    snap  days   8818 | VR20 0.56 | median |move| 0.410% | median ATR 1.199%
+
+R1. EACH PART'S EDGE by true state at entry (edge/trade (n, t clustered by world x market x month))
+    brk   | mom +0.574 (2079, t +9.8) | none +0.050 (1927, t +0.7) | snap -0.365 (1543, t -5.2)
+    ins   | mom -0.024 (1266, t -0.6) | none +0.096 (1479, t +1.2) | snap -0.007 (1328, t -0.2)
+    fast  | mom +0.255 (2608, t +10.0) | none +0.002 (1855, t +0.1) | snap -0.103 (1225, t -2.6)
+    dip   | mom -0.270 (49, t -1.1) | none -0.095 (47, t -0.5) | snap +0.122 (81, t +0.5)
+    dipx  | mom -0.192 (402, t -0.9) | none -0.076 (367, t -0.5) | snap +0.074 (658, t +0.5)
+
+R2. DETECTOR SCORECARD (known at the start of each day). AUC = chance a momentum day scores above a non-momentum
+    day (0.5 = blind, 1 = perfect). Operating point: the threshold that flags as many days as are truly momentum.
+    lag = median days from a momentum spell's start to the detector's first flag inside it; caught = share of
+    momentum spells flagged within their first half; false on/yr = switch-ons during non-momentum spells per
+    market-year. AUC snap = the same for snap-back days (below 0.5 = it reads snap-back as 'not trending').
+    detector                                                                   AUC AUCsnp  prec  recl   lag caught falseon   thresh
+    er40      straightness, 40 days                                          0.790  0.291  0.64  0.64    10    87%     4.0    0.259
+    tshare60  share of the last 60 days with 20-day straightness >= 0.3      0.774  0.290  0.60  0.59    32    58%     0.6    0.483
+    er60      straightness, 60 days                                          0.762  0.330  0.61  0.61    13    77%     3.2    0.218
+    er20      straightness, 20 days                                          0.739  0.305  0.56  0.56     4    95%     7.6    0.338
+    follow60  follow-through of 20-day breakouts in the last 60 days (5-day  0.738  0.335  0.57  0.54    20    71%     0.9    0.377
+    er10      straightness (efficiency ratio), 10 days                       0.629  0.406  0.45  0.45     3    99%    13.2    0.469
+    edge20    the lab's edge20 detector is on (either side)                  0.624  0.408  0.46  0.56     1    99%    18.3      0.5
+    er10det   the lab's er10 detector is on (either side)                    0.596  0.434  0.45  0.48     2    98%    14.3      0.5
+    vr120     5-day variance ratio, last 120 days                            0.572  0.435  0.37  0.38     5    54%     2.2     1.05
+    vr60      5-day variance ratio, last 60 days                             0.524  0.442  0.35  0.35     4    65%     3.4     1.03
+    ac60      day-to-day autocorrelation, 60 days                            0.519  0.458  0.34  0.34    16    57%     3.5   0.0306
+    ac40      day-to-day autocorrelation, 40 days                            0.509  0.468  0.34  0.34    14    70%     4.8   0.0332
+    ac20      day-to-day autocorrelation, 20 days                            0.500  0.492  0.33  0.32     3    90%     8.0   0.0356
+    vr40      5-day variance ratio, last 40 days                             0.496  0.466  0.32  0.32     7    74%     4.6    0.996
+    (base rate: 32% of days are momentum days; precision above that = information)
+
+R3. GATING: trade only when the switch says 'momentum' (the detector on the trade's entry day above its R2
+    threshold). kept = trades kept; edge kept / turned away = edge per trade of the kept / rejected trades;
+    share = share of the total edge kept. 'perfect' = the true label (the upper bound); 'not snap' = the true
+    label, skipping only snap-back spells.
+    brk: 5549 trades, edge/trade +0.131, total edge +728 R
+      perfect   kept  2079 ( 37%) edge +0.574 (t +9.8) | turned away  3470 edge -0.134 | share of edge kept  164%
+      not snap  kept  4006 ( 72%) edge +0.322 (t +6.8) | turned away  1543 edge -0.365 | share of edge kept  177%
+      er40      kept  2117 ( 38%) edge +0.324 (t +5.7) | turned away  3432 edge +0.012 | share of edge kept   94%
+      tshare60  kept  1895 ( 34%) edge +0.316 (t +4.3) | turned away  3654 edge +0.035 | share of edge kept   82%
+      er60      kept  1978 ( 36%) edge +0.240 (t +4.2) | turned away  3571 edge +0.071 | share of edge kept   65%
+      er20      kept  2401 ( 43%) edge +0.310 (t +5.0) | turned away  3148 edge -0.006 | share of edge kept  102%
+      follow60  kept  1811 ( 33%) edge +0.289 (t +4.7) | turned away  3738 edge +0.055 | share of edge kept   72%
+      er10      kept  3029 ( 55%) edge +0.195 (t +3.7) | turned away  2520 edge +0.055 | share of edge kept   81%
+    fast: 5688 trades, edge/trade +0.095, total edge +542 R
+      perfect   kept  2608 ( 46%) edge +0.255 (t +10.0) | turned away  3080 edge -0.040 | share of edge kept  123%
+      not snap  kept  4463 ( 78%) edge +0.150 (t +7.2) | turned away  1225 edge -0.103 | share of edge kept  123%
+      er40      kept  2548 ( 45%) edge +0.158 (t +6.1) | turned away  3140 edge +0.045 | share of edge kept   74%
+      tshare60  kept  2179 ( 38%) edge +0.185 (t +6.3) | turned away  3509 edge +0.040 | share of edge kept   74%
+      er60      kept  2289 ( 40%) edge +0.168 (t +5.9) | turned away  3399 edge +0.046 | share of edge kept   71%
+      er20      kept  3142 ( 55%) edge +0.133 (t +5.7) | turned away  2546 edge +0.048 | share of edge kept   77%
+      follow60  kept  2098 ( 37%) edge +0.161 (t +5.7) | turned away  3590 edge +0.057 | share of edge kept   62%
+      er10      kept  4188 ( 74%) edge +0.112 (t +5.0) | turned away  1500 edge +0.047 | share of edge kept   87%
+    dip: 177 trades, edge/trade -0.044, total edge -8 R
+      perfect   kept    49 ( 28%) edge -0.270 (t -1.1) | turned away   128 edge +0.042 | share of edge kept  170%
+      not snap  kept    96 ( 54%) edge -0.184 (t -1.2) | turned away    81 edge +0.122 | share of edge kept  227%
+      er40      kept    35 ( 20%) edge +0.127 (t +0.5) | turned away   142 edge -0.086 | share of edge kept  -57%
+      tshare60  kept    42 ( 24%) edge -0.119 (t -0.5) | turned away   135 edge -0.021 | share of edge kept   64%
+      er60      kept    34 ( 19%) edge +0.238 (t +0.9) | turned away   143 edge -0.111 | share of edge kept -104%
+      er20      kept    46 ( 26%) edge -0.213 (t -1.1) | turned away   131 edge +0.015 | share of edge kept  126%
+      follow60  kept    54 ( 31%) edge +0.485 (t +1.3) | turned away   123 edge -0.277 | share of edge kept -336%
+      er10      kept    33 ( 19%) edge +0.377 (t +0.6) | turned away   144 edge -0.141 | share of edge kept -159%
+    dipx: 1427 trades, edge/trade -0.040, total edge -56 R
+      perfect   kept   402 ( 28%) edge -0.192 (t -0.9) | turned away  1025 edge +0.020 | share of edge kept  137%
+      not snap  kept   769 ( 54%) edge -0.137 (t -1.0) | turned away   658 edge +0.074 | share of edge kept  186%
+      er40      kept   295 ( 21%) edge +0.293 (t +1.9) | turned away  1132 edge -0.126 | share of edge kept -153%
+      tshare60  kept   350 ( 25%) edge -0.033 (t -0.2) | turned away  1077 edge -0.042 | share of edge kept   20%
+      er60      kept   268 ( 19%) edge +0.186 (t +1.0) | turned away  1159 edge -0.092 | share of edge kept  -88%
+      er20      kept   320 ( 22%) edge -0.277 (t -1.7) | turned away  1107 edge +0.029 | share of edge kept  157%
+      follow60  kept   434 ( 30%) edge +0.450 (t +2.3) | turned away   993 edge -0.253 | share of edge kept -346%
+      er10      kept   365 ( 26%) edge +0.079 (t +0.4) | turned away  1062 edge -0.080 | share of edge kept  -51%
+
+R4. TREND CAPTURE in momentum spells (brk): per spell and market, the spell's net move in daily ATRs, what brk's
+    trades entered inside the spell took out of it (gross move in ATRs, both directions), days until brk's first
+    trade in the spell's direction, and brk's edge in the 20 days after the spell ended (giveback).
+    momentum spells: 129 | median |move| 8.5 ATR | brk took +485 of 1319 ATR in total (37%) | median calendar days to brk's first trade in the spell's direction 9
+    brk in the 4 weeks after a momentum spell ended: 507 trades, edge +0.176 (t +1.6)
+
+R5. WHICH HUNT SIGNALS CARRY REGIME INFORMATION: AUC of each state at brk's entries for 'inside a momentum spell'
+    (|AUC - 0.5| = information; below 0.5 = high values point AWAY from momentum)
+    trendy         AUC 0.730   20-day straightness (efficiency ratio)
+    trend60_with   AUC 0.682   60-day move in the trade's direction (ATR x sqrt(60) units)
+    dist200_with   AUC 0.654   distance from the 200-day average in the trade's direction (daily ATRs)
+    form20         AUC 0.621   the part's last 20 finished trades, summed net R
+    n_trending     AUC 0.603   how many of the 4 book markets have 20-day straightness >= 0.3
+    eff10_with     AUC 0.580   10-day straightness in the trade's direction
+    pos20_with     AUC 0.575   price position in the 20-day range, in the trade's direction
+    vr120          AUC 0.565   persistence: 5-day variance ratio over the last 120 days (>1 = moves persist)
+    mv10_with      AUC 0.563   10-day move in the trade's direction (daily ATRs)
+    risk_size      AUC 0.525   stop distance / ATR
+    spread_R       AUC 0.479   spread cost of the trade in R
+    gap_with       AUC 0.519   today's opening gap in the trade's direction (ATRs)
+    atrchg         AUC 0.484   volatility change: last 5 days' range / 20-day ATR
+    vol            AUC 0.489   volatility vs its own last year (daily ATR / 250-day average)
+    ac60           AUC 0.504   day-to-day autocorrelation over the last 60 days
+    day_move_with  AUC 0.497   today's move so far in the trade's direction (ATRs)
+    prev_range     AUC 0.502   yesterday's range / ATR
+
+##############################################################################################################
+STRENGTH d = 0.25   (3 worlds)
+##############################################################################################################
+
+R0. THE WORLDS by true state: days | realized 20-day variance ratio | median |daily move| | median daily ATR (% of price)
+    The dial keeps every day's size exactly (verified against the base world day by day, 2026-10-10); size
+    differences between states here come only from WHICH base days landed in which spells (chance, shrinks
+    with more seeds). The variance ratio is what the dial changes.
+    mom   days   8657 | VR20 2.83 | median |move| 0.429% | median ATR 1.262%
+    none  days   9102 | VR20 0.66 | median |move| 0.398% | median ATR 1.178%
+    snap  days   8818 | VR20 0.47 | median |move| 0.410% | median ATR 1.201%
+
+R1. EACH PART'S EDGE by true state at entry (edge/trade (n, t clustered by world x market x month))
+    brk   | mom +1.045 (2246, t +15.1) | none +0.058 (1925, t +0.8) | snap -0.579 (1535, t -8.6)
+    ins   | mom +0.038 (1176, t +0.9) | none -0.042 (1472, t -0.5) | snap -0.010 (1315, t -0.3)
+    fast  | mom +0.391 (3460, t +17.9) | none +0.012 (1878, t +0.4) | snap -0.185 (1187, t -4.4)
+    dip   | mom -0.286 (46, t -0.9) | none -0.140 (48, t -0.6) | snap -0.236 (79, t -1.7)
+    dipx  | mom -0.247 (380, t -1.0) | none -0.104 (396, t -0.6) | snap -0.128 (639, t -1.2)
+
+R2. DETECTOR SCORECARD (known at the start of each day). AUC = chance a momentum day scores above a non-momentum
+    day (0.5 = blind, 1 = perfect). Operating point: the threshold that flags as many days as are truly momentum.
+    lag = median days from a momentum spell's start to the detector's first flag inside it; caught = share of
+    momentum spells flagged within their first half; false on/yr = switch-ons during non-momentum spells per
+    market-year. AUC snap = the same for snap-back days (below 0.5 = it reads snap-back as 'not trending').
+    detector                                                                   AUC AUCsnp  prec  recl   lag caught falseon   thresh
+    er40      straightness, 40 days                                          0.882  0.232  0.75  0.75    14    88%     2.2    0.322
+    er60      straightness, 60 days                                          0.854  0.263  0.72  0.72    17    75%     1.6    0.289
+    er20      straightness, 20 days                                          0.852  0.227  0.70  0.70     5   100%     5.3    0.389
+    follow60  follow-through of 20-day breakouts in the last 60 days (5-day  0.826  0.257  0.70  0.64    20    71%     0.5    0.773
+    tshare60  share of the last 60 days with 20-day straightness >= 0.3      0.819  0.252  0.67  0.66    38    61%     0.3    0.567
+    er10      straightness (efficiency ratio), 10 days                       0.728  0.356  0.56  0.56     3   100%    11.2    0.522
+    edge20    the lab's edge20 detector is on (either side)                  0.705  0.355  0.53  0.71     1    99%    17.9      0.5
+    er10det   the lab's er10 detector is on (either side)                    0.670  0.396  0.51  0.62     2   100%    14.3      0.5
+    vr120     5-day variance ratio, last 120 days                            0.554  0.443  0.36  0.36     2    52%     2.1     1.08
+    ac60      day-to-day autocorrelation, 60 days                            0.519  0.472  0.34  0.34     5    62%     3.4   0.0342
+    vr60      5-day variance ratio, last 60 days                             0.510  0.467  0.32  0.32     5    65%     3.4     1.04
+    ac40      day-to-day autocorrelation, 40 days                            0.506  0.487  0.32  0.32    11    66%     4.8   0.0366
+    ac20      day-to-day autocorrelation, 20 days                            0.491  0.513  0.31  0.31     4    86%     7.6   0.0388
+    vr40      5-day variance ratio, last 40 days                             0.489  0.489  0.31  0.31    12    67%     4.3        1
+    (base rate: 32% of days are momentum days; precision above that = information)
+
+R3. GATING: trade only when the switch says 'momentum' (the detector on the trade's entry day above its R2
+    threshold). kept = trades kept; edge kept / turned away = edge per trade of the kept / rejected trades;
+    share = share of the total edge kept. 'perfect' = the true label (the upper bound); 'not snap' = the true
+    label, skipping only snap-back spells.
+    brk: 5706 trades, edge/trade +0.275, total edge +1570 R
+      perfect   kept  2246 ( 39%) edge +1.045 (t +15.1) | turned away  3460 edge -0.225 | share of edge kept  150%
+      not snap  kept  4171 ( 73%) edge +0.589 (t +11.1) | turned away  1535 edge -0.579 | share of edge kept  157%
+      er40      kept  2232 ( 39%) edge +0.723 (t +9.9) | turned away  3474 edge -0.013 | share of edge kept  103%
+      er60      kept  2086 ( 37%) edge +0.703 (t +9.2) | turned away  3620 edge +0.028 | share of edge kept   93%
+      er20      kept  2437 ( 43%) edge +0.602 (t +7.8) | turned away  3269 edge +0.031 | share of edge kept   94%
+      follow60  kept  1844 ( 32%) edge +0.799 (t +9.6) | turned away  3862 edge +0.025 | share of edge kept   94%
+      tshare60  kept  2036 ( 36%) edge +0.663 (t +7.9) | turned away  3670 edge +0.060 | share of edge kept   86%
+      er10      kept  2854 ( 50%) edge +0.391 (t +6.1) | turned away  2852 edge +0.159 | share of edge kept   71%
+    fast: 6525 trades, edge/trade +0.177, total edge +1156 R
+      perfect   kept  3460 ( 53%) edge +0.391 (t +17.9) | turned away  3065 edge -0.064 | share of edge kept  117%
+      not snap  kept  5338 ( 82%) edge +0.258 (t +13.5) | turned away  1187 edge -0.185 | share of edge kept  119%
+      er40      kept  3204 ( 49%) edge +0.310 (t +13.6) | turned away  3321 edge +0.049 | share of edge kept   86%
+      er60      kept  2957 ( 45%) edge +0.331 (t +13.7) | turned away  3568 edge +0.050 | share of edge kept   85%
+      er20      kept  3752 ( 58%) edge +0.261 (t +11.8) | turned away  2773 edge +0.063 | share of edge kept   85%
+      follow60  kept  2612 ( 40%) edge +0.327 (t +12.9) | turned away  3913 edge +0.077 | share of edge kept   74%
+      tshare60  kept  2807 ( 43%) edge +0.306 (t +11.9) | turned away  3718 edge +0.080 | share of edge kept   74%
+      er10      kept  4502 ( 69%) edge +0.199 (t +9.0) | turned away  2023 edge +0.128 | share of edge kept   78%
+    dip: 173 trades, edge/trade -0.223, total edge -39 R
+      perfect   kept    46 ( 27%) edge -0.286 (t -0.9) | turned away   127 edge -0.200 | share of edge kept   34%
+      not snap  kept    94 ( 54%) edge -0.211 (t -1.2) | turned away    79 edge -0.236 | share of edge kept   52%
+      er40      kept    30 ( 17%) edge -0.085 (t -0.2) | turned away   143 edge -0.251 | share of edge kept    7%
+      er60      kept    36 ( 21%) edge -0.169 (t -0.5) | turned away   137 edge -0.237 | share of edge kept   16%
+      er20      kept    38 ( 22%) edge -0.192 (t -0.6) | turned away   135 edge -0.231 | share of edge kept   19%
+      follow60  kept    44 ( 25%) edge -0.375 (t -1.3) | turned away   129 edge -0.171 | share of edge kept   43%
+      tshare60  kept    52 ( 30%) edge +0.033 (t +0.1) | turned away   121 edge -0.332 | share of edge kept   -4%
+      er10      kept    36 ( 21%) edge +0.085 (t +0.4) | turned away   137 edge -0.303 | share of edge kept   -8%
+    dipx: 1415 trades, edge/trade -0.153, total edge -217 R
+      perfect   kept   380 ( 27%) edge -0.247 (t -1.0) | turned away  1035 edge -0.119 | share of edge kept   43%
+      not snap  kept   776 ( 55%) edge -0.174 (t -1.2) | turned away   639 edge -0.128 | share of edge kept   62%
+      er40      kept   303 ( 21%) edge +0.069 (t +0.3) | turned away  1112 edge -0.214 | share of edge kept  -10%
+      er60      kept   353 ( 25%) edge -0.080 (t -0.4) | turned away  1062 edge -0.178 | share of edge kept   13%
+      er20      kept   311 ( 22%) edge -0.013 (t -0.1) | turned away  1104 edge -0.193 | share of edge kept    2%
+      follow60  kept   415 ( 29%) edge -0.279 (t -1.4) | turned away  1000 edge -0.101 | share of edge kept   53%
+      tshare60  kept   485 ( 34%) edge +0.012 (t +0.1) | turned away   930 edge -0.240 | share of edge kept   -3%
+      er10      kept   369 ( 26%) edge -0.070 (t -0.5) | turned away  1046 edge -0.183 | share of edge kept   12%
+
+R4. TREND CAPTURE in momentum spells (brk): per spell and market, the spell's net move in daily ATRs, what brk's
+    trades entered inside the spell took out of it (gross move in ATRs, both directions), days until brk's first
+    trade in the spell's direction, and brk's edge in the 20 days after the spell ended (giveback).
+    momentum spells: 129 | median |move| 14.4 ATR | brk took +1091 of 2109 ATR in total (52%) | median calendar days to brk's first trade in the spell's direction 7
+    brk in the 4 weeks after a momentum spell ended: 541 trades, edge +0.205 (t +1.3)
+
+R5. WHICH HUNT SIGNALS CARRY REGIME INFORMATION: AUC of each state at brk's entries for 'inside a momentum spell'
+    (|AUC - 0.5| = information; below 0.5 = high values point AWAY from momentum)
+    trendy         AUC 0.838   20-day straightness (efficiency ratio)
+    trend60_with   AUC 0.820   60-day move in the trade's direction (ATR x sqrt(60) units)
+    dist200_with   AUC 0.761   distance from the 200-day average in the trade's direction (daily ATRs)
+    form20         AUC 0.655   the part's last 20 finished trades, summed net R
+    eff10_with     AUC 0.651   10-day straightness in the trade's direction
+    pos20_with     AUC 0.650   price position in the 20-day range, in the trade's direction
+    n_trending     AUC 0.641   how many of the 4 book markets have 20-day straightness >= 0.3
+    mv10_with      AUC 0.626   10-day move in the trade's direction (daily ATRs)
+    vr120          AUC 0.541   persistence: 5-day variance ratio over the last 120 days (>1 = moves persist)
+    risk_size      AUC 0.530   stop distance / ATR
+    gap_with       AUC 0.525   today's opening gap in the trade's direction (ATRs)
+    spread_R       AUC 0.480   spread cost of the trade in R
+    day_move_with  AUC 0.520   today's move so far in the trade's direction (ATRs)
+    atrchg         AUC 0.488   volatility change: last 5 days' range / 20-day ATR
+    vol            AUC 0.504   volatility vs its own last year (daily ATR / 250-day average)
+    prev_range     AUC 0.498   yesterday's range / ATR
+    ac60           AUC 0.502   day-to-day autocorrelation over the last 60 days

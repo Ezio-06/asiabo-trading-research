@@ -1,0 +1,62 @@
+==============================================================================================================
+US500 EXAM -- BASELINE (context only): the same measurement on bars.db's US500, ALREADY SPENT data.
+No exam data is read. Use these numbers for the predictions, then run the exam once.
+==============================================================================================================
+
+--------------------------------------------------------------------------------------------------------------
+US500 2020-21  (trades entering 2020-01-01 .. 2022-01-01)
+--------------------------------------------------------------------------------------------------------------
+   fast                      51  win  47.1%  net +0.034 t +0.3  EDGE +0.034 t +0.3  total    +1.8 R
+      2020                   20  win  45.0%  net +0.058 t +0.3  EDGE +0.196 t +1.0  total    +1.2 R
+      2021                   31  win  48.4%  net +0.019 t +0.1  EDGE -0.071 t -0.4  total    +0.6 R
+      long                   44  win  47.7%  net +0.039 t +0.3  EDGE +0.020 t +0.2  total    +1.7 R
+      short                   7  win  42.9%  net +0.007 t +0.0  EDGE +0.122 t +0.2  total    +0.1 R
+   dip                       20  win  85.0%  net +0.757 t +2.3  EDGE +0.861 t +2.7  total   +15.1 R
+      2020                    4  win  75.0%  net +0.713 t +8.9  EDGE +0.812 t+11.1  total    +2.9 R
+      2021                   16  win  87.5%  net +0.768 t +1.8  EDGE +0.874 t +2.2  total   +12.3 R
+   brk                       96  win  24.0%  net -0.200 t -1.1  EDGE +0.103 t +0.8  total   -19.2 R
+      2020                   48  win  27.1%  net -0.173 t -0.7  EDGE +0.246 t +1.3  total    -8.3 R
+      2021                   48  win  20.8%  net -0.228 t -0.8  EDGE -0.040 t -0.2  total   -10.9 R
+      long                   71  win  23.9%  net -0.129 t -0.5  EDGE +0.215 t +1.1  total    -9.2 R
+      short                  25  win  24.0%  net -0.403 t -3.9  EDGE -0.215 t -1.5  total   -10.1 R
+   ins                       53  win  39.6%  net -0.205 t -1.5  EDGE -0.218 t -1.3  total   -10.9 R
+      2020                   23  win  30.4%  net -0.190 t -0.8  EDGE -0.306 t -1.0  total    -4.4 R
+      2021                   30  win  46.7%  net -0.217 t -1.2  EDGE -0.150 t -0.7  total    -6.5 R
+      long                   31  win  48.4%  net -0.158 t -1.0  EDGE -0.197 t -0.9  total    -4.9 R
+      short                  22  win  27.3%  net -0.272 t -0.9  EDGE -0.247 t -0.9  total    -6.0 R
+   #31 ALL                    2  win   0.0%  net -0.433 t -3.8  EDGE -0.396 t -3.3  total    -0.9 R
+   #31 long-stretch           0 trades
+   #31 short-stretch          2  win   0.0%  net -0.433 t -3.8  EDGE -0.396 t -3.3  total    -0.9 R
+   #27 gap closes             2  win 100.0%  net +0.332 t +2.2  EDGE +0.360 t +2.4  total    +0.7 R
+   #28 rel momentum           2  win   0.0%  net -0.388 t -2.6  EDGE -0.360 t -2.4  total    -0.8 R
+
+--------------------------------------------------------------------------------------------------------------
+US500 2024+  (trades entering 2024-01-01 .. 2100-01-01)
+--------------------------------------------------------------------------------------------------------------
+   fast                     171  win  46.8%  net +0.072 t +0.8  EDGE +0.044 t +0.5  total   +12.2 R
+      2024                   45  win  46.7%  net +0.272 t +1.3  EDGE +0.154 t +0.8  total   +12.3 R
+      2025                   80  win  41.2%  net -0.098 t -1.0  EDGE -0.099 t -0.9  total    -7.8 R
+      2026                   46  win  56.5%  net +0.169 t +1.4  EDGE +0.186 t +1.9  total    +7.8 R
+      long                  148  win  45.3%  net +0.023 t +0.2  EDGE +0.005 t +0.1  total    +3.4 R
+      short                  23  win  56.5%  net +0.385 t +1.4  EDGE +0.301 t +1.1  total    +8.9 R
+   dip                       28  win  82.1%  net +0.552 t +2.8  EDGE +0.650 t +3.3  total   +15.5 R
+      2024                    4  win  75.0%  net +0.879 t +1.4  EDGE +1.022 t +1.6  total    +3.5 R
+      2025                   13  win  76.9%  net +0.454 t +1.2  EDGE +0.534 t +1.5  total    +5.9 R
+      2026                   11  win  90.9%  net +0.550 t +3.7  EDGE +0.651 t +4.6  total    +6.1 R
+   brk                      152  win  26.3%  net -0.146 t -1.0  EDGE -0.031 t -0.3  total   -22.1 R
+      2024                   57  win  26.3%  net -0.179 t -0.7  EDGE -0.171 t -0.7  total   -10.2 R
+      2025                   55  win  29.1%  net -0.004 t -0.0  EDGE +0.104 t +0.7  total    -0.2 R
+      2026                   40  win  22.5%  net -0.293 t -1.3  EDGE -0.018 t -0.1  total   -11.7 R
+      long                  113  win  25.7%  net -0.229 t -1.8  EDGE +0.013 t +0.1  total   -25.9 R
+      short                  39  win  28.2%  net +0.097 t +0.2  EDGE -0.159 t -0.6  total    +3.8 R
+   ins                       81  win  40.7%  net -0.121 t -0.7  EDGE +0.035 t +0.3  total    -9.8 R
+      2024                   30  win  43.3%  net -0.127 t -0.5  EDGE +0.151 t +0.9  total    -3.8 R
+      2025                   29  win  44.8%  net +0.162 t +0.5  EDGE +0.242 t +0.9  total    +4.7 R
+      2026                   22  win  31.8%  net -0.484 t -2.0  EDGE -0.395 t -1.6  total   -10.6 R
+      long                   42  win  42.9%  net +0.043 t +0.2  EDGE +0.176 t +1.0  total    +1.8 R
+      short                  39  win  38.5%  net -0.297 t -1.8  EDGE -0.116 t -0.7  total   -11.6 R
+   #31 ALL                    4  win  50.0%  net +0.043 t +0.3  EDGE +0.087 t +0.5  total    +0.2 R
+   #31 long-stretch           1  win 100.0%  net +0.317 t   -   EDGE +0.344 t   -   total    +0.3 R
+   #31 short-stretch          3  win  33.3%  net -0.048 t -0.3  EDGE +0.001 t +0.0  total    -0.1 R
+   #27 gap closes             4  win  50.0%  net +0.414 t +0.8  EDGE +0.432 t +0.8  total    +1.7 R
+   #28 rel momentum           4  win  50.0%  net -0.450 t -0.8  EDGE -0.432 t -0.8  total    -1.8 R

@@ -1,0 +1,37 @@
+ladder 2026-10-10 17:18: 7 worlds to build
+  $ C:\python314\python.exe make_synth.py cache
+    0s
+parallel jobs: 3  (cores 4, free memory 12.9 GB, free disk 98 GB; each job budgeted 1.5 GB memory, 2 GB disk; 3 GB memory always kept free)
+reg seed 1: ok
+  $ C:\python314\python.exe make_synth.py gen --preset dayshuffle --regime 0.25,0.25 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 1 --out D:\coding stuff\Trading research project\synth\lad_reg_s1.db
+    178s
+  $ C:\python314\python.exe asiabo_ladder.py measure --kind reg --db D:\coding stuff\Trading research project\synth\lad_reg_s1.db --out D:\coding stuff\Trading research project\reports\ladder\worlds\reg_s1.json
+    181s
+reg seed 2: ok
+  $ C:\python314\python.exe make_synth.py gen --preset dayshuffle --regime 0.25,0.25 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 2 --out D:\coding stuff\Trading research project\synth\lad_reg_s2.db
+    179s
+  $ C:\python314\python.exe asiabo_ladder.py measure --kind reg --db D:\coding stuff\Trading research project\synth\lad_reg_s2.db --out D:\coding stuff\Trading research project\reports\ladder\worlds\reg_s2.json
+    179s
+reg seed 3: ok
+  $ C:\python314\python.exe make_synth.py gen --preset dayshuffle --regime 0.25,0.25 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 3 --out D:\coding stuff\Trading research project\synth\lad_reg_s3.db
+    181s
+  $ C:\python314\python.exe asiabo_ladder.py measure --kind reg --db D:\coding stuff\Trading research project\synth\lad_reg_s3.db --out D:\coding stuff\Trading research project\reports\ladder\worlds\reg_s3.json
+    179s
+aging seed 2: ok
+  $ C:\python314\python.exe make_synth.py gen --preset dayshuffle --regime 0.25,0.25 --aging 1 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 2 --out D:\coding stuff\Trading research project\synth\lad_aging_s2.db
+    179s
+  $ C:\python314\python.exe asiabo_ladder.py measure --kind aging --db D:\coding stuff\Trading research project\synth\lad_aging_s2.db --out D:\coding stuff\Trading research project\reports\ladder\worlds\aging_s2.json
+    175s
+aging seed 1: ok
+  $ C:\python314\python.exe make_synth.py gen --preset dayshuffle --regime 0.25,0.25 --aging 1 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 1 --out D:\coding stuff\Trading research project\synth\lad_aging_s1.db
+    178s
+  $ C:\python314\python.exe asiabo_ladder.py measure --kind aging --db D:\coding stuff\Trading research project\synth\lad_aging_s1.db --out D:\coding stuff\Trading research project\reports\ladder\worlds\aging_s1.json
+    177s
+aging seed 3: ok
+  $ C:\python314\python.exe make_synth.py gen --preset dayshuffle --regime 0.25,0.25 --aging 1 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 3 --out D:\coding stuff\Trading research project\synth\lad_aging_s3.db
+    177s
+  $ C:\python314\python.exe asiabo_ladder.py measure --kind aging --db D:\coding stuff\Trading research project\synth\lad_aging_s3.db --out D:\coding stuff\Trading research project\reports\ladder\worlds\aging_s3.json
+    176s
+real seed 0: ok
+  $ C:\python314\python.exe asiabo_ladder.py measure --kind real --out D:\coding stuff\Trading research project\reports\ladder\worlds\real_s0.json
+    183s

@@ -1,0 +1,236 @@
+====================================================================================================
+THE LAB  --  every open idea, labelled, in one run. Shadow only: it measures, it decides nothing.
+====================================================================================================
+Sealed exam years 2022-01-01 .. 2024-01-01: not read by any part.
+
+====================================================================================================
+PART 5: SIGNALS   chart reads at entry, per lane: do they change the outcome, when, and does it last?
+====================================================================================================
+recent trades: d:\coding stuff\Trading research project\reports\collect_20261007_161416
+old trades:    d:\coding stuff\Trading research project\reports\oldcollect_20261007_180620
+Each read is computed from bars.db at every trade's signal bar (known at entry). New reads in this part:
+  sma20_with       price above/below the M15 SMA20, in ATR, in the trade's direction
+  sma50_with       the same against the M15 SMA50
+  h1_trend_with    against the 1-hour SMA20 (80 M15 bars): the 1-hour trend
+  h4_trend_with    against the 4-hour SMA20 (320 M15 bars): the 4-hour trend
+  h4_slope_with    slope of the 4-hour SMA20 over the last 4 hours, in the trade's direction
+  d20_with         yesterday's close against the daily SMA20, in daily ranges
+  d50_with         the same against the daily SMA50
+  d200_with        the same against the daily SMA200
+  htf_agree        how many of 1-hour, 4-hour, daily-20, daily-50 trends agree with the trade (0-4)
+  ema_stack_with   M15 EMA20 above/below EMA50 in the trade's direction (yes/no)
+  body_pct         body of the signal bar as a share of its range
+  wick_front       wick on the side the trade is heading to (rejection ahead), share of the range
+  wick_back        wick on the side the trade comes from, share of the range
+  bar_with         the signal bar closed in the trade's direction (yes/no)
+  bar_range_atr    range of the signal bar in ATR
+  run_with         how many bars in a row before entry closed in the trade's direction
+  body3_pct        average body share of the last three bars
+  rsi_with         RSI(14) minus 50, in the trade's direction
+  bb_with          position in the Bollinger band (20, 2), in the trade's direction
+  day_pos_with     where price sits in today's range so far, 1 = at the extreme the trade is heading to
+  prev_close_with  distance from yesterday's close in daily ranges, in the trade's direction
+  squeeze          range of the last 16 bars against 4 ATR: low = compressed
+  atr_vs_week      ATR now against its average over the last 5 days
+  last_r           result of the lane's previous trade
+  last5_r          average result of the lane's last five trades
+  last5_mae        average worst point (MAE, in R) of the lane's last five trades
+  last5_mfe        average best point (MFE, in R) of the lane's last five trades
+  mkt_last20_r     average result of the last twenty trades of ALL lanes on this market
+  days_since       days since the lane's previous trade
+plus the 20 reads collect already saved (day_eff, stretch_atr, volrank ...).
+trades: 83163, of which 83107 (100%) could be matched to their signal bar and given chart reads.
+
+----------------------------------------------------------------------------------------------------
+5a. READS THAT CHANGE THE OUTCOME IN ALL FOUR ERAS   (per lane and per family)
+----------------------------------------------------------------------------------------------------
+  For each lane and read: average R of the top third of the read minus the bottom third, on each market, combined
+  over the markets. Listed only when all four eras point the SAME way and the four together are 2.5+ standard
+  errors from zero (3.5+ = STRONG). z columns: 2014-17, 2018-19, 2020-21, 2024+. 'best third' = average R, after
+  costs, of the favourable third of the read, old years | recent years: above zero there is what an edge looks like.
+  'pre-cost' = the same combined z measured on results BEFORE costs. If it collapses towards zero, the read only
+  'works' because it goes with wider stops (a cost that is a smaller share of the stop): arithmetic, not prediction.
+                    read             | 14-17 18-19 20-21   24+ |   all pre-cost | better    | best third: old | new | all its trades: old | new
+  family  reversal  stop_atr         |  +4.0  +4.2  +4.6  +6.2 |  +9.5     +2.1 | when HIGH | -0.078 | -0.088 | -0.208 | -0.210   STRONG
+  family  reversal  day_pos_with     |  +3.8  +2.6  +5.3  +6.7 |  +9.2     +3.6 | when HIGH | -0.092 | -0.092 | -0.208 | -0.210   STRONG
+  family  reversal  room_r           |  -3.0  -2.2  -5.0  -5.3 |  -7.8     -2.8 | when LOW  | -0.110 | -0.110 | -0.208 | -0.210   STRONG
+  family  momentum  stop_atr         |  +4.1  +2.6  +2.8  +4.9 |  +7.2     -0.3 | when HIGH | -0.079 | -0.055 | -0.149 | -0.117   cost arithmetic
+  family  reversal  bb_with          |  +3.8  +1.2  +2.7  +5.7 |  +6.7     +2.5 | when HIGH | -0.091 | -0.101 | -0.208 | -0.210   STRONG
+  family  reversal  rsi_with         |  +4.2  +1.5  +2.9  +4.7 |  +6.7     +3.0 | when HIGH | -0.109 | -0.105 | -0.208 | -0.210   STRONG
+  family  reversal  sma50_with       |  +3.5  +0.9  +3.7  +4.8 |  +6.4     +3.6 | when HIGH | -0.122 | -0.130 | -0.208 | -0.210   STRONG
+  family  momentum  sma50_with       |  +2.8  +4.0  +2.4  +3.3 |  +6.2     +2.1 | when HIGH | -0.075 | -0.079 | -0.149 | -0.117   STRONG
+  family  reversal  sma20_with       |  +3.2  +1.7  +2.4  +4.1 |  +5.8     +2.4 | when HIGH | -0.093 | -0.102 | -0.208 | -0.210   STRONG
+  lane    trend     stretch_atr      |  +3.1  +4.0  +2.4  +1.6 |  +5.5     +2.1 | when HIGH | -0.031 | -0.049 | -0.129 | -0.084   STRONG
+  lane    trend     stop_atr         |  +3.1  +4.0  +2.4  +1.6 |  +5.5     +2.1 | when HIGH | -0.031 | -0.049 | -0.129 | -0.084   STRONG
+  family  momentum  h1_trend_with    |  +2.3  +2.9  +2.6  +3.2 |  +5.5     +1.7 | when HIGH | -0.081 | -0.076 | -0.149 | -0.117   cost arithmetic
+  family  momentum  stretch_atr      |  +1.7  +4.4  +2.2  +2.3 |  +5.3     +1.6 | when HIGH | -0.088 | -0.082 | -0.149 | -0.117   cost arithmetic
+  family  reversal  stretch_atr      |  -2.2  -1.4  -3.4  -3.6 |  -5.3     -3.3 | when LOW  | -0.165 | -0.150 | -0.208 | -0.210   STRONG
+  family  reversal  h1_trend_with    |  +3.5  +0.3  +2.3  +4.3 |  +5.2     +2.9 | when HIGH | -0.145 | -0.153 | -0.208 | -0.210   STRONG
+  lane    trend     sma50_with       |  +2.8  +3.6  +2.1  +1.9 |  +5.2     +2.1 | when HIGH | -0.045 | -0.040 | -0.129 | -0.084   STRONG
+  family  momentum  day_pos_with     |  +2.9  +3.8  +2.3  +1.1 |  +5.1     +1.8 | when HIGH | -0.090 | -0.109 | -0.149 | -0.117   cost arithmetic
+  family  momentum  prev_close_with  |  +1.8  +2.2  +2.5  +3.5 |  +5.0     +1.5 | when HIGH | -0.100 | -0.060 | -0.149 | -0.117   cost arithmetic
+  family  momentum  open_move_with   |  +1.6  +2.0  +1.8  +4.5 |  +5.0     +1.1 | when HIGH | -0.106 | -0.065 | -0.149 | -0.117   cost arithmetic
+  family  reversal  wick_back        |  -1.4  -1.0  -3.4  -4.0 |  -4.9     -2.4 | when LOW  | -0.162 | -0.138 | -0.208 | -0.210   STRONG
+  family  momentum  setup_range_rel  |  +3.5  +2.2  +1.1  +2.7 |  +4.8     +0.1 | when HIGH | -0.075 | -0.109 | -0.149 | -0.117   cost arithmetic
+  family  momentum  rsi_with         |  +2.5  +3.6  +1.5  +1.6 |  +4.6     +0.8 | when HIGH | -0.080 | -0.088 | -0.149 | -0.117   cost arithmetic
+  lane    trend     prev_close_with  |  +1.3  +2.7  +2.3  +2.4 |  +4.4     +1.9 | when HIGH | -0.058 | -0.020 | -0.129 | -0.084   cost arithmetic
+  lane    vwap      stop_atr         |  +0.5  +2.1  +4.3  +1.7 |  +4.4     +1.7 | when HIGH | -0.182 | -0.194 | -0.275 | -0.308   cost arithmetic
+  family  momentum  day_eff          |  +1.0  +2.4  +2.5  +2.9 |  +4.4     +1.5 | when HIGH | -0.108 | -0.083 | -0.149 | -0.117   cost arithmetic
+  lane    exhaust   squeeze          |  -2.8  -2.3  -1.5  -2.0 |  -4.3     -4.8 | when LOW  | -0.168 | -0.151 | -0.290 | -0.230   STRONG
+  lane    vwap      room_r           |  -1.3  -1.0  -3.3  -2.9 |  -4.2     -2.2 | when LOW  | -0.197 | -0.166 | -0.275 | -0.308   STRONG
+  lane    trend     h1_trend_with    |  +1.0  +3.6  +2.2  +1.6 |  +4.2     +1.6 | when HIGH | -0.055 | -0.058 | -0.129 | -0.084   cost arithmetic
+  family  reversal  prev_close_with  |  +2.3  +0.8  +2.3  +2.7 |  +4.1     +3.0 | when HIGH | -0.145 | -0.160 | -0.208 | -0.210   STRONG
+  family  reversal  open_move_with   |  +2.1  +1.0  +2.7  +2.3 |  +4.1     +2.7 | when HIGH | -0.157 | -0.138 | -0.208 | -0.210   STRONG
+  family  momentum  sma20_with       |  +3.2  +2.9  +1.1  +0.8 |  +4.0     +0.6 | when HIGH | -0.071 | -0.097 | -0.149 | -0.117   cost arithmetic
+  family  reversal  day_eff          |  -2.9  -0.2  -1.7  -3.1 |  -4.0     -2.6 | when LOW  | -0.160 | -0.139 | -0.208 | -0.210   STRONG
+  family  reversal  last5_r          |  +0.1  +1.8  +3.5  +2.4 |  +3.9     +2.8 | when HIGH | -0.192 | -0.167 | -0.208 | -0.210   STRONG
+  lane    trend     sma20_with       |  +3.0  +2.9  +1.2  +0.4 |  +3.8     +1.2 | when HIGH | -0.035 | -0.051 | -0.129 | -0.084   cost arithmetic
+  lane    trend     open_move_with   |  +1.3  +2.7  +1.0  +2.6 |  +3.7     +0.9 | when HIGH | -0.073 | -0.035 | -0.129 | -0.084   cost arithmetic
+  family  breakout  stop_atr         |  +2.8  +0.7  +1.8  +2.2 |  +3.7     +0.4 | when HIGH | -0.056 | -0.017 | -0.070 | -0.051   cost arithmetic
+  family  reversal  bar_range_atr    |  +1.3  +1.0  +2.9  +2.2 |  +3.7     +1.0 | when HIGH | -0.173 | -0.156 | -0.208 | -0.210   cost arithmetic
+  family  reversal  run_with         |  +0.3  +2.8  +1.8  +2.4 |  +3.7     +1.1 | when HIGH | -0.140 | -0.161 | -0.208 | -0.210   cost arithmetic
+  family  breakout  turning          |  -0.7  -0.9  -1.3  -4.3 |  -3.7     -3.8 | when LOW  | -0.060 | -0.021 | -0.070 | -0.051   STRONG
+  family  momentum  day_used         |  +2.3  +2.6  +1.7  +0.7 |  +3.6     +0.2 | when HIGH | -0.094 | -0.082 | -0.149 | -0.117   cost arithmetic
+  lane    trend     day_eff          |  +0.9  +2.2  +2.4  +1.7 |  +3.6     +1.3 | when HIGH | -0.093 | -0.050 | -0.129 | -0.084   cost arithmetic
+  family  breakout  room_r           |  -1.0  -1.3  -2.8  -2.1 |  -3.6     -3.4 | when LOW  | -0.049 | -0.020 | -0.070 | -0.051   STRONG
+  family  reversal  body_pct         |  +0.3  +1.6  +2.3  +2.7 |  +3.5     +0.5 | when HIGH | -0.158 | -0.170 | -0.208 | -0.210   cost arithmetic
+  family  momentum  prev_range_rel   |  +2.3  +1.5  +3.0  +0.0 |  +3.5     +2.0 | when HIGH | -0.114 | -0.089 | -0.149 | -0.117   cost arithmetic
+  family  breakout  sma20_with       |  +0.7  +2.4  +1.6  +2.1 |  +3.4     +1.3 | when HIGH | -0.044 | -0.024 | -0.070 | -0.051   cost arithmetic
+  lane    trend     rsi_with         |  +1.9  +3.1  +1.2  +0.6 |  +3.4     +0.6 | when HIGH | -0.039 | -0.056 | -0.129 | -0.084   cost arithmetic
+  family  momentum  last5_mfe        |  +2.0  +1.8  +1.1  +1.9 |  +3.4     +2.6 | when HIGH | -0.116 | -0.088 | -0.149 | -0.117   
+  lane    nyaft     setup_range_rel  |  +1.8  +2.8  +0.9  +1.1 |  +3.3     +0.8 | when HIGH | -0.060 | -0.063 | -0.159 | -0.133   cost arithmetic
+  family  breakout  stretch_atr      |  +2.6  +0.9  +1.6  +1.4 |  +3.2     +0.9 | when HIGH | -0.041 | -0.033 | -0.070 | -0.051   cost arithmetic
+  lane    nyaft     stretch_atr      |  +0.7  +1.9  +0.7  +3.2 |  +3.2     +1.3 | when HIGH | -0.099 | -0.042 | -0.159 | -0.133   cost arithmetic
+  lane    nyaft     rsi_with         |  +1.2  +1.6  +0.7  +3.0 |  +3.2     +0.4 | when HIGH | -0.084 | -0.056 | -0.159 | -0.133   cost arithmetic
+  lane    control   setup_range_rel  |  +3.3  +0.9  +1.0  +1.1 |  +3.2     -0.3 | when HIGH | -0.029 | -0.050 | -0.070 | -0.055   cost arithmetic
+  lane    control   asia_rel         |  +3.3  +0.9  +1.0  +1.1 |  +3.2     -0.3 | when HIGH | -0.029 | -0.050 | -0.070 | -0.055   cost arithmetic
+  lane    nyaft     last5_mfe        |  +0.8  +1.3  +1.6  +2.6 |  +3.2     +2.6 | when HIGH | -0.085 | -0.073 | -0.159 | -0.133   
+  lane    trend     last_r           |  -0.8  -1.7  -1.0  -2.9 |  -3.2     -3.5 | when LOW  | -0.085 | -0.015 | -0.129 | -0.084   
+  lane    trend     day_used         |  +1.5  +2.9  +1.6  +0.3 |  +3.1     +0.2 | when HIGH | -0.065 | -0.046 | -0.129 | -0.084   cost arithmetic
+  lane    exhaust   stretch_atr      |  -1.8  -1.7  -0.8  -2.0 |  -3.1     -2.9 | when LOW  | -0.193 | -0.177 | -0.290 | -0.230   
+  lane    nyaft     last_r           |  +1.6  +0.7  +2.0  +1.8 |  +3.0     +2.8 | when HIGH | -0.135 | -0.051 | -0.159 | -0.133   
+  family  reversal  squeeze          |  -2.2  -1.8  -0.9  -1.1 |  -3.0     -4.1 | when LOW  | -0.203 | -0.188 | -0.208 | -0.210   
+  lane    exhaust   rsi_with         |  +2.1  +1.7  +0.6  +1.5 |  +3.0     +3.1 | when HIGH | -0.208 | -0.200 | -0.290 | -0.230   
+  lane    main      days_since       |  +1.9  +1.3  +1.8  +0.9 |  +3.0     +2.8 | when HIGH | -0.012 | +0.009 | -0.047 | -0.032   
+  lane    trend     turning          |  -1.8  -0.9  -0.4  -2.8 |  -3.0     -3.1 | when LOW  | -0.107 | -0.057 | -0.129 | -0.084   
+  lane    exhaust   sma20_with       |  +1.8  +2.1  +0.3  +1.6 |  +2.9     +3.2 | when HIGH | -0.218 | -0.218 | -0.290 | -0.230   
+  lane    fade      sma20_with       |  +2.9  +0.5  +1.4  +0.9 |  +2.9     +0.3 | when HIGH | -0.063 | -0.099 | -0.141 | -0.124   cost arithmetic
+  lane    nyaft     last5_r          |  +1.4  +0.8  +1.3  +2.3 |  +2.9     +2.3 | when HIGH | -0.082 | -0.074 | -0.159 | -0.133   
+  lane    nyaft     h1_trend_with    |  +0.0  +1.3  +1.4  +2.9 |  +2.9     +1.4 | when HIGH | -0.084 | -0.068 | -0.159 | -0.133   cost arithmetic
+  lane    nyaft     day_used         |  +0.8  +2.5  +0.5  +1.8 |  +2.9     +0.9 | when HIGH | -0.079 | -0.097 | -0.159 | -0.133   cost arithmetic
+  lane    nyaft     sma20_with       |  +0.6  +1.6  +1.3  +2.2 |  +2.8     -0.4 | when HIGH | -0.121 | -0.064 | -0.159 | -0.133   cost arithmetic
+  lane    london    stop_atr         |  +1.6  +1.8  +0.0  +2.2 |  +2.8     +0.7 | when HIGH | -0.042 | -0.022 | -0.065 | -0.055   cost arithmetic
+  lane    nyaft     sma50_with       |  +0.3  +2.1  +0.9  +2.3 |  +2.8     +0.9 | when HIGH | -0.100 | -0.055 | -0.159 | -0.133   cost arithmetic
+  lane    sar       vol3rel          |  -2.2  -0.5  -2.7  -0.4 |  -2.8     -3.1 | when LOW  | -0.044 | -0.065 | -0.082 | -0.080   
+  lane    london    last5_mae        |  +0.6  +1.4  +2.3  +1.3 |  +2.8     +2.7 | when HIGH | -0.033 | -0.044 | -0.065 | -0.055   
+  family  breakout  sma50_with       |  +0.8  +1.5  +1.5  +1.8 |  +2.8     +0.6 | when HIGH | -0.051 | -0.030 | -0.070 | -0.051   cost arithmetic
+  lane    vwap      bar_range_atr    |  +0.6  +1.2  +3.0  +0.8 |  +2.8     +1.4 | when HIGH | -0.276 | -0.215 | -0.275 | -0.308   cost arithmetic
+  lane    vwap      sma50_with       |  +0.5  +3.4  +0.8  +0.7 |  +2.7     +2.7 | when HIGH | -0.196 | -0.278 | -0.275 | -0.308   
+  lane    retest    days_since       |  +1.6  +0.3  +2.0  +1.5 |  +2.7     +2.7 | when HIGH | -0.059 | -0.012 | -0.126 | -0.080   
+  lane    nyaft     prev_close_with  |  +0.0  +1.4  +1.2  +2.8 |  +2.7     +1.2 | when HIGH | -0.089 | -0.047 | -0.159 | -0.133   cost arithmetic
+  lane    london    day_pos_with     |  +1.4  +1.2  +0.1  +2.7 |  +2.7     +1.8 | when HIGH | -0.039 | -0.030 | -0.065 | -0.055   cost arithmetic
+  lane    exhaust   day_pos_with     |  +1.7  +1.0  +0.3  +2.4 |  +2.7     +1.4 | when HIGH | -0.227 | -0.157 | -0.290 | -0.230   cost arithmetic
+  lane    scalp     setup_range_rel  |  +1.4  +2.5  +0.2  +1.3 |  +2.7     -1.4 | when HIGH | -0.122 | -0.112 | -0.203 | -0.164   cost arithmetic
+  lane    fade      stop_atr         |  +2.0  +1.4  +0.9  +1.1 |  +2.7     -0.7 | when HIGH | -0.075 | -0.077 | -0.141 | -0.124   cost arithmetic
+  lane    control   stop_atr         |  +1.5  +0.6  +1.2  +2.1 |  +2.7     +0.0 | when HIGH | -0.047 | -0.029 | -0.070 | -0.055   cost arithmetic
+  lane    exhaust   sma50_with       |  +2.5  +1.1  +0.2  +1.6 |  +2.7     +2.5 | when HIGH | -0.189 | -0.165 | -0.290 | -0.230   
+  lane    fade      er60             |  +2.0  +0.4  +1.5  +1.4 |  +2.6     +2.6 | when HIGH | -0.066 | -0.074 | -0.141 | -0.124   
+  lane    range     ret60_with       |  -2.5  -0.1  -0.8  -1.9 |  -2.6     -2.7 | when LOW  | -0.185 | -0.219 | -0.304 | -0.336   
+  lane    main      last5_mfe        |  -2.5  -0.1  -0.4  -2.2 |  -2.6     -2.6 | when LOW  | -0.033 | -0.016 | -0.047 | -0.032   
+  lane    nyaft     day_eff          |  +0.5  +1.4  +0.9  +2.4 |  +2.6     +1.3 | when HIGH | -0.084 | -0.059 | -0.159 | -0.133   cost arithmetic
+  family  breakout  bar_extreme      |  +2.1  +0.5  +0.1  +2.5 |  +2.6     +1.1 | when HIGH | -0.056 | -0.026 | -0.070 | -0.051   cost arithmetic
+  lane    sar       h4_trend_with    |  +0.4  +1.8  +0.3  +2.7 |  +2.6     +2.2 | when HIGH | -0.075 | -0.015 | -0.082 | -0.080   
+  lane    sar       room_r           |  -0.6  -1.0  -2.1  -1.4 |  -2.6     -2.4 | when LOW  | -0.021 | -0.019 | -0.082 | -0.080   
+  lane    london    sma50_with       |  +1.1  +1.0  +0.2  +2.8 |  +2.6     +1.2 | when HIGH | -0.041 | -0.034 | -0.065 | -0.055   cost arithmetic
+  lane    fade      day_used         |  +2.0  +1.2  +1.1  +0.9 |  +2.6     +0.1 | when HIGH | -0.101 | -0.121 | -0.141 | -0.124   cost arithmetic
+  lane    exhaust   h1_trend_with    |  +2.4  +0.6  +1.2  +0.9 |  +2.6     +2.3 | when HIGH | -0.217 | -0.210 | -0.290 | -0.230   
+  family  breakout  rsi_with         |  +0.7  +1.9  +1.3  +1.2 |  +2.5     +0.4 | when HIGH | -0.047 | -0.027 | -0.070 | -0.051   cost arithmetic
+  768 lane-and-read pairs were tested in all four eras. By luck alone about 7.4 would be listed and about 0.3 would
+  be STRONG. Listed: 94, of which STRONG and not cost arithmetic: 22.
+  every pair, listed or not: signals_all.csv
+
+----------------------------------------------------------------------------------------------------
+5b. WHEN EACH LANE WORKED   (half-years, all markets together)
+----------------------------------------------------------------------------------------------------
+  One character per half-year, 2014H1 to 2026H2 (the sealed years are missing):
+    + average R above +0.05   - below -0.05   . in between   (blank) fewer than 15 trades
+  up = share of half-years above zero | lasts = does a good half-year follow a good one on the same market
+  (+1 always, 0 no link, -1 flips) | high-vol / low-vol and trendy / choppy = average R in half-years where that
+  market moved more / less than its own usual, and went straighter / less straight than its own usual.
+  lane      half-years               up  lasts | high-vol / low-vol | trendy / choppy  
+  main      -.....--..--.-.--.....  18%  +0.28 | -0.021 / -0.056   | -0.035 / -0.043
+  london    -...---.-.-..--.-...--   9%  +0.10 | -0.033 / -0.084   | -0.054 / -0.064
+  pdh       -++.--.-..--.----+..--  23%  +0.04 | -0.030 / -0.113   | -0.090 / -0.058
+  retest    -.---.----------.-.-.-   9%  +0.01 | -0.060 / -0.139   | -0.103 / -0.096
+  nr7       ..+.----+.--..--++-...  27%  +0.07 | -0.037 / -0.037   | -0.032 / -0.043
+  fade      ----------------------   0%  +0.20 | -0.118 / -0.143   | -0.150 / -0.112
+  sar       --+-----.--+-.-.---..-  27%  -0.13 | -0.075 / -0.087   | -0.116 / -0.050
+  range     +-.--------.---+------   9%  -0.07 | -0.299 / -0.369   | -0.380 / -0.278
+  exhaust   ---------.------------   0%  +0.03 | -0.225 / -0.284   | -0.256 / -0.251
+  vwap      --+-------------------   5%  -0.00 | -0.288 / -0.301   | -0.274 / -0.313
+  bigrev         -  - ++.-+-..-++-  50%    -   | -0.021 / -0.065   | -0.054 / -0.029
+  gapfill         +--++-+-.--.      33%  -0.11 | +0.022 / -0.127   | -0.064 / -0.048
+  trend     -..---------.-----.---   0%  +0.07 | -0.064 / -0.144   | -0.095 / -0.112
+  nyaft     -.-----------.-.------   0%  +0.28 | -0.134 / -0.157   | -0.127 / -0.162
+  scalp     ----------------------   0%  +0.22 | -0.152 / -0.204   | -0.176 / -0.178
+  bigcont        +  + --.+-+--.--.  43%    -   | -0.024 / -0.004   | -0.002 / -0.028
+  swing        - +--.-------..+-.   24%    -   | -0.122 / -0.360   | -0.190 / -0.315
+  dip          . -  - --  +----+.+  38%    -   | +0.045 / -0.266   | -0.219 / -0.048
+  control   ---.--.-.-.-------...-   0%  +0.24 | -0.053 / -0.069   | -0.061 / -0.062
+  breakout  -...-----.--.----....-   0%  +0.10 | -0.033 / -0.084   | -0.060 / -0.060
+  reversal  ----------------------   0%  +0.30 | -0.199 / -0.221   | -0.220 / -0.199
+  momentum  ----------------------   0%  +0.28 | -0.102 / -0.160   | -0.122 / -0.139
+  swing     - -----.------+-----.-  10%    -   | -0.055 / -0.321   | -0.202 / -0.206
+  what each half-year looked like on each market (average daily move, straightness): market_stretches.csv
+
+----------------------------------------------------------------------------------------------------
+5c. READS THAT ONLY MATTER IN ONE KIND OF STRETCH   (and do so in BOTH the old years and the recent years)
+----------------------------------------------------------------------------------------------------
+  The same top-third-minus-bottom-third test, but only on trades from one kind of half-year: high-vol, low-vol,
+  trendy or choppy (per market, against its own usual). Listed when the read is 2+ standard errors the same way in
+  the old years (2014-19) AND the recent years (2020-26) inside that kind of stretch, and NOT in the opposite kind.
+  'known before' repeats the test using the PREVIOUS half-year's kind, which is all you would know while trading.
+                    read             stretch    | old / recent z | opposite stretch  | known before      | best third R old | new
+  lane    main      last5_mae        trendy     |  +2.3 /  +2.4 |  +0.5 /  -0.9     |  +2.0 /  +0.6     | -0.017 | -0.004
+  lane    main      last5_mfe        trendy     |  -2.1 /  -2.4 |  -0.3 /  -0.4     |  -1.8 /  -0.7     | -0.003 | -0.014
+  lane    retest    turning          trendy     |  -3.0 /  -2.4 |  -0.7 /  -1.3     |  -2.3 /  -2.8     | -0.046 | -0.038
+  lane    fade      ema_stack_with   low-vol    |  -3.5 /  -2.2 |  +0.1 /  -0.1     |  -1.9 /  +0.4     | -0.089 | -0.132
+  lane    exhaust   d50_with         trendy     |  +3.1 /  +2.0 |  +0.8 /  -1.5     |  +2.8 /  +0.4     | -0.161 | -0.122
+  lane    exhaust   htf_agree        trendy     |  +3.1 /  +2.2 |  +0.9 /  -2.1     |  +2.4 /  +1.2     | -0.254 | -0.207
+  lane    exhaust   day_pos_with     choppy     |  +2.1 /  +2.1 |  +0.7 /  +0.8     |  +0.5 /  +1.7     | -0.193 | -0.145
+  lane    vwap      ret60_with       trendy     |  +2.8 /  +2.7 |  -0.3 /  -1.7     |  +2.2 /  +1.2     | -0.167 | -0.106
+  lane    vwap      room_r           choppy     |  -2.5 /  -4.0 |  -0.7 /  -2.2     |  +0.3 /  -2.8     | -0.229 | -0.191
+  lane    trend     h1_trend_with    low-vol    |  +3.4 /  +2.6 |  +0.3 /  +1.5     |  +2.9 /  +2.1     | -0.039 | -0.081
+  lane    trend     last_r           choppy     |  -2.7 /  -2.2 |  -0.3 /  -2.0     |  +0.5 /  -2.1     | -0.106 | +0.034
+  lane    trend     day_eff          low-vol    |  +2.2 /  +2.4 |  +1.0 /  +1.5     |  +2.9 /  +1.8     | -0.109 | -0.078
+  lane    trend     turning          trendy     |  -2.2 /  -2.4 |  -0.6 /  -0.7     |  -1.0 /  -1.5     | -0.054 | -0.058
+  lane    nyaft     stop_atr         low-vol    |  +2.1 /  +2.8 |  -0.4 /  +1.4     |  +0.7 /  +0.8     | -0.077 | -0.129
+  lane    scalp     setup_range_rel  trendy     |  +2.5 /  +2.6 |  +1.3 /  -1.2     |  +0.8 /  +0.8     | -0.136 | -0.050
+  lane    control   d50_with         choppy     |  -2.2 /  -3.2 |  +3.3 /  +0.4     |  -0.0 /  -2.5     | -0.044 | -0.038
+  lane    control   trend20_with     choppy     |  -2.7 /  -2.8 |  +1.9 /  +0.8     |  -0.4 /  -2.3     | -0.033 | -0.021
+  family  breakout  d50_with         choppy     |  -2.7 /  -2.1 |  +3.8 /  +1.1     |  +0.6 /  -1.7     | -0.053 | -0.017
+  family  breakout  d200_with        choppy     |  -3.1 /  -2.7 |  +4.1 /  +1.5     |  -0.4 /  -0.4     | -0.032 | -0.023
+  family  breakout  day_pos_with     low-vol    |  +2.6 /  +2.5 |  +0.8 /  +0.2     |  +3.0 /  +1.6     | -0.044 | -0.059
+  family  breakout  ret60_with       choppy     |  -2.2 /  -3.9 |  +3.3 /  +1.1     |  -0.5 /  -2.7     | -0.051 | -0.004
+  family  breakout  bar_extreme      low-vol    |  +2.0 /  +2.4 |  +0.7 /  +1.3     |  +2.9 /  +1.9     | -0.046 | -0.063
+  family  reversal  sma50_with       high-vol   |  +3.9 /  +3.4 |  +0.6 /  +5.2     |  +4.6 /  +6.1     | -0.106 | -0.115
+  family  reversal  h1_trend_with    high-vol   |  +2.8 /  +3.1 |  +0.5 /  +5.0     |  +4.2 /  +4.0     | -0.157 | -0.130
+  family  reversal  run_with         low-vol    |  +2.2 /  +3.2 |  +0.5 /  +2.1     |  +2.2 /  +2.6     | -0.096 | -0.182
+  family  reversal  squeeze          low-vol    |  -2.5 /  -2.6 |  -2.0 /  +0.1     |  -2.7 /  -1.2     | -0.158 | -0.199
+  family  reversal  day_eff          high-vol   |  -3.3 /  -2.5 |  +0.2 /  -3.7     |  -3.4 /  -5.0     | -0.155 | -0.105
+  family  reversal  room_r           high-vol   |  -4.7 /  -5.1 |  -0.8 /  -4.5     |  -4.8 /  -5.2     | -0.094 | -0.069
+  family  reversal  stretch_atr      high-vol   |  -3.3 /  -3.2 |  -0.4 /  -4.7     |  -3.5 /  -4.6     | -0.140 | -0.124
+  family  reversal  turning          trendy     |  +2.1 /  +2.5 |  +0.1 /  +0.1     |  +1.3 /  +1.5     | -0.175 | -0.154
+  family  momentum  sma20_with       low-vol    |  +4.0 /  +2.0 |  +1.8 /  +0.5     |  +3.3 /  +1.2     | -0.053 | -0.126
+  family  momentum  d200_with        choppy     |  -2.6 /  -3.3 |  +0.6 /  +0.5     |  -0.6 /  -2.0     | -0.112 | -0.061
+  family  momentum  rsi_with         low-vol    |  +4.6 /  +2.1 |  +1.8 /  +0.7     |  +3.0 /  +2.1     | -0.065 | -0.111
+  family  momentum  prev_close_with  low-vol    |  +3.2 /  +4.0 |  +0.8 /  +1.1     |  +3.2 /  +3.1     | -0.086 | -0.060
+  family  momentum  day_eff          low-vol    |  +2.6 /  +2.3 |  +0.6 /  +2.8     |  +2.9 /  +3.4     | -0.111 | -0.111
+  family  momentum  setup_range_rel  trendy     |  +4.6 /  +2.4 |  +0.5 /  +2.3     |  +2.7 /  +1.3     | -0.006 | -0.112
+  family  momentum  day_used         low-vol    |  +3.2 /  +2.4 |  +1.4 /  -0.5     |  +2.6 /  +0.3     | -0.095 | -0.096
+  3251 lane-read-stretch combinations were tested; by luck alone about 3 would be listed. Listed: 37.
+  A listing is only useful if 'known before' agrees (the same sign, 2+ in both): otherwise you could not have known
+  you were in that kind of stretch while trading. every combination: signals_by_stretch.csv
+  each trade with all its reads: trades_plus_<market>.csv
+
+runtime 690.2s

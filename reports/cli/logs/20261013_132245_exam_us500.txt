@@ -1,0 +1,135 @@
+# 2026-10-13 13:22:45  module exam_us500
+# asiabo_exam.py
+
+==============================================================================================================
+US500 FRESH-DATA EXAM -- pre-registered 2026-10-13 (exam_us500_spec.md / the top of this file). ONE run.
+==============================================================================================================
+
+=== US 500: 627172 bars, 2015-12-18 14:31:00 -> 2019-12-31 19:58:00 ===
+holiday calendar: US + UK
+year     bars  weekdays  spread pips   ticks/bar   hours with data, UTC 00..23
+2015     3328         9         0.34        19.6   |              #####++   |
+2016   147551       237         0.44        16.0   |       +++++++#####+.   |
+2017   101211       250         0.32        15.2   |        .....+######    |
+2018   187308       255         0.51        19.4   |       #############    |
+2019   187774       258         0.35        10.9   |       #############    |
+         (# = data on 90%+ of that year's weekdays in that hour, + = 50%+, . = 10%+, blank = under 10%)
+usual daily break 2015: (partial year, 9 weekdays -- skipped)
+usual daily break 2016: from 19:00 for about 720 min (20 nights); from 20:00 for about 660 min (96 nights); from 20:00 for about 720 min (31 nights); from 21:00 for about 1050 min (25 nights)
+usual daily break 2017: from 19:00 for about 1052 min (40 nights); from 20:00 for about 721 min (32 nights); from 20:00 for about 1051 min (86 nights); from 20:00 for about 1110 min (30 nights)
+usual daily break 2018: from 20:00 for about 660 min (191 nights)
+usual daily break 2019: from 20:00 for about 660 min (193 nights)
+!! 2017 is shut about 778 min a night, 2019 about 501: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+gaps: 139 weekend (usual length 3540 min), 69 weekend_long, 767 daily break, 639 other (5+ min), 28673 short (<5 min, not stored)
+long holes: 105 -- 42 explained by a holiday, 0 by a known event, 63 unexplained -> gaps_to_check.csv
+unexplained, longest first (up to 15):
+   2016-01-08 20:59:00 -> 2016-01-26 14:30:00   25530 min missing   weekend_long
+   2016-06-17 19:59:00 -> 2016-06-27 07:00:00   13620 min missing   weekend_long
+   2018-09-07 13:14:00 -> 2018-09-11 13:33:00   5778 min missing   weekend_long
+   2017-02-24 19:59:00 -> 2017-02-27 14:31:00   3991 min missing   weekend_long
+   2017-03-03 19:59:00 -> 2017-03-06 14:31:00   3991 min missing   weekend_long
+   2017-01-20 19:59:00 -> 2017-01-23 14:30:00   3990 min missing   weekend_long
+   2017-01-27 19:59:00 -> 2017-01-30 14:30:00   3990 min missing   weekend_long
+   2017-02-03 19:59:00 -> 2017-02-06 14:30:00   3990 min missing   weekend_long
+   2017-02-10 19:59:00 -> 2017-02-13 14:30:00   3990 min missing   weekend_long
+   2017-03-17 19:58:00 -> 2017-03-20 13:31:00   3932 min missing   weekend_long
+   2017-05-12 19:58:00 -> 2017-05-15 13:31:00   3932 min missing   weekend_long
+   2017-06-09 19:58:00 -> 2017-06-12 13:31:00   3932 min missing   weekend_long
+   2017-07-21 19:58:00 -> 2017-07-24 13:31:00   3932 min missing   weekend_long
+   2017-07-28 19:58:00 -> 2017-07-31 13:31:00   3932 min missing   weekend_long
+   2017-09-08 19:58:00 -> 2017-09-11 13:31:00   3932 min missing   weekend_long
+
+=== GERMANY 40: 769521 bars, 2015-12-16 14:59:00 -> 2019-12-31 19:59:00 ===
+holiday calendar: US + UK + Germany
+year     bars  weekdays  spread pips   ticks/bar   hours with data, UTC 00..23
+2015     6234         9         1.44        49.1   |        ++++++##+++++   |
+2016   180638       237         1.14        53.7   |       +############.   |
+2017   188301       251         1.15        41.0   |       +############    |
+2018   196071       254         1.41        45.8   |       #############    |
+2019   198277       258         1.04        38.8   |       #############    |
+         (# = data on 90%+ of that year's weekdays in that hour, + = 50%+, . = 10%+, blank = under 10%)
+usual daily break 2015: (partial year, 9 weekdays -- skipped)
+usual daily break 2016: from 20:00 for about 660 min (110 nights); from 20:00 for about 720 min (36 nights); from 21:00 for about 660 min (37 nights)
+usual daily break 2017: from 20:00 for about 660 min (122 nights); from 20:00 for about 720 min (71 nights)
+usual daily break 2018: from 20:00 for about 660 min (195 nights)
+usual daily break 2019: from 20:00 for about 660 min (201 nights)
+gaps: 188 weekend (usual length 3540 min), 20 weekend_long, 784 daily break, 155 other (5+ min), 1540 short (<5 min, not stored)
+long holes: 37 -- 26 explained by a holiday, 0 by a known event, 11 unexplained -> gaps_to_check.csv
+unexplained, longest first (up to 15):
+   2016-01-08 20:59:00 -> 2016-01-26 08:00:00   25140 min missing   weekend_long
+   2016-06-17 19:59:00 -> 2016-06-27 07:00:00   13620 min missing   weekend_long
+   2018-09-07 13:14:00 -> 2018-09-11 13:33:00   5778 min missing   weekend_long
+   2016-04-01 19:59:00 -> 2016-04-05 07:00:00   4980 min missing   weekend_long
+   2016-04-08 19:59:00 -> 2016-04-12 07:00:00   4980 min missing   weekend_long
+   2015-12-16 15:05:00 -> 2015-12-17 08:00:00   1014 min missing   other
+   2019-10-09 19:59:00 -> 2019-10-10 12:04:00   964 min missing   other
+   2017-12-18 19:59:00 -> 2017-12-19 11:52:00   952 min missing   other
+   2019-01-07 18:14:00 -> 2019-01-08 07:00:00   765 min missing   other
+   2016-09-26 19:15:00 -> 2016-09-27 07:00:00   704 min missing   other
+   2019-07-25 08:59:00 -> 2019-07-25 11:12:00   132 min missing   other
+exam file: US 500_m1_20151218_1430.txt  (627172 bars read, 0 malformed, 0 out of order, complete=True, 2015-12-18 14:31:00 .. 2019-12-31 19:58:00)
+exam db:   exam_us500.db  US 500 627172 bars 2015-12-18 14:31:00 .. 2019-12-31 19:58:00;  GERMANY 40 769521 bars 2015-12-16 14:59:00 .. 2019-12-31 19:59:00 (partner leg, from bars.db)
+exam: US500 ...
+exam: GERMANY40 ...
+
+--------------------------------------------------------------------------------------------------------------
+MAIN TEST: core book on US500, trades entering 2016-01-01 .. 2019-12-31 (net / EDGE in R per trade, t clustered by month)
+--------------------------------------------------------------------------------------------------------------
+   fast                      85  win  31.8%  net -0.287 t -2.1  EDGE -0.003 t -0.0  total   -24.4 R
+      2016                   17  win  47.1%  net +0.175 t +0.7  EDGE +0.383 t +2.2  total    +3.0 R
+      2017                   18  win  33.3%  net -0.530 t -3.1  EDGE -0.228 t -0.8  total    -9.5 R
+      2018                   26  win  26.9%  net -0.168 t -0.5  EDGE +0.049 t +0.2  total    -4.4 R
+      2019                   24  win  25.0%  net -0.562 t -2.4  EDGE -0.165 t -1.2  total   -13.5 R
+      long                   70  win  31.4%  net -0.380 t -2.9  EDGE -0.088 t -0.7  total   -26.6 R
+      short                  15  win  33.3%  net +0.147 t +0.3  EDGE +0.392 t +1.3  total    +2.2 R
+   dip                       31  win  67.7%  net -0.106 t -0.4  EDGE +0.093 t +0.3  total    -3.3 R
+      2016                    1  win 100.0%  net +0.455 t   -   EDGE +0.592 t   -   total    +0.5 R
+      2017                    8  win  87.5%  net +0.271 t +0.6  EDGE +0.510 t +1.1  total    +2.2 R
+      2018                   13  win  53.8%  net -0.717 t -1.5  EDGE -0.530 t -1.0  total    -9.3 R
+      2019                    9  win  66.7%  net +0.380 t +1.2  EDGE +0.565 t +1.8  total    +3.4 R
+   brk                      167  win  21.6%  net -0.523 t -3.2  EDGE +0.031 t +0.3  total   -87.4 R
+      2016                   33  win   9.1%  net -0.975 t -4.9  EDGE -0.152 t -0.7  total   -32.2 R
+      2017                   38  win  10.5%  net -0.993 t -2.7  EDGE -0.076 t -0.4  total   -37.7 R
+      2018                   56  win  28.6%  net -0.328 t -1.0  EDGE +0.028 t +0.1  total   -18.4 R
+      2019                   40  win  32.5%  net +0.022 t +0.1  EDGE +0.288 t +1.4  total    +0.9 R
+      long                  126  win  19.8%  net -0.599 t -3.2  EDGE +0.084 t +0.6  total   -75.5 R
+      short                  41  win  26.8%  net -0.290 t -1.0  EDGE -0.131 t -0.6  total   -11.9 R
+   ins                      122  win  37.7%  net -0.164 t -1.4  EDGE +0.006 t +0.1  total   -20.0 R
+      2016                   24  win  29.2%  net -0.273 t -1.5  EDGE -0.020 t -0.1  total    -6.5 R
+      2017                   34  win  26.5%  net -0.514 t -2.6  EDGE -0.287 t -1.8  total   -17.5 R
+      2018                   25  win  48.0%  net -0.003 t -0.0  EDGE -0.021 t -0.1  total    -0.1 R
+      2019                   39  win  46.2%  net +0.104 t +0.4  EDGE +0.294 t +1.6  total    +4.1 R
+      long                   71  win  36.6%  net -0.261 t -1.7  EDGE -0.094 t -0.7  total   -18.5 R
+      short                  51  win  39.2%  net -0.030 t -0.2  EDGE +0.144 t +1.0  total    -1.5 R
+
+   VERDICT  fast: FAIL   dip: MIXED   ->  BOOK: FAIL
+   (PASS = net above the noise bar (fast +0.07, dip +0.15) and EDGE > 0; FAIL = net < 0 and EDGE < 0, or
+    net t <= -2; else MIXED.
+    PASS means 'not refuted', not 'proven'. brk / ins: numbers only, no verdict.)
+   power, fast: one standard error = 0.140 R/trade; a real edge of +0.05 would show as t ~+0.4
+   power, dip : one standard error = 0.284 R/trade; a real edge of +0.05 would show as t ~+0.2
+
+--------------------------------------------------------------------------------------------------------------
+LEADS
+--------------------------------------------------------------------------------------------------------------
+   #31 ALL                    7  win  42.9%  net -0.309 t -1.3  EDGE -0.116 t -0.5  total    -2.2 R
+   #31 long-stretch           2  win 100.0%  net +0.209 t+178.0  EDGE +0.281 t +6.3  total    +0.4 R
+   #31 short-stretch          5  win  20.0%  net -0.516 t -1.8  EDGE -0.275 t -0.9  total    -2.6 R
+   #27 gap closes            16  win  37.5%  net -0.118 t -0.7  EDGE -0.095 t -0.5  total    -1.9 R
+   #28 rel momentum          16  win  56.2%  net +0.072 t +0.4  EDGE +0.095 t +0.5  total    +1.1 R
+   #31 lead: UNREADABLE (n < 20)     #27 vs #28: #28 (relative momentum) wins
+
+YARDSTICK (this file on 17 fake random-walk US 500 exam files, 2026-10-13, BEFORE the exam):
+    fast  n 153-247   net -0.285 .. +0.066  (t down to -4.1)   EDGE -0.117 .. +0.155
+    dip   n 6-42      net -0.467 .. +0.116                      EDGE -0.211 .. +0.273
+    With 'net > 0 and EDGE > 0' noise PASSED fast 2/17 and dip 8/17 (!), so the PASS bars were raised above every
+    noise run: fast net > +0.07, dip net > +0.15. With those bars noise PASSES 0/17 for both; FAIL fast 11/17.
+    #31: 3-10 trades on noise (UNREADABLE expected).  #27: 9-16 triggers, EDGE -0.18 .. +0.44 on noise: even
+    when readable, only a sign for the record.
+
+marked done: D:\coding stuff\Trading research project\exam_hold\EXAM_DONE.txt -- the exam will not run again. Now the US 500 file may go into bars_input and the
+cache be rebuilt (build_bars_db, then make_synth cache).
+
+report folder: D:\coding stuff\Trading research project\reports\exam_us500_20261013_132246
+claude vision: wiped and refilled with 1 file(s) from exam_us500_20261013_132246

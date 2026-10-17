@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="470" viewBox="0 0 960 470" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#656c76"/></marker></defs>
+<rect width="960" height="470" rx="12" fill="#0d1117"/>
+<text x="24" y="34.0" font-size="17" fill="#f0f6fc" font-weight="700" text-anchor="start">How the lab is built</text>
+<text x="24" y="56.0" font-size="12" fill="#9198a1" font-weight="400" text-anchor="start">Python standard library + SQLite only. ~20k lines across 20 scripts.</text>
+<text x="24" y="92.0" font-size="11" fill="#9198a1" font-weight="700" text-anchor="start">DATA</text>
+<rect x="24" y="102" width="270" height="70" rx="10" fill="#151b23" stroke="#3d444d" stroke-width="1.2"/>
+<text x="38" y="126.0" font-size="13" fill="#f0f6fc" font-weight="700" text-anchor="start">BarExtract (C# cBot)</text>
+<text x="38" y="148.0" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">Custom cTrader bot that exports</text>
+<text x="38" y="162.8" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">13 years of 1-minute bars</text>
+<line x1="159" y1="174" x2="159" y2="196" stroke="#656c76" stroke-width="1.6" marker-end="url(#ah)"/>
+<rect x="24" y="198" width="270" height="86" rx="10" fill="#151b23" stroke="#3d444d" stroke-width="1.2"/>
+<text x="38" y="222.0" font-size="13" fill="#f0f6fc" font-weight="700" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace">build_bars_db.py</text>
+<text x="38" y="244.0" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">Builds the database, logs every gap</text>
+<text x="38" y="258.9" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">and checks it against US/UK/DE/JP</text>
+<text x="38" y="273.7" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">holiday calendars</text>
+<line x1="159" y1="286" x2="159" y2="308" stroke="#656c76" stroke-width="1.6" marker-end="url(#ah)"/>
+<rect x="24" y="310" width="270" height="118" rx="10" fill="#13233a" stroke="#4493f8" stroke-width="1.2"/>
+<text x="38" y="334.0" font-size="13" fill="#f0f6fc" font-weight="700" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace">bars.db  (SQLite, 2.5 GB)</text>
+<text x="38" y="356.0" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">8 markets: gold, US 500, Germany 40,</text>
+<text x="38" y="370.9" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">EURUSD, USDJPY, WTI oil,</text>
+<text x="38" y="385.7" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">Japan 225, US Tech 100</text>
+<text x="38" y="400.6" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">🔒 exam years locked out in code</text>
+<text x="345" y="92.0" font-size="11" fill="#9198a1" font-weight="700" text-anchor="start">ENGINE</text>
+<rect x="345" y="102" width="270" height="136" rx="10" fill="#13233a" stroke="#4493f8" stroke-width="1.2"/>
+<text x="359" y="126.0" font-size="13" fill="#f0f6fc" font-weight="700" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace">asiabo_offline.py / _lab.py</text>
+<text x="359" y="148.0" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">Replays history minute by minute:</text>
+<text x="359" y="162.8" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">real broker costs, spreads, swaps,</text>
+<text x="359" y="177.7" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">money management, and a</text>
+<text x="359" y="192.6" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">coin-flip twin for every trade.</text>
+<text x="359" y="207.4" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">Imported by every study.</text>
+<rect x="345" y="266" width="270" height="118" rx="10" fill="#151b23" stroke="#3d444d" stroke-width="1.2"/>
+<text x="359" y="290.0" font-size="13" fill="#f0f6fc" font-weight="700" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace">make_synth.py</text>
+<text x="359" y="312.0" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">Fake-market generator: shuffles,</text>
+<text x="359" y="326.9" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">cousin histories, momentum and</text>
+<text x="359" y="341.7" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">regime dials. A realism gate (8 stats)</text>
+<text x="359" y="356.6" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">fails any world that looks unreal.</text>
+<line x1="296" y1="369" x2="343" y2="300" stroke="#656c76" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="296" y1="360" x2="343" y2="200" stroke="#656c76" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="480" y1="264" x2="480" y2="240" stroke="#656c76" stroke-width="1.6" marker-end="url(#ah)"/>
+<text x="666" y="92.0" font-size="11" fill="#9198a1" font-weight="700" text-anchor="start">STUDIES &amp; OUTPUT</text>
+<rect x="666" y="102" width="270" height="118" rx="10" fill="#151b23" stroke="#3d444d" stroke-width="1.2"/>
+<text x="680" y="126.0" font-size="13" fill="#f0f6fc" font-weight="700" text-anchor="start">15 study scripts</text>
+<text x="680" y="148.0" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">why · engine · hunt · regime · switch</text>
+<text x="680" y="162.8" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">ladder · probe · young · explore</text>
+<text x="680" y="177.7" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">exam · dipdrift: one-shot, refuse</text>
+<text x="680" y="192.6" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">to run twice (DONE markers)</text>
+<line x1="617" y1="170" x2="664" y2="162" stroke="#656c76" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="801" y1="222" x2="801" y2="264" stroke="#656c76" stroke-width="1.6" marker-end="url(#ah)"/>
+<rect x="666" y="266" width="270" height="118" rx="10" fill="#151b23" stroke="#3d444d" stroke-width="1.2"/>
+<text x="680" y="290.0" font-size="13" fill="#f0f6fc" font-weight="700" text-anchor="start">reports/ + docs/</text>
+<text x="680" y="312.0" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">One dated folder per run (92 kept).</text>
+<text x="680" y="326.9" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">37 research notes: plans written</text>
+<text x="680" y="341.7" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">before runs, results after, and a</text>
+<text x="680" y="356.6" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start">ledger of 34 market theories.</text>
+<rect x="345" y="410" width="591" height="40" rx="10" fill="#151b23" stroke="#3d444d" stroke-width="1.2"/>
+<text x="361" y="435.0" font-size="11.5" fill="#9198a1" font-weight="400" text-anchor="start">run.bat → asiabo.py menu · modules.json registry · runs.csv logs every run, its time and RAM</text>
+<text x="361" y="435.0" font-size="11" fill="#9198a1" font-weight="400" text-anchor="start"></text>
+</svg>

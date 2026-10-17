@@ -1,0 +1,210 @@
+==============================================================================================================
+THE PROBE STUDY (next_plan.md Phase 1, predictions in asiabo_probe.py written 2026-10-11)   mode: all
+==============================================================================================================
+Sealed exam years 2022-01-01 .. 2024-01-01 and Japan 225: not read. Measures only; decides nothing.
+IDENTITY: book built per market IDENTICAL to the book built over all markets (4814 trades)
+book trades: brk 1740, dip 139, fast 1679, ins 1256
+
+==============================================================================================================
+M1. TREND END: what follows the end of an er40 spell (er40 >= 0.30, same direction)
+==============================================================================================================
+PREDICTIONS  Ezio: chop > reverse > continue.  Claude: chop ~45-50%%, continue ~ reverse, inside the yardstick;
+             blow-offs reverse more than fades.
+ended REAL spells (lasted 10+ days, not cut by a data break): 60. Most er40 spells are 1-2 day flickers around the threshold;
+those are shown on their own line ('short spell END').
+
+a. Outcome shares and the mean move in the OLD trend's direction (N = daily ATR at the end day)
+                                 h      n     CONT     CHOP      REV  mean move        MFE med MAE med
+   REAL spell END day            5     60   18.3%   61.7%   20.0%  +0.217 t +1.1    1.15    0.86
+                                10     60   30.0%   53.3%   16.7%  +0.620 t +2.2    1.67    1.12
+                                20     59   33.9%   54.2%   11.9%  +1.233 t +2.4    2.40    1.63
+   short spell END (<10 d)       5    284   25.4%   52.8%   21.8%  +0.031 t +0.3    1.03    1.02
+                                10    282   23.4%   57.4%   19.1%  +0.051 t +0.4    1.46    1.50
+                                20    280   22.1%   62.9%   15.0%  +0.165 t +0.7    2.08    2.20
+   mid-spell (age>=10)           5    649   25.3%   47.6%   27.1%  -0.064 t -0.5    0.98    1.21
+                                10    649   25.6%   48.1%   26.3%  -0.027 t -0.1    1.54    1.67
+                                20    648   18.1%   59.1%   22.8%  -0.026 t -0.1    2.43    2.45
+   any day, 40d direction        5  13607   21.9%   57.2%   20.9%  +0.033 t +1.2    0.93    0.94
+                                10  13522   22.4%   57.3%   20.3%  +0.093 t +1.9    1.35    1.35
+                                20  13352   22.9%   56.8%   20.3%  +0.191 t +2.2    1.98    1.92
+
+b. END minus MID-SPELL mean move (does the end of a spell change what comes next?)
+   h  5: +0.282 t +1.2
+   h 10: +0.647 t +1.9
+   h 20: +1.258 t +2.1
+
+c. By how the spell ended (h = 10)                         and by spell length (h = 10)
+   blow-off  n    0 cont     -  chop     -  rev     -  move      - t   -   10-19 d  n   35 rev  14.3% move +0.873 t +2.1
+   fade      n   11 cont  36.4% chop  63.6% rev   0.0% move +1.387 t +3.2  20-39 d  n   22 rev  18.2% move +0.268 t +0.7
+   rollover  n   49 cont  28.6% chop  51.0% rev  20.4% move +0.448 t +1.4  40+ d    n    3 rev  33.3% move +0.248 t +0.2
+
+d. Per market (end day, h = 10)
+   XAUUSD     n   19 cont  36.8% chop  42.1% rev  21.1% move +0.737 t +1.2
+   US500      n    5 cont  20.0% chop  40.0% rev  40.0% move +0.554 t +0.5
+   EURUSD     n   10 cont  30.0% chop  70.0% rev   0.0% move +0.962 t +1.6
+   USDJPY     n   10 cont  20.0% chop  60.0% rev  20.0% move +0.182 t +0.3
+   XTIUSD     n    9 cont  22.2% chop  55.6% rev  22.2% move +0.192 t +0.3
+   GERMANY40  n    7 cont  42.9% chop  57.1% rev   0.0% move +1.038 t +1.9
+YARDSTICK (this file on 3 fake random-walk histories, 6 markets, 2026-10-11): every t in this section stayed
+    within -1.9 .. +2.4 (2 of 79 beyond 2, both on SHORT-spell lines). REAL spell END, h 10: continue 16-25%,
+    chop 51-62%, reverse 19-25%; END minus MID |t| <= 1.0. So a share or a t means something only well outside
+    these AND outside the dayshuffle cousin (probe_synth_dayshuffle_s1.txt).
+
+==============================================================================================================
+M2. HAZARD: the chance an er40 spell ends at each age (memoryless = flat; read against the yardstick)
+==============================================================================================================
+PREDICTIONS  Ezio: rises after ~20 days.  Claude: no rise beyond the cousin's curve.
+spells: 359 (censored 3)
+   age (days)   ended  spell-days at risk   hazard/day
+   1-5            249         1046         0.2380
+   6-10            53          423         0.1253
+   11-20           31          377         0.0822
+   21-30           15          177         0.0847
+   31-40            6           43         0.1395
+   41-60            2            5         0.4000
+   61-+             0            0              -
+   hazard ratio (age 21-40) / (age 6-20): 0.91   bootstrap 90% band 0.67 .. 1.28   (1 = no ageing)
+   per market:  XAUUSD 1.63  US500 2.04  EURUSD 0.38  USDJPY 0.87  XTIUSD 0.71  GERMANY40 1.39
+   median spell length 3 days; share of spells lasting 20+ days   7.0%
+YARDSTICK (3 fake random walks): on pure noise the hazard FALLS with age, then bumps up at 41-60 days (the window):
+    1-5 d 0.24-0.26 | 6-10 0.10-0.12 | 11-20 0.07-0.11 | 21-30 0.06-0.08 | 31-40 0.06-0.08 | 41-60 0.14-0.18.
+    Ratio (21-40) / (6-20) = 0.65 .. 0.82, bootstrap bands within 0.44 .. 1.08; per market 0.11 .. 1.98 (thin).
+    So 'rises after ~20 days' counts only if the real ratio is above ~1.1 AND above the dayshuffle cousin's.
+
+==============================================================================================================
+M4. CORRECTION STATS: stretch from the 20-day average x a structure crack -> the next 1 / 3 / 5 days AGAINST the stretch
+==============================================================================================================
+PREDICTIONS  Ezio: stretched + cracked falls more than random, clearest over 3 days, on EURUSD/XAUUSD/XTIUSD/USDJPY.
+             Claude: a small correction in XAUUSD / XTIUSD / EURUSD (t ~2), none in the indices.
+|z| = the PEAK stretch of the last 5 closes from their 20-day average, in N. CRACK = yesterday was the FIRST close
+below the low of the 3 days before it (above the high, for a stretch down). Moves from today's open, against the
+stretch, in N. 'no crack' rows = the same stretch without the trigger (what the crack adds).
+   (move against the stretch in N; + = the correction happened)     1 day           3 days          5 days
+   ALL days                           -0.000 t -0.1 +0.000 t +0.0 +0.006 t +0.2  n 13869  P(3d>0)  50.1%
+   |z| 0.0-1.5 no crack               +0.000 t +0.0 +0.006 t +0.3 +0.032 t +1.0  n  5213  P(3d>0)  50.8%
+   |z| 0.0-1.5 CRACK                  -0.025 t -0.9 -0.092 t -1.8 -0.078 t -1.2  n   482  P(3d>0)  45.4%
+   |z| 1.5-2.5 no crack               +0.006 t +0.6 +0.000 t +0.0 -0.021 t -0.5  n  4435  P(3d>0)  49.7%
+   |z| 1.5-2.5 CRACK                  +0.011 t +0.3 +0.007 t +0.1 -0.005 t -0.1  n   420  P(3d>0)  47.6%
+   |z| 2.5-3.5 no crack               -0.008 t -0.5 +0.000 t +0.0 +0.016 t +0.3  n  2154  P(3d>0)  51.2%
+   |z| 2.5-3.5 CRACK                  -0.011 t -0.2 +0.094 t +0.9 +0.155 t +1.0  n   190  P(3d>0)  52.1%
+   |z| 3.5-+ no crack                 -0.001 t -0.0 -0.006 t -0.1 -0.041 t -0.3  n   917  P(3d>0)  48.3%
+   |z| 3.5-+ CRACK                    -0.029 t -0.3 +0.031 t +0.2 +0.278 t +1.1  n    58  P(3d>0)  46.6%
+
+   |z| >= 2.5 and CRACK, per market (+ #31's straight-20-days condition)
+   XAUUSD     *                       -0.151 t -1.4 -0.045 t -0.3 +0.013 t +0.1  n    45  P(3d>0)  53.3%
+      ... and er20 >= 0.30 same way   -0.253 t -1.4 -0.035 t -0.2 +0.274 t +1.0  n    18  P(3d>0)  50.0%
+      ... no crack (same stretch)     -0.030 t -1.0 -0.059 t -0.7 -0.068 t -0.5  n   657  P(3d>0)  49.8%
+   US500                              -0.124 t -0.9 -0.344 t -1.3 -0.361 t -1.0  n    25  P(3d>0)  28.0%
+      ... and er20 >= 0.30 same way   -0.240 t -0.8 -0.779 t -6.2 -0.750 t -1.8  n     8  P(3d>0)   0.0%
+      ... no crack (same stretch)     +0.022 t +0.5 +0.041 t +0.3 -0.045 t -0.2  n   234  P(3d>0)  44.9%
+   EURUSD     *                       +0.006 t +0.1 +0.193 t +1.1 +0.112 t +0.3  n    40  P(3d>0)  55.0%
+      ... and er20 >= 0.30 same way   +0.023 t +0.2 +0.159 t +0.7 +0.212 t +0.5  n    21  P(3d>0)  61.9%
+      ... no crack (same stretch)     -0.023 t -0.8 -0.035 t -0.4 -0.032 t -0.2  n   578  P(3d>0)  51.4%
+   USDJPY     *                       -0.082 t -0.7 +0.087 t +0.4 +0.055 t +0.2  n    58  P(3d>0)  50.0%
+      ... and er20 >= 0.30 same way   +0.111 t +0.6 +0.302 t +1.4 +0.318 t +1.2  n    22  P(3d>0)  59.1%
+      ... no crack (same stretch)     +0.041 t +1.0 +0.109 t +1.1 +0.132 t +0.8  n   547  P(3d>0)  54.3%
+   XTIUSD     *                       +0.126 t +1.1 +0.022 t +0.1 +0.601 t +2.9  n    37  P(3d>0)  56.8%
+      ... and er20 >= 0.30 same way   +0.093 t +0.5 -0.087 t -0.3 +0.354 t +1.1  n    19  P(3d>0)  47.4%
+      ... no crack (same stretch)     -0.016 t -0.6 -0.023 t -0.3 -0.007 t -0.0  n   534  P(3d>0)  49.8%
+   GERMANY40                          +0.138 t +1.1 +0.388 t +1.3 +0.560 t +1.2  n    43  P(3d>0)  53.5%
+      ... and er20 >= 0.30 same way   +0.081 t +0.5 +0.305 t +1.0 +0.620 t +0.8  n    16  P(3d>0)  56.2%
+      ... no crack (same stretch)     -0.010 t -0.3 -0.006 t -0.1 +0.006 t +0.0  n   521  P(3d>0)  48.8%
+   * = Ezio's mirror-dip markets
+YARDSTICK (3 fake random walks): every t in this section within -2.1 .. +2.1 (4 of 243 beyond 2); cracked rows
+    -2.1 .. +2.1. Count a correction only at |t| >= ~2.5, the same sign over 1 / 3 / 5 days, above the 'no crack'
+    row of the same market and above the dayshuffle cousin.
+
+==============================================================================================================
+M5. SEEING SPEED: how fast each indicator sees a state that is true in hindsight
+==============================================================================================================
+PREDICTIONS  Claude: er20 fastest with tolerable false alarms; SMA/EMA lag about L/2; ATR5-10 sees high vol in days.
+days where the truth is known: 52 market-years
+              truth precis.  recall  lag med   caught 1st half life left   false/yr
+   sma5       14.7%   13.9%   59.5%      1 d    76.3%    69.5%    95.0%       39.0
+   sma10      14.7%   15.2%   72.4%      0 d    88.1%    84.7%   100.0%       26.2
+   sma20      14.6%   16.5%   85.2%      0 d    94.9%    91.5%   100.0%       18.0
+   sma50      14.4%   13.9%   78.6%      0 d    89.8%    83.1%   100.0%       10.9
+   sma100     14.7%   12.7%   70.9%      0 d    81.4%    72.9%   100.0%        6.3
+   sma200     14.7%   11.8%   67.6%      0 d    66.1%    64.4%   100.0%        3.5
+   ema5       14.7%   13.6%   69.1%      0 d    88.1%    83.1%   100.0%       40.3
+   ema10      14.7%   14.5%   78.8%      0 d    93.2%    89.8%   100.0%       29.5
+   ema20      14.6%   14.9%   87.1%      0 d    96.6%    93.2%   100.0%       22.0
+   ema50      14.4%   14.1%   88.8%      0 d    93.2%    89.8%   100.0%       12.5
+   ema100     14.7%   13.3%   84.6%      0 d    89.8%    88.1%   100.0%        7.6
+   ema200     14.7%   12.5%   81.7%      0 d    78.0%    72.9%   100.0%        4.2
+   er10       14.7%   18.2%   59.6%      0 d    79.7%    76.3%   100.0%       25.0
+   er20       14.7%   28.7%   60.0%      2 d    83.1%    74.6%    85.7%       11.1
+   er40       14.4%   24.5%   25.2%     18 d    50.8%    25.4%    51.1%        4.8
+   er60       14.4%   19.4%   10.2%     12 d    15.3%     5.1%    44.0%        2.4
+   (volatility detectors vs the high-vol truth)
+   atr5       18.7%   70.1%   75.5%      6 d    96.0%    90.0%    84.1%        3.5
+   atr10      18.7%   77.9%   76.9%      8 d    96.0%    76.0%    80.7%        1.3
+   atr20      18.7%   73.8%   68.2%     11 d    80.0%    56.0%    71.8%        0.3
+   atr50      18.7%   65.8%   54.5%     15 d    58.0%    48.0%    71.1%        0.0
+   truth = share of days the hindsight state is on (any sign). Read every column against the yardstick below.
+   lag 0 d = the detector was already on when the truth spell began (its centred window includes 20 earlier days).
+   precision = share of detector-on days the truth agrees with; recall = share of truth days the detector agrees.
+   lag / caught / 1st half / life left: per truth spell (>= 10 days), the first day the detector agrees AND keeps
+   agreeing for 5 days; caught = share of spells where that happens, life left = median share of the spell ahead.
+   false/yr = detector runs per market-year that never meet the truth with the same sign.
+YARDSTICK (3 fake random walks) = what the hindsight truth gives for FREE: the truth's centred window shares 20
+    days with each detector's window, so even noise scores. Noise: truth on 14-15% of days; precision sma/ema
+    10-17%, er10 18%, er20 28-29%, er40 25-28%, er60 21-25%; caught sma20/ema20 94-99%; lag er20 3-4 d,
+    er40 8-21 d, er60 14-24 d; false/yr sma5 38, er20 12, er40 4.5. High-vol truth only 1-3% of noise days
+    (constant volatility), so the ATR rows are read against the dayshuffle cousin. A detector carries real
+    information only where its precision / caught beats these noise numbers.
+
+==============================================================================================================
+M3. FAILED SHADOW: after a brk / fast stop-out, the reverse probe vs random entries (same hour, same stop in ATR)
+==============================================================================================================
+PREDICTIONS  Ezio: none.  Claude: about equal overall; the fastest failures (<= 1h) a little better.
+probe: the other way at the next M15 open, stop 1 risk unit, target 1.5, out after 5 trading days. Gross R.
+                                 n  probe R               control                probe - ctrl   P(tgt)
+   brk  ALL                   1040   +0.023 t +0.6         -0.025 t -1.2         +0.048 t +1.1   40.5%
+      failed in <=1h           148   -0.020 t -0.2         +0.017 t +0.3         -0.037 t -0.3   39.2%
+      failed in 1-4h           237   +0.150 t +1.8         -0.059 t -1.3         +0.208 t +2.2   46.0%
+      failed in 4-24h          441   -0.043 t -0.7         -0.026 t -0.8         -0.017 t -0.3   37.9%
+      failed in >1d            214   +0.048 t +0.6         -0.014 t -0.3         +0.062 t +0.7   40.7%
+      er40 on                  214   +0.019 t +0.2         -0.031 t -0.7         +0.050 t +0.5   40.2%
+      er40 off                 826   +0.024 t +0.6         -0.023 t -1.0         +0.047 t +0.9   40.6%
+      XAUUSD                   322   +0.008 t +0.1         -0.061 t -1.7         +0.069 t +0.9   39.4%
+      US500                    132   -0.053 t -0.5         +0.016 t +0.3         -0.069 t -0.6   37.9%
+      USDJPY                   364   -0.002 t -0.0         -0.028 t -0.8         +0.026 t +0.3   39.6%
+      GERMANY40                222   +0.129 t +1.5         +0.008 t +0.2         +0.121 t +1.1   45.0%
+   fast  ALL                   854   -0.007 t -0.2         -0.034 t -1.5         +0.026 t +0.6   39.5%
+      failed in <=1h           195   -0.064 t -0.7         -0.038 t -0.8         -0.026 t -0.3   37.4%
+      failed in 1-4h           293   +0.035 t +0.5         -0.064 t -1.6         +0.100 t +1.2   41.3%
+      failed in 4-24h          363   -0.003 t -0.0         -0.013 t -0.4         +0.009 t +0.1   39.4%
+      failed in >1d              3   -1.000 t   -          +0.667 t   -          -1.667 t-10615086120876288.0    0.0%
+      er40 on                  223   -0.076 t -1.0         -0.088 t -1.8         +0.012 t +0.1   36.3%
+      er40 off                 631   +0.017 t +0.4         -0.015 t -0.5         +0.032 t +0.6   40.6%
+      XAUUSD                   314   -0.054 t -0.8         -0.018 t -0.5         -0.036 t -0.5   37.6%
+      US500                     86   -0.060 t -0.5         -0.128 t -2.0         +0.068 t +0.5   37.2%
+      USDJPY                   300   +0.025 t +0.4         -0.033 t -0.8         +0.057 t +0.7   40.7%
+      GERMANY40                154   +0.055 t +0.5         -0.015 t -0.3         +0.070 t +0.6   42.2%
+YARDSTICK (3 fake random walks): every t in this section within -2.6 .. +2.4 (9 of 198 beyond 2). Overall rows
+    (probe - ctrl, ALL) t -0.6 .. +1.0. A row stands out only with |t| >= ~3, or a speed pattern that also shows
+    in fast AND brk and not in the cousin.
+
+==============================================================================================================
+M6. SERIAL DEPENDENCE: does a loss predict the next trade (non-overlapping trades, per market)?
+==============================================================================================================
+PREDICTIONS  Claude: P(loss | loss) inside the shuffle band for every part; neither line crossed.
+   part    pairs    P(L)    P(L|L)    P(L|W)    E[net|L]    E[net|W]    E[mirr|L]  shuffle%    block%
+   fast     1675   60.9%     59.6%     62.6%      +0.181      -0.010       -0.132      6.4%     54.6%
+          skip line: E[net] - E[net|L] = -0.075 per skipped trade vs skipping at random, shuffle pct   1.8% -> not crossed
+          mirror line: (E[mirr|L]-E[net|L]) - (E[mirr]-E[net]) = -0.084, shuffle pct   9.2% -> not crossed
+   dip       137   26.6%     21.6%     28.0%      +0.369      +0.298       -0.507     11.6%     16.6%
+          skip line: E[net] - E[net|L] = -0.052 per skipped trade vs skipping at random, shuffle pct  35.8% -> not crossed
+          mirror line: (E[mirr|L]-E[net|L]) - (E[mirr]-E[net]) = -0.092, shuffle pct  35.6% -> not crossed
+   brk      1736   74.8%     74.0%     77.2%      +0.147      -0.047       -0.192      8.2%     16.2%
+          skip line: E[net] - E[net|L] = -0.049 per skipped trade vs skipping at random, shuffle pct  13.8% -> not crossed
+          mirror line: (E[mirr|L]-E[net|L]) - (E[mirr]-E[net]) = -0.073, shuffle pct  10.4% -> not crossed
+   shuffle% / block% = percentile of the real P(L|L) - P(L) among 500 order / month-block shuffles (>95 or <5 =
+   beyond chance: persistent / contrarian). A line counts as CROSSED only above the shuffles' 95th percentile:
+   every lane loses after costs on noise, so 'skipping a loser helps' is true of ANY skip and proves nothing.
+YARDSTICK (3 fake random walks, 18 percentiles): P(L|L) shuffle% 0.2 .. 87.0 and block% 15 .. 99.0, so a single
+    extreme is chance. 1 of 18 lines crossed (95.4%). Count a part as dependent only if shuffle% AND block% are
+    both beyond 2.5 / 97.5 with the same sign, and the cousin does not show it.
+
+runtime 290s

@@ -1,0 +1,374 @@
+
+=== EURUSD: 5105695 bars, 2012-11-11 22:01:00 -> 2026-10-06 20:14:00 ===
+holiday calendar: US + UK
+year     bars  weekdays  spread pips   ticks/bar   hours with data, UTC 00..23
+2012    49696        36         0.42        35.9   |######################++|
+2013   366590       261         0.44        41.5   |######################++|
+2014   366389       260         1.04        33.3   |#####################+++|
+2015   369522       261         0.96        71.6   |#####################+++|
+2016   357383       249         0.48        57.7   |#####################+++|
+2017   369003       260         0.42        53.1   |#####################+++|
+2018   368162       261         0.49        52.7   |#####################+++|
+2019   368442       261         0.25        36.6   |#####################+++|
+2020   371662       262         0.23        56.0   |#####################+++|
+2021   370707       260         0.28        43.9   |#####################+++|
+2022   369918       260         0.32        78.1   |#####################+++|
+2023   368473       260         0.27        60.9   |#####################+++|
+2024   369889       262         0.22        56.6   |#####################+++|
+2025   362621       261         0.22        38.4   |#####################+++|
+2026   277238       199         0.24        48.8   |#####################+++|
+         (# = data on 90%+ of that year's weekdays in that hour, + = 50%+, . = 10%+, blank = under 10%)
+usual daily break 2012: (partial year, 36 weekdays -- skipped)
+usual daily break 2013: none found
+usual daily break 2014: none found
+usual daily break 2015: none found
+usual daily break 2016: none found
+usual daily break 2017: none found
+usual daily break 2018: none found
+usual daily break 2019: none found
+usual daily break 2020: none found
+usual daily break 2021: none found
+usual daily break 2022: none found
+usual daily break 2023: none found
+usual daily break 2024: from 20:00 for about 31 min (18 nights); from 21:00 for about 31 min (31 nights)
+usual daily break 2025: from 20:00 for about 31 min (133 nights); from 21:00 for about 31 min (69 nights)
+usual daily break 2026: from 20:00 for about 30 min (121 nights); from 21:00 for about 31 min (36 nights)
+gaps: 713 weekend (usual length 2888 min), 11 weekend_long, 410 daily break, 2712 other (5+ min), 15347 short (<5 min, not stored)
+long holes: 34 -- 25 explained by a holiday, 0 by a known event, 9 unexplained -> gaps_to_check.csv
+unexplained, longest first (up to 15):
+   2016-01-10 23:59:00 -> 2016-01-26 00:00:00   21600 min missing   weekend_long
+   2013-05-31 20:59:00 -> 2013-06-03 06:22:00   3442 min missing   weekend_long
+   2014-12-10 23:59:00 -> 2014-12-12 00:10:00   1450 min missing   other
+   2014-01-23 23:59:00 -> 2014-01-24 11:33:00   693 min missing   other
+   2013-02-20 01:50:00 -> 2013-02-20 11:14:00   563 min missing   other
+   2014-07-27 23:54:00 -> 2014-07-28 06:33:00   398 min missing   other
+   2012-11-14 04:35:00 -> 2012-11-14 08:59:00   263 min missing   other
+   2013-08-07 01:53:00 -> 2013-08-07 04:49:00   175 min missing   other
+   2013-04-19 05:28:00 -> 2013-04-19 07:38:00   129 min missing   other
+
+=== GERMANY 40: 2415761 bars, 2015-12-16 14:59:00 -> 2026-10-07 09:34:00 ===
+holiday calendar: US + UK + Germany
+year     bars  weekdays  spread pips   ticks/bar   hours with data, UTC 00..23
+2015     6234         9         1.44        49.1   |        ++++++##+++++   |
+2016   180638       237         1.14        53.7   |       +############.   |
+2017   188301       251         1.15        41.0   |       +############    |
+2018   196071       254         1.41        45.8   |       #############    |
+2019   198277       258         1.04        38.8   |       #############    |
+2020   198060       257         0.77        54.4   |       #############    |
+2021   199683       257         0.70        40.7   |       #############    |
+2022   215055       257         0.75        61.1   |  .....#############    |
+2023   213016       255         0.30        38.1   |  .....#############    |
+2024   239585       254         0.51        33.1   |.......#############.  .|
+2025   326388       253         0.55        30.6   |###################+. ++|
+2026   254453       196         0.55        45.1   |###################+. ++|
+         (# = data on 90%+ of that year's weekdays in that hour, + = 50%+, . = 10%+, blank = under 10%)
+usual daily break 2015: (partial year, 9 weekdays -- skipped)
+usual daily break 2016: from 20:00 for about 660 min (110 nights); from 20:00 for about 720 min (36 nights); from 21:00 for about 660 min (37 nights)
+usual daily break 2017: from 20:00 for about 660 min (122 nights); from 20:00 for about 720 min (71 nights)
+usual daily break 2018: from 20:00 for about 660 min (195 nights)
+usual daily break 2019: from 20:00 for about 660 min (201 nights)
+usual daily break 2020: from 20:00 for about 660 min (202 nights)
+usual daily break 2021: from 20:00 for about 660 min (204 nights)
+usual daily break 2022: from 20:00 for about 360 min (51 nights); from 20:00 for about 660 min (152 nights)
+usual daily break 2023: from 20:00 for about 360 min (52 nights); from 20:00 for about 660 min (149 nights)
+usual daily break 2024: from 20:00 for about 122 min (14 nights); from 20:00 for about 360 min (38 nights); from 20:00 for about 660 min (114 nights); from 21:00 for about 122 min (28 nights)
+usual daily break 2025: from 20:00 for about 122 min (116 nights); from 21:00 for about 62 min (12 nights); from 21:00 for about 122 min (67 nights)
+usual daily break 2026: from 20:00 for about 122 min (107 nights); from 21:00 for about 62 min (12 nights); from 21:00 for about 122 min (36 nights)
+!! 2016 is shut about 521 min a night, 2026 about 92: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2017 is shut about 530 min a night, 2026 about 92: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2018 is shut about 517 min a night, 2026 about 92: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2019 is shut about 514 min a night, 2026 about 92: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2020 is shut about 521 min a night, 2026 about 92: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2021 is shut about 526 min a night, 2026 about 92: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2022 is shut about 465 min a night, 2026 about 92: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2023 is shut about 464 min a night, 2026 about 92: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2024 is shut about 372 min a night, 2026 about 92: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+gaps: 522 weekend (usual length 3540 min), 39 weekend_long, 2145 daily break, 335 other (5+ min), 9789 short (<5 min, not stored)
+long holes: 63 -- 51 explained by a holiday, 0 by a known event, 12 unexplained -> gaps_to_check.csv
+unexplained, longest first (up to 15):
+   2016-01-08 20:59:00 -> 2016-01-26 08:00:00   25140 min missing   weekend_long
+   2016-06-17 19:59:00 -> 2016-06-27 07:00:00   13620 min missing   weekend_long
+   2020-10-09 09:22:00 -> 2020-10-13 13:13:00   5990 min missing   weekend_long
+   2018-09-07 13:14:00 -> 2018-09-11 13:33:00   5778 min missing   weekend_long
+   2016-04-01 19:59:00 -> 2016-04-05 07:00:00   4980 min missing   weekend_long
+   2016-04-08 19:59:00 -> 2016-04-12 07:00:00   4980 min missing   weekend_long
+   2015-12-16 15:05:00 -> 2015-12-17 08:00:00   1014 min missing   other
+   2019-10-09 19:59:00 -> 2019-10-10 12:04:00   964 min missing   other
+   2017-12-18 19:59:00 -> 2017-12-19 11:52:00   952 min missing   other
+   2019-01-07 18:14:00 -> 2019-01-08 07:00:00   765 min missing   other
+   2016-09-26 19:15:00 -> 2016-09-27 07:00:00   704 min missing   other
+   2019-07-25 08:59:00 -> 2019-07-25 11:12:00   132 min missing   other
+
+=== JAPAN 225: 1046435 bars, 2015-12-18 00:01:00 -> 2026-10-07 10:00:00 ===
+holiday calendar: US + UK + Japan
+year     bars  weekdays  spread pips   ticks/bar   hours with data, UTC 00..23
+2015     2100         8         9.88         9.7   |######                  |
+2016    67397       222         9.15        11.8   |######                  |
+2017    60888       243         9.56         7.8   |######                  |
+2018    40332       147         8.42         8.8   |+#####                  |
+2022    52716       153         8.73        18.6   |######                  |
+2023    88026       256         9.09        17.0   |######                  |
+2024   117779       154         3.22        26.4   |######..................|
+2025   347397       260         2.06        26.2   |#####################.++|
+2026   269800       200         2.22        44.6   |#####################.++|
+         (# = data on 90%+ of that year's weekdays in that hour, + = 50%+, . = 10%+, blank = under 10%)
+usual daily break 2015: (partial year, 8 weekdays -- skipped)
+usual daily break 2016: from 06:00 for about 1080 min (150 nights)
+usual daily break 2017: from 05:00 for about 1081 min (8 nights); from 06:00 for about 1080 min (176 nights)
+usual daily break 2018: from 06:00 for about 1080 min (77 nights); from 06:00 for about 1140 min (34 nights)
+usual daily break 2022: from 06:00 for about 1080 min (121 nights)
+usual daily break 2023: from 06:00 for about 1080 min (202 nights)
+usual daily break 2024: from 06:00 for about 1080 min (70 nights); from 21:00 for about 60 min (18 nights); from 22:00 for about 60 min (30 nights)
+usual daily break 2025: from 21:00 for about 60 min (129 nights); from 22:00 for about 60 min (64 nights)
+usual daily break 2026: from 21:00 for about 60 min (119 nights); from 22:00 for about 60 min (34 nights)
+!! 2016 is shut about 759 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2017 is shut about 845 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2018 is shut about 866 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2022 is shut about 861 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2023 is shut about 860 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2024 is shut about 509 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+gaps: 303 weekend (usual length 3960 min), 39 weekend_long, 1262 daily break, 1844 other (5+ min), 34230 short (<5 min, not stored)
+long holes: 75 -- 52 explained by a holiday, 1 by a known event, 22 unexplained -> gaps_to_check.csv
+   2025-11-28 02:44:00 -> 2025-11-28 13:50:00   665 min   event: CME Globex outage (data-centre cooling failure)
+unexplained, longest first (up to 15):
+   2018-07-31 05:59:00 -> 2022-05-30 00:00:00   2014200 min missing   weekend_long
+   2024-05-10 05:59:00 -> 2024-10-02 07:39:00   208899 min missing   weekend_long
+   2016-01-08 05:59:00 -> 2016-01-26 00:00:00   25560 min missing   weekend_long
+   2016-06-17 05:59:00 -> 2016-06-27 00:00:00   14040 min missing   weekend_long
+   2024-02-09 05:59:00 -> 2024-02-16 00:00:00   9720 min missing   weekend_long
+   2016-09-15 05:59:00 -> 2016-09-20 00:00:00   6840 min missing   weekend_long
+   2017-07-28 05:59:00 -> 2017-08-01 04:08:00   5648 min missing   weekend_long
+   2016-02-05 05:59:00 -> 2016-02-09 00:00:00   5400 min missing   weekend_long
+   2017-03-03 05:59:00 -> 2017-03-07 00:00:00   5400 min missing   weekend_long
+   2022-09-30 05:59:00 -> 2022-10-04 00:00:00   5400 min missing   weekend_long
+   2023-04-13 05:59:00 -> 2023-04-17 00:00:00   5400 min missing   weekend_long
+   2016-02-24 05:59:00 -> 2016-02-26 02:26:00   2666 min missing   other
+   2016-03-09 05:59:00 -> 2016-03-11 01:19:00   2599 min missing   other
+   2016-02-17 05:59:00 -> 2016-02-19 00:00:00   2520 min missing   other
+   2016-03-02 05:59:00 -> 2016-03-04 00:00:00   2520 min missing   other
+
+=== XAUUSD: 4619177 bars, 2012-11-13 13:07:00 -> 2026-10-05 23:58:00 ===
+holiday calendar: US + UK
+year     bars  weekdays  spread pips   ticks/bar   hours with data, UTC 00..23
+2012     4405         4        26.43        55.2   |+++++++++++++#########++|
+2013   156710       116        30.71        46.9   |#####################+++|
+2014   348074       258        31.72        37.9   |#####################+++|
+2015   349908       260        29.82        38.6   |#####################.++|
+2016   335862       248        21.18        54.6   |#####################.++|
+2017   347701       259        13.05        73.5   |##################### ++|
+2018   348418       260        12.63        77.8   |##################### ++|
+2019   350253       260         9.95        80.8   |##################### ++|
+2020   355445       260        28.49       100.0   |#####################.++|
+2021   354339       258        12.82        95.0   |#####################.++|
+2022   351420       259        14.62        83.1   |#####################.++|
+2023   347923       259        13.71        81.4   |##################### ++|
+2024   350536       261         9.62        89.4   |##################### ++|
+2025   349790       260        15.06        90.2   |##################### ++|
+2026   268393       197        12.95       122.0   |#####################.++|
+         (# = data on 90%+ of that year's weekdays in that hour, + = 50%+, . = 10%+, blank = under 10%)
+usual daily break 2012: (partial year, 4 weekdays -- skipped)
+usual daily break 2013: from 21:00 for about 27 min (30 nights); from 21:00 for about 49 min (18 nights); from 23:00 for about 26 min (17 nights)
+usual daily break 2014: from 00:00 for about 45 min (9 nights); from 21:00 for about 27 min (36 nights); from 21:00 for about 50 min (76 nights); from 22:00 for about 36 min (20 nights); from 22:00 for about 45 min (18 nights); from 23:00 for about 27 min (12 nights)
+usual daily break 2015: from 20:00 for about 61 min (22 nights); from 21:00 for about 61 min (124 nights); from 22:00 for about 60 min (52 nights)
+usual daily break 2016: from 21:00 for about 60 min (129 nights); from 21:00 for about 120 min (28 nights); from 22:00 for about 60 min (30 nights)
+usual daily break 2017: from 21:00 for about 60 min (132 nights); from 21:00 for about 120 min (67 nights)
+usual daily break 2018: from 21:00 for about 60 min (132 nights); from 21:00 for about 120 min (66 nights)
+usual daily break 2019: from 21:00 for about 60 min (143 nights); from 21:00 for about 120 min (36 nights); from 22:00 for about 60 min (26 nights)
+usual daily break 2020: from 21:00 for about 60 min (133 nights); from 22:00 for about 60 min (68 nights)
+usual daily break 2021: from 21:00 for about 60 min (132 nights); from 22:00 for about 60 min (68 nights)
+usual daily break 2022: from 20:00 for about 62 min (31 nights); from 21:00 for about 61 min (100 nights); from 21:00 for about 121 min (30 nights); from 22:00 for about 60 min (38 nights)
+usual daily break 2023: from 20:00 for about 62 min (30 nights); from 21:00 for about 61 min (101 nights); from 21:00 for about 121 min (67 nights)
+usual daily break 2024: from 20:00 for about 62 min (27 nights); from 21:00 for about 61 min (104 nights); from 21:00 for about 121 min (67 nights)
+usual daily break 2025: from 20:00 for about 62 min (31 nights); from 21:00 for about 61 min (114 nights); from 21:00 for about 121 min (51 nights)
+usual daily break 2026: from 20:00 for about 62 min (109 nights); from 21:00 for about 62 min (34 nights); from 21:00 for about 121 min (9 nights)
+gaps: 646 weekend (usual length 2941 min), 43 weekend_long, 2581 daily break, 974 other (5+ min), 7392 short (<5 min, not stored)
+long holes: 144 -- 126 explained by a holiday, 1 by a known event, 17 unexplained -> gaps_to_check.csv
+   2015-06-30 22:20:00 -> 2015-07-01 00:45:00   144 min   event: leap second
+unexplained, longest first (up to 15):
+   2012-11-16 21:59:00 -> 2013-07-23 00:00:00   357240 min missing   weekend_long
+   2016-01-10 23:59:00 -> 2016-01-26 00:00:00   21600 min missing   weekend_long
+   2014-12-26 21:58:00 -> 2014-12-30 14:43:00   5324 min missing   weekend_long
+   2014-12-10 23:59:00 -> 2014-12-12 00:10:00   1450 min missing   other
+   2014-01-23 23:14:00 -> 2014-01-24 11:33:00   738 min missing   other
+   2014-07-27 23:54:00 -> 2014-07-28 06:32:00   397 min missing   other
+   2014-12-03 04:38:00 -> 2014-12-03 10:49:00   370 min missing   other
+   2012-11-14 04:35:00 -> 2012-11-14 08:59:00   263 min missing   other
+   2025-12-04 19:29:00 -> 2025-12-04 23:01:00   211 min missing   other
+   2025-12-11 19:29:00 -> 2025-12-11 23:01:00   211 min missing   other
+   2013-08-07 01:52:00 -> 2013-08-07 04:49:00   176 min missing   other
+   2015-07-13 21:54:00 -> 2015-07-14 00:00:00   125 min missing   other
+   2015-07-14 21:58:00 -> 2015-07-15 00:00:00   121 min missing   other
+   2016-03-17 20:59:00 -> 2016-03-17 23:00:00   120 min missing   other
+   2016-03-31 20:59:00 -> 2016-03-31 23:00:00   120 min missing   other
+
+=== US 500: 1685726 bars, 2020-01-02 07:01:00 -> 2026-10-02 15:14:00 ===
+holiday calendar: US + UK
+year     bars  weekdays  spread pips   ticks/bar   hours with data, UTC 00..23
+2020   194910       259         0.49        33.1   |       #############    |
+2021   198235       259         0.31        28.2   |       #############    |
+2022   215076       258         0.31        58.8   |  .....#############    |
+2023   213020       257         0.29        28.5   |  .....#############    |
+2024   246696       260         0.35        29.0   |.......#############.. .|
+2025   350013       260         0.22        33.6   |#####################.++|
+2026   267776       197         0.20        45.1   |#####################.++|
+         (# = data on 90%+ of that year's weekdays in that hour, + = 50%+, . = 10%+, blank = under 10%)
+usual daily break 2020: from 20:00 for about 660 min (198 nights)
+usual daily break 2021: from 20:00 for about 660 min (200 nights)
+usual daily break 2022: from 20:00 for about 360 min (51 nights); from 20:00 for about 660 min (147 nights)
+usual daily break 2023: from 20:00 for about 360 min (52 nights); from 20:00 for about 660 min (145 nights)
+usual daily break 2024: from 20:00 for about 360 min (37 nights); from 20:00 for about 660 min (112 nights); from 21:00 for about 60 min (21 nights); from 22:00 for about 60 min (27 nights)
+usual daily break 2025: from 21:00 for about 60 min (131 nights); from 22:00 for about 60 min (61 nights)
+usual daily break 2026: from 21:00 for about 60 min (120 nights); from 22:00 for about 60 min (32 nights)
+!! 2020 is shut about 507 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2021 is shut about 512 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2022 is shut about 448 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2023 is shut about 445 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2024 is shut about 346 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+gaps: 337 weekend (usual length 3540 min), 15 weekend_long, 1341 daily break, 131 other (5+ min), 10207 short (<5 min, not stored)
+long holes: 71 -- 63 explained by a holiday, 6 by a known event, 2 unexplained -> gaps_to_check.csv
+   2020-03-09 07:47:00 -> 2020-03-09 13:49:00   361 min   event: US equity circuit breaker / limit-down
+   2020-03-13 19:59:00 -> 2020-03-16 13:45:00   3945 min   event: US equity circuit breaker / limit-down
+   2020-03-17 19:59:00 -> 2020-03-18 13:30:00   1050 min   event: US equity circuit breaker
+   2025-01-09 14:29:00 -> 2025-01-09 23:00:00   510 min   event: NYSE closed: national day of mourning (Carter)
+   2025-11-28 03:11:00 -> 2025-11-28 08:29:00   317 min   event: CME Globex outage (data-centre cooling failure)
+   2025-11-28 09:15:00 -> 2025-11-28 13:50:00   274 min   event: CME Globex outage (data-centre cooling failure)
+unexplained, longest first (up to 15):
+   2020-10-09 09:22:00 -> 2020-10-13 13:09:00   5986 min missing   weekend_long
+   2020-03-13 11:28:00 -> 2020-03-13 13:30:00   121 min missing   other
+
+=== US500.cash: 449876 bars, 2025-06-23 22:06:00 -> 2026-10-06 17:10:00 ===
+holiday calendar: US + UK
+year     bars  weekdays  spread pips   ticks/bar   hours with data, UTC 00..23
+2025   182066       138         0.46        36.8   |#####################.++|
+2026   267810       199         0.56        74.2   |#####################.++|
+         (# = data on 90%+ of that year's weekdays in that hour, + = 50%+, . = 10%+, blank = under 10%)
+usual daily break 2025: from 20:00 for about 75 min (67 nights); from 21:00 for about 75 min (30 nights)
+usual daily break 2026: from 20:00 for about 75 min (118 nights); from 21:00 for about 75 min (33 nights)
+gaps: 62 weekend (usual length 2955 min), 5 weekend_long, 257 daily break, 15 other (5+ min), 1765 short (<5 min, not stored)
+long holes: 17 -- 13 explained by a holiday, 4 by a known event, 0 unexplained -> gaps_to_check.csv
+   2025-11-28 03:11:00 -> 2025-11-28 05:16:00   124 min   event: CME Globex outage (data-centre cooling failure)
+   2025-11-28 05:16:00 -> 2025-11-28 08:29:00   192 min   event: CME Globex outage (data-centre cooling failure)
+   2025-11-28 08:29:00 -> 2025-11-28 13:50:00   320 min   event: CME Globex outage (data-centre cooling failure)
+   2025-11-28 18:14:00 -> 2025-11-30 23:05:00   3170 min   event: CME Globex outage (data-centre cooling failure)
+
+=== USDJPY: 5101080 bars, 2012-11-11 22:01:00 -> 2026-10-07 06:52:00 ===
+holiday calendar: US + UK
+year     bars  weekdays  spread pips   ticks/bar   hours with data, UTC 00..23
+2012    49481        36         0.39        24.8   |######################++|
+2013   357918       255         0.45        43.4   |######################++|
+2014   366856       260         1.58        36.3   |#####################+++|
+2015   369786       261         1.29        68.4   |#####################+++|
+2016   357516       249         0.58        67.8   |#####################+++|
+2017   369192       260         0.52        67.5   |#####################+++|
+2018   368865       261         0.61        60.6   |#####################+++|
+2019   370297       261         0.39        46.2   |#####################+++|
+2020   371305       262         0.38        55.0   |#####################+++|
+2021   370776       260         0.45        38.5   |#####################+++|
+2022   369798       260         0.65        90.6   |#####################+++|
+2023   369259       260         0.62        79.4   |#####################+++|
+2024   369785       262         0.52        83.7   |#####################+++|
+2025   362596       261         0.51        54.3   |#####################+++|
+2026   277650       200         0.51        52.5   |#####################+++|
+         (# = data on 90%+ of that year's weekdays in that hour, + = 50%+, . = 10%+, blank = under 10%)
+usual daily break 2012: (partial year, 36 weekdays -- skipped)
+usual daily break 2013: none found
+usual daily break 2014: none found
+usual daily break 2015: none found
+usual daily break 2016: none found
+usual daily break 2017: none found
+usual daily break 2018: none found
+usual daily break 2019: none found
+usual daily break 2020: none found
+usual daily break 2021: none found
+usual daily break 2022: none found
+usual daily break 2023: none found
+usual daily break 2024: from 20:00 for about 31 min (18 nights); from 21:00 for about 31 min (31 nights)
+usual daily break 2025: from 20:00 for about 31 min (135 nights); from 21:00 for about 31 min (69 nights)
+usual daily break 2026: from 20:00 for about 30 min (122 nights); from 21:00 for about 31 min (36 nights)
+gaps: 711 weekend (usual length 2888 min), 12 weekend_long, 412 daily break, 2786 other (5+ min), 12188 short (<5 min, not stored)
+long holes: 34 -- 25 explained by a holiday, 0 by a known event, 9 unexplained -> gaps_to_check.csv
+unexplained, longest first (up to 15):
+   2016-01-10 23:59:00 -> 2016-01-26 00:00:00   21600 min missing   weekend_long
+   2013-05-24 21:00:00 -> 2013-06-03 06:22:00   13521 min missing   weekend_long
+   2013-07-19 21:00:00 -> 2013-07-23 00:00:00   4499 min missing   weekend_long
+   2014-12-10 23:59:00 -> 2014-12-12 00:10:00   1450 min missing   other
+   2014-01-23 23:59:00 -> 2014-01-24 11:33:00   693 min missing   other
+   2014-07-27 23:54:00 -> 2014-07-28 06:32:00   397 min missing   other
+   2012-11-14 04:35:00 -> 2012-11-14 08:59:00   263 min missing   other
+   2013-08-07 01:53:00 -> 2013-08-07 04:49:00   175 min missing   other
+   2013-04-19 05:28:00 -> 2013-04-19 07:38:00   129 min missing   other
+
+=== XTIUSD: 3646651 bars, 2014-09-28 22:01:00 -> 2026-10-07 07:36:00 ===
+holiday calendar: US + UK
+year     bars  weekdays  spread pips   ticks/bar   hours with data, UTC 00..23
+2014    64620        52         5.06        15.3   |###################+++++|
+2015   317465       254         5.20        14.3   |#####################+++|
+2016   220670       187         6.36        11.2   |##################### ++|
+2017   282509       259         5.31        10.4   |##################### ++|
+2018   321070       260         5.51        17.7   |##################### ++|
+2019   316596       260         5.66        18.0   |#####################  +|
+2020   174730       138         4.30        25.9   |#####################  +|
+2021   339774       258         3.34        24.3   |##################### ++|
+2022   346455       259         5.10        41.9   |##################### ++|
+2023   335071       259         4.92        23.6   |##################### ++|
+2024   327202       257         4.96        19.8   |##################### ++|
+2025   333785       260         4.73        17.2   |##################### ++|
+2026   266704       199         5.50        40.1   |##################### ++|
+         (# = data on 90%+ of that year's weekdays in that hour, + = 50%+, . = 10%+, blank = under 10%)
+usual daily break 2014: from 21:00 for about 45 min (37 nights); from 22:00 for about 45 min (23 nights)
+usual daily break 2015: from 21:00 for about 45 min (187 nights); from 22:00 for about 59 min (89 nights)
+usual daily break 2016: from 21:00 for about 61 min (118 nights); from 21:00 for about 121 min (20 nights); from 22:00 for about 59 min (23 nights)
+usual daily break 2017: from 20:00 for about 62 min (73 nights); from 21:00 for about 60 min (106 nights); from 21:00 for about 121 min (12 nights); from 22:00 for about 60 min (49 nights)
+usual daily break 2018: from 20:00 for about 62 min (131 nights); from 21:00 for about 60 min (17 nights); from 21:00 for about 121 min (46 nights); from 22:00 for about 60 min (19 nights)
+usual daily break 2019: from 21:00 for about 121 min (193 nights)
+usual daily break 2020: from 21:00 for about 120 min (104 nights)
+usual daily break 2021: from 21:00 for about 60 min (132 nights); from 21:00 for about 120 min (67 nights)
+usual daily break 2022: from 21:00 for about 60 min (131 nights); from 21:00 for about 120 min (68 nights)
+usual daily break 2023: from 18:00 for about 210 min (11 nights); from 21:00 for about 60 min (121 nights); from 21:00 for about 120 min (66 nights)
+usual daily break 2024: from 21:00 for about 60 min (128 nights); from 21:00 for about 120 min (63 nights)
+usual daily break 2025: from 20:00 for about 62 min (126 nights); from 21:00 for about 121 min (65 nights)
+usual daily break 2026: from 20:00 for about 62 min (110 nights); from 21:00 for about 61 min (9 nights); from 21:00 for about 121 min (34 nights)
+gaps: 541 weekend (usual length 2943 min), 47 weekend_long, 2409 daily break, 5662 other (5+ min), 130159 short (<5 min, not stored)
+long holes: 145 -- 109 explained by a holiday, 2 by a known event, 34 unexplained -> gaps_to_check.csv
+   2015-06-30 22:00:00 -> 2015-07-01 00:31:00   150 min   event: leap second
+   2025-11-28 02:58:00 -> 2025-11-28 13:33:00   634 min   event: CME Globex outage (data-centre cooling failure)
+unexplained, longest first (up to 15):
+   2020-06-17 10:51:00 -> 2020-12-06 23:00:00   248408 min missing   weekend_long
+   2016-02-05 20:59:00 -> 2016-03-20 23:00:00   63480 min missing   weekend_long
+   2016-05-13 20:59:00 -> 2016-06-26 22:00:00   63420 min missing   weekend_long
+   2016-01-10 23:59:00 -> 2016-01-26 00:00:00   21600 min missing   weekend_long
+   2014-11-28 18:44:00 -> 2014-12-12 00:10:00   19045 min missing   weekend_long
+   2014-11-13 13:38:00 -> 2014-11-25 13:14:00   17255 min missing   weekend_long
+   2015-05-25 08:41:00 -> 2015-06-02 22:00:00   12318 min missing   weekend_long
+   2024-02-09 13:39:00 -> 2024-02-16 06:17:00   9637 min missing   weekend_long
+   2017-03-03 20:59:00 -> 2017-03-06 08:41:00   3581 min missing   weekend_long
+   2022-09-30 20:59:00 -> 2022-10-03 07:14:00   3494 min missing   weekend_long
+   2016-04-15 20:59:00 -> 2016-04-18 05:21:00   3381 min missing   weekend_long
+   2020-01-24 20:59:00 -> 2020-01-27 01:30:00   3150 min missing   weekend_long
+   2023-04-13 20:59:00 -> 2023-04-14 19:46:00   1366 min missing   other
+   2015-05-19 06:43:00 -> 2015-05-19 22:00:00   916 min missing   other
+   2015-06-04 00:28:00 -> 2015-06-04 12:49:00   740 min missing   other
+
+files read: 29   written: D:\coding stuff\Trading research project\bars.db
+unexplained holes: 105   written: D:\coding stuff\Trading research project\gaps_to_check.csv
+input files: no problems found (data holes are reported per symbol above)

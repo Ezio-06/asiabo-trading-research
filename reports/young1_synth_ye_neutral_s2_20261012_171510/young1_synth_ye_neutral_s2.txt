@@ -1,0 +1,105 @@
+##############################################################################################################
+SYNTHETIC DATA (a cousin of bars.db, NOT the real market): D:\coding stuff\Trading research project\synth\ye_neutral_s2.db   -- a yardstick for the real run
+##############################################################################################################
+==============================================================================================================
+YOUNGLING SCREEN, batch 1 (#31 mirror dip, #27/#28 US500-DAX pair, #19 squeeze breakout). Shadow only.
+Rules + predictions: young_batch1_spec.md / the top of asiabo_young.py, written 2026-10-12 before any run.
+==============================================================================================================
+Sealed exam years 2022-01-01 .. 2024-01-01 and Japan 225: not read.
+core book (for the correlations): fast 0, dip 0
+
+==============================================================================================================
+#31 MIRROR DIP (Ezio) -- short the start of a pullback in a stretched trend
+==============================================================================================================
+   ALL                         91  win  48.4%  stop    8% target   32% time   60%  net -0.092  EDGE -0.067 t -1.6
+   OLD 2014-19                 41  win  41.5%  stop   10% target   34% time   56%  net -0.169  EDGE -0.129 t -2.4
+   NEW 2020-26                 50  win  54.0%  stop    6% target   30% time   64%  net -0.028  EDGE -0.016 t -0.2
+   variant long-stretch        26  win  42.3%  stop    4% target   23% time   73%  net -0.097  EDGE -0.087 t -1.5
+   variant short-stretch       65  win  50.8%  stop    9% target   35% time   55%  net -0.089  EDGE -0.059 t -1.1
+   XAUUSD *                    12  win  58.3%  stop    0% target   50% time   50%  net -0.045  EDGE +0.030 t +0.3
+      OLD 2014-19               5  win  60.0%  stop    0% target   60% time   40%  net +0.037  EDGE +0.101 t +0.8
+      NEW 2020-26               7  win  57.1%  stop    0% target   43% time   57%  net -0.104  EDGE -0.021 t -0.1
+   US500                       13  win  61.5%  stop   15% target   38% time   46%  net +0.060  EDGE +0.034 t +0.2
+      NEW 2020-26              13  win  61.5%  stop   15% target   38% time   46%  net +0.060  EDGE +0.034 t +0.2
+   EURUSD *                    20  win  55.0%  stop   10% target   15% time   75%  net -0.097  EDGE -0.033 t -0.4
+      OLD 2014-19               9  win  55.6%  stop   11% target   33% time   56%  net -0.127  EDGE -0.068 t -0.6
+      NEW 2020-26              11  win  54.5%  stop    9% target    0% time   91%  net -0.072  EDGE -0.005 t -0.0
+   USDJPY *                    26  win  30.8%  stop   12% target   31% time   58%  net -0.180  EDGE -0.158 t -2.1
+      OLD 2014-19              19  win  26.3%  stop   16% target   26% time   58%  net -0.250  EDGE -0.221 t -2.5
+      NEW 2020-26               7  win  42.9%  stop    0% target   43% time   57%  net +0.008  EDGE +0.014 t +0.1
+   XTIUSD *                     9  win  55.6%  stop    0% target   33% time   67%  net -0.111  EDGE -0.057 t -0.5
+      OLD 2014-19               6  win  66.7%  stop    0% target   50% time   50%  net -0.050  EDGE -0.021 t -0.2
+      NEW 2020-26               3  win  33.3%  stop    0% target    0% time  100%  net -0.233  EDGE -0.129 t -0.4
+   GERMANY40                   11  win  45.5%  stop    0% target   36% time   64%  net -0.085  EDGE -0.144 t -1.6
+      OLD 2014-19               2  win   0.0%  stop    0% target    0% time  100%  net -0.452  EDGE -0.430 t -2.8
+      NEW 2020-26               9  win  55.6%  stop    0% target   44% time   56%  net -0.004  EDGE -0.080 t -0.9
+   monthly net-R correlation with core fast: -  (69 months)
+   monthly net-R correlation with core dip : -  (69 months)
+   labels: stop / target / time = which exit fired (see the spec); EDGE = net minus the coin-flip average, t
+   clustered by market x month.
+YARDSTICK (this file on 2 fake random walks + the v8 realistic cousin real8 s3, 2026-10-12): ALL-line EDGE
+    #31 +0.006 (t +0.2) / -0.106 (t -3.5) / cousin -0.057;  #19 +0.111 (t +1.1) / +0.048 / cousin +0.044.
+    Single markets reached t +-2.8 on noise. Overlapping 5-15 day holds make t swing far: count a lane only at
+    |t| ~4+, the same sign in OLD and NEW, outside the noise AND the cousin.
+
+==============================================================================================================
+#27 GAP CLOSES -- US500 vs GERMANY40 spread reversion
+==============================================================================================================
+   ALL                          8  win  50.0%  stop   25% target   12% time   62%  net -0.136  EDGE -0.117 t -0.4
+   OLD 2014-19                 0
+   NEW 2020-26                  8  win  50.0%  stop   25% target   12% time   62%  net -0.136  EDGE -0.117 t -0.4
+   variant ger-leads            2  win   0.0%  stop   50% target    0% time   50%  net -0.815  EDGE -0.800 t   - 
+   variant us-leads             6  win  66.7%  stop   17% target   17% time   67%  net +0.091  EDGE +0.110 t +0.4
+   labels: stop / target / time = which exit fired (see the spec); EDGE = net minus the coin-flip average, t
+   clustered by market x month.
+YARDSTICK (2 fake random walks): #27 EDGE +0.073 / -0.091 over ~50 trades; one 14-trade half reached t -5.1 on
+    noise. With 6-10 real trades (US500 data starts 2020 + a year of warm-up) NOTHING here can be read.
+
+==============================================================================================================
+#28 RELATIVE MOMENTUM -- the exact mirror of #27 on the same triggers
+==============================================================================================================
+   ALL                          8  win  50.0%  stop   12% target   25% time   62%  net +0.099  EDGE +0.117 t +0.4
+   OLD 2014-19                 0
+   NEW 2020-26                  8  win  50.0%  stop   12% target   25% time   62%  net +0.099  EDGE +0.117 t +0.4
+   variant ger-leads            2  win 100.0%  stop    0% target   50% time   50%  net +0.784  EDGE +0.800 t   - 
+   variant us-leads             6  win  33.3%  stop   17% target   17% time   67%  net -0.130  EDGE -0.110 t -0.4
+   labels: stop / target / time = which exit fired (see the spec); EDGE = net minus the coin-flip average, t
+   clustered by market x month.
+YARDSTICK (2 fake random walks): #27 EDGE +0.073 / -0.091 over ~50 trades; one 14-trade half reached t -5.1 on
+    noise. With 6-10 real trades (US500 data starts 2020 + a year of warm-up) NOTHING here can be read.
+
+==============================================================================================================
+#19 SQUEEZE BREAKOUT -- trade the break out of a 120-day-low bandwidth
+==============================================================================================================
+   ALL                         90  win  34.4%  stop   60% target   24% time   16%  net -0.247  EDGE -0.253 t -1.9
+   OLD 2014-19                 37  win  45.9%  stop   54% target   35% time   11%  net +0.072  EDGE +0.109 t +0.5
+   NEW 2020-26                 53  win  26.4%  stop   64% target   17% time   19%  net -0.469  EDGE -0.506 t -3.5
+   variant long                36  win  36.1%  stop   58% target   25% time   17%  net -0.303  EDGE -0.165 t -0.9
+   variant short               54  win  33.3%  stop   61% target   24% time   15%  net -0.209  EDGE -0.311 t -1.7
+   XAUUSD                      16  win  31.2%  stop   62% target   25% time   12%  net -0.343  EDGE -0.239 t -0.8
+      OLD 2014-19              10  win  40.0%  stop   60% target   30% time   10%  net -0.169  EDGE -0.067 t -0.2
+      NEW 2020-26               6  win  16.7%  stop   67% target   17% time   17%  net -0.632  EDGE -0.527 t -1.3
+   US500                        8  win  12.5%  stop   88% target    0% time   12%  net -0.910  EDGE -1.283 t -5.9
+      NEW 2020-26               8  win  12.5%  stop   88% target    0% time   12%  net -0.910  EDGE -1.283 t -5.9
+   EURUSD                      18  win  44.4%  stop   50% target   33% time   17%  net -0.010  EDGE +0.140 t +0.5
+      OLD 2014-19              12  win  50.0%  stop   50% target   50% time    0%  net +0.176  EDGE +0.284 t +0.7
+      NEW 2020-26               6  win  33.3%  stop   50% target    0% time   50%  net -0.383  EDGE -0.148 t -0.4
+   USDJPY                      26  win  30.8%  stop   65% target   23% time   12%  net -0.247  EDGE -0.348 t -1.2
+      OLD 2014-19              12  win  50.0%  stop   50% target   33% time   17%  net +0.315  EDGE +0.205 t +0.4
+      NEW 2020-26              14  win  14.3%  stop   79% target   14% time    7%  net -0.729  EDGE -0.822 t -3.0
+   XTIUSD                       7  win  42.9%  stop   43% target   14% time   43%  net -0.151  EDGE +0.164 t +0.5
+      OLD 2014-19               2  win  50.0%  stop   50% target    0% time   50%  net -0.259  EDGE -0.335 t -0.3
+      NEW 2020-26               5  win  40.0%  stop   40% target   20% time   40%  net -0.108  EDGE +0.364 t +1.2
+   GERMANY40                   15  win  40.0%  stop   53% target   33% time   13%  net -0.120  EDGE -0.220 t -0.7
+      OLD 2014-19               1  win   0.0%  stop  100% target    0% time    0%  net -1.032  EDGE -0.487 t   - 
+      NEW 2020-26              14  win  42.9%  stop   50% target   36% time   14%  net -0.054  EDGE -0.201 t -0.6
+   monthly net-R correlation with core fast: -  (52 months)
+   monthly net-R correlation with core dip : -  (52 months)
+   labels: stop / target / time = which exit fired (see the spec); EDGE = net minus the coin-flip average, t
+   clustered by market x month.
+YARDSTICK (this file on 2 fake random walks + the v8 realistic cousin real8 s3, 2026-10-12): ALL-line EDGE
+    #31 +0.006 (t +0.2) / -0.106 (t -3.5) / cousin -0.057;  #19 +0.111 (t +1.1) / +0.048 / cousin +0.044.
+    Single markets reached t +-2.8 on noise. Overlapping 5-15 day holds make t swing far: count a lane only at
+    |t| ~4+, the same sign in OLD and NEW, outside the noise AND the cousin.
+
+runtime 213s

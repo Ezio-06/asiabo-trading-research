@@ -1,0 +1,3 @@
+exam ran 2026-10-13 13:23:12
+report: D:\coding stuff\Trading research project\reports\exam_us500_20261013_132246
+BOOK FAIL (fast FAIL, dip MIXED); #31 UNREADABLE (n < 20); pair #28 (relative momentum) wins

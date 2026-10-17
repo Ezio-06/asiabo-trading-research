@@ -1,0 +1,259 @@
+==============================================================================
+THE HOUSE  --  earners, zones, ladder, allowance, cushion: replayed in shadow
+==============================================================================
+trades from: d:\coding stuff\Trading research project\reports\collect_20261005_225314
+Each training period is replayed on its own from $10000. Nothing here trades or changes the bot.
+
+zones: fade=tide; london=active_day; main=active_day; nr7=active_day; pdh=active_day; retest=active_day; swing=base_trend; trend=calm_agree
+ladder: rungs risk 0.25/0.5/0.75/1% of the floor | allowance notches 1.5/2/2.5/3/4% of the floor per week | cushion share 25%
+
+==============================================================================
+XAUUSD
+==============================================================================
+NOTE: the zones were found on this same data, so these results flatter them. The twins are a fair
+test of the house mechanics only (they get the same zones, ladder, allowance and cushion).
+
+  ZONE CHECK  (R per trade, net of costs, every trade the same size; +/- is one standard error)
+    lane     zone            in the zone                out of the zone            in minus out
+    fade     tide        A   +0.218 +/-0.132 n=70       -0.051 +/-0.091 n=183      +0.269 (z +1.7)
+                         B   +0.153 +/-0.140 n=114      -0.246 +/-0.084 n=277      +0.399 (z +2.4)
+    london   active_day  A   +0.038 +/-0.070 n=151      -0.057 +/-0.048 n=286      +0.095 (z +1.1)
+                         B   +0.016 +/-0.055 n=234      +0.038 +/-0.047 n=383      -0.022 (z -0.3)
+    main     active_day  A   +0.044 +/-0.071 n=173      -0.102 +/-0.057 n=293      +0.146 (z +1.6)
+                         B   +0.065 +/-0.040 n=294      +0.020 +/-0.050 n=310      +0.045 (z +0.7)
+    nr7      active_day  A   -0.004 +/-0.168 n=18       +0.369 +/-0.389 n=11       -0.373 (z -0.9)
+                         B   +0.084 +/-0.136 n=20       -0.102 +/-0.166 n=15       +0.185 (z +0.9)
+    pdh      active_day  A   +0.142 +/-0.151 n=84       -0.217 +/-0.122 n=100      +0.359 (z +1.9)
+                         B   +0.136 +/-0.108 n=145      +0.112 +/-0.138 n=100      +0.024 (z +0.1)
+    retest   active_day  A   -0.067 +/-0.137 n=80       -0.117 +/-0.100 n=146      +0.050 (z +0.3)
+                         B   +0.007 +/-0.089 n=132      +0.014 +/-0.087 n=186      -0.007 (z -0.1)
+    swing    base_trend  A   +0.040 +/-0.526 n=7        -0.551 +/-0.256 n=9        +0.591 (z +1.0)
+                         B   +1.572 +/-1.573 n=5        -0.195 +/-0.208 n=17       +1.767 (z +1.1)
+    trend    calm_agree  A   +0.100 +/-0.090 n=133      -0.169 +/-0.071 n=213      +0.269 (z +2.4)
+                         B   +0.086 +/-0.090 n=164      +0.062 +/-0.060 n=373      +0.024 (z +0.2)
+    control  tide        A   +0.026 +/-0.081 n=109      -0.095 +/-0.045 n=346      +0.121 (z +1.3)
+                         B   -0.004 +/-0.048 n=223      +0.020 +/-0.038 n=427      -0.024 (z -0.4)
+    control  active_day  A   -0.066 +/-0.084 n=92       -0.019 +/-0.043 n=401      -0.048 (z -0.5)
+                         B   +0.024 +/-0.053 n=159      +0.025 +/-0.036 n=530      -0.001 (z -0.0)
+    control  base_trend  A   -0.114 +/-0.080 n=110      -0.046 +/-0.049 n=285      -0.067 (z -0.7)
+                         B   +0.058 +/-0.072 n=138      +0.014 +/-0.035 n=452      +0.044 (z +0.6)
+    control  calm_agree  A   -0.022 +/-0.065 n=187      -0.066 +/-0.048 n=289      +0.044 (z +0.5)
+                         B   +0.070 +/-0.058 n=202      -0.016 +/-0.034 n=469      +0.086 (z +1.3)
+    Read it as: a zone HOLDS where 'in the zone' is above zero and above 'out of the zone' in BOTH periods,
+    and the lane's row beats the control row for the same zone. One good period is a lucky run until
+    the other agrees.
+
+##############################################################################
+XAUUSD  PERIOD A (before 2022-01-01)
+##############################################################################
+                                                 end equity worst drop   trades
+  THE HOUSE (zones + ladder + allowance + cush        10711       2.3%      481
+  zones only, everything at minimum size              11026       4.5%      695
+  every lane out at minimum size (no zones)            6147      42.1%     2953
+  random twins (same house, coin-flip direction): middle 9697, range 9071 to 10604
+  -> the house finished above 20 of 20 twins
+  floor ended at 10615 (moved up 4 times) | longest stretch below the previous high: 179 weekdays
+  recovery sizing: 0 trades, +0 | cheques cashed: 2 trades, +12   (money those trades made, whole trade)
+  RECOVERY ARITHMETIC: in-zone trades average +0.068R with a spread of 1.05R, and the house takes 0.93 a weekday.
+    A typical climb back to a previous high then takes about (spread/average)^2 = 237 trades = 255 weekdays.
+    Size does not change that number (it scales the wins and the losses alike). What does:
+    twice the trades -> 127 weekdays | four times -> 64 | 1.5x the average -> 113 | twice the average -> 64
+
+  THE ALLOWANCE
+    weeks at each notch: 1.5%: 63, 2%: 17, 2.5%: 24
+    notch moved up 4 times, down 3 times | ended at 1.5%
+    worst week 2020-W41: lost 112 against an allowance of 157 (71% of it)
+    weeks that lost more than their allowance: 0 of 104 (only slippage past the margin or gaps can do this)
+
+  THE LADDER  (rung moves: 9 up, 7 down)
+    lane     zone          taken     money   trades by rung 1/2/3/4   in-zone record now (pessimistic .. average)
+    pdh      active_day       52      +267   46/7/0/0                 n=84  -0.008 .. +0.142  (rung 1 now)
+    fade     tide             58      +162   51/7/0/0                 n=70  +0.085 .. +0.218  (rung 2 now)
+    london   active_day       78      +156   63/15/0/0                n=151  -0.032 .. +0.038  (rung 1 now)
+    main     active_day      139      +103   113/26/1/0               n=173  -0.027 .. +0.044  (rung 1 now)
+    trend    calm_agree       96       +54   81/15/0/0                n=133  +0.011 .. +0.100  (rung 2 now)
+    nr7      active_day       10       +23   10/0/0/0                 n=18  -0.172 .. -0.004  (rung 1 now)
+    swing    base_trend        0        +0   0/0/0/0                  n=7  -0.486 .. +0.040  (rung 1 now)
+    retest   active_day       48       -54   48/0/0/0                 n=80  -0.204 .. -0.067  (rung 1 now)
+
+  WHAT STAYED HOME, AND WHY  (signals, not money)
+    zone off                   1241
+    no zone (shadow)           1052
+    allowance used up          220
+    sized down: allowance      157
+    sized down: cushion        98
+    minimum lot too big        13
+
+  by year: 2020 +4.6%   2021 +2.3%
+
+##############################################################################
+XAUUSD  PERIOD B (from 2024-01-01)
+##############################################################################
+                                                 end equity worst drop   trades
+  THE HOUSE (zones + ladder + allowance + cush        11593       6.6%      857
+  zones only, everything at minimum size              11498       5.2%      829
+  every lane out at minimum size (no zones)            6825      33.3%     3803
+  random twins (same house, coin-flip direction): middle 9659, range 9018 to 10276
+  -> the house finished above 20 of 20 twins
+  floor ended at 11457 (moved up 11 times) | longest stretch below the previous high: 244 weekdays
+  recovery sizing: 0 trades, +0 | cheques cashed: 112 trades, +406   (money those trades made, whole trade)
+  RECOVERY ARITHMETIC: in-zone trades average +0.076R with a spread of 1.05R, and the house takes 1.20 a weekday.
+    A typical climb back to a previous high then takes about (spread/average)^2 = 190 trades = 159 weekdays.
+    Size does not change that number (it scales the wins and the losses alike). What does:
+    twice the trades -> 79 weekdays | four times -> 40 | 1.5x the average -> 71 | twice the average -> 40
+
+  THE ALLOWANCE
+    weeks at each notch: 2%: 25, 2.5%: 32, 3%: 12, 4%: 74
+    notch moved up 5 times, down 1 times | ended at 4%
+    worst week 2025-W02: lost 173 against an allowance of 315 (55% of it)
+    weeks that lost more than their allowance: 0 of 143 (only slippage past the margin or gaps can do this)
+
+  THE LADDER  (rung moves: 10 up, 6 down)
+    lane     zone          taken     money   trades by rung 1/2/3/4   in-zone record now (pessimistic .. average)
+    main     active_day      252      +582   174/76/2/0               n=294  +0.025 .. +0.065  (rung 2 now)
+    fade     tide            101      +403   96/5/0/0                 n=114  +0.013 .. +0.153  (rung 1 now)
+    trend    calm_agree      139      +340   135/5/0/0                n=164  -0.004 .. +0.086  (rung 2 now)
+    london   active_day      155      +279   157/0/0/0                n=234  -0.039 .. +0.016  (rung 1 now)
+    nr7      active_day       13        +7   13/0/0/0                 n=20  -0.052 .. +0.084  (rung 1 now)
+    swing    base_trend        0        +0   0/0/0/0                  n=5  -0.001 .. +1.572  (rung 1 now)
+    retest   active_day       92        -4   92/0/0/0                 n=132  -0.082 .. +0.007  (rung 1 now)
+    pdh      active_day      105       -14   92/13/0/0                n=145  +0.028 .. +0.136  (rung 2 now)
+
+  WHAT STAYED HOME, AND WHY  (signals, not money)
+    no zone (shadow)           1813
+    zone off                   1661
+    sized down: cushion        201
+    allowance used up          158
+    minimum lot too big        90
+    sized down: allowance      38
+
+  by year: 2024 +6.3%   2025 +4.0%   2026 +4.6%
+
+==============================================================================
+US500
+==============================================================================
+INDEPENDENT CHECK: the zones and every threshold in them were found on XAUUSD and are used here
+unchanged. Nothing was chosen on this market, so a zone that holds here did not get there by
+being fitted. A zone that fails here needs a XAUUSD-specific reason in words, or it was luck.
+('asia_rel' here is the overnight box against an average day. Smallest position: 1 contract, as the broker sets it.)
+The ZONE CHECK below is in R and does not include the broker's minimum commission; the money figures do.
+
+  ZONE CHECK  (R per trade, net of costs, every trade the same size; +/- is one standard error)
+    lane     zone            in the zone                out of the zone            in minus out
+    fade     tide        A   -0.128 +/-0.105 n=99       -0.250 +/-0.096 n=132      +0.122 (z +0.9)
+                         B   -0.218 +/-0.114 n=98       +0.016 +/-0.078 n=277      -0.234 (z -1.7)
+    london   active_day  A   -0.050 +/-0.041 n=84       -0.028 +/-0.047 n=112      -0.022 (z -0.4)
+                         B   +0.023 +/-0.029 n=147      -0.060 +/-0.036 n=186      +0.083 (z +1.8)
+    main     active_day  A   +0.012 +/-0.053 n=175      +0.035 +/-0.060 n=198      -0.023 (z -0.3)
+                         B   -0.065 +/-0.040 n=235      -0.011 +/-0.042 n=372      -0.054 (z -0.9)
+    nr7      active_day  A   +0.089 +/-0.108 n=10       -0.141 +/-0.452 n=3        +0.230 (z +0.5)
+                         B   +0.039 +/-0.199 n=10       +0.045 +/-0.166 n=12       -0.005 (z -0.0)
+    pdh      active_day  A   +0.168 +/-0.179 n=66       -0.263 +/-0.167 n=71       +0.430 (z +1.8)
+                         B   -0.192 +/-0.117 n=107      +0.012 +/-0.119 n=130      -0.204 (z -1.2)
+    retest   active_day  A   -0.246 +/-0.108 n=70       -0.104 +/-0.104 n=106      -0.142 (z -0.9)
+                         B   -0.056 +/-0.083 n=121      -0.098 +/-0.081 n=175      +0.042 (z +0.4)
+    swing    base_trend  A   -0.457 +/-0.286 n=6        -0.572 +/-0.181 n=14       +0.114 (z +0.3)
+                         B   +0.028 +/-0.452 n=5        -0.432 +/-0.189 n=22       +0.460 (z +0.9)
+    trend    calm_agree  A   -0.092 +/-0.099 n=141      -0.012 +/-0.091 n=189      -0.080 (z -0.6)
+                         B   -0.006 +/-0.090 n=182      -0.182 +/-0.064 n=344      +0.176 (z +1.6)
+    control  tide        A   -0.093 +/-0.049 n=154      -0.095 +/-0.043 n=228      +0.003 (z +0.0)
+                         B   -0.094 +/-0.045 n=184      -0.066 +/-0.030 n=451      -0.027 (z -0.5)
+    control  active_day  A   -0.084 +/-0.049 n=117      -0.095 +/-0.039 n=287      +0.012 (z +0.2)
+                         B   -0.045 +/-0.049 n=134      -0.080 +/-0.028 n=527      +0.035 (z +0.6)
+    control  base_trend  A   -0.124 +/-0.060 n=107      -0.083 +/-0.044 n=216      -0.042 (z -0.6)
+                         B   -0.092 +/-0.043 n=146      -0.059 +/-0.031 n=429      -0.032 (z -0.6)
+    control  calm_agree  A   -0.072 +/-0.051 n=174      -0.108 +/-0.041 n=220      +0.036 (z +0.6)
+                         B   -0.083 +/-0.042 n=223      -0.065 +/-0.031 n=428      -0.018 (z -0.4)
+    Read it as: a zone HOLDS where 'in the zone' is above zero and above 'out of the zone' in BOTH periods,
+    and the lane's row beats the control row for the same zone. One good period is a lucky run until
+    the other agrees.
+
+##############################################################################
+US500  PERIOD A (before 2022-01-01)
+##############################################################################
+                                                 end equity worst drop   trades
+  THE HOUSE (zones + ladder + allowance + cush         6335      36.8%      413
+  zones only, everything at minimum size               5664      43.6%      515
+  every lane out at minimum size (no zones)          -10347     203.5%     2351
+  random twins (same house, coin-flip direction): middle 6707, range 5890 to 7235
+  -> the house finished above 6 of 20 twins
+  floor ended at 10000 (moved up 0 times) | longest stretch below the previous high: 489 weekdays
+  MINIMUM COMMISSION ($4.00 a side, 2 sides): the house paid $2804 above the percentage rate, on 413 of
+    its 413 trades. That is $6.79 a trade, or 0.27R of a minimum-size trade ($25 at risk), on top of the
+    costs already in every R figure. Without it the house would have ended at 9139. The minimum stops
+    applying at $40000 of volume: about 9 contracts at this period's last price.
+  recovery sizing: 0 trades, +0 | cheques cashed: 21 trades, -269   (money those trades made, whole trade)
+
+  THE ALLOWANCE
+    weeks at each notch: 1.5%: 80, 2%: 24
+    notch moved up 0 times, down 1 times | ended at 1.5%
+    worst week 2020-W35: lost 150 against an allowance of 150 (100% of it)
+    weeks that lost more than their allowance: 1 of 104 (only slippage past the margin or gaps can do this)
+
+  THE LADDER  (rung moves: 2 up, 1 down)
+    lane     zone          taken     money   trades by rung 1/2/3/4   in-zone record now (pessimistic .. average)
+    swing    base_trend        0        +0   0/0/0/0                  n=6  -0.743 .. -0.457  (rung 1 now)
+    nr7      active_day        3       -22   3/0/0/0                  n=10  -0.019 .. +0.089  (rung 1 now)
+    london   active_day       25      -148   25/0/0/0                 n=84  -0.091 .. -0.050  (rung 1 now)
+    pdh      active_day       22      -189   22/0/0/0                 n=66  -0.011 .. +0.168  (rung 2 now)
+    retest   active_day       44      -575   44/0/0/0                 n=70  -0.354 .. -0.246  (rung 1 now)
+    fade     tide             72      -679   72/0/0/0                 n=99  -0.233 .. -0.128  (rung 1 now)
+    trend    calm_agree      127      -977   128/0/0/0                n=141  -0.191 .. -0.092  (rung 1 now)
+    main     active_day      120     -1076   120/0/0/0                n=175  -0.041 .. +0.012  (rung 1 now)
+
+  WHAT STAYED HOME, AND WHY  (signals, not money)
+    no zone (shadow)           1294
+    zone off                   825
+    allowance used up          155
+    minimum lot too big        82
+    sized down: allowance      23
+    sized down: cushion        15
+
+  by year: 2020 -15.0%   2021 -25.2%
+
+##############################################################################
+US500  PERIOD B (from 2024-01-01)
+##############################################################################
+                                                 end equity worst drop   trades
+  THE HOUSE (zones + ladder + allowance + cush         6247      38.2%      438
+  zones only, everything at minimum size               5708      43.9%      485
+  every lane out at minimum size (no zones)          -20009     300.1%     3203
+  random twins (same house, coin-flip direction): middle 6522, range 5870 to 7651
+  -> the house finished above 6 of 20 twins
+  floor ended at 10000 (moved up 0 times) | longest stretch below the previous high: 690 weekdays
+  MINIMUM COMMISSION ($4.00 a side, 2 sides): the house paid $2787 above the percentage rate, on 438 of
+    its 438 trades. That is $6.36 a trade, or 0.25R of a minimum-size trade ($25 at risk), on top of the
+    costs already in every R figure. Without it the house would have ended at 9034. The minimum stops
+    applying at $40000 of volume: about 6 contracts at this period's last price.
+  recovery sizing: 0 trades, +0 | cheques cashed: 39 trades, -246   (money those trades made, whole trade)
+
+  THE ALLOWANCE
+    weeks at each notch: 1.5%: 119, 2%: 24
+    notch moved up 0 times, down 1 times | ended at 1.5%
+    worst week 2024-W26: lost 143 against an allowance of 150 (95% of it)
+    weeks that lost more than their allowance: 0 of 143 (only slippage past the margin or gaps can do this)
+
+  THE LADDER  (rung moves: 2 up, 3 down)
+    lane     zone          taken     money   trades by rung 1/2/3/4   in-zone record now (pessimistic .. average)
+    nr7      active_day        0        +0   0/0/0/0                  n=10  -0.160 .. +0.039  (rung 1 now)
+    swing    base_trend        0        +0   0/0/0/0                  n=5  -0.423 .. +0.028  (rung 1 now)
+    london   active_day       49      -105   49/0/0/0                 n=147  -0.006 .. +0.023  (rung 2 now)
+    main     active_day       41      -469   41/0/0/0                 n=235  -0.105 .. -0.065  (rung 0 now)
+    pdh      active_day       30      -547   30/0/0/0                 n=107  -0.309 .. -0.192  (rung 0 now)
+    retest   active_day       79      -735   79/0/0/0                 n=121  -0.140 .. -0.056  (rung 1 now)
+    fade     tide             70      -860   70/0/0/0                 n=98  -0.332 .. -0.218  (rung 1 now)
+    trend    calm_agree      169     -1037   169/0/0/0                n=182  -0.096 .. -0.006  (rung 1 now)
+
+  WHAT STAYED HOME, AND WHY  (signals, not money)
+    no zone (shadow)           1922
+    zone off                   1518
+    minimum lot too big        219
+    rung 0                     139
+    allowance used up          109
+    sized down: cushion        83
+    sized down: allowance      1
+
+  by year: 2024 -13.2%   2025 -16.5%   2026 -14.2%
+
+not in this version: adding to a winning trade (needs the price path, so it belongs in 'collect').
+runtime 10.1s

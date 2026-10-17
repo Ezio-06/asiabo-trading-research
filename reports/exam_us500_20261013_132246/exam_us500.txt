@@ -1,0 +1,63 @@
+==============================================================================================================
+US500 FRESH-DATA EXAM -- pre-registered 2026-10-13 (exam_us500_spec.md / the top of this file). ONE run.
+==============================================================================================================
+exam file: US 500_m1_20151218_1430.txt  (627172 bars read, 0 malformed, 0 out of order, complete=True, 2015-12-18 14:31:00 .. 2019-12-31 19:58:00)
+exam db:   exam_us500.db  US 500 627172 bars 2015-12-18 14:31:00 .. 2019-12-31 19:58:00;  GERMANY 40 769521 bars 2015-12-16 14:59:00 .. 2019-12-31 19:59:00 (partner leg, from bars.db)
+
+--------------------------------------------------------------------------------------------------------------
+MAIN TEST: core book on US500, trades entering 2016-01-01 .. 2019-12-31 (net / EDGE in R per trade, t clustered by month)
+--------------------------------------------------------------------------------------------------------------
+   fast                      85  win  31.8%  net -0.287 t -2.1  EDGE -0.003 t -0.0  total   -24.4 R
+      2016                   17  win  47.1%  net +0.175 t +0.7  EDGE +0.383 t +2.2  total    +3.0 R
+      2017                   18  win  33.3%  net -0.530 t -3.1  EDGE -0.228 t -0.8  total    -9.5 R
+      2018                   26  win  26.9%  net -0.168 t -0.5  EDGE +0.049 t +0.2  total    -4.4 R
+      2019                   24  win  25.0%  net -0.562 t -2.4  EDGE -0.165 t -1.2  total   -13.5 R
+      long                   70  win  31.4%  net -0.380 t -2.9  EDGE -0.088 t -0.7  total   -26.6 R
+      short                  15  win  33.3%  net +0.147 t +0.3  EDGE +0.392 t +1.3  total    +2.2 R
+   dip                       31  win  67.7%  net -0.106 t -0.4  EDGE +0.093 t +0.3  total    -3.3 R
+      2016                    1  win 100.0%  net +0.455 t   -   EDGE +0.592 t   -   total    +0.5 R
+      2017                    8  win  87.5%  net +0.271 t +0.6  EDGE +0.510 t +1.1  total    +2.2 R
+      2018                   13  win  53.8%  net -0.717 t -1.5  EDGE -0.530 t -1.0  total    -9.3 R
+      2019                    9  win  66.7%  net +0.380 t +1.2  EDGE +0.565 t +1.8  total    +3.4 R
+   brk                      167  win  21.6%  net -0.523 t -3.2  EDGE +0.031 t +0.3  total   -87.4 R
+      2016                   33  win   9.1%  net -0.975 t -4.9  EDGE -0.152 t -0.7  total   -32.2 R
+      2017                   38  win  10.5%  net -0.993 t -2.7  EDGE -0.076 t -0.4  total   -37.7 R
+      2018                   56  win  28.6%  net -0.328 t -1.0  EDGE +0.028 t +0.1  total   -18.4 R
+      2019                   40  win  32.5%  net +0.022 t +0.1  EDGE +0.288 t +1.4  total    +0.9 R
+      long                  126  win  19.8%  net -0.599 t -3.2  EDGE +0.084 t +0.6  total   -75.5 R
+      short                  41  win  26.8%  net -0.290 t -1.0  EDGE -0.131 t -0.6  total   -11.9 R
+   ins                      122  win  37.7%  net -0.164 t -1.4  EDGE +0.006 t +0.1  total   -20.0 R
+      2016                   24  win  29.2%  net -0.273 t -1.5  EDGE -0.020 t -0.1  total    -6.5 R
+      2017                   34  win  26.5%  net -0.514 t -2.6  EDGE -0.287 t -1.8  total   -17.5 R
+      2018                   25  win  48.0%  net -0.003 t -0.0  EDGE -0.021 t -0.1  total    -0.1 R
+      2019                   39  win  46.2%  net +0.104 t +0.4  EDGE +0.294 t +1.6  total    +4.1 R
+      long                   71  win  36.6%  net -0.261 t -1.7  EDGE -0.094 t -0.7  total   -18.5 R
+      short                  51  win  39.2%  net -0.030 t -0.2  EDGE +0.144 t +1.0  total    -1.5 R
+
+   VERDICT  fast: FAIL   dip: MIXED   ->  BOOK: FAIL
+   (PASS = net above the noise bar (fast +0.07, dip +0.15) and EDGE > 0; FAIL = net < 0 and EDGE < 0, or
+    net t <= -2; else MIXED.
+    PASS means 'not refuted', not 'proven'. brk / ins: numbers only, no verdict.)
+   power, fast: one standard error = 0.140 R/trade; a real edge of +0.05 would show as t ~+0.4
+   power, dip : one standard error = 0.284 R/trade; a real edge of +0.05 would show as t ~+0.2
+
+--------------------------------------------------------------------------------------------------------------
+LEADS
+--------------------------------------------------------------------------------------------------------------
+   #31 ALL                    7  win  42.9%  net -0.309 t -1.3  EDGE -0.116 t -0.5  total    -2.2 R
+   #31 long-stretch           2  win 100.0%  net +0.209 t+178.0  EDGE +0.281 t +6.3  total    +0.4 R
+   #31 short-stretch          5  win  20.0%  net -0.516 t -1.8  EDGE -0.275 t -0.9  total    -2.6 R
+   #27 gap closes            16  win  37.5%  net -0.118 t -0.7  EDGE -0.095 t -0.5  total    -1.9 R
+   #28 rel momentum          16  win  56.2%  net +0.072 t +0.4  EDGE +0.095 t +0.5  total    +1.1 R
+   #31 lead: UNREADABLE (n < 20)     #27 vs #28: #28 (relative momentum) wins
+
+YARDSTICK (this file on 17 fake random-walk US 500 exam files, 2026-10-13, BEFORE the exam):
+    fast  n 153-247   net -0.285 .. +0.066  (t down to -4.1)   EDGE -0.117 .. +0.155
+    dip   n 6-42      net -0.467 .. +0.116                      EDGE -0.211 .. +0.273
+    With 'net > 0 and EDGE > 0' noise PASSED fast 2/17 and dip 8/17 (!), so the PASS bars were raised above every
+    noise run: fast net > +0.07, dip net > +0.15. With those bars noise PASSES 0/17 for both; FAIL fast 11/17.
+    #31: 3-10 trades on noise (UNREADABLE expected).  #27: 9-16 triggers, EDGE -0.18 .. +0.44 on noise: even
+    when readable, only a sign for the record.
+
+marked done: D:\coding stuff\Trading research project\exam_hold\EXAM_DONE.txt -- the exam will not run again. Now the US 500 file may go into bars_input and the
+cache be rebuilt (build_bars_db, then make_synth cache).

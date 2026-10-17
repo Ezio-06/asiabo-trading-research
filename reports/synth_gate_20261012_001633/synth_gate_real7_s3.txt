@@ -1,0 +1,25 @@
+REALISM GATE (make_synth v7, 2026-10-11): synth\real7_s3.db vs bars.db, markets EURUSD, GERMANY40, US500, USDJPY, XAUUSD, XTIUSD
+
+settings: aging=0.0, bmax=6, bmin=2, drift=0.0, generator=v7, jitter=0.0, lb=40, level=1.0, made=2026-10-12 00:11:17, markets=, persist=0.0, preset=real7, regime=, rev1=auto, seed=3, shuffle=True, soft=auto, spell=20,130, spread=1.0, unit=day, vol=1.0
+
+  statistic          real    synth      tol          meaning
+  truth_share       0.147    0.127    0.040     ok   days inside a hindsight 41-close straight stretch (er >= 0.30)  (strong)
+  er20_prec         0.287    0.245    0.070     ok   er20 >= 0.30 agrees with the hindsight trend  (strong)
+  er40_prec         0.245    0.284    0.060     ok   er40 >= 0.30 agrees with that hindsight trend  (strong)
+  ac1              -0.058   -0.067    0.021     ok   lag-1 autocorrelation of daily returns (mean of markets)  (strong)
+  spell20_share     0.072    0.066    0.030     ok   share of er40 spells lasting 20+ days
+  hazard_ratio      0.904    0.630    0.370     ok   er40 spell hazard, age 21-40 / age 6-20
+  mid20            -0.026   -0.347    0.900     ok   mid-spell (age 10+) move over the next 20 days, in daily ATRs
+  vr20              0.903    0.857    0.135     ok   20-day variance ratio of daily returns (< 1 = mean-reverting)
+
+per market (real / synth): truth share, ac1
+  EURUSD     truth 0.126 / 0.086   ac1 -0.016 / -0.028
+  GERMANY40  truth 0.133 / 0.115   ac1 -0.097 / -0.145
+  US500      truth 0.158 / 0.154   ac1 -0.221 / -0.215
+  USDJPY     truth 0.129 / 0.094   ac1 -0.025 / -0.030
+  XAUUSD     truth 0.190 / 0.172   ac1 -0.000 / +0.015
+  XTIUSD     truth 0.152 / 0.168   ac1 +0.009 / -0.001
+
+RULE: FAIL if any strong statistic is outside its tolerance, or 2+ of the others.
+VERDICT: PASS
+gate runtime 105s

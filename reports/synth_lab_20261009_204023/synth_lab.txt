@@ -1,0 +1,257 @@
+####################################################################################################
+SYNTHETIC DATA (a cousin of bars.db, NOT the real market): D:\coding stuff\Trading research project\synth\batch_current.db
+settings: bmax=6, bmin=2, drift=0.0, jitter=0.0, level=1.0, made=2026-10-09 20:36:49, preset=vol_up, seed=3, shuffle=True, spread=1.0, unit=week, vol=1.3
+Parts that read real collect / house trades are skipped.
+####################################################################################################
+====================================================================================================
+THE LAB  --  every open idea, labelled, in one run. Shadow only: it measures, it decides nothing.
+====================================================================================================
+Sealed exam years 2022-01-01 .. 2024-01-01: not read by any part.
+
+==============================================================================================================
+PART 9: POWER   the audit's rebuild list. Same costs as 'final' (REAL), every trade against a random direction
+==============================================================================================================
+Read every cell as:  n   R/trade (net)   EDGE (R/trade minus the coin-flip average with the same timing, stop,
+exit and costs)   t (of the edge).  OLD = 2014-21 (2014-17, 2018-19, 2020-21), NEW = 2024+.  2022-23 sealed.
++ = net R/trade above 0 in BOTH old and new.  E = edge above 0 in both with t >= 2 in at least one.
+There are about 90 cells and many share the same trades: a few will show |t| above 2.5 by chance. A cell
+counts only if it holds in both periods AND on more than one market (see the by-market lines).
+Swing2 / rsi2 control = the same trade held over the same time in the other direction (their exits are not
+mirror images). TESTED on a pure random walk before shipping: edges came out at 0 within noise.
+Exits:
+  orig   as recorded (the lane's own target / clock)
+  close  no target, out at the session close
+  24h    no target, out after 24 trading hours
+  48h    no target, out after 48 trading hours
+  trail  stop trails at the trade's own risk distance behind the best close (48h cap)
+  5d     chandelier: 1 daily ATR behind the best close, up to 5 trading days
+  2R     the old way: 2R target, else out at the session close
+  own    the lane's own exit rule
+Sessions (local): gold, EURUSD, USDJPY open 08:00 London, day ends 17:00 New York; Germany 40 08:00-16:30 London;
+US 500 09:30-16:00 New York; WTI 09:00-14:30 New York. N / D = daily ATR(20), FX days ending 17:00 New York.
+Gold: commission $25 per million a side, swap -2.0895 / -1.92 pips (0.01) a night: the broker's sheet (2026-10-08).
+
+--------------------------------------------------------------------------------------------------------------
+K. THE OMEGA PATH: every contender, loss gates with a live shadow scorecard, sizing by each sleeve's theory
+--------------------------------------------------------------------------------------------------------------
+SLEEVES  brk = H2 breakouts (wide stop, 5-day chandelier, edge20/er10 agrees) on gold, US500, Germany 40, USDJPY
+         dip = rsi2 long + dip3 long on US500 and Germany 40 (index dip-buys)
+         ins = inside-day breakout, exit at the close, on the brk markets
+         fast = INTRADAY breakouts: orb30 when er10 agrees + main2 when edge20 agrees, exit at the close,
+                brk markets, 0.10% risk (a small quick harvester; same entries as brk, so not diversity)
+         (market lists come from T7/T8 -- chosen after seeing these years; the all-markets row is the check)
+GATES    far side = price in the bottom third of its 20-day range for the trade's direction   (brk, ins)
+         against 50d = trade against the 50-day average                                       (brk, ins)
+         hot form = the lane's last 20 finished trades beat the coin flip                     (all)
+         friday (no theory; main2 only)                                                       (brk, ins)
+         calm = volatility in its bottom third (fades need movement)                          (dip)
+TRUST    each gate's flagged trades (taken or skipped -- skipped ones followed in shadow) vs its unflagged
+         ones, live, finished trades only, per sleeve. 0 = the gate is useless right now, 1 = fully trusted.
+SIZE     1 - skip chance(sum of trust of broken gates): 1 gate fully trusted = 0.65x, 2 = 0.15x, 3+ = skip.
+         No upsizing on 'good' signals: a trade with every gate open is taken at its intended 1x.
+RISK     per sleeve: quarter Kelly of its last 300 finished trades, brk/ins 0.05-0.50%, dip 0.05-1.00%
+         (0.25 / 0.25 / 0.50% before 100 trades). One position per sleeve, market and direction. Open risk
+         at most 6% of equity. HONEST LIMIT: the gates themselves were found on these same years, so this is
+         in-sample; the shadow trust only guards against a gate going dead. Japan 225 / 2022-23 decide.
+YARDSTICK (same code, fake random-walk market, 2026-10-09): gates ON vs OFF moved net R by -6..+6 R a year per era;
+    'R kept out' ranged -38..+142 R per era (so one big era is NOT proof); trust drifted to 0 for most gates;
+    Kelly put every sleeve on its 0.05% floor. Real gates must beat their RANDOM copy in most eras.
+  sleeve brk: 7180 candidate trades
+  sleeve ins: 1195 candidate trades
+  sleeve dip: 173 candidate trades
+  sleeve fast: 1852 candidate trades
+
+K1. GATE SCORECARD per sleeve and era: flagged = trades the gate flagged (taken or skipped); net/trade flagged vs
+    not flagged; trust = the gate's average live trust when it fired. Then: R KEPT OUT = net R of the size the gates
+    cut, sign flipped (positive = the cut shadow trades lost money: the gates helped; before the one-position rule)
+    brk  far side     | 14-17 n 606 -0.052 vs +0.034 trust 0.35 | 18-19 n 397 +0.088 vs -0.113 trust 0.01 | 20-21 n 450 +0.380 vs -0.089 trust 0.00 | 2024+ n 643 +0.177 vs +0.028 trust 0.12
+    brk  against 50d  | 14-17 n 149 -0.951 vs +0.091 trust 0.86 | 18-19 n 113 -0.122 vs -0.030 trust 1.00 | 20-21 n 125 +1.706 vs -0.099 trust 0.22 | 2024+ n 180 -0.248 vs +0.082 trust 0.02
+    brk  hot form     | 14-17 n 804 +0.201 vs -0.149 trust 0.03 | 18-19 n 648 -0.115 vs +0.071 trust 0.08 | 20-21 n 584 -0.171 vs +0.219 trust 0.57 | 2024+ n1646 +0.026 vs +0.109 trust 0.25
+    brk  friday       | 14-17 n 321 +0.222 vs -0.041 trust 0.15 | 18-19 n 216 -0.069 vs -0.033 trust 0.00 | 20-21 n 287 -0.253 vs +0.138 trust 0.37 | 2024+ n 579 -0.043 vs +0.088 trust 0.22
+    ins  far side     | 14-17 n 136 -0.008 vs +0.521 trust 0.35 | 18-19 n  71 +0.258 vs +0.052 trust 0.00 | 20-21 n  79 -0.018 vs +0.119 trust 0.00 | 2024+ n  97 +0.033 vs +0.037 trust 0.01
+    ins  against 50d  | 14-17 n 152 +0.056 vs +0.515 trust 0.19 | 18-19 n 103 +0.297 vs -0.035 trust 0.00 | 20-21 n 128 +0.163 vs +0.006 trust 0.00 | 2024+ n 153 +0.033 vs +0.038 trust 0.00
+    ins  hot form     | 14-17 n 216 +0.367 vs +0.243 trust 0.20 | 18-19 n 155 +0.200 vs -0.067 trust 0.00 | 20-21 n 148 +0.170 vs -0.028 trust 0.00 | 2024+ n 240 +0.056 vs -0.013 trust 0.00
+    ins  friday       | 14-17 n  54 -0.139 vs +0.401 trust 0.41 | 18-19 n  29 +0.902 vs +0.001 trust 0.01 | 20-21 n  46 +0.193 vs +0.056 trust 0.00 | 2024+ n  64 +0.073 vs +0.027 trust 0.00
+    dip  hot form     | 14-17    - | 18-19    - | 20-21    - | 2024+ n  70 +0.486 vs +0.435 trust 0.25
+    dip  calm         | 14-17    - | 18-19    - | 20-21    - | 2024+    -
+    fast far side     | 14-17 n 164 +0.009 vs +0.068 trust 0.21 | 18-19 n 100 +0.205 vs -0.017 trust 0.01 | 20-21 n 106 +0.048 vs +0.176 trust 0.00 | 2024+ n 132 +0.426 vs -0.015 trust 0.00
+    fast against 50d  | 14-17 n  35 -0.800 vs +0.112 trust 0.50 | 18-19 n  23 +0.992 vs -0.022 trust 0.54 | 20-21 n  31 +0.889 vs +0.061 trust 0.00 | 2024+ n  37 +0.001 vs +0.066 trust 0.00
+    fast hot form     | 14-17 n 326 +0.023 vs +0.096 trust 0.08 | 18-19 n 172 +0.080 vs +0.049 trust 0.12 | 20-21 n 187 +0.147 vs +0.123 trust 0.00 | 2024+ n 455 +0.008 vs +0.145 trust 0.03
+    fast friday       | 14-17 n  87 +0.717 vs -0.091 trust 0.23 | 18-19 n  42 -0.282 vs +0.139 trust 0.00 | 20-21 n  67 +0.411 vs +0.070 trust 0.00 | 2024+ n 159 -0.274 vs +0.153 trust 0.04
+    brk  R kept out by all gates together:  14-17   +36.8 R  18-19    +9.9 R  20-21   -10.0 R  2024+   +14.5 R
+    ins  R kept out by all gates together:  14-17   -40.5 R  18-19    -0.1 R  20-21    -0.0 R  2024+    -0.1 R
+    dip  R kept out by all gates together:  14-17    +0.0 R  18-19    +0.0 R  20-21    +1.1 R  2024+    -1.6 R
+    fast R kept out by all gates together:  14-17    -1.7 R  18-19    -2.6 R  20-21    -0.4 R  2024+    -0.0 R
+
+K2. EACH SLEEVE, gates off vs on (net R per 1R risked, sizes counted; deduped)
+  brk, gates OFF
+    2014-17    trades   449  net -0.080 R per 1R risked  edge +0.021  net    -9.0 R/yr  months+  31%  max dd  113.6 R  under water 48 mo
+    2018-19    trades   302  net -0.017 R per 1R risked  edge +0.408  net    -2.6 R/yr  months+  42%  max dd   23.3 R  under water 11 mo
+    A 2020-21  trades   370  net -0.033 R per 1R risked  edge -0.036  net    -6.1 R/yr  months+  42%  max dd   58.0 R  under water 23 mo
+    B 2024+    trades   600  net +0.000 R per 1R risked  edge +0.068  net    +0.1 R/yr  months+  42%  max dd   57.7 R  under water 32 mo
+  brk, gates ON (shadow trust)
+    2014-17    trades   449  net -0.038 R per 1R risked  edge +0.038  net    -3.7 R/yr  months+  29%  max dd   93.0 R  under water 48 mo
+    2018-19    trades   302  net -0.018 R per 1R risked  edge +0.387  net    -2.6 R/yr  months+  46%  max dd   22.4 R  under water 11 mo
+    A 2020-21  trades   370  net -0.034 R per 1R risked  edge -0.012  net    -5.5 R/yr  months+  46%  max dd   50.4 R  under water 23 mo
+    B 2024+    trades   600  net -0.011 R per 1R risked  edge +0.060  net    -2.2 R/yr  months+  39%  max dd   55.2 R  under water 32 mo
+  ins, gates OFF
+    2014-17    trades   355  net +0.319 R per 1R risked  edge +0.323  net   +28.3 R/yr  months+  43%  max dd   48.6 R  under water 26 mo
+    2018-19    trades   225  net +0.117 R per 1R risked  edge +0.149  net   +13.2 R/yr  months+  50%  max dd   18.8 R  under water  3 mo
+    A 2020-21  trades   273  net +0.079 R per 1R risked  edge +0.132  net   +10.9 R/yr  months+  50%  max dd   19.4 R  under water 21 mo
+    B 2024+    trades   342  net +0.036 R per 1R risked  edge +0.114  net    +4.5 R/yr  months+  44%  max dd   14.1 R  under water 13 mo
+  ins, gates ON (shadow trust)
+    2014-17    trades   355  net +0.240 R per 1R risked  edge +0.285  net   +18.2 R/yr  months+  45%  max dd   50.8 R  under water 26 mo
+    2018-19    trades   225  net +0.116 R per 1R risked  edge +0.148  net   +13.1 R/yr  months+  50%  max dd   18.8 R  under water  3 mo
+    A 2020-21  trades   273  net +0.079 R per 1R risked  edge +0.132  net   +10.9 R/yr  months+  50%  max dd   19.4 R  under water 21 mo
+    B 2024+    trades   342  net +0.036 R per 1R risked  edge +0.113  net    +4.4 R/yr  months+  44%  max dd   14.0 R  under water 13 mo
+  dip, gates OFF
+    A 2020-21  trades    52  net -0.033 R per 1R risked  edge +0.014  net    -0.9 R/yr  months+  64%  max dd   18.0 R  under water  6 mo
+    B 2024+    trades    62  net +0.475 R per 1R risked  edge +0.526  net   +10.7 R/yr  months+  73%  max dd    3.9 R  under water  6 mo
+  dip, gates ON (shadow trust)
+    A 2020-21  trades    52  net -0.021 R per 1R risked  edge +0.026  net    -0.5 R/yr  months+  64%  max dd   17.5 R  under water  6 mo
+    B 2024+    trades    62  net +0.483 R per 1R risked  edge +0.534  net   +10.4 R/yr  months+  73%  max dd    3.1 R  under water  6 mo
+  fast, gates OFF
+    2014-17    trades   429  net +0.074 R per 1R risked  edge +0.237  net    +7.9 R/yr  months+  38%  max dd   37.7 R  under water 29 mo
+    2018-19    trades   225  net +0.085 R per 1R risked  edge +0.049  net    +9.5 R/yr  months+  54%  max dd   30.3 R  under water 14 mo
+    A 2020-21  trades   292  net +0.173 R per 1R risked  edge +0.158  net   +25.3 R/yr  months+  46%  max dd   26.4 R  under water 10 mo
+    B 2024+    trades   645  net +0.033 R per 1R risked  edge +0.035  net    +7.7 R/yr  months+  47%  max dd   43.2 R  under water 27 mo
+  fast, gates ON (shadow trust)
+    2014-17    trades   429  net +0.078 R per 1R risked  edge +0.235  net    +7.7 R/yr  months+  40%  max dd   36.6 R  under water 28 mo
+    2018-19    trades   225  net +0.075 R per 1R risked  edge +0.037  net    +8.0 R/yr  months+  54%  max dd   27.5 R  under water 14 mo
+    A 2020-21  trades   292  net +0.172 R per 1R risked  edge +0.157  net   +25.1 R/yr  months+  46%  max dd   26.4 R  under water 10 mo
+    B 2024+    trades   645  net +0.033 R per 1R risked  edge +0.034  net    +7.6 R/yr  months+  47%  max dd   43.3 R  under water 27 mo
+
+K3. THE OMEGA BOOK in R (all sleeves, each trade at its gate size) and its checks
+  OMEGA (shadow-trusted gates)
+    2014-17    trades  1233  net +0.081 R per 1R risked  edge +0.177  net   +22.1 R/yr  months+  42%  max dd   76.8 R  under water 22 mo
+    2018-19    trades   752  net +0.051 R per 1R risked  edge +0.209  net   +18.5 R/yr  months+  50%  max dd   39.8 R  under water 10 mo
+    A 2020-21  trades   987  net +0.064 R per 1R risked  edge +0.085  net   +29.9 R/yr  months+  50%  max dd   66.6 R  under water 14 mo
+    B 2024+    trades  1649  net +0.035 R per 1R risked  edge +0.079  net   +20.2 R/yr  months+  47%  max dd   76.7 R  under water 19 mo
+  check: gates OFF
+    2014-17    trades  1233  net +0.088 R per 1R risked  edge +0.183  net   +27.2 R/yr  months+  40%  max dd   87.2 R  under water 22 mo
+    2018-19    trades   752  net +0.053 R per 1R risked  edge +0.223  net   +20.1 R/yr  months+  50%  max dd   40.6 R  under water 10 mo
+    A 2020-21  trades   987  net +0.059 R per 1R risked  edge +0.070  net   +29.2 R/yr  months+  50%  max dd   76.9 R  under water 14 mo
+    B 2024+    trades  1649  net +0.038 R per 1R risked  edge +0.082  net   +22.9 R/yr  months+  50%  max dd   76.9 R  under water 19 mo
+  check: gates always fully trusted (no scorecard)
+    2014-17    trades  1105  net +0.127 R per 1R risked  edge +0.201  net   +19.6 R/yr  months+  38%  max dd   45.8 R  under water 27 mo
+    2018-19    trades   675  net -0.123 R per 1R risked  edge +0.017  net   -20.4 R/yr  months+  46%  max dd   40.9 R  under water 24 mo
+    A 2020-21  trades   900  net +0.011 R per 1R risked  edge +0.024  net    +3.0 R/yr  months+  38%  max dd   41.8 R  under water 23 mo
+    B 2024+    trades  1547  net +0.037 R per 1R risked  edge +0.077  net   +11.9 R/yr  months+  41%  max dd   32.0 R  under water 11 mo
+  check: RANDOM gates, same flag rates, shadow trust (must NOT help)
+    2014-17    trades  1233  net +0.070 R per 1R risked  edge +0.178  net   +19.6 R/yr  months+  38%  max dd   86.0 R  under water 22 mo
+    2018-19    trades   752  net +0.057 R per 1R risked  edge +0.228  net   +20.5 R/yr  months+  50%  max dd   39.9 R  under water 10 mo
+    A 2020-21  trades   987  net +0.060 R per 1R risked  edge +0.070  net   +28.7 R/yr  months+  50%  max dd   76.4 R  under water 14 mo
+    B 2024+    trades  1649  net +0.040 R per 1R risked  edge +0.082  net   +23.3 R/yr  months+  47%  max dd   72.5 R  under water 19 mo
+  check: all six markets in every sleeve
+    2014-17    trades  2212  net -0.003 R per 1R risked  edge +0.120  net    -1.4 R/yr  months+  33%  max dd  154.0 R  under water 27 mo
+    2018-19    trades  1402  net -0.103 R per 1R risked  edge +0.028  net   -69.1 R/yr  months+  46%  max dd  138.2 R  under water 24 mo
+    A 2020-21  trades  1467  net -0.002 R per 1R risked  edge +0.048  net    -1.6 R/yr  months+  38%  max dd  122.9 R  under water 24 mo
+    B 2024+    trades  2517  net +0.008 R per 1R risked  edge +0.051  net    +6.9 R/yr  months+  47%  max dd   85.9 R  under water 31 mo
+
+K4. MONEY (compounding, each era starts fresh; risk = sleeve risk% x gate size; small = trades the smallest
+    position could not take without risking 1.5x+ the intended amount; cap = trades skipped because open risk
+    would have passed 6% of equity)
+  OMEGA                              $10,000   |14-17  -4.9%/yr dd 26.6% under 44mo m+ 42% small 223 cap 0  |18-19  +3.8%/yr dd  9.3% under  6mo m+ 46% small 225 cap 0  |20-21  +3.2%/yr dd  8.2% under 22mo m+ 54% small 519 cap 0  |2024+  +5.3%/yr dd 13.1% under 21mo m+ 44% small 844 cap 0
+  check: gates OFF                   $10,000   |14-17  -5.2%/yr dd 27.7% under 44mo m+ 40% small 193 cap 0  |18-19  +3.8%/yr dd  9.4% under  6mo m+ 50% small 224 cap 0  |20-21  +3.6%/yr dd  8.1% under 14mo m+ 54% small 509 cap 0  |2024+  +3.9%/yr dd 13.4% under 21mo m+ 44% small 833 cap 0
+  check: all six markets             $10,000   |14-17  -3.6%/yr dd 23.0% under 44mo m+ 35% small 494 cap 0  |18-19 -11.0%/yr dd 20.8% under 25mo m+ 32% small 504 cap 0  |20-21  +4.9%/yr dd 13.9% under 22mo m+ 42% small 594 cap 0  |2024+  +2.6%/yr dd 18.1% under 22mo m+ 47% small 1214 cap 0
+  OMEGA                              $100,000  |14-17  -6.4%/yr dd 29.1% under 44mo m+ 33% small 33 cap 0  |18-19  +4.5%/yr dd 10.8% under  9mo m+ 42% small 33 cap 0  |20-21  +0.1%/yr dd 12.7% under 14mo m+ 50% small 149 cap 0  |2024+  +4.0%/yr dd  9.5% under 17mo m+ 47% small 202 cap 0
+  check: gates OFF                   $100,000  |14-17  -6.8%/yr dd 30.1% under 44mo m+ 35% small 31 cap 0  |18-19  +4.6%/yr dd 10.8% under 10mo m+ 46% small 31 cap 0  |20-21  +0.2%/yr dd 12.9% under 14mo m+ 50% small 141 cap 0  |2024+  +3.5%/yr dd  9.5% under 17mo m+ 44% small 194 cap 0
+  check: all six markets             $100,000  |14-17  -4.7%/yr dd 24.4% under 44mo m+ 33% small 48 cap 0  |18-19 -10.2%/yr dd 19.3% under 25mo m+ 28% small 82 cap 0  |20-21  +4.6%/yr dd 13.5% under 22mo m+ 46% small 180 cap 0  |2024+  -3.8%/yr dd 22.0% under 31mo m+ 35% small 379 cap 0
+
+    risk % per trade the sizing chose (average over taken trades, per era):
+      brk   14-17 0.09%  18-19 0.24%  20-21 0.05%  2024+ 0.17%
+      ins   14-17 0.25%  18-19 0.26%  20-21 0.35%  2024+ 0.48%
+      dip   20-21 0.50%  2024+ 0.61%
+      fast  14-17 0.11%  18-19 0.20%  20-21 0.15%  2024+ 0.13%
+
+    monthly correlation between sleeves (OMEGA, R):
+      brk vs ins  corr -0.00 over 128 months
+      brk vs dip  corr -0.34 over 44 months
+      ins vs dip  corr -0.03 over 44 months
+      fast vs brk  corr +0.49 over 129 months
+      fast vs ins  corr -0.00 over 129 months
+      fast vs dip  corr -0.07 over 44 months
+
+    (K5 and K6 below use the FROZEN design's book: gates OFF, one position per sleeve / market / direction)
+
+K5. SIZING BY STATE, every rule at the SAME average risk per sleeve (brk 0.25%, ins 0.25%, dip 0.50%, fast 0.10%):
+    fixed    = always the base
+    kelly    = quarter Kelly of the last 300 finished trades (K4's rule), rescaled to the same average
+    streak2  = NORMAL 1.25x, DEFENSIVE 0.50x after 2 wins in a row (finished trades of that sleeve); the first
+               loss returns to normal. streak3 = the same after 3 wins.  (before rescaling)
+    form20   = DEFENSIVE while the sleeve's last 20 finished trades sum above 0 (T5's 'hot' read)
+    YARDSTICK (same code, fake random-walk market, 2026-10-09): the rules' weighted R/yr differed from 'fixed' by
+    -15..+8 R/yr per era and their money by -4..+2 %/yr from noise alone; defensive-vs-normal R gaps up to 2R
+    showed up on 6-25 trades. A rule is better only if it beats 'fixed' in most eras by more than that.
+
+    Does the state predict the next trade?  net R/trade taken in DEFENSIVE vs NORMAL state (n), per era:
+      streak2  brk   14-17 def -0.68 (24) norm -0.05 (425)  18-19 def +0.82 (31) norm -0.11 (271)  20-21 def -0.52 (25) norm +0.00 (345)  2024+ def -0.07 (48) norm +0.01 (552)
+      streak2  ins   14-17 def -0.27 (47) norm +0.41 (308)  18-19 def +0.10 (38) norm +0.12 (187)  20-21 def +0.56 (63) norm -0.07 (210)  2024+ def +0.33 (71) norm -0.04 (271)
+      streak2  dip   14-17  -  18-19  -  20-21 def +0.16 (28) norm -0.26 (24)  2024+ def +0.45 (41) norm +0.52 (21)
+      streak2  fast  14-17 def +0.59 (59) norm -0.01 (370)  18-19 def -0.14 (32) norm +0.12 (193)  20-21 def +0.28 (63) norm +0.14 (229)  2024+ def -0.02 (91) norm +0.04 (554)
+      streak3  brk   14-17  -  18-19 def +0.95 (15) norm -0.07 (287)  20-21 def -0.57 (13) norm -0.01 (357)  2024+ def +3.03 (8) norm -0.04 (592)
+      streak3  ins   14-17 def -0.08 (19) norm +0.34 (336)  18-19 def +0.10 (15) norm +0.12 (210)  20-21 def +0.86 (38) norm -0.05 (235)  2024+ def +0.30 (28) norm +0.01 (314)
+      streak3  dip   14-17  -  18-19  -  20-21 def +0.59 (18) norm -0.36 (34)  2024+ def +0.46 (30) norm +0.49 (32)
+      streak3  fast  14-17 def +2.22 (22) norm -0.04 (407)  18-19 def +0.18 (14) norm +0.08 (211)  20-21 def +0.58 (31) norm +0.12 (261)  2024+ def -0.06 (42) norm +0.04 (603)
+      form20   brk   14-17 def +0.12 (144) norm -0.17 (305)  18-19 def -0.03 (152) norm -0.00 (150)  20-21 def +0.02 (152) norm -0.07 (218)  2024+ def -0.04 (307) norm +0.04 (293)
+      form20   ins   14-17 def -0.47 (134) norm +0.80 (221)  18-19 def +0.09 (160) norm +0.18 (65)  20-21 def -0.02 (131) norm +0.17 (142)  2024+ def +0.01 (172) norm +0.06 (170)
+      form20   dip   14-17  -  18-19  -  20-21 def -0.23 (23) norm +0.12 (29)  2024+ def +0.40 (53) norm +0.92 (9)
+      form20   fast  14-17 def +0.20 (176) norm -0.02 (253)  18-19 def +0.23 (113) norm -0.06 (112)  20-21 def +0.32 (146) norm +0.03 (146)  2024+ def -0.05 (306) norm +0.10 (339)
+
+    R per year with each trade weighted by its size multiplier (timing value, no compounding):
+      fixed     14-17   +27.2 R/yr  18-19   +20.1 R/yr  20-21   +29.2 R/yr  2024+   +22.9 R/yr
+      kelly     14-17   -28.8 R/yr  18-19   +40.7 R/yr  20-21   +21.4 R/yr  2024+    -7.8 R/yr
+      streak2   14-17   +30.0 R/yr  18-19   +14.8 R/yr  20-21   +16.5 R/yr  2024+   +19.5 R/yr
+      streak3   14-17   +21.3 R/yr  18-19   +15.5 R/yr  20-21   +12.5 R/yr  2024+   +16.4 R/yr
+      form20    14-17   +41.6 R/yr  18-19   +13.5 R/yr  20-21   +23.7 R/yr  2024+   +34.5 R/yr
+
+    Money with each rule (same engine as K4):
+  sizing: fixed                      $10,000   |14-17  +5.3%/yr dd 19.4% under 22mo m+ 35% small 86 cap 0  |18-19  +1.0%/yr dd  7.4% under  8mo m+ 50% small 224 cap 0  |20-21  +5.0%/yr dd 11.1% under 22mo m+ 38% small 411 cap 0  |2024+  -5.2%/yr dd 22.3% under 27mo m+ 35% small 847 cap 0
+  sizing: kelly                      $10,000   |14-17  -5.5%/yr dd 27.7% under 44mo m+ 33% small 174 cap 0  |18-19  +5.9%/yr dd  8.2% under  6mo m+ 50% small 210 cap 0  |20-21  +3.2%/yr dd  7.8% under 14mo m+ 50% small 515 cap 0  |2024+  -4.3%/yr dd 16.9% under 29mo m+ 47% small 862 cap 0
+  sizing: streak2                    $10,000   |14-17  +6.5%/yr dd 19.0% under 22mo m+ 40% small 89 cap 0  |18-19  -0.6%/yr dd  7.9% under 10mo m+ 46% small 223 cap 0  |20-21  +0.6%/yr dd 11.7% under 15mo m+ 42% small 419 cap 0  |2024+  -4.4%/yr dd 18.5% under 27mo m+ 38% small 848 cap 0
+  sizing: streak3                    $10,000   |14-17  +4.8%/yr dd 19.3% under 22mo m+ 35% small 87 cap 0  |18-19  +0.4%/yr dd  7.6% under  8mo m+ 50% small 223 cap 0  |20-21  +1.1%/yr dd 11.1% under 23mo m+ 42% small 414 cap 0  |2024+  -5.6%/yr dd 21.5% under 20mo m+ 32% small 846 cap 0
+  sizing: form20                     $10,000   |14-17  +8.8%/yr dd 14.3% under 27mo m+ 40% small 92 cap 0  |18-19  +2.0%/yr dd  7.5% under  8mo m+ 46% small 227 cap 0  |20-21 +10.3%/yr dd 13.4% under 22mo m+ 50% small 407 cap 0  |2024+  -0.8%/yr dd 18.1% under 20mo m+ 44% small 848 cap 0
+  sizing: fixed                      $100,000  |14-17  +3.4%/yr dd 20.2% under 22mo m+ 38% small 3 cap 0  |18-19  +3.0%/yr dd  8.8% under  8mo m+ 58% small 1 cap 0  |20-21  +1.7%/yr dd 14.5% under 22mo m+ 50% small 63 cap 0  |2024+  +6.5%/yr dd  9.7% under 11mo m+ 53% small 83 cap 0
+  sizing: kelly                      $100,000  |14-17  -7.1%/yr dd 30.2% under 44mo m+ 29% small 26 cap 0  |18-19  +6.3%/yr dd 10.2% under  6mo m+ 54% small 19 cap 0  |20-21  -1.2%/yr dd 12.3% under 14mo m+ 46% small 117 cap 0  |2024+  -0.9%/yr dd 11.1% under 21mo m+ 41% small 198 cap 0
+  sizing: streak2                    $100,000  |14-17  +4.5%/yr dd 19.3% under 22mo m+ 42% small 4 cap 0  |18-19  +1.2%/yr dd  9.6% under 10mo m+ 54% small 6 cap 0  |20-21  -2.3%/yr dd 16.0% under 24mo m+ 46% small 75 cap 0  |2024+  +5.6%/yr dd  9.9% under 11mo m+ 56% small 117 cap 0
+  sizing: streak3                    $100,000  |14-17  +2.9%/yr dd 20.1% under 27mo m+ 38% small 3 cap 0  |18-19  +1.8%/yr dd  9.1% under  8mo m+ 54% small 3 cap 0  |20-21  -3.8%/yr dd 17.7% under 24mo m+ 42% small 80 cap 0  |2024+  +4.3%/yr dd 11.0% under 11mo m+ 59% small 109 cap 0
+  sizing: form20                     $100,000  |14-17  +6.5%/yr dd 17.4% under 27mo m+ 40% small 4 cap 0  |18-19  +2.4%/yr dd 10.1% under  8mo m+ 58% small 6 cap 0  |20-21  +1.9%/yr dd 15.5% under 22mo m+ 50% small 78 cap 0  |2024+  +8.6%/yr dd 11.5% under 11mo m+ 56% small 140 cap 0
+
+K6. CANARIES (fixed before running): each earner's mechanism read weekly on EVERY event, traded or not.
+    breakout = next-5-day move after any daily close beyond the 20-day high/low (all markets, last 4 weeks);
+    dip = next-3-day move after the 3rd down close in a row above the 200-day average (US500, Germany 40, last 8
+    weeks); spread = daily average spread in bp (per market, last 4 weeks). Band = 10th-90th percentile of 2014-21
+    (so 2014-21 is in-sample for the band, 2024+ is not). ALARM = 3 weeks in a row on the bad side; RULE = the
+    linked earner (or market) trades at HALF size during an alarm.
+    YARDSTICK (same code, fake random-walk market, 2026-10-09): alarm-vs-normal gaps of up to 1R per trade on
+    15-50 trades, in both directions; the un-rescaled rule 'gained' 0.3-1.7 %/yr only because it risked less on a
+    losing book. Judge the rule on the SAME-AVERAGE-RISK line, and on alarm trades being worse in most eras.
+    breakout  band -1.218 .. +0.839 ATR  events 1805  | weeks in ALARM:  14-17  2.7%  18-19  0.0%  20-21  3.9%  2024+  0.0%
+    dip       band -4.720 .. +0.867 ATR  events 147  | weeks in ALARM:  20-21  0.0%  2024+  0.0%
+    spread EURUSD     band 0.19 .. 1.11 bp | weeks in ALARM:  14-17  9.6%  18-19  0.0%  20-21  0.0%  2024+  0.0%
+    spread GERMANY40  band 0.46 .. 1.28 bp | weeks in ALARM:  14-17 11.3%  18-19  2.9%  20-21  0.0%  2024+  0.0%
+    spread US500      band 0.73 .. 1.66 bp | weeks in ALARM:  20-21  3.9%  2024+  0.0%
+    spread USDJPY     band 0.36 .. 1.68 bp | weeks in ALARM:  14-17  9.1%  18-19  0.0%  20-21  0.0%  2024+  0.0%
+    spread XAUUSD     band 0.69 .. 2.61 bp | weeks in ALARM:  14-17  8.9%  18-19  0.0%  20-21  1.0%  2024+  0.0%
+    spread XTIUSD     band 5.91 .. 14.68 bp | weeks in ALARM:  14-17 11.1%  18-19  0.0%  20-21  3.8%  2024+  0.0%
+
+    Does an ALARM warn?  net R/trade of the linked earner's trades entered during ALARM vs NORMAL weeks (n):
+      brk   14-17 alarm +0.28 (34) normal -0.11 (415)  18-19 alarm - (2)  20-21 alarm +0.65 (37) normal -0.11 (333)  2024+ alarm - (0)
+      ins   14-17 alarm -0.25 (32) normal +0.37 (323)  18-19 alarm - (2)  20-21 alarm -0.67 (11) normal +0.11 (262)  2024+ alarm - (0)
+      dip   14-17 alarm - (0)  18-19 alarm - (0)  20-21 alarm - (1)  2024+ alarm - (0)
+      fast  14-17 alarm +0.48 (36) normal +0.04 (393)  18-19 alarm - (2)  20-21 alarm -0.27 (30) normal +0.22 (262)  2024+ alarm - (0)
+
+    Money: fixed risk vs fixed risk + the canary rule (half size in alarm; NOT rescaled, so it also risks less):
+  fixed                              $10,000   |14-17  +5.3%/yr dd 19.4% under 22mo m+ 35% small 86 cap 0  |18-19  +1.0%/yr dd  7.4% under  8mo m+ 50% small 224 cap 0  |20-21  +5.0%/yr dd 11.1% under 22mo m+ 38% small 411 cap 0  |2024+  -5.2%/yr dd 22.3% under 27mo m+ 35% small 847 cap 0
+  fixed + canary rule                $10,000   |14-17  +5.1%/yr dd 17.9% under 22mo m+ 38% small 89 cap 0  |18-19  +0.6%/yr dd  7.4% under  8mo m+ 46% small 225 cap 0  |20-21  +4.4%/yr dd 11.1% under 15mo m+ 42% small 425 cap 0  |2024+  -5.2%/yr dd 22.3% under 27mo m+ 35% small 847 cap 0
+  canary rule, same avg risk         $10,000   |14-17  +5.2%/yr dd 18.3% under 22mo m+ 38% small 89 cap 0  |18-19  +0.4%/yr dd  7.5% under  8mo m+ 42% small 224 cap 0  |20-21  +4.3%/yr dd 11.3% under 15mo m+ 42% small 422 cap 0  |2024+  -5.7%/yr dd 23.1% under 27mo m+ 35% small 842 cap 0
+  fixed                              $100,000  |14-17  +3.4%/yr dd 20.2% under 22mo m+ 38% small 3 cap 0  |18-19  +3.0%/yr dd  8.8% under  8mo m+ 58% small 1 cap 0  |20-21  +1.7%/yr dd 14.5% under 22mo m+ 50% small 63 cap 0  |2024+  +6.5%/yr dd  9.7% under 11mo m+ 53% small 83 cap 0
+  fixed + canary rule                $100,000  |14-17  +3.2%/yr dd 18.7% under 22mo m+ 40% small 3 cap 0  |18-19  +2.7%/yr dd  8.8% under  8mo m+ 58% small 2 cap 0  |20-21  +1.0%/yr dd 14.1% under 23mo m+ 46% small 66 cap 0  |2024+  +6.5%/yr dd  9.7% under 11mo m+ 53% small 83 cap 0
+  canary rule, same avg risk         $100,000  |14-17  +3.3%/yr dd 19.1% under 22mo m+ 40% small 3 cap 0  |18-19  +2.8%/yr dd  9.0% under  8mo m+ 58% small 2 cap 0  |20-21  +0.9%/yr dd 14.3% under 23mo m+ 38% small 64 cap 0  |2024+  +6.9%/yr dd  9.3% under 11mo m+ 53% small 76 cap 0
+    (4% of all trades fell in an alarm week)
+
+machine-readable results: omega_summary.csv
+
+(omega mode: lanes main2, orb, pdh2, rsi2, inside, dip3 only; parts A-J not run)   runtime 303s
+
+runtime 303.2s

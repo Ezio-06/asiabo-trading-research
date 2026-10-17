@@ -1,0 +1,100 @@
+==============================================================================
+ASIA BREAKOUT  --  offline replay on bars.db
+==============================================================================
+data: d:\coding stuff\Trading research project\bars.db (table bars_m1) | 2020-01-01 .. 2026-10-02 | 2375856 M1 bars -> 158589 M15 bars
+box 00:00-07:00 UTC | entries until 16:00 | stop=opposite | target 2.0R | buffer 0.10 ATR | box 2-12 ATR
+costs 1.30 bp round trip | start balance $10000 | risk 1.0% (cap $500) | min volume 1 unit
+
+TIMEZONE CHECK  (gold is most active around the US open, ~12-15 UTC)
+  busiest hour in the data: 14:00 | quietest: 04:00
+  looks like UTC. OK.
+
+------------------------------------------------------------------------------
+1. THE STRATEGY'S OWN EDGE  (flat 1% risk, no Equity Pulse; R is net of costs)
+------------------------------------------------------------------------------
+all years
+  trades 1575 | win rate 45.7% | avg win +0.80R | avg loss -0.70R
+  expectancy -0.014R per trade (+/- 0.023 standard error) | total -21.9R | max drawdown 66.4R | worst losing streak 11
+
+  by year:
+  year      trades    win%   total R      exp R     +/- se  pos months
+  2020         237      45      -0.5     -0.002      0.060        7/12
+  2021         247      38     -23.1     -0.093      0.063        4/12
+  2022         244      48     +10.6     +0.044      0.061        9/12
+  2023         244      38     -26.3     -0.108      0.065        5/12
+  2024         241      47      +3.2     +0.013      0.059        6/12
+  2025         216      50      -1.4     -0.007      0.051        5/12
+  2026         146      60     +15.6     +0.107      0.055        6/10
+
+  by exit:
+  exit            trades   total R     avg R
+  window_end        1006    +190.8     +0.19
+  StopLoss           444    -456.7     -1.03
+  TakeProfit         124    +244.0     +1.97
+  data_end             1      -0.0     -0.01
+
+  by direction:
+    long    861 trades | win 47% | total -10.7R | exp -0.012R
+    short   714 trades | win 44% | total -11.2R | exp -0.016R
+
+  skipped signals / days (flat run): range_too_wide 5, volume_floor 21
+
+------------------------------------------------------------------------------
+2. ACCOUNT  --  flat 1% vs Equity Pulse
+------------------------------------------------------------------------------
+  flat 1%* final $7165 (-28.4%) | trades 1575 | max drawdown $5539 (49.3% of peak equity)
+  pulse    final $8974 (-10.3%) | trades 420 | max drawdown $2612 (22.5% of peak equity)
+  * flat has no daily/lifetime limits, so it shows the strategy uninterrupted
+
+  pulse by year (balance change):
+  year            flat $       pulse $
+  2020              -129          +315
+  2021             -2026         -1342
+  2022              +684            +0
+  2023             -1959            +0
+  2024               +18            +0
+  2025               -98            +0
+  2026              +675            +0
+
+  pulse events: defence_start 12, lifetime_halt 1, notch_loosen 1, notch_tighten 9, promotion 12, release 12
+  final x $11268.25 | decay 80% | skipped by pulse: 0 | releases: 12
+  trades taken in gain defence: 63 | they made $-632; at full 1% size they'd have made $-1295
+  -> pulse premium on defended trades: $-663 (positive = pulse cost money, negative = it saved money)
+  !! LIFETIME HALT on 2021-09-30: the account fell 10% below $10000 and the bot stopped there.
+  !! Everything after that date exists only in the flat run.
+
+------------------------------------------------------------------------------
+3. HOW TRADES MOVE  (flat run; best/worst move measured on M15 bars + exit price)
+------------------------------------------------------------------------------
+  clock exits: avg best point +0.71R | avg exit +0.21R | avg given back 0.50R
+  clock exits that were at >= +1R at some point: 273 of 1006 (27%)
+  stop-outs by best point first reached: <0.25R 231 | 0.25-0.5R 100 | 0.5-1R 81 | >=1R 32  (of 444)
+  average open R by hour (UTC): 08:-0.03  09:+0.01  10:+0.02  11:+0.04  12:+0.05  13:+0.06  14:+0.12  15:+0.18  16:+0.21
+  hour the best point was reached:  07:85  08:109  09:95  10:85  11:98  12:195  13:262  14:263  15:249  16:116
+
+------------------------------------------------------------------------------
+4. ADAPTIVE TP  --  SHADOW ONLY (pulse run). delta = shadow exit R - real exit R, before costs
+------------------------------------------------------------------------------
+  total delta +10.9R over 420 trades (+0.026R per trade)
+  by decision:
+    held                            210 trades | delta +0.0R | +0.000R each | better 0 / worse 0
+    trail                           149 trades | delta +15.7R | +0.105R each | better 83 / worse 66
+    lock                             61 trades | delta -4.8R | -0.078R each | better 26 / worse 34
+  by account state at decision:
+    -                               210 trades | delta +0.0R | +0.000R each | better 0 / worse 0
+    intense                         124 trades | delta +6.9R | +0.056R each | better 66 / worse 58
+    mild                             44 trades | delta +1.8R | +0.042R each | better 23 / worse 20
+    moderate                         28 trades | delta +1.7R | +0.060R each | better 12 / worse 16
+    calm                             14 trades | delta +0.4R | +0.032R each | better 8 / worse 6
+  by goal reached:
+    none                            377 trades | delta +11.7R | +0.031R each | better 89 / worse 78
+    earn_notch                       11 trades | delta +2.3R | +0.207R each | better 6 / worse 4
+    reach_trigger                    10 trades | delta -0.9R | -0.086R each | better 5 / worse 5
+    back_to_x                         9 trades | delta -3.4R | -0.383R each | better 3 / worse 6
+    start_defence                     9 trades | delta +0.8R | +0.090R each | better 4 / worse 5
+    reach_trigger+start_defence       3 trades | delta -0.1R | -0.032R each | better 1 / worse 2
+    reach_trigger+earn_notch          1 trades | delta +0.6R | +0.558R each | better 1 / worse 0
+  real 2R winners the shadow would have cut early: 32
+  learned buckets at the end: afternoon|0-0.5 n=157 avg hold +0.04R, afternoon|0.5-1 n=89 avg hold -0.01R, afternoon|1+ n=51 avg hold -0.01R, afternoon|neg n=222 avg hold -0.03R, midday|0-0.5 n=165 avg hold +0.04R, midday|0.5-1 n=86 avg hold +0.05R, midday|1+ n=41 avg hold -0.05R, midday|neg n=287 avg hold -0.01R, morning|0-0.5 n=407 avg hold +0.02R, morning|0.5-1 n=81 avg hold +0.12R, morning|1+ n=23 avg hold -0.21R, morning|neg n=576 avg hold -0.01R
+
+runtime 32.5s

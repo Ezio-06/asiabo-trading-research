@@ -1,0 +1,691 @@
+{
+  "_about": "Module registry for asiabo.py (run.bat). Edit via the menu (t = tweak args, a = add, r = remove) or by hand. est_min / ram_gb are first guesses; the dashboard shows the learned value from runs.csv once a module has run. 'steps' = commands run in order (stops at the first failure); 'delete_after' = temp files removed when the module ends; 'tidy_after' = bats a script re-writes by itself, moved to old versions\\bats after the run; 'confirm' = asked before running.",
+  "modules": [
+    {
+      "key": "lab_power",
+      "group": "lab",
+      "name": "Lab: power (all lanes, Parts A-K)",
+      "steps": [
+        {
+          "script": "asiabo_lab.py",
+          "args": [
+            "power"
+          ]
+        }
+      ],
+      "est_min": 26,
+      "ram_gb": null,
+      "writes": "reports\\lab_<time>\\",
+      "report_prefix": "lab_",
+      "vision": "wipe",
+      "tidy_after": [
+        "run_asiabo_lab.bat"
+      ]
+    },
+    {
+      "key": "lab_omega",
+      "group": "lab",
+      "name": "Lab: omega lanes + Part K only",
+      "steps": [
+        {
+          "script": "asiabo_lab.py",
+          "args": [
+            "omega"
+          ]
+        }
+      ],
+      "est_min": 6,
+      "ram_gb": null,
+      "writes": "reports\\lab_<time>\\",
+      "report_prefix": "lab_",
+      "vision": "wipe",
+      "tidy_after": [
+        "run_asiabo_lab.bat"
+      ]
+    },
+    {
+      "key": "lab_final",
+      "group": "lab",
+      "name": "Lab: final (old run_6)",
+      "steps": [
+        {
+          "script": "asiabo_lab.py",
+          "args": [
+            "final"
+          ]
+        }
+      ],
+      "est_min": null,
+      "ram_gb": null,
+      "writes": "reports\\lab_<time>\\",
+      "report_prefix": "lab_",
+      "vision": "wipe",
+      "tidy_after": [
+        "run_asiabo_lab.bat"
+      ]
+    },
+    {
+      "key": "why",
+      "group": "study",
+      "name": "Why phase: real + dayshuffle cousin (old run_12)",
+      "steps": [
+        {
+          "script": "asiabo_why.py",
+          "args": [
+            "all"
+          ]
+        },
+        {
+          "script": "make_synth.py",
+          "args": [
+            "gen",
+            "--preset",
+            "dayshuffle",
+            "--seed",
+            "1",
+            "--out",
+            "synth\\why_dayshuffle_s1.db"
+          ]
+        },
+        {
+          "script": "asiabo_why.py",
+          "args": [
+            "all",
+            "--db",
+            "synth\\why_dayshuffle_s1.db"
+          ]
+        }
+      ],
+      "delete_after": [
+        "synth\\why_dayshuffle_s1.db"
+      ],
+      "est_min": 25,
+      "ram_gb": 1.5,
+      "writes": "reports\\why_<time>\\ + why_synth_dayshuffle_s1_<time>\\",
+      "report_prefix": "why_",
+      "vision": "wipe (real), then add (cousin)"
+    },
+    {
+      "key": "why_cheap",
+      "group": "study",
+      "name": "Why phase: W5 + W3 only, real data",
+      "steps": [
+        {
+          "script": "asiabo_why.py",
+          "args": [
+            "cheap"
+          ]
+        }
+      ],
+      "est_min": null,
+      "ram_gb": 1.0,
+      "writes": "reports\\why_<time>\\",
+      "report_prefix": "why_",
+      "vision": "wipe"
+    },
+    {
+      "key": "probe",
+      "group": "study",
+      "name": "Probe study M1-M6: real + dayshuffle cousin (Phase 1)",
+      "steps": [
+        {
+          "script": "asiabo_probe.py",
+          "args": [
+            "all"
+          ]
+        },
+        {
+          "script": "make_synth.py",
+          "args": [
+            "gen",
+            "--preset",
+            "dayshuffle",
+            "--seed",
+            "1",
+            "--out",
+            "synth\\probe_dayshuffle_s1.db"
+          ]
+        },
+        {
+          "script": "asiabo_probe.py",
+          "args": [
+            "all",
+            "--db",
+            "synth\\probe_dayshuffle_s1.db"
+          ]
+        }
+      ],
+      "delete_after": [
+        "synth\\probe_dayshuffle_s1.db"
+      ],
+      "est_min": 30,
+      "ram_gb": 1.5,
+      "writes": "reports\\probe_<time>\\ + probe_synth_dayshuffle_s1_<time>\\",
+      "report_prefix": "probe_",
+      "vision": "wipe (real), then add (cousin)"
+    },
+    {
+      "key": "probe_cheap",
+      "group": "study",
+      "name": "Probe study M1 M2 M4 M5 only, real data (no lanes)",
+      "steps": [
+        {
+          "script": "asiabo_probe.py",
+          "args": [
+            "cheap"
+          ]
+        }
+      ],
+      "est_min": 6,
+      "ram_gb": 1.0,
+      "writes": "reports\\probe_<time>\\",
+      "report_prefix": "probe_",
+      "vision": "wipe"
+    },
+    {
+      "key": "young1",
+      "group": "study",
+      "name": "Youngling batch 1: #31 mirror dip, #27/#28 US500-DAX, #19 squeeze (real + v8 cousin)",
+      "steps": [
+        {
+          "script": "asiabo_young.py",
+          "args": []
+        },
+        {
+          "script": "make_synth.py",
+          "args": [
+            "gen",
+            "--preset",
+            "real8",
+            "--seed",
+            "3",
+            "--out",
+            "synth\\young_real8_s3.db"
+          ]
+        },
+        {
+          "script": "asiabo_young.py",
+          "args": [
+            "--db",
+            "synth\\young_real8_s3.db"
+          ]
+        }
+      ],
+      "delete_after": [
+        "synth\\young_real8_s3.db"
+      ],
+      "est_min": 20,
+      "ram_gb": 1.5,
+      "writes": "reports\\young1_<time>\\ + young1_synth_young_real8_s3_<time>\\",
+      "report_prefix": "young1_",
+      "vision": "wipe (real), then add (cousin)"
+    },
+    {
+      "key": "young_engine",
+      "group": "study",
+      "name": "Young lanes through our systems: 6 realistic worlds, cause test, placebos (resumable)",
+      "steps": [
+        {
+          "script": "asiabo_young_engine.py",
+          "args": []
+        }
+      ],
+      "est_min": 60,
+      "ram_gb": 1.5,
+      "writes": "reports\\young_engine\\worlds\\*.json + reports\\young_engine_<time>\\",
+      "report_prefix": "young_engine_",
+      "vision": "wipe"
+    },
+    {
+      "key": "exam_baseline",
+      "group": "exam",
+      "name": "US500 exam, step 1: baseline on bars.db (spent data, context only)",
+      "steps": [
+        {
+          "script": "asiabo_exam.py",
+          "args": [
+            "--baseline"
+          ]
+        }
+      ],
+      "est_min": 5,
+      "ram_gb": 1.0,
+      "writes": "reports\\exam_baseline_<time>\\",
+      "report_prefix": "exam_baseline_",
+      "vision": "wipe"
+    },
+    {
+      "key": "exam_us500",
+      "group": "exam",
+      "name": "US500 exam, step 2: THE EXAM on US 500 2016-19 (ONE-SHOT)",
+      "steps": [
+        {
+          "script": "asiabo_exam.py",
+          "args": []
+        }
+      ],
+      "est_min": 3,
+      "ram_gb": 1.0,
+      "writes": "exam_hold\\exam_us500.db + EXAM_DONE.txt, reports\\exam_us500_<time>\\",
+      "report_prefix": "exam_us500_",
+      "vision": "wipe",
+      "confirm": "ONE-SHOT. Only after exam_baseline has run AND both predictions (Ezio's and Claude's) are written in exam_us500_spec.md."
+    },
+    {
+      "key": "dipdrift",
+      "group": "exam",
+      "name": "dip + Ezio's drift sizing on US Tech 100 (ONE-SHOT, fresh data)",
+      "steps": [
+        {
+          "script": "asiabo_dipdrift.py",
+          "args": []
+        }
+      ],
+      "est_min": 6,
+      "ram_gb": 1.5,
+      "writes": "exam_hold\\ustech100.db + DIPDRIFT_DONE.txt, reports\\dipdrift_<time>\\",
+      "report_prefix": "dipdrift_",
+      "vision": "wipe",
+      "confirm": "ONE-SHOT on fresh US Tech 100. Only after Ezio's prediction is written in dip_drift_spec.md."
+    },
+    {
+      "key": "dipvol",
+      "group": "study",
+      "name": "dip: skip when volatility high AND rising, ATR 5/10/20/40 (exploration on spent data)",
+      "steps": [
+        {
+          "script": "asiabo_dipvol.py",
+          "args": []
+        }
+      ],
+      "est_min": 15,
+      "ram_gb": 1.5,
+      "writes": "reports\\dipvol_<time>\\",
+      "report_prefix": "dipvol_",
+      "vision": "wipe"
+    },
+    {
+      "key": "explore",
+      "group": "study",
+      "name": "every living candidate on TRAINING data: fast per market, N5 afternoon, N3 fade, N4 trend option, dip ATR40 rule (exploration)",
+      "steps": [
+        {
+          "script": "asiabo_explore.py",
+          "args": []
+        }
+      ],
+      "est_min": 40,
+      "ram_gb": 2.0,
+      "writes": "reports\\explore_<time>\\",
+      "report_prefix": "explore_",
+      "vision": "wipe"
+    },
+    {
+      "key": "trendwhy",
+      "group": "study",
+      "name": "trend option: how we won / how we lost / what we can't explain (training data, descriptive; fixed entry timing)",
+      "steps": [
+        {
+          "script": "asiabo_trendwhy.py",
+          "args": []
+        }
+      ],
+      "est_min": 20,
+      "ram_gb": 2.0,
+      "writes": "reports\\trendwhy_<time>\\",
+      "report_prefix": "trendwhy_",
+      "vision": "wipe"
+    },
+    {
+      "key": "engine",
+      "group": "engine",
+      "name": "Pocket engine stage 1: ideal / nightmare worlds (resumable)",
+      "steps": [
+        {
+          "script": "asiabo_engine.py",
+          "args": []
+        }
+      ],
+      "est_min": null,
+      "ram_gb": null,
+      "writes": "reports\\engine\\worlds\\*.json + reports\\engine_<time>\\",
+      "report_prefix": "engine_",
+      "vision": "wipe"
+    },
+    {
+      "key": "engine_report",
+      "group": "engine",
+      "name": "Pocket engine: rebuild report from measured worlds",
+      "steps": [
+        {
+          "script": "asiabo_engine.py",
+          "args": [
+            "report"
+          ]
+        }
+      ],
+      "est_min": 1,
+      "ram_gb": null,
+      "writes": "reports\\engine_<time>\\",
+      "report_prefix": "engine_",
+      "vision": "wipe"
+    },
+    {
+      "key": "hunt_discover",
+      "group": "engine",
+      "name": "Pocket hunt: build table + discover + yardstick",
+      "steps": [
+        {
+          "script": "asiabo_hunt.py",
+          "args": [
+            "discover"
+          ]
+        }
+      ],
+      "est_min": null,
+      "ram_gb": null,
+      "writes": "reports\\hunt\\ + reports\\hunt_discover_<time>\\",
+      "report_prefix": "hunt_discover_",
+      "vision": "wipe"
+    },
+    {
+      "key": "hunt_confirm",
+      "group": "engine",
+      "name": "Pocket hunt: ONE-SHOT confirm on the held-out half",
+      "steps": [
+        {
+          "script": "asiabo_hunt.py",
+          "args": [
+            "confirm"
+          ]
+        }
+      ],
+      "est_min": null,
+      "ram_gb": null,
+      "writes": "reports\\hunt_confirm_<time>\\",
+      "report_prefix": "hunt_confirm_",
+      "vision": "wipe",
+      "confirm": "ONE-SHOT check. Only run after Claude has written and locked the theories. Round 1 is already spent."
+    },
+    {
+      "key": "regime",
+      "group": "engine",
+      "name": "Regime engine: known-truth worlds (resumable)",
+      "steps": [
+        {
+          "script": "asiabo_regime.py",
+          "args": []
+        }
+      ],
+      "est_min": null,
+      "ram_gb": null,
+      "writes": "reports\\regime\\worlds\\ + reports\\regime_<time>\\",
+      "report_prefix": "regime_",
+      "vision": "wipe"
+    },
+    {
+      "key": "regime_report",
+      "group": "engine",
+      "name": "Regime engine: report only",
+      "steps": [
+        {
+          "script": "asiabo_regime.py",
+          "args": [
+            "report"
+          ]
+        }
+      ],
+      "est_min": 1,
+      "ram_gb": null,
+      "writes": "reports\\regime_<time>\\",
+      "report_prefix": "regime_",
+      "vision": "wipe"
+    },
+    {
+      "key": "switch",
+      "group": "engine",
+      "name": "Momentum switch: pre-registered real test",
+      "steps": [
+        {
+          "script": "asiabo_switch.py",
+          "args": []
+        }
+      ],
+      "est_min": 6,
+      "ram_gb": null,
+      "writes": "reports\\switch_<time>\\",
+      "report_prefix": "switch_",
+      "vision": "wipe"
+    },
+    {
+      "key": "ladder",
+      "group": "engine",
+      "name": "Ladder trade: 6 synth worlds + real (resumable)",
+      "steps": [
+        {
+          "script": "asiabo_ladder.py",
+          "args": []
+        }
+      ],
+      "est_min": 30,
+      "ram_gb": null,
+      "writes": "reports\\ladder\\worlds\\ + reports\\ladder_<time>\\",
+      "report_prefix": "ladder_",
+      "vision": "wipe"
+    },
+    {
+      "key": "ladder_report",
+      "group": "engine",
+      "name": "Ladder: report only",
+      "steps": [
+        {
+          "script": "asiabo_ladder.py",
+          "args": [
+            "report"
+          ]
+        }
+      ],
+      "est_min": 1,
+      "ram_gb": null,
+      "writes": "reports\\ladder_<time>\\",
+      "report_prefix": "ladder_",
+      "vision": "wipe"
+    },
+    {
+      "key": "synth_check",
+      "group": "synth",
+      "name": "make_synth default: shuffle s1 + statistics check vs bars.db",
+      "steps": [
+        {
+          "script": "make_synth.py",
+          "args": []
+        }
+      ],
+      "est_min": null,
+      "ram_gb": null,
+      "writes": "synth\\*.db + reports\\synth_<time>\\",
+      "report_prefix": "synth_2",
+      "vision": "add"
+    },
+    {
+      "key": "synth8_check",
+      "group": "synth",
+      "name": "v8 realistic world: generate real8 s3 + realism gate + probe on it",
+      "steps": [
+        {
+          "script": "make_synth.py",
+          "args": [
+            "gen",
+            "--preset",
+            "real8",
+            "--seed",
+            "3",
+            "--out",
+            "synth\\real8_s3.db"
+          ]
+        },
+        {
+          "script": "asiabo_probe.py",
+          "args": [
+            "all",
+            "--db",
+            "synth\\real8_s3.db"
+          ]
+        }
+      ],
+      "delete_after": [
+        "synth\\real8_s3.db"
+      ],
+      "est_min": 15,
+      "ram_gb": 1.0,
+      "writes": "reports\\synth_gate_<time>\\ + probe_synth_real8_s3_<time>\\",
+      "report_prefix": "synth_gate_",
+      "vision": "add (gate report + probe report)"
+    },
+    {
+      "key": "synth7_check",
+      "group": "synth",
+      "name": "v7 world (SUPERSEDED: fails the v8 gate on volatility / dip setups by design)",
+      "steps": [
+        {
+          "script": "make_synth.py",
+          "args": [
+            "gen",
+            "--preset",
+            "real7",
+            "--seed",
+            "3",
+            "--out",
+            "synth\\real7_s3.db"
+          ]
+        },
+        {
+          "script": "asiabo_probe.py",
+          "args": [
+            "all",
+            "--db",
+            "synth\\real7_s3.db"
+          ]
+        }
+      ],
+      "delete_after": [
+        "synth\\real7_s3.db"
+      ],
+      "est_min": 15,
+      "ram_gb": 1.0,
+      "writes": "reports\\synth_gate_<time>\\ + probe_synth_real7_s3_<time>\\",
+      "report_prefix": "synth_gate_",
+      "vision": "add (gate report + probe report)"
+    },
+    {
+      "key": "synth_gate",
+      "group": "synth",
+      "name": "Realism gate only: compare a synth db with bars.db (edit the db path)",
+      "steps": [
+        {
+          "script": "make_synth.py",
+          "args": [
+            "gate",
+            "synth\\real8_s3.db"
+          ]
+        }
+      ],
+      "est_min": 2,
+      "ram_gb": 0.5,
+      "writes": "reports\\synth_gate_<time>\\",
+      "report_prefix": "synth_gate_",
+      "vision": "add"
+    },
+    {
+      "key": "synth_cache",
+      "group": "synth",
+      "name": "make_synth cache: (re)build synth\\cache from bars.db",
+      "steps": [
+        {
+          "script": "make_synth.py",
+          "args": [
+            "cache"
+          ]
+        }
+      ],
+      "est_min": null,
+      "ram_gb": null,
+      "writes": "synth\\cache\\ (~1 GB)",
+      "report_prefix": null,
+      "vision": "none"
+    },
+    {
+      "key": "synth_batch",
+      "group": "synth",
+      "name": "Synth batch: frozen omega book on many seeds (resumable, PARALLEL)",
+      "steps": [
+        {
+          "script": "synth_batch.py",
+          "args": []
+        }
+      ],
+      "est_min": 260,
+      "ram_gb": 6.0,
+      "ram_note": "parallel jobs, ~1.5 GB each",
+      "writes": "reports\\synth_batch\\ + synth_lab_<preset>_s<seed>_<time>\\",
+      "report_prefix": "synth_batch",
+      "vision": "wipe (at the end)"
+    },
+    {
+      "key": "synth_longblock",
+      "group": "synth",
+      "name": "Synth batch: longblock preset only (old run_11)",
+      "steps": [
+        {
+          "script": "synth_batch.py",
+          "args": [
+            "--presets",
+            "longblock"
+          ]
+        }
+      ],
+      "est_min": 90,
+      "ram_gb": 6.0,
+      "ram_note": "parallel jobs, ~1.5 GB each",
+      "writes": "reports\\synth_batch\\",
+      "report_prefix": "synth_batch",
+      "vision": "wipe (at the end)"
+    },
+    {
+      "key": "build_bars_db",
+      "group": "data",
+      "name": "Build / append bars.db from bars_input\\",
+      "steps": [
+        {
+          "script": "build_bars_db.py",
+          "args": []
+        }
+      ],
+      "est_min": null,
+      "ram_gb": null,
+      "writes": "bars.db, build_bars_db_log.txt, gaps_to_check.csv",
+      "report_prefix": null,
+      "vision": "wipe",
+      "confirm": "This changes bars.db. Afterwards rebuild synth\\cache (module synth_cache). NOT while the US 500 2015 exam file is in bars_input and the exam has not run (exam_hold\\EXAM_DONE.txt)."
+    },
+    {
+      "key": "offline",
+      "group": "data",
+      "name": "asiabo_offline (old base module; asks its own menu)",
+      "steps": [
+        {
+          "script": "asiabo_offline.py",
+          "args": []
+        }
+      ],
+      "est_min": null,
+      "ram_gb": null,
+      "writes": "reports\\<mode>_<time>\\",
+      "report_prefix": "collect_",
+      "vision": "wipe",
+      "tidy_after": [
+        "run_asiabo_offline.bat"
+      ]
+    }
+  ]
+}

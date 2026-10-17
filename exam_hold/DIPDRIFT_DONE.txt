@@ -1,0 +1,3 @@
+dip-drift test ran 2026-10-13 17:29:19
+report: D:\coding stuff\Trading research project\reports\dipdrift_20261013_172831
+A MIXED; D vs A INSIDE THE NOISE

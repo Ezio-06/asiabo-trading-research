@@ -1,0 +1,138 @@
+# 2026-10-11 19:12:37  module engine_report
+# asiabo_engine.py report
+
+==============================================================================================================
+POCKET ENGINE stage 1: ideal and nightmare worlds for the states we have theories for   (2026-10-11 19:12)
+==============================================================================================================
+Each world = a reshuffled cousin of bars.db (4 book markets), moved along ONE dial. Measured: the frozen-book
+parts brk / ins / fast / dip (lab lanes, one position per part / market / direction). EDGE = net R minus the
+coin-flip average (cost-free direction value). Seeds: 1, 2. Worlds of one seed share the same block schedule
+(paired); t clustered by seed x market x month. Predictions and verdict rules were written in asiabo_engine.py
+BEFORE any world was measured (see its top). The slope is per dial STEP along the ladder as listed.
+
+REFERENCE: the real bars.db (same code), edge/trade (n, t) per era:
+  brk  | 14-17 +0.135(514) t +1.3 | 18-19 +0.189(282) t +1.9 | 20-21 +0.036(373) t +0.3 | 2024+ +0.162(571) t +1.9
+  ins  | 14-17 +0.095(405) t +1.2 | 18-19 +0.143(217) t +1.8 | 20-21 +0.169(269) t +2.1 | 2024+ +0.100(365) t +1.7
+  fast | 14-17 +0.153(514) t +2.0 | 18-19 +0.086(248) t +1.0 | 20-21 +0.171(306) t +2.2 | 2024+ +0.062(611) t +1.1
+  dip  | 14-17 +0.283(15) t +0.8 | 18-19 -0.023(14) t -0.0 | 20-21 +0.425(49) t +1.7 | 2024+ +0.503(61) t +3.5
+  dipx | 14-17 +0.428(111) t +2.1 | 18-19 -0.202(104) t -0.8 | 20-21 +0.346(280) t +2.1 | 2024+ +0.243(411) t +2.3
+
+==============================================================================================================
+D1  MOMENTUM vs SNAP-BACK   ladder: snap-back (nightmare for trend riders) -> momentum (ideal for trend riders)
+==============================================================================================================
+  the worlds (average over markets, eras and seeds): vol %/yr | day-to-day autocorr | 20-day variance ratio |
+  trend months % | inside days %
+    snap-back k +1.5             seeds 2 | vol  38.3 | ac1 -0.062 | VR20 0.51 | trend 15.0% | inside 14.8%
+    snap-back k +0.5             seeds 2 | vol  24.1 | ac1 -0.057 | VR20 0.58 | trend 20.5% | inside 14.8%
+    shuffle 2-6w (k 0, vol 1)    seeds 2 | vol  17.2 | ac1 -0.044 | VR20 0.76 | trend 30.0% | inside 14.8%
+    momentum k -0.2              seeds 2 | vol  14.6 | ac1 -0.030 | VR20 0.96 | trend 36.8% | inside 14.2%
+    momentum k -0.4              seeds 2 | vol  12.0 | ac1 +0.000 | VR20 1.37 | trend 48.2% | inside 13.4%
+
+  brk   predicted edge +
+    ALL         -0.269(3295) -0.143(3356) +0.045(3533) +0.169(3756) +0.522(3893)  | edge slope +0.191/step t +6.6  seeds same sign 2/2  | net slope +0.200 t+10.3  -> CONFIRMED
+    OLD 2014-21 -0.249(2214) -0.133(2241) +0.064(2346) +0.172(2490) +0.561(2582)  | edge slope +0.194/step t +4.6  seeds same sign 2/2  | net slope +0.201 t +7.8
+    NEW 2024+   -0.309(1081) -0.162(1115) +0.008(1187) +0.164(1266) +0.443(1311)  | edge slope +0.184/step t +8.9  seeds same sign 2/2  | net slope +0.196 t +7.1
+
+  ins   predicted edge 0
+    ALL         +0.077(2348) +0.087(2349) +0.085(2350) +0.096(2273) +0.164(2134)  | edge slope +0.018/step t +2.2  seeds same sign 2/2  | net slope -0.011 t -1.2  -> UNCLEAR
+    OLD 2014-21 +0.072(1616) +0.076(1624) +0.071(1637) +0.076(1598) +0.159(1502)  | edge slope +0.017/step t +1.6  seeds same sign 2/2  | net slope -0.022 t -1.9
+    NEW 2024+   +0.089(732) +0.112(725) +0.117(713) +0.142(675) +0.177(632)  | edge slope +0.020/step t +1.6  seeds same sign 1/2  | net slope +0.015 t +1.0
+
+  fast   predicted edge +
+    ALL         +0.007(2541) +0.050(2733) +0.073(3275) +0.122(3771) +0.193(4641)  | edge slope +0.046/step t +6.8  seeds same sign 2/2  | net slope +0.019 t +2.2  -> CONFIRMED
+    OLD 2014-21 +0.023(1663) +0.070(1744) +0.101(2073) +0.147(2371) +0.229(2933)  | edge slope +0.050/step t +5.7  seeds same sign 2/2  | net slope +0.011 t +1.0
+    NEW 2024+   -0.023(878) +0.013(989) +0.025(1202) +0.080(1400) +0.132(1708)  | edge slope +0.039/step t +3.7  seeds same sign 2/2  | net slope +0.031 t +2.4
+
+  dip   predicted edge -
+    ALL         +0.097(203) +0.270(215) +0.335(203) +0.418(203) +0.388(182)  | edge slope +0.074/step t +2.5  seeds same sign 2/2  | net slope +0.058 t +1.9  -> CONTRADICTED
+    OLD 2014-21 +0.047(102) +0.313(111) +0.372(98) +0.427(96) +0.378(83)  | edge slope +0.080/step t +1.9  seeds same sign 2/2  | net slope +0.061 t +1.5
+    NEW 2024+   +0.147(101) +0.224(104) +0.301(105) +0.411(107) +0.396(99)  | edge slope +0.069/step t +1.6  seeds same sign 2/2  | net slope +0.054 t +1.2
+
+  dipx   predicted edge -
+    ALL         +0.044(1420) +0.207(1388) +0.204(1303) +0.215(1234) +0.145(1210)  | edge slope +0.023/step t +1.0  seeds same sign 2/2  | net slope +0.007 t +0.3  -> NOT SHOWN
+    OLD 2014-21 +0.051(708) +0.193(673) +0.227(602) +0.261(581) +0.237(561)  | edge slope +0.046/step t +1.9  seeds same sign 1/2  | net slope +0.029 t +1.2
+    NEW 2024+   +0.037(712) +0.219(715) +0.185(701) +0.174(653) +0.066(649)  | edge slope +0.002/step t +0.1  seeds same sign 1/2  | net slope -0.013 t -0.4
+
+==============================================================================================================
+D2  TREND LENGTH / DAY ORDER   ladder: days in random order -> 2-6 week blocks -> 8-26 week blocks
+==============================================================================================================
+  the worlds (average over markets, eras and seeds): vol %/yr | day-to-day autocorr | 20-day variance ratio |
+  trend months % | inside days %
+    dayshuffle (no day order)    seeds 2 | vol  18.2 | ac1 +0.010 | VR20 0.84 | trend 33.3% | inside 17.4%
+    shuffle 2-6w (k 0, vol 1)    seeds 2 | vol  17.2 | ac1 -0.044 | VR20 0.76 | trend 30.0% | inside 14.8%
+    longblock 8-26w              seeds 2 | vol  14.1 | ac1 -0.033 | VR20 0.74 | trend 29.3% | inside 14.7%
+
+  brk   predicted edge +
+    ALL         +0.011(3693) +0.045(3533) +0.071(3512)  | edge slope +0.030/step t +1.1  seeds same sign 2/2  | net slope +0.038 t +1.2  -> NOT SHOWN
+    OLD 2014-21 -0.035(2435) +0.064(2346) +0.053(2365)  | edge slope +0.044/step t +1.3  seeds same sign 2/2  | net slope +0.037 t +0.9
+    NEW 2024+   +0.100(1258) +0.008(1187) +0.107(1147)  | edge slope +0.002/step t +0.0  seeds same sign 1/2  | net slope +0.046 t +0.8
+
+  ins   predicted edge +
+    ALL         +0.010(2725) +0.085(2350) +0.076(2435)  | edge slope +0.033/step t +1.2  seeds same sign 2/2  | net slope +0.058 t +1.9  -> NOT SHOWN
+    OLD 2014-21 -0.005(1878) +0.071(1637) +0.086(1699)  | edge slope +0.046/step t +1.3  seeds same sign 2/2  | net slope +0.085 t +2.0
+    NEW 2024+   +0.046(847) +0.117(713) +0.053(736)  | edge slope +0.005/step t +0.2  seeds same sign 1/2  | net slope -0.002 t -0.1
+
+  fast   predicted edge 0
+    ALL         +0.085(3721) +0.073(3275) +0.100(3339)  | edge slope +0.007/step t +0.4  seeds same sign 1/2  | net slope +0.016 t +0.7  -> CONSISTENT
+    OLD 2014-21 +0.127(2377) +0.101(2073) +0.110(2128)  | edge slope -0.009/step t -0.4  seeds same sign 1/2  | net slope +0.002 t +0.1
+    NEW 2024+   +0.011(1344) +0.025(1202) +0.081(1211)  | edge slope +0.035/step t +1.1  seeds same sign 2/2  | net slope +0.040 t +1.1
+
+  dip   predicted edge +
+    ALL         +0.299(180) +0.335(203) +0.527(225)  | edge slope +0.117/step t +1.6  seeds same sign 2/2  | net slope +0.114 t +1.6  -> NOT SHOWN
+    OLD 2014-21 +0.214(86) +0.372(98) +0.603(121)  | edge slope +0.196/step t +1.9  seeds same sign 2/2  | net slope +0.192 t +1.8
+    NEW 2024+   +0.376(94) +0.301(105) +0.440(104)  | edge slope +0.034/step t +0.3  seeds same sign 1/2  | net slope +0.031 t +0.3
+
+  dipx   predicted edge +
+    ALL         +0.207(1382) +0.204(1303) +0.387(1530)  | edge slope +0.091/step t +1.6  seeds same sign 2/2  | net slope +0.087 t +1.5  -> NOT SHOWN
+    OLD 2014-21 +0.132(641) +0.227(602) +0.434(789)  | edge slope +0.152/step t +1.7  seeds same sign 2/2  | net slope +0.145 t +1.6
+    NEW 2024+   +0.272(741) +0.185(701) +0.337(741)  | edge slope +0.033/step t +0.5  seeds same sign 1/2  | net slope +0.032 t +0.4
+
+==============================================================================================================
+D3  VOLATILITY LEVEL   ladder: calm (x0.6) -> wild (x1.6); costs fixed
+==============================================================================================================
+  the worlds (average over markets, eras and seeds): vol %/yr | day-to-day autocorr | 20-day variance ratio |
+  trend months % | inside days %
+    vol x0.60                    seeds 2 | vol  10.7 | ac1 -0.042 | VR20 0.76 | trend 29.8% | inside 14.8%
+    vol x0.80                    seeds 2 | vol  13.9 | ac1 -0.043 | VR20 0.76 | trend 30.0% | inside 14.8%
+    shuffle 2-6w (k 0, vol 1)    seeds 2 | vol  17.2 | ac1 -0.044 | VR20 0.76 | trend 30.0% | inside 14.8%
+    vol x1.25                    seeds 2 | vol  21.3 | ac1 -0.045 | VR20 0.77 | trend 30.0% | inside 14.8%
+    vol x1.60                    seeds 2 | vol  27.2 | ac1 -0.046 | VR20 0.78 | trend 30.2% | inside 14.8%
+
+  brk   predicted edge 0   net +
+    ALL         +0.048(3538) +0.049(3529) +0.045(3533) +0.039(3549) +0.037(3553)  | edge slope -0.003/step t -1.1  seeds same sign 1/2  | net slope +0.031 t +8.1  -> CONSISTENT / net CONFIRMED
+    OLD 2014-21 +0.067(2349) +0.070(2342) +0.064(2346) +0.057(2359) +0.058(2362)  | edge slope -0.003/step t -0.7  seeds same sign 1/2  | net slope +0.037 t +6.7
+    NEW 2024+   +0.012(1189) +0.009(1187) +0.008(1187) +0.003(1190) -0.004(1191)  | edge slope -0.004/step t -1.5  seeds same sign 2/2  | net slope +0.019 t +5.5
+
+  ins   predicted edge 0   net +
+    ALL         +0.085(2350) +0.085(2350) +0.085(2350) +0.085(2350) +0.085(2350)  | edge slope -0.000/step t -0.4  seeds same sign 2/2  | net slope +0.031 t+19.3  -> CONSISTENT / net CONFIRMED
+    OLD 2014-21 +0.071(1637) +0.071(1637) +0.071(1637) +0.071(1637) +0.071(1637)  | edge slope -0.000/step t -0.2  seeds same sign 1/2  | net slope +0.038 t+17.3
+    NEW 2024+   +0.119(713) +0.117(713) +0.117(713) +0.117(713) +0.118(713)  | edge slope -0.000/step t -0.4  seeds same sign 1/2  | net slope +0.016 t+15.8
+
+  fast   predicted edge 0   net +
+    ALL         +0.074(3275) +0.074(3273) +0.073(3275) +0.074(3279) +0.076(3276)  | edge slope +0.000/step t +0.4  seeds same sign 1/2  | net slope +0.028 t+21.6  -> CONSISTENT / net CONFIRMED
+    OLD 2014-21 +0.102(2073) +0.102(2072) +0.101(2073) +0.102(2078) +0.102(2080)  | edge slope +0.000/step t +0.1  seeds same sign 1/2  | net slope +0.034 t+19.4
+    NEW 2024+   +0.026(1202) +0.026(1201) +0.025(1202) +0.026(1201) +0.030(1196)  | edge slope +0.001/step t +0.5  seeds same sign 1/2  | net slope +0.017 t+11.7
+
+  dip   predicted edge 0   net +
+    ALL         +0.396(205) +0.347(205) +0.335(203) +0.318(202) +0.312(192)  | edge slope -0.020/step t -0.7  seeds same sign 2/2  | net slope -0.003 t -0.1  -> CONSISTENT / net NOT SHOWN
+    OLD 2014-21 +0.531(99) +0.429(99) +0.372(98) +0.337(97) +0.327(88)  | edge slope -0.051/step t -0.8  seeds same sign 2/2  | net slope -0.034 t -0.6
+    NEW 2024+   +0.270(106) +0.270(106) +0.301(105) +0.301(105) +0.300(104)  | edge slope +0.009/step t +1.0  seeds same sign 2/2  | net slope +0.025 t +2.8
+
+  dipx   predicted edge 0   net +
+    ALL         +0.256(1307) +0.231(1310) +0.204(1303) +0.201(1298) +0.204(1254)  | edge slope -0.013/step t -0.8  seeds same sign 1/2  | net slope +0.002 t +0.1  -> CONSISTENT / net NOT SHOWN
+    OLD 2014-21 +0.342(605) +0.284(608) +0.227(602) +0.215(597) +0.219(558)  | edge slope -0.032/step t -0.8  seeds same sign 1/2  | net slope -0.015 t -0.4
+    NEW 2024+   +0.181(702) +0.185(702) +0.185(701) +0.189(701) +0.192(696)  | edge slope +0.003/step t +2.2  seeds same sign 2/2  | net slope +0.018 t+12.1
+
+==============================================================================================================
+ENGINE CHECK (cloud, fake random-walk markets, 1 seed, 2026-10-10): can it find a cause we PLANTED, and does it
+find nothing where nothing was planted?
+  D1 planted momentum: brk CONFIRMED (t +4.7), fast CONFIRMED (t +6.1), ins CONSISTENT (t +1.6). dip: t -0.4
+     (~150 trades a world: too few). dipx: t -1.8 -- momentum clearly hurt it (-0.05 -> -0.15 -> -0.29 R), but
+     the most violent snap-back (k +1.5) hurt it too (an upside-down U): read dip / dipx by the SHAPE across
+     the ladder, not only by the straight-line slope.
+  D2 on a random walk (shuffling noise changes nothing): every part CONSISTENT / NOT SHOWN, |t| <= 0.8.
+  D3 volatility: edge flat for every part (|t| <= 1.2); net up for brk / ins / fast (t 4.5 .. 27).
+  So one seed finds a planted cause at t 4-6 and nothing where nothing was planted. Two seeds on real data.
+
+report folder: D:\coding stuff\Trading research project\reports\engine_20261011_191237
+claude vision: wiped and refilled with 1 file(s) from engine_20261011_191237

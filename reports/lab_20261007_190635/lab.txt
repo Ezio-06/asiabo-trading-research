@@ -1,0 +1,281 @@
+====================================================================================================
+THE LAB  --  every open idea, labelled, in one run. Shadow only: it measures, it decides nothing.
+====================================================================================================
+Sealed exam years 2022-01-01 .. 2024-01-01: not read by any part.
+
+====================================================================================================
+PART 6: THEORY   each lane's own reads, per kind of market, recent years trusted more
+====================================================================================================
+recent trades: d:\coding stuff\Trading research project\reports\collect_20261007_161416
+old trades:    d:\coding stuff\Trading research project\reports\oldcollect_20261007_180620
+TRUST: how much each era's evidence counts when eras are combined: 2014-17 25%, 2018-19 40%, A 2020-21 70%, B 2024+ 100%.
+       Germany 40 and US 500 count half before 2024 (their history then covers only part of the day).
+LABELS (z = standard errors from zero, after the trust weights):
+  DURABLE      2+ in 2024-26 AND 2+ the same way in the years before
+  RECENT-ONLY  2.5+ in 2024-26, no such support before: it has performed lately, nothing more. Smaller size, forward test.
+  EXPIRED      2.5+ in the years before, gone or reversed in 2024-26: not to be used
+KIND OF MARKET, from what was known on the day: volatility rank low / mid / high (third of its own last 120 days) and
+  20-day straightness choppy / drifting / trending (the bot's own thresholds). A kind comes and goes, so it shows up as
+  many separate EPISODES across the years; 'odd / even' splits a kind's episodes into two interleaved halves, so a
+  read found in one half is checked on other occurrences of the same kind of market.
+New reads in this part:
+  vol_rel              tick volume of the signal bar against the same quarter-hour over the last 20 days
+  vol_trend            volume of the last 4 bars against the 16 before them
+  vol_rank96           where the signal bar's volume ranks among the last 96 bars (1 = the biggest: a climax)
+  spread_atr           spread at the signal bar as a share of ATR (what the market charges right now)
+  spread_rel           spread at the signal bar against its 5-day average
+  beyond20_with        how far the close is beyond the last 20 bars' extreme, in ATR, in the trade's direction
+  edge_tests           how many of the last 32 bars reached the level being traded through (tests of the edge)
+  fib_retrace          pullback depth: how much of the last swing has been given back (0 = none, 1 = all of it)
+  speed8_with          move over the last 2 hours in ATR, in the trade's direction (speed of approach)
+  accel                share of that 2-hour move made in the last hour (above 0.5 = speeding up)
+  rsi_div_with         RSI divergence in the trade's favour: price went against it, RSI did not (yes/no)
+  run_against          how many bars in a row before entry closed AGAINST the trade
+  adx                  ADX(14) on M15: how strong the trend is, whatever its direction
+  h4_slope_abs         how steep the 4-hour average is, whatever its direction (low = flat market)
+  hours_since_open     hours since the market's main open (London, or the New York cash open)
+  first_hour_with      the first hour after the main open, in ATR, in the trade's direction
+  overnight_with       move from yesterday's close to the main open, in daily ranges, in the trade's direction
+  prev_close_pos_with  where yesterday closed in its range, 1 = at the extreme the trade is heading to
+  pdh_dist_with        distance still to go to yesterday's high (longs) or low (shorts), in daily ranges
+  inside_day           yesterday was an inside day (yes/no)
+  week_pos_with        position in the last five days' range, 1 = at the extreme the trade is heading to
+  d_hh_with            how many of the last four days made a higher high and higher low (lower for shorts)
+  xm_with              related markets moved the trade's way over the last 2 hours (dollar for gold, US 500 for Germany ...)
+  lanes_same_today     other lanes that already traded the same direction today
+  lanes_opp_today      other lanes that already traded the opposite direction today
+  failed_fade_with     a fade against this direction was stopped out in the last 4 hours (yes/no)
+  failed_break_with    a breakout against this direction failed in the last 4 hours (yes/no)
+trades: 83163 | with volume reads: 83038 | with a kind of market: 79985
+
+----------------------------------------------------------------------------------------------------
+6a. THE SHEET   does each lane's theory predict its own good trades?
+----------------------------------------------------------------------------------------------------
+  says = what the theory predicted (written before the reads were computed). all / recent / before = trust-weighted z,
+  signed so that + means AS THE THEORY SAYS. best third = after-cost R of the third the theory favours, 2024-26 | before.
+  lane     read                 says  |   all recent before | best third R    | label        | theory
+  main     vol_rel              high  |  +0.7   +0.0   +1.2 | -0.019 | -0.022 |              | no effect
+  main     beyond20_with        high  |  -1.1   +0.3   -2.4 | -0.030 | -0.069 |              | no effect
+  main     edge_tests           high  |  -1.9   -1.1   -1.7 | -0.044 | -0.060 |              | no effect
+  main     asia_rel             low   |  -1.3   -0.4   -1.6 | -0.033 | -0.064 |              | no effect
+  main     h1_trend_with        high  |  +1.8   +0.8   +2.0 | -0.019 | -0.031 |              | no effect
+  main     h4_trend_with        high  |  +0.7   -0.3   +1.7 | -0.033 | -0.027 |              | no effect
+  london   vol_rel              high  |  +1.2   +0.6   +1.3 | -0.072 | -0.038 |              | no effect
+  london   xm_with              high  |  +1.3   +1.7   -0.2 | -0.026 | -0.052 |              | no effect
+  london   hour                 low   |  +2.3   +2.6   +0.4 | -0.038 | -0.058 | RECENT-ONLY  | AS PREDICTED
+  pdh      prev_close_pos_with  high  |  -1.1   -0.4   -1.4 | -0.050 | -0.080 |              | no effect
+  pdh      d20_with             high  |  +0.3   +0.7   -0.5 | +0.022 | -0.072 |              | no effect
+  pdh      day_used             low   |  -0.4   +0.0   -0.7 | -0.053 | -0.077 |              | no effect
+  retest   fib_retrace          low   |  +1.2   +0.9   +0.8 | -0.043 | -0.103 |              | no effect
+  retest   vol_trend            low   |  -0.3   -1.8   +1.9 | -0.080 | -0.059 |              | no effect
+  retest   wick_back            high  |  -0.4   -0.3   -0.3 | -0.073 | -0.111 |              | no effect
+  nr7      squeeze              low   |  -1.0   -1.2   +1.1 | -0.004 | -0.029 |              | no effect
+  nr7      vol_trend            high  |  -0.6   -0.4   -0.9 | -0.001 | -0.065 |              | no effect
+  nr7      d20_with             high  |  +0.2   +0.1   +0.6 | +0.005 | -0.032 |              | no effect
+  fade     wick_back            high  |  -2.0   -1.3   -1.6 | -0.224 | -0.162 |              | no effect
+  fade     vol_rel              high  |  +1.7   +1.2   +1.3 | -0.095 | -0.113 |              | no effect
+  fade     h4_trend_with        high  |  +0.1   -0.2   +0.4 | -0.149 | -0.124 |              | no effect
+  fade     day_eff              low   |  -0.0   +0.3   -0.6 | -0.161 | -0.136 |              | no effect
+  sar      speed8_with          high  |  +0.2   -0.7   +1.5 | -0.122 | -0.076 |              | no effect
+  sar      failed_break_with    high  | too few trades
+  range    volrank              low   |  -0.6   -0.7   +0.0 | -0.325 | -0.324 |              | no effect
+  range    h4_slope_abs         low   |  -0.5   -0.4   -0.3 | -0.407 | -0.261 |              | no effect
+  range    edge_tests           high  |  +1.2   +1.0   +0.8 | -0.297 | -0.200 |              | no effect
+  exhaust  vol_rank96           high  |  +1.5   +1.7   +0.1 | -0.136 | -0.266 |              | no effect
+  exhaust  rsi_div_with         high  |  +1.5   +1.6   +0.2 | -0.130 | -0.251 |              | no effect
+  exhaust  day_used             high  |  +1.4   +1.8   -0.1 | -0.112 | -0.260 |              | no effect
+  exhaust  run_against          high  |  +1.1   +1.0   +0.5 | -0.171 | -0.252 |              | no effect
+  vwap     vol_rank96           high  |  +2.4   +1.3   +2.3 | -0.237 | -0.263 |              | AS PREDICTED (cost arithmetic)
+  vwap     rsi_div_with         high  |  -1.2   -1.5   +0.2 | -0.370 | -0.261 |              | no effect
+  vwap     day_used             high  |  +1.5   +1.9   -0.1 | -0.230 | -0.313 |              | no effect
+  vwap     run_against          high  | too few trades
+  bigrev   prev_close_pos_with  low   | too few trades
+  trend    first_hour_with      high  |  +1.3   +0.6   +1.4 | -0.080 | -0.105 |              | no effect
+  trend    xm_with              high  |  +1.3   +0.1   +2.1 | -0.052 | -0.068 |              | no effect
+  trend    failed_fade_with     high  |  +3.0   +2.4   +1.8 | -0.014 | -0.073 |              | AS PREDICTED (cost arithmetic)
+  nyaft    vol_rel              high  |  +1.7   +0.8   +1.8 | -0.101 | -0.086 |              | no effect
+  nyaft    fib_retrace          low   |  +2.0   +1.7   +1.1 | -0.104 | -0.128 |              | AS PREDICTED (cost arithmetic)
+  nyaft    d20_with             high  |  +1.0   +0.9   +0.5 | -0.074 | -0.142 |              | no effect
+  scalp    vol_rel              high  |  +1.2   +0.7   +1.1 | -0.179 | -0.140 |              | no effect
+  scalp    spread_atr           low   |  +0.6   +0.2   +0.8 | -0.174 | -0.154 |              | no effect
+  scalp    stop_atr             high  |  +1.7   +1.4   +1.0 | -0.189 | -0.108 |              | no effect
+  bigcont  prev_close_pos_with  high  | too few trades
+  swing    adx                  high  | too few trades
+  swing    d_hh_with            high  | too few trades
+  swing    d200_with            high  | too few trades
+  dip      fib_retrace          low   | too few trades
+  dip      adx                  high  | too few trades
+  dip      vol_trend            low   | too few trades
+  42 predictions: 4 as predicted, 0 against the theory, 38 no effect. By luck alone about 1.0 would land on each side.
+
+----------------------------------------------------------------------------------------------------
+6b. EVERY READ, TRUST-WEIGHTED   (any kind of market; per lane and per family)
+----------------------------------------------------------------------------------------------------
+  recent / before = trust-weighted z in 2024-26 and in the years before. 'cells' = (market, era) cells that agree with
+  the result / cells tested. best third = after-cost R of the favourable third, 2024-26 | before.
+                    read                 | recent before | cells  | better    | best third R    | label
+  family  reversal  day_pos_with         |   +6.7   +6.5 | 19/22  | when HIGH | -0.101 | -0.086 | DURABLE
+  family  reversal  bb_with              |   +5.7   +4.6 | 18/22  | when HIGH | -0.111 | -0.090 | DURABLE
+  family  reversal  room_r               |   -5.3   -5.9 | 20/22  | when LOW  | -0.125 | -0.106 | DURABLE
+  family  reversal  sma50_with           |   +4.8   +4.7 | 20/22  | when HIGH | -0.152 | -0.115 | DURABLE
+  family  reversal  rsi_with             |   +4.7   +4.7 | 19/22  | when HIGH | -0.118 | -0.100 | DURABLE
+  family  reversal  failed_break_with    |   +4.5   +4.2 | 15/18  | when HIGH | -0.095 | -0.094 | DURABLE
+  family  reversal  beyond20_with        |   +4.5   +5.1 | 18/22  | when HIGH | -0.150 | -0.119 | DURABLE
+  family  breakout  turning              |   -4.3   -2.2 | 16/22  | when LOW  | -0.010 | -0.053 | DURABLE
+  family  reversal  h1_trend_with        |   +4.3   +3.4 | 20/22  | when HIGH | -0.163 | -0.137 | DURABLE
+  family  reversal  sma20_with           |   +4.1   +4.2 | 17/22  | when HIGH | -0.121 | -0.089 | DURABLE
+  family  reversal  wick_back            |   -4.0   -3.4 | 18/22  | when LOW  | -0.141 | -0.155 | DURABLE
+  family  reversal  stretch_atr          |   -3.6   -4.1 | 18/22  | when LOW  | -0.170 | -0.142 | DURABLE
+  family  momentum  failed_fade_with     |   +3.5   +3.0 | 17/21  | when HIGH | -0.053 | -0.102 | DURABLE
+  family  reversal  last5_mae            |   -3.1   -3.2 | 16/22  | when LOW  | -0.166 | -0.140 | DURABLE
+  family  reversal  day_eff              |   -3.1   -2.5 | 17/22  | when LOW  | -0.148 | -0.152 | DURABLE
+  lane    trend     overnight_with       |   +2.9   +2.5 | 16/22  | when HIGH | -0.026 | -0.100 | DURABLE
+  family  momentum  day_eff              |   +2.9   +4.0 | 19/22  | when HIGH | -0.081 | -0.095 | DURABLE
+  lane    vwap      room_r               |   -2.9   -3.5 | 16/21  | when LOW  | -0.165 | -0.191 | DURABLE
+  family  momentum  overnight_with       |   +2.8   +2.7 | 18/22  | when HIGH | -0.078 | -0.106 | DURABLE
+  family  reversal  prev_close_with      |   +2.7   +3.2 | 15/22  | when HIGH | -0.175 | -0.148 | DURABLE
+  lane    nyaft     last5_mfe            |   +2.6   +2.1 | 17/21  | when HIGH | -0.069 | -0.088 | DURABLE
+  lane    exhaust   beyond20_with        |   +2.6   +2.1 | 15/16  | when HIGH | -0.126 | -0.202 | DURABLE
+  lane    vwap      body_pct             |   +2.5   +2.0 | 16/21  | when HIGH | -0.162 | -0.241 | DURABLE
+  family  reversal  last5_r              |   +2.4   +3.7 | 18/22  | when HIGH | -0.180 | -0.171 | DURABLE
+  lane    nyaft     last5_r              |   +2.3   +2.2 | 15/21  | when HIGH | -0.094 | -0.078 | DURABLE
+  family  reversal  er60                 |   +2.3   +2.6 | 13/22  | when HIGH | -0.176 | -0.178 | DURABLE
+  lane    fade      lanes_opp_today      |   +2.3   +3.3 | 16/19  | when HIGH | -0.067 | -0.056 | DURABLE
+  family  reversal  open_move_with       |   +2.3   +3.5 | 17/22  | when HIGH | -0.155 | -0.142 | DURABLE
+  family  breakout  room_r               |   -2.1   -2.7 | 16/22  | when LOW  | -0.017 | -0.042 | DURABLE
+  lane    sar       week_pos_with        |   +3.5   +0.5 |  8/12  | when HIGH | +0.024 | -0.066 | RECENT-ONLY
+  family  reversal  turning              |   +3.4   -0.0 | 13/22  | when HIGH | -0.149 | -0.184 | RECENT-ONLY
+  lane    nyaft     open_move_with       |   +3.4   +1.9 | 15/21  | when HIGH | -0.042 | -0.089 | RECENT-ONLY
+  lane    sar       trend5_with          |   +3.4   +0.4 | 10/12  | when HIGH | +0.057 | -0.065 | RECENT-ONLY
+  lane    sar       h4_slope_with        |   +3.2   -0.1 | 11/12  | when HIGH | +0.023 | -0.079 | RECENT-ONLY
+  lane    range     trend5_with          |   -3.1   -0.8 | 11/14  | when LOW  | -0.252 | -0.278 | RECENT-ONLY
+  lane    london    stretch_atr          |   +3.1   +1.3 | 18/22  | when HIGH | -0.037 | -0.042 | RECENT-ONLY
+  lane    vwap      turning              |   +3.1   -0.8 | 10/21  | when HIGH | -0.143 | -0.320 | RECENT-ONLY
+  lane    nyaft     h1_trend_with        |   +2.9   +1.9 | 14/21  | when HIGH | -0.047 | -0.086 | RECENT-ONLY
+  lane    range     h4_trend_with        |   -2.9   +0.1 |  9/15  | when LOW  | -0.275 | -0.305 | RECENT-ONLY
+  lane    trend     last_r               |   -2.9   -1.7 | 16/22  | when LOW  | -0.008 | -0.069 | RECENT-ONLY
+  lane    range     week_pos_with        |   -2.9   +0.0 | 10/15  | when LOW  | -0.226 | -0.307 | RECENT-ONLY
+  lane    trend     turning              |   -2.8   -1.8 | 15/22  | when LOW  | -0.042 | -0.099 | RECENT-ONLY
+  family  breakout  prev_close_pos_with  |   -2.8   -0.0 | 12/22  | when LOW  | -0.015 | -0.087 | RECENT-ONLY
+  family  momentum  turning              |   -2.8   -0.6 | 13/22  | when LOW  | -0.102 | -0.128 | RECENT-ONLY
+  lane    sar       h4_trend_with        |   +2.7   +0.9 |  9/12  | when HIGH | +0.024 | -0.072 | RECENT-ONLY
+  lane    london    day_pos_with         |   +2.7   +1.4 | 13/22  | when HIGH | -0.018 | -0.043 | RECENT-ONLY
+  lane    vwap      h4_slope_with        |   +2.7   +1.5 | 16/21  | when HIGH | -0.181 | -0.286 | RECENT-ONLY
+  lane    fade      accel                |   -2.7   +0.4 | 10/19  | when LOW  | -0.025 | -0.185 | RECENT-ONLY
+  lane    london    fib_retrace          |   -2.6   -1.2 | 14/22  | when LOW  | -0.021 | -0.045 | RECENT-ONLY
+  lane    london    hour                 |   -2.6   -0.4 | 12/16  | when LOW  | -0.038 | -0.058 | RECENT-ONLY
+  lane    retest    turning              |   -2.5   -1.4 | 14/18  | when LOW  | +0.002 | -0.093 | RECENT-ONLY
+  lane    vwap      h4_trend_with        |   +2.5   +1.0 | 15/21  | when HIGH | -0.201 | -0.279 | RECENT-ONLY
+  family  breakout  mkt_last20_r         |   -2.5   -1.8 | 12/22  | when LOW  | -0.042 | -0.063 | RECENT-ONLY
+  lane    sar       vol3rel              |   -0.4   -3.2 |  9/12  | when LOW  | -0.093 | -0.039 | EXPIRED
+  family  reversal  pdh_dist_with        |   -0.7   -3.1 | 14/22  | when LOW  | -0.210 | -0.158 | EXPIRED
+  lane    main      days_since           |   +0.9   +2.7 | 14/19  | when HIGH | +0.007 | -0.004 | EXPIRED
+  family  momentum  vol_rank96           |   -0.1   -2.5 | 14/22  | when LOW  | -0.118 | -0.135 | EXPIRED
+  family  reversal  stop_atr             |   +6.2   +6.9 | 21/22  | when HIGH | -0.086 | -0.080 | DURABLE (cost arithmetic)
+  family  momentum  stop_atr             |   +4.9   +4.8 | 19/22  | when HIGH | -0.070 | -0.065 | DURABLE (cost arithmetic)
+  family  reversal  vol_rel              |   +4.5   +0.5 | 16/22  | when HIGH | -0.124 | -0.202 | RECENT-ONLY (cost arithmetic)
+  family  momentum  open_move_with       |   +4.5   +3.3 | 18/22  | when HIGH | -0.069 | -0.090 | DURABLE (cost arithmetic)
+  family  reversal  last5_mfe            |   -3.8   -0.5 | 15/22  | when LOW  | -0.143 | -0.169 | RECENT-ONLY (cost arithmetic)
+  lane    trend     day_pos_with         |   -0.0   +3.8 | 18/22  | when HIGH | -0.095 | -0.049 | EXPIRED (cost arithmetic)
+  lane    exhaust   days_since           |   +0.2   -3.7 | 11/16  | when LOW  | -0.188 | -0.182 | EXPIRED (cost arithmetic)
+  family  reversal  atr_vs_week          |   +3.7   +0.5 | 13/22  | when HIGH | -0.155 | -0.214 | RECENT-ONLY (cost arithmetic)
+  family  momentum  day_used             |   +0.7   +3.6 | 17/22  | when HIGH | -0.097 | -0.081 | EXPIRED (cost arithmetic)
+  family  momentum  prev_close_with      |   +3.5   +3.8 | 20/22  | when HIGH | -0.084 | -0.074 | DURABLE (cost arithmetic)
+  family  momentum  prev_range_rel       |   +0.0   +3.4 | 16/22  | when HIGH | -0.119 | -0.085 | EXPIRED (cost arithmetic)
+  family  momentum  sma50_with           |   +3.3   +5.0 | 20/22  | when HIGH | -0.091 | -0.070 | DURABLE (cost arithmetic)
+  lane    trend     day_used             |   +0.3   +3.3 | 16/22  | when HIGH | -0.049 | -0.055 | EXPIRED (cost arithmetic)
+  family  momentum  speed8_with          |   -0.2   +3.2 | 18/22  | when HIGH | -0.114 | -0.089 | EXPIRED (cost arithmetic)
+  lane    vwap      bar_range_atr        |   +0.8   +3.2 | 13/21  | when HIGH | -0.212 | -0.247 | EXPIRED (cost arithmetic)
+  lane    trend     sma20_with           |   +0.4   +3.2 | 17/22  | when HIGH | -0.070 | -0.033 | EXPIRED (cost arithmetic)
+  family  momentum  h1_trend_with        |   +3.2   +4.6 | 19/22  | when HIGH | -0.093 | -0.068 | DURABLE (cost arithmetic)
+  lane    nyaft     stretch_atr          |   +3.2   +1.7 | 15/21  | when HIGH | -0.020 | -0.092 | RECENT-ONLY (cost arithmetic)
+  lane    trend     rsi_with             |   +0.6   +3.2 | 18/22  | when HIGH | -0.065 | -0.039 | EXPIRED (cost arithmetic)
+  lane    nr7       er60                 |   +0.2   -3.1 |  3/4   | when LOW  | -0.059 | -0.019 | EXPIRED (cost arithmetic)
+  lane    main      failed_fade_with     |   +0.1   +3.1 | 12/16  | when HIGH | -0.019 | +0.003 | EXPIRED (cost arithmetic)
+  family  breakout  open_move_with       |   +0.9   +3.1 | 14/22  | when HIGH | -0.017 | -0.045 | EXPIRED (cost arithmetic)
+  family  breakout  prev_close_with      |   +0.4   +3.0 | 15/22  | when HIGH | -0.026 | -0.046 | EXPIRED (cost arithmetic)
+  lane    trend     speed8_with          |   -0.4   +3.0 | 17/22  | when HIGH | -0.048 | -0.055 | EXPIRED (cost arithmetic)
+  family  reversal  speed8_with          |   +3.0   +4.0 | 15/22  | when HIGH | -0.161 | -0.111 | DURABLE (cost arithmetic)
+  family  breakout  speed8_with          |   +0.8   +3.0 | 15/22  | when HIGH | -0.021 | -0.041 | EXPIRED (cost arithmetic)
+  lane    nyaft     volrank              |   +0.8   +3.0 | 16/21  | when HIGH | -0.112 | -0.082 | EXPIRED (cost arithmetic)
+  lane    london    open_move_with       |   +3.0   +0.9 | 15/22  | when HIGH | -0.015 | -0.038 | RECENT-ONLY (cost arithmetic)
+  family  reversal  vol_rank96           |   +3.0   +2.5 | 15/22  | when HIGH | -0.152 | -0.168 | DURABLE (cost arithmetic)
+  lane    nyaft     rsi_with             |   +3.0   +1.7 | 17/21  | when HIGH | -0.054 | -0.073 | RECENT-ONLY (cost arithmetic)
+  family  momentum  sma20_with           |   +0.8   +2.9 | 18/22  | when HIGH | -0.116 | -0.071 | EXPIRED (cost arithmetic)
+  lane    exhaust   lanes_same_today     |   +0.5   +2.9 | 12/16  | when HIGH | -0.157 | -0.213 | EXPIRED (cost arithmetic)
+  lane    vwap      beyond20_with        |   +0.3   +2.8 | 13/21  | when HIGH | -0.264 | -0.264 | EXPIRED (cost arithmetic)
+  lane    main      stop_atr             |   +2.8   +1.1 | 12/19  | when HIGH | -0.014 | -0.043 | RECENT-ONLY (cost arithmetic)
+  lane    trend     pdh_dist_with        |   +0.6   -2.8 | 14/22  | when LOW  | -0.076 | -0.075 | EXPIRED (cost arithmetic)
+  lane    nyaft     prev_close_with      |   +2.8   +1.9 | 16/21  | when HIGH | -0.045 | -0.085 | RECENT-ONLY (cost arithmetic)
+  family  breakout  run_against          |   -0.4   -2.8 | 15/22  | when LOW  | -0.011 | -0.062 | EXPIRED (cost arithmetic)
+  lane    london    sma50_with           |   +2.8   +1.0 | 16/22  | when HIGH | -0.031 | -0.041 | RECENT-ONLY (cost arithmetic)
+  lane    vwap      mkt_last20_r         |   +2.8   -0.2 | 11/20  | when HIGH | -0.158 | -0.288 | RECENT-ONLY (cost arithmetic)
+  family  reversal  body_pct             |   +2.7   +2.5 | 17/22  | when HIGH | -0.181 | -0.153 | DURABLE (cost arithmetic)
+  family  breakout  failed_fade_with     |   +1.0   +2.7 | 14/19  | when HIGH | -0.026 | -0.040 | EXPIRED (cost arithmetic)
+  family  momentum  setup_range_rel      |   +2.7   +2.9 | 19/22  | when HIGH | -0.131 | -0.073 | DURABLE (cost arithmetic)
+  lane    london    h4_slope_with        |   +0.5   -2.7 | 14/22  | when LOW  | -0.072 | -0.035 | EXPIRED (cost arithmetic)
+  family  reversal  mkt_last20_r         |   +2.7   -1.7 | 12/22  | when HIGH | -0.159 | -0.212 | RECENT-ONLY (cost arithmetic)
+  lane    main      prev_close_with      |   +0.7   +2.7 | 14/19  | when HIGH | -0.023 | -0.021 | EXPIRED (cost arithmetic)
+  lane    london    failed_fade_with     |   +2.7   +1.0 | 12/18  | when HIGH | -0.025 | -0.059 | RECENT-ONLY (cost arithmetic)
+  lane    london    day_eff              |   +2.6   +1.0 | 17/22  | when HIGH | -0.031 | -0.043 | RECENT-ONLY (cost arithmetic)
+  lane    nyaft     vol_trend            |   -0.0   +2.6 | 14/21  | when HIGH | -0.127 | -0.085 | EXPIRED (cost arithmetic)
+  lane    main      last_r               |   -0.2   -2.6 | 15/19  | when LOW  | -0.032 | -0.045 | EXPIRED (cost arithmetic)
+  family  breakout  d_hh_with            |   +0.1   -2.6 | 11/22  | when LOW  | -0.048 | -0.060 | EXPIRED (cost arithmetic)
+  lane    vwap      volrank              |   +2.6   +1.1 | 15/20  | when HIGH | -0.147 | -0.261 | RECENT-ONLY (cost arithmetic)
+  family  breakout  fib_retrace          |   -2.6   -1.1 | 19/22  | when LOW  | -0.004 | -0.051 | RECENT-ONLY (cost arithmetic)
+  lane    trend     prev_range_rel       |   -0.5   +2.6 | 16/22  | when HIGH | -0.091 | -0.080 | EXPIRED (cost arithmetic)
+  family  reversal  spread_atr           |   -2.6   -0.2 | 12/22  | when LOW  | -0.194 | -0.192 | RECENT-ONLY (cost arithmetic)
+  lane    nyaft     day_pos_with         |   +2.6   +1.6 | 13/21  | when HIGH | -0.076 | -0.117 | RECENT-ONLY (cost arithmetic)
+  family  reversal  last_r               |   +2.6   +2.6 | 19/22  | when HIGH | -0.202 | -0.180 | DURABLE (cost arithmetic)
+  family  momentum  d200_with            |   -0.2   -2.6 | 14/22  | when LOW  | -0.114 | -0.093 | EXPIRED (cost arithmetic)
+  lane    trend     open_move_with       |   +2.6   +2.9 | 18/22  | when HIGH | -0.034 | -0.067 | DURABLE (cost arithmetic)
+  lane    trend     fib_retrace          |   +0.5   -2.5 | 17/22  | when LOW  | -0.094 | -0.059 | EXPIRED (cost arithmetic)
+  lane    retest    speed8_with          |   +0.2   +2.5 | 12/19  | when HIGH | -0.026 | -0.093 | EXPIRED (cost arithmetic)
+  lane    vwap      day_pos_with         |   +2.5   +4.0 | 15/21  | when HIGH | -0.234 | -0.162 | DURABLE (cost arithmetic)
+  lane    pdh       week_pos_with        |   +0.5   -2.5 | 13/22  | when LOW  | -0.107 | -0.063 | EXPIRED (cost arithmetic)
+  lane    trend     adx                  |   +0.5   +2.5 | 14/22  | when HIGH | -0.051 | -0.086 | EXPIRED (cost arithmetic)
+  family  reversal  vol3rel              |   +1.9   -2.5 |  9/22  | when LOW  | -0.227 | -0.170 | EXPIRED (cost arithmetic)
+  lane    trend     prev_close_with      |   +2.4   +3.8 | 20/22  | when HIGH | -0.042 | -0.038 | DURABLE (cost arithmetic)
+  family  reversal  run_with             |   +2.4   +3.4 | 16/22  | when HIGH | -0.176 | -0.137 | DURABLE (cost arithmetic)
+  family  momentum  stretch_atr          |   +2.3   +4.6 | 18/22  | when HIGH | -0.096 | -0.084 | DURABLE (cost arithmetic)
+  family  reversal  lanes_opp_today      |   +2.3   +2.6 | 16/22  | when HIGH | -0.201 | -0.190 | DURABLE (cost arithmetic)
+  family  breakout  stop_atr             |   +2.2   +2.4 | 18/22  | when HIGH | -0.011 | -0.048 | DURABLE (cost arithmetic)
+  family  reversal  bar_range_atr        |   +2.2   +3.3 | 17/22  | when HIGH | -0.159 | -0.164 | DURABLE (cost arithmetic)
+  lane    nyaft     sma20_with           |   +2.2   +2.2 | 17/21  | when HIGH | -0.073 | -0.087 | DURABLE (cost arithmetic)
+  family  breakout  sma20_with           |   +2.1   +3.0 | 15/22  | when HIGH | -0.017 | -0.037 | DURABLE (cost arithmetic)
+  1235 lane-and-read pairs tested. By luck alone: about 1.2 DURABLE, 15 RECENT-ONLY, 12 EXPIRED.
+  Found (not counting cost arithmetic): 29 DURABLE, 24 RECENT-ONLY, 4 EXPIRED.
+
+----------------------------------------------------------------------------------------------------
+6c. READS THAT DECIDE THE OUTCOME IN ONE KIND OF MARKET   (and are confirmed on other occurrences of that kind)
+----------------------------------------------------------------------------------------------------
+  Listed when, INSIDE one kind of market, the read is DURABLE or RECENT-ONLY, both halves of that kind's episodes
+  agree (1.5+ each, the same way), and no other kind on the same axis shows the same thing (otherwise it is a general
+  read and belongs in 6b). 'other kinds' = the read's trust-weighted z in the other two kinds: near zero or the other
+  sign is what makes this a WHEN, not just a WHAT.
+                    read                 kind      | recent before | odd / even  | other kinds   | better    | best third R    | label
+  family  breakout  failed_fade_with     drifting  |   +2.6   +2.7 |  +2.1/ +2.8 |  -0.5 /  +1.4 | when HIGH | +0.019 | -0.044 | DURABLE
+  lane    london    failed_fade_with     drifting  |   +2.4   +2.0 |  +2.5/ +1.7 |  +0.6 /  +1.6 | when HIGH | -0.019 | -0.042 | DURABLE
+  family  momentum  turning              trending  |   -2.4   -3.8 |  -2.1/ -2.3 |  -1.4 /  -0.2 | when LOW  | -0.043 | -0.127 | DURABLE
+  family  momentum  hours_since_open     low-vol   |   -2.3   -3.0 |  -3.5/ -1.8 |  -0.0 /  +0.2 | when LOW  | -0.154 | -0.140 | DURABLE
+  lane    london    sma50_with           low-vol   |   +3.9   +1.2 |  +3.9/ +1.6 |  +0.8 /  +0.4 | when HIGH | -0.000 | -0.035 | RECENT-ONLY
+  family  reversal  er60                 choppy    |   +3.9   +1.2 |  +4.0/ +2.0 |  +1.8 /  -0.7 | when HIGH | -0.129 | -0.147 | RECENT-ONLY
+  family  reversal  vol_rel              high-vol  |   +3.9   +1.5 |  +2.9/ +2.1 |  +1.4 /  +1.0 | when HIGH | -0.058 | -0.197 | RECENT-ONLY
+  lane    london    speed8_with          low-vol   |   +3.6   +1.0 |  +3.3/ +1.5 |  -0.1 /  -0.3 | when HIGH | -0.004 | -0.043 | RECENT-ONLY
+  lane    london    rsi_with             low-vol   |   +3.5   +1.0 |  +2.8/ +1.8 |  -0.8 /  +0.1 | when HIGH | +0.004 | -0.020 | RECENT-ONLY
+  family  reversal  volrank              low-vol   |   +3.2   +0.9 |  +2.5/ +2.3 |  +1.6 /  +0.7 | when HIGH | -0.174 | -0.183 | RECENT-ONLY
+  lane    london    stop_atr             low-vol   |   +3.2   +1.8 |  +3.1/ +2.9 |  +0.4 /  +1.3 | when HIGH | -0.008 | -0.024 | RECENT-ONLY
+  family  momentum  accel                low-vol   |   +3.0   +1.0 |  +2.3/ +2.7 |  -0.6 /  -0.8 | when HIGH | -0.094 | -0.125 | RECENT-ONLY
+  lane    trend     d200_with            high-vol  |   -3.0   -1.2 |  -1.5/ -2.0 |  -1.9 /  +0.7 | when LOW  | +0.090 | -0.051 | RECENT-ONLY
+  family  reversal  squeeze              low-vol   |   -3.0   -1.6 |  -3.1/ -1.9 |  -0.5 /  -0.4 | when LOW  | -0.159 | -0.220 | RECENT-ONLY
+  lane    trend     d50_with             high-vol  |   -3.0   -0.2 |  -1.9/ -1.5 |  -1.5 /  +0.4 | when LOW  | +0.101 | -0.128 | RECENT-ONLY
+  lane    london    sma20_with           low-vol   |   +3.0   +1.6 |  +2.6/ +1.8 |  -0.1 /  +0.5 | when HIGH | +0.000 | -0.046 | RECENT-ONLY
+  lane    london    squeeze              low-vol   |   +2.9   +1.7 |  +1.8/ +3.0 |  +0.4 /  +0.4 | when HIGH | -0.037 | -0.038 | RECENT-ONLY
+  family  momentum  first_hour_with      choppy    |   +2.8   +1.0 |  +2.1/ +1.9 |  -0.3 /  +1.0 | when HIGH | -0.135 | -0.092 | RECENT-ONLY
+  family  momentum  turning              mid-vol   |   -2.6   -1.1 |  -1.5/ -2.7 |  -0.8 /  -1.4 | when LOW  | -0.070 | -0.137 | RECENT-ONLY
+  5904 lane-read-kind combinations tested; by luck alone at most about 18 would be listed. Listed: 19.
+  The odd / even halves use the same trades as the label, so they do not make a listing independent proof: they
+  only show the effect is spread over many separate occurrences of that kind of market, not one stretch.
+  every test: theory_all.csv | every trade with all its reads and its kind of market: trades_plus_<market>.csv
+
+runtime 288.0s

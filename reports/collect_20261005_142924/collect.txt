@@ -1,0 +1,567 @@
+==============================================================================
+DATA COLLECTION  --  every lane in shadow, what was known at entry, what happened after
+==============================================================================
+Nothing here decides anything. It measures, on the two TRAINING periods only.
+Sealed exam years 2022-01-01 .. 2024-01-01: not read by this mode, whatever EXAM_UNLOCK says.
+Lanes: the bot's 16 + swing (20-day breakout, trailing exit) + dip (pullback in a trend) + control.
+Changed since the first collection: scalp's stop is the far end of its impulse bar (was the midpoint);
+swing has no 20-day cap (trailing exit only); session lanes close at the day's last bar if the data ends
+early. New sections 9-11: stop menu, entry delay, cost rule. Sections 1-8 are otherwise as before.
+
+##############################################################################
+XAUUSD   (costs 1.30 bp round trip, swap long -0.8050 / short -0.0192 per night)
+##############################################################################
+  period A: 2020-01-01 .. 2021-12-31 | 47349 M15 bars | 3522 trades | 3 still open at the end (dropped)
+  period B: 2024-01-01 .. 2026-10-02 | 64559 M15 bars | 5291 trades | 6 still open at the end (dropped)
+  A = before 2022-01-01, B = from 2024-01-01. The years between are sealed and were not read.
+
+------------------------------------------------------------------------------
+1. EVERY LANE IN SHADOW  (R per trade, net of costs; +/- is one standard error)
+------------------------------------------------------------------------------
+  lane       family     period A                   period B                  
+  main       breakout   -0.049 +/-0.044 n=484      +0.030 +/-0.032 n=623     
+  london     breakout   -0.028 +/-0.038 n=455      +0.013 +/-0.035 n=637     
+  pdh        breakout   -0.067 +/-0.094 n=193      +0.117 +/-0.083 n=253     
+  nr7        breakout   +0.050 +/-0.118 n=72       +0.122 +/-0.089 n=95      
+  retest     breakout   -0.086 +/-0.080 n=232      +0.016 +/-0.063 n=325     
+  = breakout            -0.046 +/-0.027 n=1436     +0.038 +/-0.022 n=1933    
+
+  fade       reversal   +0.039 +/-0.073 n=279      -0.121 +/-0.070 n=416     
+  sar        reversal   -0.113 +/-0.071 n=145      -0.110 +/-0.078 n=115     
+  range      reversal   -0.206 +/-0.232 n=33       -0.392 +/-0.095 n=198     
+  exhaust    reversal   -0.198 +/-0.094 n=141      -0.012 +/-0.073 n=251     
+  vwap       reversal   -0.239 +/-0.097 n=151      -0.165 +/-0.080 n=347     
+  gapfill    reversal   +0.121 +/-0.203 n=23       -0.209 +/-0.120 n=64      
+  bigrev     reversal   -0.228 +/-0.166 n=17       -0.044 +/-0.130 n=23      
+  = reversal            -0.098 +/-0.040 n=789      -0.152 +/-0.035 n=1414    
+
+  trend      momentum   -0.056 +/-0.055 n=369      +0.059 +/-0.049 n=564     
+  nyaft      momentum   -0.049 +/-0.063 n=144      -0.048 +/-0.055 n=253     
+  scalp      momentum   -0.050 +/-0.061 n=222      -0.090 +/-0.048 n=355     
+  bigcont    momentum   +0.212 +/-0.166 n=17       +0.031 +/-0.130 n=23      
+  = momentum            -0.047 +/-0.035 n=752      -0.009 +/-0.030 n=1195    
+
+  swing      swing      -0.396 +/-0.225 n=20       +0.277 +/-0.403 n=26      
+  dip        swing      +0.162 +/-0.395 n=12       +0.087 +/-0.370 n=14      
+  = swing               -0.187 +/-0.206 n=32       +0.210 +/-0.290 n=40      
+
+  control    control    -0.035 +/-0.037 n=513      +0.023 +/-0.030 n=709     
+------------------------------------------------------------------------------
+2. SIGNALS WITH A PREDICTED DIRECTION  (top third minus bottom third of the signal, in R)
+------------------------------------------------------------------------------
+  PASS = z >= 1.0 in EACH period AND combined z >= 2.0. z is already signed so that
+  positive = the way theory said. A signal that works the opposite way is a fail, not a find.
+
+  breakout
+    setup_range_rel  A -0.10R z-1.51 | B -0.05R z-0.86 | combined z -1.68  -
+                       (setup range small vs recent daily ranges (quiet before expansion))
+    trend20_with     A +0.02R z+0.28 | B +0.15R z+2.71 | combined z +2.11  -
+                       (break goes with the 20-day trend)
+    open_hours       A +0.02R z+0.39 | B +0.05R z+1.03 | combined z +1.00  -
+                       (break in the London/New York open hours)
+    bar_extreme      A -0.03R z-0.48 | B -0.10R z-1.76 | combined z -1.58  -
+                       (breakout bar closes near its extreme)
+    room_r           A +0.04R z+0.63 | B +0.03R z+0.53 | combined z +0.82  -
+                       (room before yesterday's high/low)
+
+  reversal
+    er20             A -0.23R z-2.23 | B -0.11R z-1.22 | combined z -2.44  -
+                       (recent days made little net progress)
+    trend20_with     A -0.09R z-0.92 | B +0.09R z+0.99 | combined z +0.05  -
+                       (trade goes with the 20-day trend, not against it)
+    stretch_atr      A -0.24R z-2.60 | B -0.04R z-0.55 | combined z -2.23  -
+                       (bigger stretch from fair value (VWAP))
+    hour             A -0.00R z-0.01 | B +0.15R z+1.68 | combined z +1.18  -
+                       (later in the session)
+
+  momentum
+    trend20_with     A -0.06R z-0.70 | B +0.07R z+1.00 | combined z +0.21  -
+                       (intraday lean matches the 20-day trend)
+    day_used         A -0.14R z-1.69 | B +0.01R z+0.11 | combined z -1.11  -
+                       (day has NOT already used most of its usual range)
+    volrank          A -0.06R z-0.69 | B +0.00R z+0.04 | combined z -0.46  -
+                       (volatility high against its own history)
+
+  swing
+    er20             A +0.50R z+1.01 | B +0.91R z+1.35 | combined z +1.67  -
+                       (market has been moving in a straight line)
+
+  13 signals tested. By luck alone, expect about 0.2 of them to pass.
+
+------------------------------------------------------------------------------
+3. REGIME READS AT TWO SPEEDS  (no direction predicted: looked at both ways, so a stricter bar)
+------------------------------------------------------------------------------
+  er5/er20 = how straight the market moved over 5 / 20 days | vol3rel = last 3 days' range vs 20
+  volrank = volatility vs its own last 120 days | turning = fast and slow trend disagree
+  asia_rel = Asian range vs average day | day_eff = how straight today has moved so far
+  HOLDS = same sign in both periods AND |combined z| >= 2.5
+  read         breakout        reversal        momentum        swing           
+  er5          -0.7/+1.5       +1.2/-2.3       +1.4/+0.7       -1.6/-0.1       
+  er20         -1.3/-2.3 HOLDS +2.2/+1.2       +0.3/+0.4       +1.0/+1.4       
+  trend5_with  -1.6/+1.5       +1.4/+0.1       -0.3/-0.7       -2.4/+1.0       
+  vol3rel      -0.1/-0.6       +0.2/+0.6       +1.5/+0.1       -0.5/-0.1       
+  volrank      -1.5/-1.4       +1.1/+0.6       -0.7/+0.0       n/a             
+  turning      -1.1/-1.3       -0.2/+1.3       -2.1/+0.2       +1.1/+0.4       
+  asia_rel     +2.7/+0.9 HOLDS -1.1/-0.7       +2.2/+1.2       +1.6/-1.0       
+  day_eff      +2.3/+1.8 HOLDS -1.1/-1.1       +1.6/+0.7       -0.8/-2.0       
+  (each cell: z in period A / z in period B; positive = higher read went with better trades)
+  32 cells. By luck alone, expect about 0.4 to hold.
+
+------------------------------------------------------------------------------
+4. DO THE READS PERSIST?  (this week vs next week; a read that doesn't persist can't be a filter)
+------------------------------------------------------------------------------
+  period A (103 weeks): straightness +0.04 | volatility +0.59 | same direction next week 53%
+  period B (143 weeks): straightness +0.03 | volatility +0.53 | same direction next week 52%
+  (first two are correlations: 0 = no memory, 1 = next week is the same; direction: 50% = coin flip)
+
+------------------------------------------------------------------------------
+5. TREND EPISODES: HOW LATE ARE THE READS?  (trend-side families: breakout + momentum + swing)
+------------------------------------------------------------------------------
+  An episode = a stretch that, looking back with hindsight, was a trend (>= 5 days).
+  slow = 20-day read, fast = 5-day read; a read detects on its 2nd day in a row.
+  period A: 10 episodes, median length 7 days, total R earned inside them +3.9
+    slow read: detected 5, missed 5 | median lag 5 days | R before detection -3.9, after +7.8, staying on after the end -18.0
+    fast read: detected 9, missed 1 | median lag 5 days | R before detection +13.5, after -9.5, staying on after the end -26.8
+  period B: 16 episodes, median length 8 days, total R earned inside them -11.2
+    slow read: detected 10, missed 6 | median lag 3 days | R before detection +14.5, after -25.8, staying on after the end -22.7
+    fast read: detected 10, missed 6 | median lag 3 days | R before detection -1.8, after -9.4, staying on after the end +23.5
+
+------------------------------------------------------------------------------
+6. STAND-ASIDE DAYS  (flags known at the open; is every family worse on them?)
+------------------------------------------------------------------------------
+  shock = yesterday's range >= 2x average | gap = big opening gap | turning = fast/slow trend disagree
+  xshock = the OTHER market had a shock day yesterday
+  shock
+    breakout  A: flagged -0.116 (n=61) vs -0.038      | B: flagged +0.130 (n=93) vs +0.043     
+    reversal  A: flagged -0.082 (n=63) vs -0.095      | B: flagged -0.008 (n=95) vs -0.166     
+    momentum  A: flagged -0.043 (n=46) vs -0.047      | B: flagged -0.024 (n=79) vs -0.003     
+    swing     A: flagged too few                      | B: flagged too few                     
+    -> not consistently worse
+  gap
+    breakout  A: flagged +0.316 (n=30) vs -0.053      | B: flagged +0.200 (n=98) vs +0.029     
+    reversal  A: flagged -0.651 (n=30) vs -0.076      | B: flagged -0.173 (n=88) vs -0.151     
+    momentum  A: flagged -0.078 (n=29) vs -0.046      | B: flagged -0.002 (n=68) vs -0.009     
+    swing     A: flagged too few                      | B: flagged too few                     
+    -> not consistently worse
+  turning
+    breakout  A: flagged -0.082 (n=489) vs -0.020     | B: flagged +0.010 (n=660) vs +0.068    
+    reversal  A: flagged -0.104 (n=263) vs -0.088     | B: flagged -0.093 (n=487) vs -0.189    
+    momentum  A: flagged -0.147 (n=256) vs +0.008     | B: flagged +0.005 (n=396) vs -0.009    
+    swing     A: flagged +0.163 (n=10) vs -0.346      | B: flagged +0.354 (n=18) vs +0.093     
+    -> not consistently worse
+  xshock
+    breakout  A: flagged -0.069 (n=109) vs -0.044     | B: flagged +0.294 (n=128) vs +0.020    
+    reversal  A: flagged -0.077 (n=70) vs -0.100      | B: flagged -0.390 (n=96) vs -0.135     
+    momentum  A: flagged -0.078 (n=67) vs -0.044      | B: flagged +0.177 (n=86) vs -0.023     
+    swing     A: flagged too few                      | B: flagged too few                     
+    -> not consistently worse
+
+------------------------------------------------------------------------------
+7. TRUST LOOKUP  (family x the bot's regime label)
+------------------------------------------------------------------------------
+  rung: 'normal' = clearly positive (mean - 1 se > 0) in BOTH periods | 'shadow' = clearly negative
+  in both | 'scout' = everything in between. No rung here ever means 'risk more'.
+  breakout  trending  A -0.081 +/-0.054 n=348      B -0.043 +/-0.046 n=452      -> scout
+  breakout  volatile  A -0.068 +/-0.075 n=199      B +0.080 +/-0.045 n=442      -> scout
+  breakout  choppy    A +0.040 +/-0.054 n=374      B +0.082 +/-0.046 n=441      -> scout
+  breakout  drift     A -0.112 +/-0.048 n=421      B +0.100 +/-0.044 n=490      -> scout
+
+  reversal  trending  A +0.085 +/-0.082 n=186      B -0.118 +/-0.078 n=346      -> scout
+  reversal  volatile  A +0.070 +/-0.116 n=136      B -0.197 +/-0.065 n=352      -> scout
+  reversal  choppy    A -0.260 +/-0.074 n=203      B -0.160 +/-0.072 n=321      -> shadow
+  reversal  drift     A -0.198 +/-0.069 n=226      B -0.197 +/-0.069 n=347      -> shadow
+
+  momentum  trending  A -0.050 +/-0.069 n=195      B +0.053 +/-0.065 n=276      -> scout
+  momentum  volatile  A -0.039 +/-0.100 n=100      B +0.017 +/-0.062 n=282      -> scout
+  momentum  choppy    A -0.087 +/-0.067 n=199      B -0.019 +/-0.062 n=262      -> scout
+  momentum  drift     A -0.015 +/-0.062 n=213      B -0.044 +/-0.055 n=320      -> scout
+
+  swing     trending  A +0.683 +/-0.904 n=3        B +0.196 +/-0.671 n=5        -> scout (too few trades to judge)
+  swing     volatile  A -0.977 +/-0.034 n=4        B -0.058 +/-0.523 n=4        -> scout (too few trades to judge)
+  swing     choppy    A -0.128 +/-0.275 n=15       B -0.269 +/-0.393 n=17       -> scout (too few trades to judge)
+  swing     drift     A -0.122 +/-0.466 n=9        B +1.008 +/-0.635 n=13       -> scout (too few trades to judge)
+
+------------------------------------------------------------------------------
+8. THE FIXED EXIT MENU AND TIMING  (same entries, same stop; only the way out differs)
+------------------------------------------------------------------------------
+  as built = the lane's own exit | 1R = nearer target | hold = no target, stop or the clock
+  trail = after +1R the stop follows 1R behind the best price
+  family          as built         1R       hold      trail |   best R     given     ran on  day used
+  breakout  A       -0.046     -0.048     -0.036     -0.027 |     0.79      0.80       0.49      0.60
+  breakout  B       +0.038     +0.006     +0.042     +0.023 |     0.77      0.71       0.43      0.66
+  reversal  A       -0.098     -0.055     -0.104     -0.081 |     0.88      0.94       0.98      0.78
+  reversal  B       -0.152     -0.096     -0.178     -0.121 |     1.00      1.09       1.31      0.76
+  momentum  A       -0.047     -0.024     -0.020     -0.020 |     0.75      0.76       0.53      0.88
+  momentum  B       -0.009     -0.015     -0.004     -0.015 |     0.81      0.78       0.64      0.85
+  swing     A       -0.187     +0.035     -0.324     +0.070 |     1.33      1.34       0.27      0.93
+  swing     B       +0.210     -0.021     +0.289     +0.331 |     1.88      1.54       0.31      1.00
+  best R = furthest the trade got our way | given = how much of that was handed back by the exit
+  ran on = how far price kept going our way AFTER the exit | day used = share of an average day's
+  range already covered when the trade was entered (1.0 = a full average day)
+
+------------------------------------------------------------------------------
+9. STOP MENU  (same entry, same target price, same clock; only the stop distance changes)
+------------------------------------------------------------------------------
+  Each number is R per trade net of costs IN THAT VARIANT'S OWN R (its risk = its own stop distance).
+  'built' = the lane as it is. '<<' = a variant that is positive in BOTH periods and beats 'built' in both.
+              | period A:    0.5x  built   1.5x     2x     3x | period B:    0.5x  built   1.5x     2x     3x
+  main        |             -0.04  -0.05  -0.04  -0.02  -0.01 |             +0.04  +0.03  +0.04  +0.03  +0.02  
+  london      |             -0.05  -0.03  -0.04  -0.02  -0.02 |             +0.00  +0.01  +0.01  +0.01  +0.01  
+  pdh         |             +0.05  -0.07  -0.04  -0.05  -0.07 |             +0.17  +0.12  +0.10  +0.08  +0.04  << 0.5x
+  nr7         |             +0.28  +0.05  +0.04  +0.02  +0.02 |             +0.11  +0.12  +0.06  +0.04  +0.02  
+  retest      |             -0.02  -0.09  -0.11  -0.11  -0.08 |             -0.04  +0.02  +0.04  +0.04  +0.04  
+  fade        |             -0.09  +0.04  +0.01  +0.02  -0.01 |             -0.22  -0.12  -0.14  -0.13  -0.12  
+  sar         |             -0.11  -0.11  -0.07  -0.06  -0.04 |             -0.23  -0.11  -0.10  -0.11  -0.08  
+  range       |             -0.75  -0.21  -0.30  -0.20  +0.11 |             -0.53  -0.39  -0.27  -0.23  -0.19  
+  exhaust     |             -0.32  -0.20  -0.20  -0.11  -0.06 |             +0.03  -0.01  -0.03  -0.03  +0.01  
+  vwap        |             -0.38  -0.24  -0.18  -0.10  -0.05 |             -0.17  -0.17  -0.12  -0.11  -0.08  
+  gapfill     |             +0.11  +0.12  +0.10  +0.06  +0.02 |             -0.43  -0.21  -0.13  -0.17  -0.16  
+  bigrev      |             -0.26  -0.23  -0.08  -0.06  -0.04 |             -0.13  -0.04  -0.03  -0.02  -0.01  
+  trend       |             -0.07  -0.06  -0.07  -0.06  -0.05 |             +0.13  +0.06  +0.06  +0.04  +0.03  
+  nyaft       |             -0.23  -0.05  -0.04  -0.03  -0.02 |             -0.04  -0.05  -0.01  -0.01  -0.01  
+  scalp       |             -0.12  -0.05  -0.06  -0.05  -0.03 |             -0.13  -0.09  -0.06  -0.02  -0.02  
+  bigcont     |             +0.60  +0.21  +0.23  +0.17  +0.11 |             +0.08  +0.03  -0.01  -0.02  -0.00  << 0.5x
+  swing       |             -0.62  -0.40  -0.33  -0.26  -0.17 |             +0.53  +0.28  +0.15  +0.12  +0.08  
+  dip         |                .      .      .      .      .  |                .      .      .      .      .   
+  = breakout  |             -0.01  -0.05  -0.05  -0.04  -0.03 |             +0.03  +0.04  +0.04  +0.03  +0.02  
+  = reversal  |             -0.21  -0.10  -0.09  -0.05  -0.03 |             -0.21  -0.15  -0.13  -0.12  -0.09  
+  = momentum  |             -0.10  -0.05  -0.05  -0.05  -0.04 |             +0.01  -0.01  +0.01  +0.01  +0.01  
+  = swing     |             -0.33  -0.19  -0.19  -0.14  -0.11 |             +0.36  +0.21  +0.14  +0.10  +0.07  
+
+------------------------------------------------------------------------------
+10. ENTRY DELAY  (enter 1 or 2 bars later, only if the original stop and target were not touched)
+------------------------------------------------------------------------------
+  R per trade in the delayed trade's own R. 'took' = share of the lane's signals still alive to enter.
+  Compare with 'built' on ALL signals: a delay only helps if what it enters beats what it skips.
+              | period A:  built   +1 bar (took)   +2 bars (took) | period B:  built   +1 bar (took)   +2 bars (took)
+  main        |            -0.05   -0.04 ( 98%)     -0.03 ( 96%)   |            +0.03   +0.04 ( 99%)     +0.03 ( 97%)   
+  london      |            -0.03   -0.03 ( 98%)     -0.00 ( 95%)   |            +0.01   +0.01 ( 98%)     +0.00 ( 97%)   
+  pdh         |            -0.07   -0.07 ( 99%)     -0.07 ( 96%)   |            +0.12   +0.15 (100%)     +0.15 ( 99%)   
+  nr7         |            +0.05   +0.02 (100%)     -0.01 (100%)   |            +0.12   +0.11 (100%)     +0.11 (100%)   
+  retest      |            -0.09   -0.07 ( 89%)     -0.02 ( 83%)   |            +0.02   +0.04 ( 95%)     +0.00 ( 91%)   
+  fade        |            +0.04   +0.03 ( 85%)     +0.05 ( 80%)   |            -0.12   -0.13 ( 89%)     -0.18 ( 82%)   
+  sar         |            -0.11   -0.13 ( 90%)     -0.12 ( 77%)   |            -0.11   -0.05 ( 91%)     -0.06 ( 86%)   
+  range       |            -0.21   +0.11 ( 58%)       .            |            -0.39   -0.32 ( 67%)     -0.32 ( 51%)   
+  exhaust     |            -0.20   -0.10 ( 65%)     -0.18 ( 55%)   |            -0.01   -0.02 ( 80%)     +0.06 ( 65%)   
+  vwap        |            -0.24   -0.19 ( 72%)     -0.28 ( 63%)   |            -0.17   -0.19 ( 78%)     -0.11 ( 69%)   
+  gapfill     |            +0.12   +0.12 ( 78%)     +0.13 ( 83%)   |            -0.21   +0.02 ( 67%)     -0.07 ( 72%)   
+  bigrev      |            -0.23   -0.24 (100%)     -0.31 ( 94%)   |            -0.04   -0.09 (100%)     -0.07 (100%)   
+  trend       |            -0.06   -0.07 ( 90%)     -0.07 ( 83%)   |            +0.06   +0.04 ( 93%)     +0.09 ( 85%)   
+  nyaft       |            -0.05   -0.09 ( 97%)     -0.07 ( 94%)   |            -0.05   -0.07 ( 91%)     -0.07 ( 88%)   
+  scalp       |            -0.05   -0.02 ( 61%)     +0.05 ( 41%)   |            -0.09   -0.10 ( 69%)     -0.15 ( 46%)   
+  bigcont     |            +0.21   +0.22 (100%)     +0.34 ( 94%)   |            +0.03   +0.05 (100%)     +0.04 (100%)   << +1,+2
+  swing       |            -0.40   -0.38 (100%)     -0.42 (100%)   |            +0.28   +0.30 (100%)     +0.26 (100%)   
+  dip         |              .       .                .            |              .       .                .            
+  = breakout  |            -0.05   -0.04 ( 97%)     -0.03 ( 94%)   |            +0.04   +0.05 ( 98%)     +0.04 ( 96%)   
+  = reversal  |            -0.10   -0.06 ( 79%)     -0.08 ( 70%)   |            -0.15   -0.13 ( 81%)     -0.12 ( 71%)   
+  = momentum  |            -0.05   -0.06 ( 83%)     -0.04 ( 73%)   |            -0.01   -0.01 ( 86%)     +0.00 ( 74%)   
+  = swing     |            -0.19   -0.17 (100%)     -0.22 (100%)   |            +0.21   +0.23 (100%)     +0.27 (100%)   
+
+------------------------------------------------------------------------------
+11. COST RULE  (only trades whose stop is at least 10 round-trip costs wide)
+------------------------------------------------------------------------------
+              | period A: all -> rule (kept, cost/R) | period B: all -> rule (kept, cost/R)
+  main        | -0.05 -> -0.05 (100%, 0.023)       | +0.03 -> +0.03 (100%, 0.018)      
+  london      | -0.03 -> -0.03 (100%, 0.021)       | +0.01 -> +0.01 (100%, 0.020)      
+  pdh         | -0.07 -> -0.07 (100%, 0.018)       | +0.12 -> +0.12 (100%, 0.015)      
+  nr7         | +0.05 -> +0.05 (100%, 0.016)       | +0.12 -> +0.12 (100%, 0.013)      
+  retest      | -0.09 -> -0.09 (100%, 0.039)       | +0.02 -> +0.02 (100%, 0.034)      
+  fade        | +0.04 -> +0.04 (100%, 0.042)       | -0.12 -> -0.16 ( 94%, 0.049)      
+  sar         | -0.11 -> -0.11 (100%, 0.031)       | -0.11 -> -0.10 ( 99%, 0.031)      
+  range       | -0.21 -> -0.21 (100%, 0.063)       | -0.39 -> -0.32 ( 64%, 0.089)      
+  exhaust     | -0.20 -> -0.20 (100%, 0.049)       | -0.01 -> +0.02 ( 96%, 0.055)      
+  vwap        | -0.24 -> -0.24 (100%, 0.051)       | -0.17 -> -0.13 ( 88%, 0.063)      
+  gapfill     | +0.12 -> +0.12 (100%, 0.041)       | -0.21 -> -0.20 ( 95%, 0.042)      
+  bigrev      | -0.23 -> -0.23 (100%, 0.008)       | -0.04 -> -0.04 (100%, 0.007)      
+  trend       | -0.06 -> -0.06 (100%, 0.032)       | +0.06 -> +0.06 (100%, 0.032)      
+  nyaft       | -0.05 -> -0.05 (100%, 0.036)       | -0.05 -> -0.03 ( 97%, 0.043)      
+  scalp       | -0.05 -> -0.05 (100%, 0.047)       | -0.09 -> -0.09 ( 97%, 0.049)      
+  bigcont     | +0.21 -> +0.21 (100%, 0.008)       | +0.03 -> +0.03 (100%, 0.007)      
+  swing       | -0.40 -> -0.40 (100%, 0.005)       | +0.28 -> +0.28 (100%, 0.004)      
+  dip         |   .                                |   .                               
+  = breakout  | -0.05 -> -0.05 (100%, 0.024)       | +0.04 -> +0.04 (100%, 0.021)      
+  = reversal  | -0.10 -> -0.10 (100%, 0.043)       | -0.15 -> -0.13 ( 89%, 0.057)      
+  = momentum  | -0.05 -> -0.05 (100%, 0.037)       | -0.01 -> -0.00 ( 98%, 0.039)      
+  = swing     | -0.19 -> -0.19 (100%, 0.008)       | +0.21 -> +0.21 (100%, 0.006)      
+  kept = share of the lane's trades that satisfy the rule | cost/R = average cost as a share of the risk
+
+##############################################################################
+US500   (costs 1.30 bp round trip, swap long -1.0000 / short -0.1000 per night)
+##############################################################################
+  period A: 2020-01-02 .. 2021-12-31 | 26540 M15 bars | 1710 trades | 2 still open at the end (dropped)
+  period B: 2024-01-02 .. 2026-10-02 | 58039 M15 bars | 5181 trades | 4 still open at the end (dropped)
+  A = before 2022-01-01, B = from 2024-01-01. The years between are sealed and were not read.
+  NOTE: the session lanes use GOLD's hours and box rules here; read them as a test bed, not a design.
+
+------------------------------------------------------------------------------
+1. EVERY LANE IN SHADOW  (R per trade, net of costs; +/- is one standard error)
+------------------------------------------------------------------------------
+  lane       family     period A                   period B                  
+  main       breakout         (no trades)          -0.046 +/-0.048 n=527     
+  london     breakout   -0.033 +/-0.056 n=306      -0.045 +/-0.042 n=624     
+  pdh        breakout   -0.071 +/-0.105 n=190      -0.132 +/-0.076 n=279     
+  nr7        breakout   -0.110 +/-0.086 n=65       +0.091 +/-0.092 n=91      
+  retest     breakout         (no trades)          -0.223 +/-0.075 n=269     
+  = breakout            -0.054 +/-0.048 n=561      -0.079 +/-0.027 n=1790    
+
+  fade       reversal         (no trades)          -0.047 +/-0.074 n=398     
+  sar        reversal         (no trades)          +0.013 +/-0.067 n=217     
+  range      reversal         (no trades)          -0.181 +/-0.124 n=146     
+  exhaust    reversal         (no trades)          -0.227 +/-0.087 n=215     
+  vwap       reversal   -0.235 +/-0.126 n=162      -0.152 +/-0.089 n=353     
+  gapfill    reversal   -0.047 +/-0.106 n=89       +0.007 +/-0.098 n=102     
+  bigrev     reversal   -0.068 +/-0.157 n=23       +0.168 +/-0.119 n=31      
+  = reversal            -0.160 +/-0.083 n=274      -0.095 +/-0.037 n=1462    
+
+  trend      momentum   +0.009 +/-0.073 n=344      -0.142 +/-0.054 n=557     
+  nyaft      momentum   +0.075 +/-0.077 n=161      -0.001 +/-0.057 n=299     
+  scalp      momentum   +0.093 +/-0.050 n=304      -0.123 +/-0.044 n=441     
+  bigcont    momentum   +0.046 +/-0.156 n=23       -0.190 +/-0.119 n=31      
+  = momentum            +0.054 +/-0.038 n=832      -0.105 +/-0.030 n=1328    
+
+  swing      swing      -0.155 +/-0.372 n=26       -0.192 +/-0.174 n=32      
+  dip        swing      -0.237 +/-0.334 n=17       -0.218 +/-0.228 n=25      
+  = swing               -0.187 +/-0.258 n=43       -0.204 +/-0.139 n=57      
+
+  control    control          (no trades)          -0.063 +/-0.046 n=544     
+------------------------------------------------------------------------------
+2. SIGNALS WITH A PREDICTED DIRECTION  (top third minus bottom third of the signal, in R)
+------------------------------------------------------------------------------
+  PASS = z >= 1.0 in EACH period AND combined z >= 2.0. z is already signed so that
+  positive = the way theory said. A signal that works the opposite way is a fail, not a find.
+
+  breakout
+    setup_range_rel  A -0.04R z-0.30 | B +0.01R z+0.10 | combined z -0.14  -
+                       (setup range small vs recent daily ranges (quiet before expansion))
+    trend20_with     A +0.01R z+0.07 | B +0.12R z+1.76 | combined z +1.29  -
+                       (break goes with the 20-day trend)
+    open_hours       A -0.05R z-0.49 | B +0.05R z+0.98 | combined z +0.35  -
+                       (break in the London/New York open hours)
+    bar_extreme      A -0.13R z-1.05 | B +0.06R z+0.97 | combined z -0.06  -
+                       (breakout bar closes near its extreme)
+    room_r           A +0.01R z+0.12 | B -0.04R z-0.64 | combined z -0.37  -
+                       (room before yesterday's high/low)
+
+  reversal
+    er20             A -0.06R z-0.27 | B -0.10R z-1.10 | combined z -0.96  -
+                       (recent days made little net progress)
+    trend20_with     A -0.16R z-0.76 | B -0.10R z-1.08 | combined z -1.30  -
+                       (trade goes with the 20-day trend, not against it)
+    stretch_atr      A -0.07R z-0.37 | B -0.13R z-1.42 | combined z -1.26  -
+                       (bigger stretch from fair value (VWAP))
+    hour             not enough trades in one of the periods   (later in the session)
+
+  momentum
+    trend20_with     A +0.00R z+0.01 | B -0.04R z-0.49 | combined z -0.34  -
+                       (intraday lean matches the 20-day trend)
+    day_used         A +0.15R z+1.56 | B -0.05R z-0.63 | combined z +0.66  -
+                       (day has NOT already used most of its usual range)
+    volrank          A -0.07R z-0.76 | B -0.03R z-0.35 | combined z -0.78  -
+                       (volatility high against its own history)
+
+  swing
+    er20             A -0.62R z-0.81 | B +0.43R z+1.26 | combined z +0.31  -
+                       (market has been moving in a straight line)
+
+  13 signals tested. By luck alone, expect about 0.2 of them to pass.
+
+------------------------------------------------------------------------------
+3. REGIME READS AT TWO SPEEDS  (no direction predicted: looked at both ways, so a stricter bar)
+------------------------------------------------------------------------------
+  er5/er20 = how straight the market moved over 5 / 20 days | vol3rel = last 3 days' range vs 20
+  volrank = volatility vs its own last 120 days | turning = fast and slow trend disagree
+  asia_rel = Asian range vs average day | day_eff = how straight today has moved so far
+  HOLDS = same sign in both periods AND |combined z| >= 2.5
+  read         breakout        reversal        momentum        swing           
+  er5          -2.1/-0.4       +2.5/-0.9       -0.8/+0.4       +0.1/-0.8       
+  er20         -0.9/+1.5       +0.3/+1.1       -2.8/+0.3       -0.8/+1.3       
+  trend5_with  -1.7/-0.0       -1.5/-0.3       +0.8/-0.5       +0.2/-0.4       
+  vol3rel      +1.5/-1.1       -1.3/-0.3       -1.7/+0.7       +0.2/+1.3       
+  volrank      +0.2/-0.2       +0.1/-0.3       -0.8/-0.3       +1.4/+0.6       
+  turning      +1.3/-0.0       -1.2/+0.4       +0.5/-2.3       -1.6/-0.5       
+  asia_rel     n/a             n/a             n/a             n/a             
+  day_eff      -0.8/-0.6       -1.2/-0.1       -0.9/-0.1       +0.8/-0.8       
+  (each cell: z in period A / z in period B; positive = higher read went with better trades)
+  32 cells. By luck alone, expect about 0.4 to hold.
+
+------------------------------------------------------------------------------
+4. DO THE READS PERSIST?  (this week vs next week; a read that doesn't persist can't be a filter)
+------------------------------------------------------------------------------
+  period A (103 weeks): straightness -0.06 | volatility +0.80 | same direction next week 47%
+  period B (143 weeks): straightness -0.01 | volatility +0.64 | same direction next week 47%
+  (first two are correlations: 0 = no memory, 1 = next week is the same; direction: 50% = coin flip)
+
+------------------------------------------------------------------------------
+5. TREND EPISODES: HOW LATE ARE THE READS?  (trend-side families: breakout + momentum + swing)
+------------------------------------------------------------------------------
+  An episode = a stretch that, looking back with hindsight, was a trend (>= 5 days).
+  slow = 20-day read, fast = 5-day read; a read detects on its 2nd day in a row.
+  period A: 11 episodes, median length 9 days, total R earned inside them +10.6
+    slow read: detected 7, missed 4 | median lag 5 days | R before detection +17.8, after -7.2, staying on after the end -53.1
+    fast read: detected 8, missed 3 | median lag 1 days | R before detection +7.9, after +2.7, staying on after the end -8.5
+  period B: 12 episodes, median length 13 days, total R earned inside them -79.4
+    slow read: detected 8, missed 4 | median lag 12 days | R before detection -66.2, after -13.2, staying on after the end -46.2
+    fast read: detected 10, missed 2 | median lag 3 days | R before detection -59.4, after -20.0, staying on after the end +3.6
+
+------------------------------------------------------------------------------
+6. STAND-ASIDE DAYS  (flags known at the open; is every family worse on them?)
+------------------------------------------------------------------------------
+  shock = yesterday's range >= 2x average | gap = big opening gap | turning = fast/slow trend disagree
+  xshock = the OTHER market had a shock day yesterday
+  shock
+    breakout  A: flagged -0.095 (n=42) vs -0.053      | B: flagged -0.051 (n=106) vs -0.081    
+    reversal  A: flagged -0.073 (n=46) vs -0.182      | B: flagged -0.295 (n=119) vs -0.078    
+    momentum  A: flagged +0.154 (n=84) vs +0.042      | B: flagged -0.096 (n=101) vs -0.099    
+    swing     A: flagged too few                      | B: flagged too few                     
+    -> not consistently worse
+  gap
+    breakout  A: flagged -0.054 (n=234) vs -0.055     | B: flagged -0.109 (n=208) vs -0.075    
+    reversal  A: flagged -0.305 (n=137) vs -0.014     | B: flagged -0.071 (n=199) vs -0.099    
+    momentum  A: flagged +0.044 (n=362) vs +0.061     | B: flagged -0.125 (n=178) vs -0.102    
+    swing     A: flagged -0.286 (n=23) vs -0.074      | B: flagged -0.130 (n=10) vs -0.219     
+    -> not consistently worse
+  turning
+    breakout  A: flagged +0.046 (n=148) vs -0.095     | B: flagged -0.079 (n=524) vs -0.079    
+    reversal  A: flagged -0.309 (n=87) vs -0.093      | B: flagged -0.072 (n=457) vs -0.106    
+    momentum  A: flagged +0.087 (n=235) vs +0.041     | B: flagged -0.201 (n=392) vs -0.055    
+    swing     A: flagged -0.682 (n=12) vs +0.004      | B: flagged -0.329 (n=15) vs -0.159     
+    -> not consistently worse
+  xshock
+    breakout  A: flagged -0.114 (n=23) vs -0.052      | B: flagged +0.020 (n=92) vs -0.084     
+    reversal  A: flagged -0.034 (n=12) vs -0.165      | B: flagged -0.083 (n=77) vs -0.096     
+    momentum  A: flagged +0.027 (n=40) vs +0.055      | B: flagged +0.226 (n=69) vs -0.123     
+    swing     A: flagged too few                      | B: flagged too few                     
+    -> not consistently worse
+
+------------------------------------------------------------------------------
+7. TRUST LOOKUP  (family x the bot's regime label)
+------------------------------------------------------------------------------
+  rung: 'normal' = clearly positive (mean - 1 se > 0) in BOTH periods | 'shadow' = clearly negative
+  in both | 'scout' = everything in between. No rung here ever means 'risk more'.
+  breakout  trending  A -0.011 +/-0.092 n=162      B -0.033 +/-0.053 n=453      -> scout
+  breakout  volatile  A -0.141 +/-0.118 n=91       B -0.101 +/-0.053 n=435      -> shadow
+  breakout  choppy    A +0.019 +/-0.119 n=106      B -0.044 +/-0.062 n=338      -> scout
+  breakout  drift     A -0.114 +/-0.083 n=161      B -0.113 +/-0.050 n=509      -> shadow
+
+  reversal  trending  A -0.044 +/-0.167 n=77       B -0.096 +/-0.075 n=359      -> scout
+  reversal  volatile  A -0.063 +/-0.220 n=45       B -0.106 +/-0.071 n=368      -> scout
+  reversal  choppy    A -0.459 +/-0.155 n=65       B -0.224 +/-0.074 n=315      -> shadow
+  reversal  drift     A -0.088 +/-0.165 n=72       B -0.009 +/-0.074 n=387      -> scout
+
+  momentum  trending  A +0.055 +/-0.073 n=243      B -0.121 +/-0.059 n=334      -> scout
+  momentum  volatile  A -0.046 +/-0.096 n=136      B -0.116 +/-0.062 n=317      -> scout
+  momentum  choppy    A +0.187 +/-0.085 n=162      B -0.001 +/-0.070 n=248      -> scout
+  momentum  drift     A +0.000 +/-0.073 n=233      B -0.146 +/-0.057 n=363      -> scout
+
+  swing     trending  A -1.020 +/-0.133 n=8        B -0.174 +/-0.406 n=7        -> scout (too few trades to judge)
+  swing     volatile  A +0.118 +/-0.714 n=5        B -0.258 +/-0.268 n=17       -> scout (too few trades to judge)
+  swing     choppy    A +0.012 +/-0.271 n=14       B -0.573 +/-0.177 n=15       -> scout (too few trades to judge)
+  swing     drift     A -0.562 +/-0.220 n=14       B -0.081 +/-0.264 n=16       -> scout (too few trades to judge)
+
+------------------------------------------------------------------------------
+8. THE FIXED EXIT MENU AND TIMING  (same entries, same stop; only the way out differs)
+------------------------------------------------------------------------------
+  as built = the lane's own exit | 1R = nearer target | hold = no target, stop or the clock
+  trail = after +1R the stop follows 1R behind the best price
+  family          as built         1R       hold      trail |   best R     given     ran on  day used
+  breakout  A       -0.054     -0.077     -0.082     -0.039 |     0.83      0.84       0.75      0.51
+  breakout  B       -0.079     -0.079     -0.047     -0.038 |     0.87      0.91       0.75      0.48
+  reversal  A       -0.160     -0.168     -0.074     -0.113 |     0.94      1.04       1.57      0.68
+  reversal  B       -0.095     -0.060     -0.018     -0.067 |     1.13      1.13       1.81      0.56
+  momentum  A       +0.054     +0.036     +0.070     +0.089 |     0.89      0.78       0.94      0.68
+  momentum  B       -0.105     -0.094     +0.000     -0.034 |     0.83      0.87       1.00      0.65
+  swing     A       -0.187     -0.109     -0.035     -0.206 |     1.33      1.37       0.94      0.75
+  swing     B       -0.204     -0.104     -0.224     -0.170 |     1.08      1.18       0.70      0.82
+  best R = furthest the trade got our way | given = how much of that was handed back by the exit
+  ran on = how far price kept going our way AFTER the exit | day used = share of an average day's
+  range already covered when the trade was entered (1.0 = a full average day)
+
+------------------------------------------------------------------------------
+9. STOP MENU  (same entry, same target price, same clock; only the stop distance changes)
+------------------------------------------------------------------------------
+  Each number is R per trade net of costs IN THAT VARIANT'S OWN R (its risk = its own stop distance).
+  'built' = the lane as it is. '<<' = a variant that is positive in BOTH periods and beats 'built' in both.
+              | period A:    0.5x  built   1.5x     2x     3x | period B:    0.5x  built   1.5x     2x     3x
+  main        |                .      .      .      .      .  |             -0.11  -0.05  -0.03  -0.03  -0.03  
+  london      |             -0.07  -0.03  -0.02  -0.02  -0.02 |             -0.04  -0.05  -0.05  -0.03  -0.02  
+  pdh         |             +0.05  -0.07  -0.06  -0.10  -0.06 |             -0.12  -0.13  -0.05  -0.05  -0.03  
+  nr7         |             -0.04  -0.11  -0.06  -0.02  -0.02 |             +0.02  +0.09  +0.08  +0.07  +0.05  
+  retest      |                .      .      .      .      .  |             -0.29  -0.22  -0.11  -0.07  -0.07  
+  fade        |                .      .      .      .      .  |             -0.14  -0.05  -0.02  -0.02  -0.02  
+  sar         |                .      .      .      .      .  |             +0.03  +0.01  +0.00  -0.01  -0.01  
+  range       |                .      .      .      .      .  |             -0.17  -0.18  -0.16  -0.11  -0.03  
+  exhaust     |                .      .      .      .      .  |             -0.47  -0.23  -0.16  -0.15  -0.14  
+  vwap        |             -0.46  -0.23  -0.11  -0.10  -0.05 |             -0.23  -0.15  -0.04  -0.03  -0.04  
+  gapfill     |             -0.10  -0.05  +0.05  +0.01  -0.02 |             -0.04  +0.01  +0.01  -0.01  -0.03  << 1.5x
+  bigrev      |             -0.23  -0.07  -0.01  -0.01  -0.00 |             +0.17  +0.17  +0.12  +0.10  +0.06  
+  trend       |             +0.14  +0.01  +0.05  +0.04  +0.02 |             -0.25  -0.14  -0.08  -0.07  -0.06  
+  nyaft       |             +0.17  +0.07  +0.06  +0.04  +0.03 |             -0.01  -0.00  +0.01  +0.01  +0.00  
+  scalp       |             +0.06  +0.09  +0.06  +0.04  +0.03 |             -0.13  -0.12  -0.10  -0.07  -0.06  
+  bigcont     |             -0.05  +0.05  +0.01  -0.00  -0.00 |             -0.21  -0.19  -0.12  -0.09  -0.06  
+  swing       |             +0.15  -0.15  -0.17  -0.12  -0.08 |             -0.24  -0.19  -0.14  -0.11  -0.08  
+  dip         |             -0.30  -0.24  -0.14  +0.08  +0.03 |             -0.47  -0.22  -0.02  -0.05  -0.00  
+  = breakout  |             -0.02  -0.05  -0.04  -0.05  -0.03 |             -0.11  -0.08  -0.05  -0.04  -0.03  
+  = reversal  |             -0.32  -0.16  -0.05  -0.05  -0.03 |             -0.17  -0.09  -0.05  -0.05  -0.04  
+  = momentum  |             +0.11  +0.05  +0.05  +0.04  +0.02 |             -0.16  -0.10  -0.07  -0.05  -0.04  
+  = swing     |             -0.03  -0.19  -0.16  -0.04  -0.04 |             -0.34  -0.20  -0.09  -0.09  -0.04  
+
+------------------------------------------------------------------------------
+10. ENTRY DELAY  (enter 1 or 2 bars later, only if the original stop and target were not touched)
+------------------------------------------------------------------------------
+  R per trade in the delayed trade's own R. 'took' = share of the lane's signals still alive to enter.
+  Compare with 'built' on ALL signals: a delay only helps if what it enters beats what it skips.
+              | period A:  built   +1 bar (took)   +2 bars (took) | period B:  built   +1 bar (took)   +2 bars (took)
+  main        |              .       .                .            |            -0.05   -0.05 (100%)     -0.06 ( 99%)   
+  london      |            -0.03   -0.05 ( 99%)     -0.08 ( 98%)   |            -0.05   -0.03 ( 98%)     -0.05 ( 95%)   
+  pdh         |            -0.07   -0.09 ( 99%)     -0.10 ( 98%)   |            -0.13   -0.13 (100%)     -0.14 ( 99%)   
+  nr7         |            -0.11   -0.13 (100%)     -0.13 (100%)   |            +0.09   +0.10 (100%)     +0.09 (100%)   
+  retest      |              .       .                .            |            -0.22   -0.23 ( 92%)     -0.27 ( 87%)   
+  fade        |              .       .                .            |            -0.05   -0.07 ( 89%)     -0.06 ( 82%)   
+  sar         |              .       .                .            |            +0.01   -0.04 ( 87%)     +0.03 ( 75%)   
+  range       |              .       .                .            |            -0.18   -0.21 ( 59%)     -0.27 ( 37%)   
+  exhaust     |              .       .                .            |            -0.23   -0.14 ( 76%)     -0.13 ( 64%)   
+  vwap        |            -0.23   -0.06 ( 67%)     -0.10 ( 57%)   |            -0.15   -0.13 ( 81%)     -0.16 ( 71%)   
+  gapfill     |            -0.05   -0.00 ( 94%)     +0.06 ( 88%)   |            +0.01   -0.09 ( 93%)     -0.11 ( 88%)   
+  bigrev      |            -0.07   -0.06 (100%)     -0.06 (100%)   |            +0.17   +0.16 (100%)     +0.15 (100%)   
+  trend       |            +0.01   -0.03 ( 92%)     -0.10 ( 75%)   |            -0.14   -0.14 ( 93%)     -0.15 ( 78%)   
+  nyaft       |            +0.07   +0.05 ( 92%)     +0.01 ( 86%)   |            -0.00   +0.04 ( 90%)     -0.08 ( 85%)   
+  scalp       |            +0.09   +0.07 ( 71%)     -0.01 ( 49%)   |            -0.12   -0.17 ( 66%)     -0.11 ( 39%)   
+  bigcont     |            +0.05   +0.12 (100%)     +0.12 (100%)   |            -0.19   -0.18 (100%)     -0.19 (100%)   
+  swing       |            -0.15   -0.10 (100%)     -0.19 (100%)   |            -0.19   -0.19 (100%)     -0.19 (100%)   
+  dip         |            -0.24   -0.33 (100%)     -0.33 (100%)   |            -0.22   -0.21 (100%)     -0.22 (100%)   
+  = breakout  |            -0.05   -0.07 ( 99%)     -0.09 ( 98%)   |            -0.08   -0.07 ( 98%)     -0.09 ( 96%)   
+  = reversal  |            -0.16   -0.04 ( 78%)     -0.03 ( 70%)   |            -0.09   -0.09 ( 82%)     -0.09 ( 72%)   
+  = momentum  |            +0.05   +0.02 ( 85%)     -0.04 ( 68%)   |            -0.10   -0.10 ( 84%)     -0.13 ( 67%)   
+  = swing     |            -0.19   -0.19 (100%)     -0.24 (100%)   |            -0.20   -0.20 (100%)     -0.21 (100%)   
+
+------------------------------------------------------------------------------
+11. COST RULE  (only trades whose stop is at least 10 round-trip costs wide)
+------------------------------------------------------------------------------
+              | period A: all -> rule (kept, cost/R) | period B: all -> rule (kept, cost/R)
+  main        |   .                                | -0.05 -> -0.04 ( 97%, 0.041)      
+  london      | -0.03 -> -0.04 ( 99%, 0.028)       | -0.05 -> -0.04 ( 99%, 0.036)      
+  pdh         | -0.07 -> -0.07 (100%, 0.020)       | -0.13 -> -0.14 ( 99%, 0.023)      
+  nr7         | -0.11 -> -0.11 (100%, 0.019)       | +0.09 -> +0.09 (100%, 0.023)      
+  retest      |   .                                | -0.22 -> -0.23 ( 78%, 0.076)      
+  fade        |   .                                | -0.05 -> -0.03 ( 61%, 0.094)      
+  sar         |   .                                | +0.01 -> +0.02 ( 87%, 0.058)      
+  range       |   .                                | -0.18 -> -0.42 ( 14%, 0.179)      
+  exhaust     |   .                                | -0.23 -> -0.18 ( 50%, 0.108)      
+  vwap        | -0.23 -> -0.17 ( 70%, 0.081)       | -0.15 -> -0.21 ( 51%, 0.112)      
+  gapfill     | -0.05 -> -0.06 ( 93%, 0.042)       | +0.01 -> +0.04 ( 82%, 0.066)      
+  bigrev      | -0.07 -> -0.07 (100%, 0.011)       | +0.17 -> +0.17 (100%, 0.011)      
+  trend       | +0.01 -> -0.02 ( 84%, 0.061)       | -0.14 -> -0.15 ( 84%, 0.063)      
+  nyaft       | +0.07 -> +0.09 ( 91%, 0.049)       | -0.00 -> +0.01 ( 87%, 0.060)      
+  scalp       | +0.09 -> +0.10 ( 91%, 0.055)       | -0.12 -> -0.11 ( 83%, 0.067)      
+  bigcont     | +0.05 -> +0.05 (100%, 0.011)       | -0.19 -> -0.19 (100%, 0.011)      
+  swing       | -0.15 -> -0.15 (100%, 0.006)       | -0.19 -> -0.19 (100%, 0.006)      
+  dip         | -0.24 -> -0.24 (100%, 0.011)       | -0.22 -> -0.22 (100%, 0.013)      
+  = breakout  | -0.05 -> -0.06 ( 99%, 0.024)       | -0.08 -> -0.07 ( 95%, 0.041)      
+  = reversal  | -0.16 -> -0.12 ( 80%, 0.063)       | -0.09 -> -0.07 ( 58%, 0.100)      
+  = momentum  | +0.05 -> +0.05 ( 88%, 0.055)       | -0.10 -> -0.10 ( 84%, 0.063)      
+  = swing     | -0.19 -> -0.19 (100%, 0.008)       | -0.20 -> -0.20 (100%, 0.009)      
+  kept = share of the lane's trades that satisfy the rule | cost/R = average cost as a share of the risk
+
+files in this folder: trades_<symbol>.csv (one row per trade), days_<symbol>.csv (daily reads and flags),
+episodes_<symbol>.csv (trend episodes), tests_<symbol>.csv (every signal test with its numbers)
+runtime 176.5s

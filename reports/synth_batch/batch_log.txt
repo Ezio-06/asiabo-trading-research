@@ -1,0 +1,212 @@
+
+================================================================================
+synth batch 2026-10-09 17:19: 23 jobs, 0 already done, 23 to run (about 12 min each on the full data)
+
+[1/23] real seed 0   (17:19)
+  $ C:\python314\python.exe asiabo_lab.py omega
+    361s
+    saved 311 numbers; summary updated
+
+[2/23] identity seed 1   (17:25)
+  $ C:\python314\python.exe make_synth.py gen --preset identity --seed 1 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    530s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    303s
+    saved 309 numbers; summary updated
+
+[3/23] shuffle seed 1   (17:39)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --seed 1 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    541s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    306s
+    saved 305 numbers; summary updated
+
+[4/23] shuffle seed 2   (17:53)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --seed 2 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    747s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    344s
+    saved 307 numbers; summary updated
+
+[5/23] shuffle seed 3   (18:11)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --seed 3 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    532s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    307s
+    saved 297 numbers; summary updated
+
+[6/23] cosmetic seed 1   (18:25)
+  $ C:\python314\python.exe make_synth.py gen --preset cosmetic --seed 1 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    615s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    310s
+    saved 305 numbers; summary updated
+
+[7/23] cosmetic seed 2   (18:41)
+  $ C:\python314\python.exe make_synth.py gen --preset cosmetic --seed 2 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    622s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    313s
+    saved 307 numbers; summary updated
+
+[8/23] cosmetic seed 3   (18:56)
+  $ C:\python314\python.exe make_synth.py gen --preset cosmetic --seed 3 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    621s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    305s
+    saved 297 numbers; summary updated
+
+[9/23] dayshuffle seed 1   (19:12)
+  $ C:\python314\python.exe make_synth.py gen --preset dayshuffle --seed 1 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    533s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    313s
+    saved 304 numbers; summary updated
+
+[10/23] dayshuffle seed 2   (19:26)
+  $ C:\python314\python.exe make_synth.py gen --preset dayshuffle --seed 2 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    593s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    377s
+    saved 303 numbers; summary updated
+
+[11/23] dayshuffle seed 3   (19:42)
+  $ C:\python314\python.exe make_synth.py gen --preset dayshuffle --seed 3 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    536s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    429s
+    saved 299 numbers; summary updated
+
+[12/23] vol_up seed 1   (19:58)
+  $ C:\python314\python.exe make_synth.py gen --preset vol_up --seed 1 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    691s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    305s
+    saved 305 numbers; summary updated
+
+[13/23] vol_up seed 2   (20:15)
+  $ C:\python314\python.exe make_synth.py gen --preset vol_up --seed 2 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    596s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    310s
+    saved 307 numbers; summary updated
+
+[14/23] vol_up seed 3   (20:30)
+  $ C:\python314\python.exe make_synth.py gen --preset vol_up --seed 3 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    601s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    304s
+    saved 297 numbers; summary updated
+
+[15/23] vol_down seed 1   (20:45)
+  $ C:\python314\python.exe make_synth.py gen --preset vol_down --seed 1 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    590s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    307s
+    saved 305 numbers; summary updated
+
+[16/23] vol_down seed 2   (21:00)
+  $ C:\python314\python.exe make_synth.py gen --preset vol_down --seed 2 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    604s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    310s
+    saved 308 numbers; summary updated
+
+[17/23] vol_down seed 3   (21:15)
+  $ C:\python314\python.exe make_synth.py gen --preset vol_down --seed 3 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    597s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    307s
+    saved 297 numbers; summary updated
+
+[18/23] trend_up seed 1   (21:30)
+  $ C:\python314\python.exe make_synth.py gen --preset trend_up --seed 1 --out D:\coding stuff\Trading research project\synth\batch_current.db
+
+================================================================================
+synth batch 2026-10-09 22:12: 23 jobs, 17 already done, 6 to run (about 12 min each on the full data)
+
+[1/6] trend_up seed 1   (22:12)
+  $ C:\python314\python.exe make_synth.py gen --preset trend_up --seed 1 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    620s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    316s
+    saved 302 numbers; summary updated
+
+[2/6] trend_up seed 2   (22:27)
+  $ C:\python314\python.exe make_synth.py gen --preset trend_up --seed 2 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    625s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    318s
+    saved 304 numbers; summary updated
+
+[3/6] trend_up seed 3   (22:43)
+  $ C:\python314\python.exe make_synth.py gen --preset trend_up --seed 3 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    615s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    312s
+    saved 305 numbers; summary updated
+
+[4/6] costly seed 1   (22:59)
+  $ C:\python314\python.exe make_synth.py gen --preset costly --seed 1 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    548s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    295s
+    saved 305 numbers; summary updated
+
+[5/6] costly seed 2   (23:13)
+  $ C:\python314\python.exe make_synth.py gen --preset costly --seed 2 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    533s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\batch_current.db
+    194s
+    no omega_summary.csv in D:\coding stuff\Trading research project\reports\synth_lab_20261009_232205
+
+[6/6] costly seed 3   (23:25)
+  $ C:\python314\python.exe make_synth.py gen --preset costly --seed 3 --out D:\coding stuff\Trading research project\synth\batch_current.db
+    FAILED (exit 1), last lines:
+    ~~~~^^
+  File "D:\coding stuff\Trading research project\make_synth.py", line 538, in main
+    generate(cfg, out)
+    ~~~~~~~~^^^^^^^^^^
+  File "D:\coding stuff\Trading research project\make_synth.py", line 256, in generate
+    data[name] = _load(con, dbs)
+                 ~~~~~^^^^^^^^^^
+  File "D:\coding stuff\Trading research project\make_synth.py", line 148, in _load
+    V.append(v if v is not None else 0.0)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+MemoryError
+generating costly (seed 3) -> D:\coding stuff\Trading research project\synth\batch_current.db
+markets: EURUSD (EURUSD), GERMANY40 (GERMANY 40), US500 (US 500), USDJPY (USDJPY), XAUUSD (XAUUSD), XTIUSD (XTIUSD)
+  read EURUSD       4367304 bars, 3846 data holes  (133s)
+  read GERMANY40    1987690 bars, 3041 data holes  (66s)
+    255s
+
+batch finished in 1.3 h
+
+================================================================================
+synth batch 2026-10-10 00:13: 4 jobs, 1 already done, 3 to run
+  $ C:\python314\python.exe make_synth.py cache
+    391s
+parallel jobs: 3  (cores 4, free memory 12.8 GB, free disk 98 GB; each job budgeted 1.5 GB memory, 2 GB disk; 3 GB memory always kept free)
+
+[1/3] longblock seed 1   (started 00:20)
+  $ C:\python314\python.exe make_synth.py gen --preset longblock --seed 1 --out D:\coding stuff\Trading research project\synth\job_longblock_s1.db
+    221s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\job_longblock_s1.db
+    396s
+    saved 308 numbers; summary updated
+
+[2/3] longblock seed 3   (started 00:20)
+  $ C:\python314\python.exe make_synth.py gen --preset longblock --seed 3 --out D:\coding stuff\Trading research project\synth\job_longblock_s3.db
+    223s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\job_longblock_s3.db
+    396s
+    saved 302 numbers; summary updated
+
+[3/3] longblock seed 2   (started 00:20)
+  $ C:\python314\python.exe make_synth.py gen --preset longblock --seed 2 --out D:\coding stuff\Trading research project\synth\job_longblock_s2.db
+    229s
+  $ C:\python314\python.exe asiabo_lab.py omega --db D:\coding stuff\Trading research project\synth\job_longblock_s2.db
+    409s
+    saved 308 numbers; summary updated
+
+batch finished in 0.3 h

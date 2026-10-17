@@ -1,0 +1,139 @@
+====================================================================================================
+THE LAB  --  every open idea, labelled, in one run. Shadow only: it measures, it decides nothing.
+====================================================================================================
+Sealed exam years 2022-01-01 .. 2024-01-01: not read by any part.
+
+====================================================================================================
+PART 4: PERSIST   do the signals from 2020-21 / 2024-26 show up on 2014-2019?
+====================================================================================================
+recent trades: d:\coding stuff\Trading research project\reports\collect_20261007_161416
+old trades:    d:\coding stuff\Trading research project\reports\oldcollect_20261007_180620
+The old years were never traded by any lane before this run, and every claim below was written into this file
+BEFORE they were collected. So this is a fair test: nothing here was chosen with the old data in view.
+Costs in the old years are approximate (today's commission, spread allowance and swap are used; real spreads were
+wider then, gold's about 2-3x). That shifts every trade alike, so read the DIFFERENCES and the before-cost column.
+trades per era: 2014-17 22032 | 2018-19 14000 | A 2020-21 17520 | B 2024+ 29611
+markets with old data: XAUUSD, EURUSD, USDJPY, XTIUSD, GERMANY40
+
+----------------------------------------------------------------------------------------------------
+4a. EVERY ENTRY READ   (top third minus bottom third of the read, in R; combined over the markets)
+----------------------------------------------------------------------------------------------------
+  each cell: combined z (markets where high was better / markets tested). z beyond +-2 is a real lean, beyond +-3 strong.
+  family    read             | 2014-17        2018-19        | A 2020-21      B 2024+        | verdict
+  reversal  cost_r           |  -4.3 (1/5)   -4.5 (1/5)  |  -5.2 (0/6)   -8.7 (0/6)  | same way in all four eras (not a claim: found here)
+  reversal  stop_atr         |  +4.0 (5/5)   +4.2 (4/5)  |  +4.6 (6/6)   +6.2 (6/6)  | same way in all four eras (not a claim: found here)
+  reversal  room_r           |  -3.0 (1/5)   -2.2 (1/5)  |  -5.0 (0/6)   -5.3 (0/6)  | same way in all four eras (not a claim: found here)
+  momentum  cost_r           |  -6.3 (0/5)   -4.4 (0/5)  |  -4.2 (1/6)   -4.9 (0/6)  | same way in all four eras (not a claim: found here)
+  momentum  stop_atr         |  +4.1 (5/5)   +2.6 (4/5)  |  +2.8 (4/6)   +4.9 (6/6)  | same way in all four eras (not a claim: found here)
+  reversal  stretch_atr      |  -2.2 (2/5)   -1.4 (2/5)  |  -3.4 (0/6)   -3.6 (0/6)  | CLAIM: PERSISTS
+  momentum  open_move_with   |  +1.6 (4/5)   +2.0 (4/5)  |  +1.8 (4/6)   +4.5 (6/6)  | 
+  breakout  turning          |  -0.7 (3/5)   -0.9 (1/5)  |  -1.3 (2/6)   -4.3 (0/6)  | CLAIM: same direction, weak
+  momentum  day_eff          |  +1.0 (4/5)   +2.4 (4/5)  |  +2.5 (5/6)   +2.9 (6/6)  | CLAIM: PERSISTS
+  reversal  open_move_with   |  +2.1 (3/5)   +1.0 (3/5)  |  +2.7 (5/6)   +2.3 (6/6)  | 
+  breakout  room_r           |  -1.0 (2/5)   -1.3 (1/5)  |  -2.8 (1/6)   -2.1 (2/6)  | 
+  reversal  er60             |  -0.4 (2/5)   +1.0 (2/5)  |  +2.6 (6/6)   +2.3 (3/6)  | 
+  reversal  day_eff          |  -2.9 (1/5)   -0.2 (2/5)  |  -1.7 (2/6)   -3.1 (0/6)  | CLAIM: PERSISTS
+  momentum  stretch_atr      |  +1.7 (3/5)   +4.4 (5/5)  |  +2.2 (5/6)   +2.3 (5/6)  | 
+  breakout  trend5_with      |  +4.4 (4/5)   -3.0 (2/5)  |  -3.2 (2/6)   -1.1 (3/6)  | 
+  breakout  day_eff          |  -0.1 (2/5)   -0.6 (1/5)  |  +2.3 (5/6)   +1.9 (4/6)  | CLAIM: DID NOT PERSIST
+  breakout  stop_atr         |  +2.8 (5/5)   +0.7 (4/5)  |  +1.8 (4/6)   +2.2 (5/6)  | 
+  momentum  setup_range_rel  |  +3.5 (5/5)   +2.2 (3/5)  |  +1.1 (5/6)   +2.7 (6/6)  | same way in all four eras (not a claim: found here)
+  breakout  cost_r           |  -1.2 (1/5)   -2.4 (1/5)  |  -2.5 (2/6)   -1.0 (2/6)  | 
+  breakout  open_move_with   |  -0.5 (2/5)   +2.1 (3/5)  |  +2.2 (5/6)   +0.9 (4/6)  | 
+  momentum  prev_range_rel   |  +2.3 (4/5)   +1.5 (4/5)  |  +3.0 (6/6)   +0.0 (2/6)  | 
+  breakout  stretch_atr      |  +2.6 (4/5)   +0.9 (2/5)  |  +1.6 (4/6)   +1.4 (3/6)  | 
+  momentum  er5              |  +1.6 (3/5)   -0.6 (1/5)  |  +1.1 (4/6)   +1.5 (5/6)  | 
+  reversal  er20             |  -0.3 (2/5)   +0.4 (3/5)  |  +3.2 (5/6)   -0.6 (3/6)  | 
+  breakout  bar_extreme      |  +2.1 (5/5)   +0.5 (4/5)  |  +0.1 (2/6)   +2.5 (4/6)  | 
+  reversal  er5              |  +1.2 (3/5)   -0.5 (2/5)  |  -0.5 (2/6)   -2.0 (2/6)  | 
+  momentum  turning          |  -1.0 (2/5)   -0.1 (2/5)  |  +0.4 (4/6)   -2.8 (1/6)  | 
+  momentum  bar_extreme      |  -1.2 (1/5)   +1.7 (5/5)  |  -1.1 (2/6)   -1.3 (1/6)  | 
+  momentum  day_used         |  +2.3 (5/5)   +2.6 (4/5)  |  +1.7 (4/6)   +0.7 (4/6)  | same way in all four eras (not a claim: found here)
+  breakout  setup_range_rel  |  +1.1 (3/5)   +1.1 (2/5)  |  +1.1 (3/6)   +1.3 (5/6)  | 
+  reversal  turning          |  +2.2 (4/5)   +0.5 (3/5)  |  -1.3 (1/6)   +3.4 (5/6)  | 
+  momentum  trend20_with     |  +1.1 (4/5)   -0.2 (3/5)  |  -2.4 (0/6)   +0.3 (4/6)  | 
+  momentum  asia_rel         |  +1.1 (3/4)   +1.2 (4/4)  |  +1.5 (4/5)   +0.2 (3/6)  | 
+  breakout  ret60_with       |  +0.7 (3/5)   +1.2 (3/5)  |  -1.5 (2/6)   -0.2 (1/6)  | 
+  momentum  vol3rel          |  +2.2 (4/5)   -0.3 (1/5)  |  +2.2 (5/6)   -0.5 (3/6)  | 
+  momentum  room_r           |  -0.8 (2/5)   -1.0 (2/5)  |  +1.0 (5/6)   +0.6 (5/6)  | 
+  breakout  vol3rel          |  -0.8 (1/5)   -1.0 (2/5)  |  -0.2 (2/6)   -1.3 (2/6)  | 
+  breakout  er5              |  +1.1 (4/5)   +0.2 (3/5)  |  +0.8 (4/6)   +0.7 (3/6)  | 
+  momentum  ret60_with       |  -0.1 (1/5)   +0.1 (2/5)  |  -1.2 (1/6)   -0.2 (3/6)  | 
+  reversal  volrank          |  +0.5 (2/5)   +2.1 (4/5)  |  -1.0 (2/6)   +2.5 (6/6)  | 
+  breakout  asia_rel         |  -0.6 (0/4)   +1.8 (4/4)  |  +1.3 (3/5)   +0.1 (3/6)  | 
+  momentum  trend5_with      |  +1.0 (3/5)   -1.6 (2/5)  |  -1.6 (0/6)   +0.3 (4/6)  | 
+  breakout  volrank          |  -0.6 (2/5)   -0.3 (3/5)  |  -0.5 (2/6)   -0.7 (2/6)  | 
+  reversal  setup_range_rel  |  +0.8 (3/4)   -0.1 (2/4)  |  +0.3 (3/6)   +0.9 (3/6)  | 
+  momentum  volrank          |  +0.5 (3/5)   -0.5 (2/5)  |  +0.3 (2/6)   +0.7 (4/6)  | 
+  reversal  asia_rel         |  +0.9 (3/4)   -0.0 (2/4)  |  -0.5 (2/5)   +1.4 (4/6)  | 
+  reversal  trend20_with     |  +0.7 (3/5)   -1.2 (2/5)  |  +0.1 (3/6)   +0.9 (4/6)  | 
+  momentum  er20             |  -0.7 (1/5)   +1.0 (4/5)  |  -1.4 (3/6)   +2.3 (5/6)  | 
+  reversal  bar_extreme      |  -0.0 (3/5)   +0.4 (3/5)  |  -0.7 (3/6)   +1.3 (4/6)  | 
+  reversal  ret60_with       |  -1.1 (1/5)   -0.1 (2/5)  |  +1.2 (3/6)   -1.8 (1/6)  | 
+  breakout  trend20_with     |  +1.5 (4/5)   +0.3 (3/5)  |  -1.0 (3/6)   +0.5 (3/6)  | 
+  breakout  er60             |  +0.2 (2/5)   +0.1 (2/5)  |  -0.9 (2/6)   +0.4 (4/6)  | 
+  breakout  er20             |  -0.1 (4/5)   +0.8 (4/5)  |  +1.9 (4/6)   -2.3 (2/6)  | 
+  breakout  prev_range_rel   |  +0.0 (2/5)   -0.7 (2/5)  |  -0.0 (4/6)   -0.4 (3/6)  | 
+  reversal  trend5_with      |  +1.0 (3/5)   -1.4 (1/5)  |  +0.2 (2/6)   -0.6 (2/6)  | 
+  breakout  day_used         |  -0.7 (2/5)   +2.2 (3/5)  |  +0.8 (3/6)   -0.6 (2/6)  | 
+  reversal  vol3rel          |  -1.4 (1/5)   -0.6 (1/5)  |  -2.1 (1/6)   +1.9 (6/6)  | 
+  reversal  day_used         |  -1.3 (1/5)   -0.7 (2/5)  |  -1.5 (2/6)   +1.3 (4/6)  | 
+  reversal  prev_range_rel   |  -0.5 (2/5)   +0.6 (2/5)  |  -2.2 (0/6)   +2.1 (4/6)  | 
+  momentum  er60             |  +1.2 (4/5)   +2.2 (2/5)  |  -1.0 (4/6)   +1.1 (5/6)  | 
+
+  THE FIVE CLAIMS: 3 of 5 persist on the old data.
+    momentum  day_eff      the straighter the day so far, the better momentum trades do
+    breakout  day_eff      the straighter the day so far, the better breakouts do
+    reversal  day_eff      the straighter the day so far, the worse fades do
+    breakout  turning      breakouts do worse when the fast and slow trend disagree
+    reversal  stretch_atr  the more stretched the price, the worse fades do
+  By luck alone a claim 'persists' (right direction in both old eras, 2+ standard errors together) about 1 time in 40.
+
+----------------------------------------------------------------------------------------------------
+4b. THE RULE   breakout trades on a straight day (top third, 2020-21 cut-off) with fast and slow trend agreeing
+----------------------------------------------------------------------------------------------------
+  cut-offs (frozen): XAUUSD 0.252, US500 0.295, EURUSD 0.263, USDJPY 0.271, XTIUSD 0.226, GERMANY40 0.425
+  market     era        | in: R (n)                | out: R (n)               | in - out (z)  | in, before costs   | control in
+  XAUUSD     2014-17    | -0.073 +/-0.043 (  514) | -0.024 +/-0.024 ( 1624) | -0.050 (-1.0) | -0.035 +/-0.043    | -0.025 (117)
+  XAUUSD     2018-19    | +0.038 +/-0.057 (  320) | -0.062 +/-0.032 (  904) | +0.100 (+1.5) | +0.081 +/-0.057    | -0.087 (79)
+  XAUUSD     A 2020-21  | +0.192 +/-0.062 (  306) | -0.110 +/-0.029 ( 1130) | +0.302 (+4.4) | +0.219 +/-0.062    | -0.037 (71)
+  XAUUSD     B 2024+    | +0.086 +/-0.046 (  422) | +0.026 +/-0.026 ( 1448) | +0.060 (+1.1) | +0.111 +/-0.046    | +0.031 (107)
+  US500      A 2020-21  | -0.018 +/-0.060 (  207) | -0.067 +/-0.034 (  695) | +0.049 (+0.7) | +0.060 +/-0.061    | -0.020 (63)
+  US500      B 2024+    | -0.021 +/-0.056 (  223) | -0.051 +/-0.023 ( 1381) | +0.030 (+0.5) | +0.047 +/-0.056    | -0.096 (61)
+  EURUSD     2014-17    | -0.007 +/-0.043 (  544) | -0.100 +/-0.022 ( 2059) | +0.092 (+1.9) | +0.062 +/-0.042    | -0.067 (132)
+  EURUSD     2018-19    | -0.132 +/-0.056 (  307) | -0.115 +/-0.029 ( 1156) | -0.016 (-0.3) | -0.043 +/-0.056    | -0.171 (65)
+  EURUSD     A 2020-21  | +0.015 +/-0.057 (  290) | -0.150 +/-0.029 ( 1155) | +0.166 (+2.6) | +0.099 +/-0.057    | -0.178 (63)
+  EURUSD     B 2024+    | +0.077 +/-0.052 (  354) | -0.122 +/-0.024 ( 1638) | +0.199 (+3.5) | +0.164 +/-0.052    | +0.018 (85)
+  USDJPY     2014-17    | +0.018 +/-0.041 (  476) | -0.060 +/-0.021 ( 2008) | +0.078 (+1.7) | +0.084 +/-0.041    | -0.162 (104)
+  USDJPY     2018-19    | -0.041 +/-0.059 (  243) | -0.103 +/-0.028 ( 1136) | +0.061 (+0.9) | +0.052 +/-0.059    | -0.095 (53)
+  USDJPY     A 2020-21  | -0.007 +/-0.059 (  292) | -0.063 +/-0.028 ( 1125) | +0.056 (+0.9) | +0.082 +/-0.060    | -0.111 (60)
+  USDJPY     B 2024+    | -0.048 +/-0.048 (  360) | -0.074 +/-0.023 ( 1514) | +0.026 (+0.5) | +0.014 +/-0.048    | -0.181 (88)
+  XTIUSD     2014-17    | -0.135 +/-0.053 (  183) | -0.100 +/-0.032 (  696) | -0.035 (-0.6) | -0.049 +/-0.052    | -0.119 (63)
+  XTIUSD     2018-19    | -0.131 +/-0.053 (  240) | -0.044 +/-0.029 (  786) | -0.087 (-1.5) | -0.054 +/-0.053    | -0.076 (69)
+  XTIUSD     A 2020-21  | -0.092 +/-0.046 (  139) | -0.029 +/-0.034 (  484) | -0.063 (-1.1) | -0.042 +/-0.046    | +0.048 (41)
+  XTIUSD     B 2024+    | -0.007 +/-0.042 (  296) | -0.100 +/-0.022 ( 1085) | +0.092 (+1.9) | +0.053 +/-0.042    | -0.030 (99)
+  GERMANY40  2014-17    | -0.297 +/-0.168 (   54) | -0.083 +/-0.061 (  277) | -0.214 (-1.2) | -0.228 +/-0.169    | -
+  GERMANY40  2018-19    | -0.318 +/-0.158 (   61) | -0.031 +/-0.059 (  302) | -0.287 (-1.7) | -0.254 +/-0.158    | -
+  GERMANY40  A 2020-21  | +0.154 +/-0.128 (   71) | -0.055 +/-0.050 (  352) | +0.209 (+1.5) | +0.214 +/-0.129    | -
+  GERMANY40  B 2024+    | -0.008 +/-0.094 (   98) | -0.025 +/-0.026 ( 1506) | +0.017 (+0.2) | +0.043 +/-0.095    | -0.068 (24)
+  ALL        2014-17    | -0.042 +/-0.022 ( 1771) | -0.068 +/-0.012 ( 6664) | +0.027 (+1.1) | +0.019 +/-0.022    | -0.087 (416)
+  ALL        2018-19    | -0.076 +/-0.028 ( 1171) | -0.082 +/-0.014 ( 4284) | +0.005 (+0.2) | -0.002 +/-0.028    | -0.106 (266)
+  ALL        A 2020-21  | +0.042 +/-0.027 ( 1305) | -0.091 +/-0.013 ( 4941) | +0.133 (+4.5) | +0.108 +/-0.027    | -0.066 (298)
+  ALL        B 2024+    | +0.022 +/-0.021 ( 1753) | -0.057 +/-0.010 ( 8572) | +0.079 (+3.4) | +0.080 +/-0.021    | -0.047 (464)
+  by year, all markets ('in' against 'out'):
+    2014 +0.03/-0.10  2015 +0.01/-0.04  2016 -0.11/-0.05  2017 -0.08/-0.08  2018 -0.03/-0.05  2019 -0.12/-0.11  2020 +0.07/-0.08  2021 +0.02/-0.10  2024 -0.01/-0.06  2025 +0.04/-0.04  2026 +0.05/-0.08
+  Read: the rule PERSISTS if, on the ALL rows for 2014-17 and 2018-19, 'in' beats 'out' by 2+ standard errors, the
+  before-cost column is above zero, and the control lane under the same condition is not also lifted.
+  Whether 'in' is above zero AFTER costs in the old years depends on the cost approximation: do not lean on it.
+
+----------------------------------------------------------------------------------------------------
+4c. THE LABEL   trades entered at the turn of the month against all other trades (every lane except control)
+----------------------------------------------------------------------------------------------------
+  era        | in: R (n)              | out: R (n)             | in - out (z)  | markets better / control in - out
+  2014-17    | -0.126 +/-0.018 ( 3583) | -0.132 +/-0.009 (15345) | +0.006 (+0.3) | 4/5   control -0.012
+  2018-19    | -0.123 +/-0.023 ( 2264) | -0.135 +/-0.011 ( 9778) | +0.013 (+0.5) | 4/5   control +0.037
+  A 2020-21  | -0.077 +/-0.020 ( 2788) | -0.123 +/-0.009 (12476) | +0.047 (+2.1) | 6/6   control -0.017
+  B 2024+    | -0.084 +/-0.016 ( 4769) | -0.130 +/-0.007 (20831) | +0.046 (+2.6) | 5/6   control +0.016
+  Read: it persists if 'in - out' is positive in both old eras with 2+ standard errors between them.
+
+runtime 10.5s

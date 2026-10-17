@@ -1,0 +1,160 @@
+# 2026-10-13 17:28:31  module dipdrift
+# asiabo_dipdrift.py
+
+======================================================================================================================
+DIP + DRIFT SIZING on US TECH 100 -- pre-registered 2026-10-13 (dip_drift_spec.md / top of this file). ONE run.
+======================================================================================================================
+file: US TECH 100_m1_20151218_0800.txt  (690111 bars, 0 malformed, 0 out of order, complete=True, 2015-12-18 08:01:00 .. 2019-12-31 19:58:00)
+file: US TECH 100_m1_20200102_0700.txt  (1697203 bars, 0 malformed, 0 out of order, complete=True, 2020-01-02 07:01:00 .. 2026-10-01 23:58:00)
+
+=== US TECH 100: 2387314 bars, 2015-12-18 08:01:00 -> 2026-10-01 23:58:00 ===
+holiday calendar: US + UK
+year     bars  weekdays  spread pips   ticks/bar   hours with data, UTC 00..23
+2015     6746         9         0.44        45.5   |        ###########++   |
+2016   178555       237         0.47        46.5   |       +###########+.   |
+2017   109912       250         0.37        54.1   |        .....+######    |
+2018   195289       254         1.53        59.2   |       #############    |
+2019   199609       258         1.47        52.8   |       #############    |
+2020   197197       258         1.56        89.5   |       #############    |
+2021   200508       259         1.25       136.4   |       #############    |
+2022   215246       258         0.89       171.6   |  .....#############    |
+2023   214703       257         0.41       121.9   |  .....#############    |
+2024   249701       260         0.79       111.3   |.......#############.. .|
+2025   352537       260         0.58        90.8   |#####################.++|
+2026   267311       196         0.59       117.8   |#####################.++|
+         (# = data on 90%+ of that year's weekdays in that hour, + = 50%+, . = 10%+, blank = under 10%)
+usual daily break 2015: (partial year, 9 weekdays -- skipped)
+usual daily break 2016: from 19:00 for about 720 min (20 nights); from 20:00 for about 660 min (96 nights); from 20:00 for about 720 min (33 nights); from 21:00 for about 660 min (29 nights)
+usual daily break 2017: from 20:00 for about 721 min (36 nights); from 20:00 for about 1051 min (120 nights); from 20:00 for about 1110 min (32 nights)
+usual daily break 2018: from 20:00 for about 660 min (192 nights)
+usual daily break 2019: from 20:00 for about 660 min (196 nights)
+usual daily break 2020: from 20:00 for about 660 min (198 nights)
+usual daily break 2021: from 20:00 for about 660 min (200 nights)
+usual daily break 2022: from 20:00 for about 360 min (51 nights); from 20:00 for about 660 min (147 nights)
+usual daily break 2023: from 20:00 for about 360 min (52 nights); from 20:00 for about 660 min (145 nights)
+usual daily break 2024: from 20:00 for about 360 min (37 nights); from 20:00 for about 660 min (112 nights); from 21:00 for about 60 min (18 nights); from 22:00 for about 60 min (30 nights)
+usual daily break 2025: from 21:00 for about 60 min (131 nights); from 22:00 for about 60 min (65 nights)
+usual daily break 2026: from 21:00 for about 60 min (118 nights); from 22:00 for about 60 min (34 nights)
+!! 2016 is shut about 515 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2017 is shut about 778 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2018 is shut about 507 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2019 is shut about 501 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2020 is shut about 509 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2021 is shut about 512 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2022 is shut about 448 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2023 is shut about 445 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+!! 2024 is shut about 346 min a night, 2026 about 46: whole hours are missing in one of them. Look at
+   the 'hours with data' rows above. This is either the broker's history or the extraction.
+gaps: 483 weekend (usual length 3540 min), 77 weekend_long, 2113 daily break, 151 other (5+ min), 919 short (<5 min, not stored)
+long holes: 160 -- 105 explained by a holiday, 5 by a known event, 50 unexplained -> gaps_to_check.csv
+   2020-03-09 08:26:00 -> 2020-03-09 13:35:00   308 min   event: US equity circuit breaker / limit-down
+   2020-03-13 19:59:00 -> 2020-03-16 13:46:00   3946 min   event: US equity circuit breaker / limit-down
+   2020-03-17 19:59:00 -> 2020-03-18 13:30:00   1050 min   event: US equity circuit breaker
+   2025-01-09 14:29:00 -> 2025-01-09 23:00:00   510 min   event: NYSE closed: national day of mourning (Carter)
+   2025-11-28 06:48:00 -> 2025-11-28 13:50:00   421 min   event: CME Globex outage (data-centre cooling failure)
+unexplained, longest first (up to 15):
+   2016-01-08 20:59:00 -> 2016-01-26 08:00:00   25140 min missing   weekend_long
+   2016-06-17 19:59:00 -> 2016-06-27 07:00:00   13620 min missing   weekend_long
+   2020-10-09 09:22:00 -> 2020-10-13 13:13:00   5990 min missing   weekend_long
+   2018-09-07 13:14:00 -> 2018-09-11 13:33:00   5778 min missing   weekend_long
+   2017-02-24 19:59:00 -> 2017-02-27 14:31:00   3991 min missing   weekend_long
+   2017-03-03 19:59:00 -> 2017-03-06 14:31:00   3991 min missing   weekend_long
+   2017-01-20 19:59:00 -> 2017-01-23 14:30:00   3990 min missing   weekend_long
+   2017-01-27 19:59:00 -> 2017-01-30 14:30:00   3990 min missing   weekend_long
+   2017-02-03 19:59:00 -> 2017-02-06 14:30:00   3990 min missing   weekend_long
+   2017-02-10 19:59:00 -> 2017-02-13 14:30:00   3990 min missing   weekend_long
+   2017-03-10 19:59:00 -> 2017-03-13 13:31:00   3931 min missing   weekend_long
+   2017-03-17 19:59:00 -> 2017-03-20 13:31:00   3931 min missing   weekend_long
+   2017-03-24 19:59:00 -> 2017-03-27 13:31:00   3931 min missing   weekend_long
+   2017-03-31 19:59:00 -> 2017-04-03 13:31:00   3931 min missing   weekend_long
+   2017-04-07 19:59:00 -> 2017-04-10 13:31:00   3931 min missing   weekend_long
+
+DATA COVERAGE (printed BEFORE any result; exam lesson 2026-10-13):
+   year     bars  weekdays  spread pips   ticks/bar   hours with data, UTC 00..23
+   2015     6746         9         0.44        45.5   |        ###########++   |
+   2016   178555       237         0.47        46.5   |       +###########+.   |
+   2017   109912       250         0.37        54.1   |        .....+######    |
+   2018   195289       254         1.53        59.2   |       #############    |
+   2019   199609       258         1.47        52.8   |       #############    |
+   2020   197197       258         1.56        89.5   |       #############    |
+   2021   200508       259         1.25       136.4   |       #############    |
+   2022   215246       258         0.89       171.6   |  .....#############    |
+   2023   214703       257         0.41       121.9   |  .....#############    |
+   2024   249701       260         0.79       111.3   |.......#############.. .|
+   2025   352537       260         0.58        90.8   |#####################.++|
+   2026   267311       196         0.59       117.8   |#####################.++|
+            (# = data on 90%+ of that year's weekdays in that hour, + = 50%+, . = 10%+, blank = under 10%)
+      the 'hours with data' rows above. This is either the broker's history or the extraction.
+      the 'hours with data' rows above. This is either the broker's history or the extraction.
+      the 'hours with data' rows above. This is either the broker's history or the extraction.
+      the 'hours with data' rows above. This is either the broker's history or the extraction.
+      the 'hours with data' rows above. This is either the broker's history or the extraction.
+      the 'hours with data' rows above. This is either the broker's history or the extraction.
+      the 'hours with data' rows above. This is either the broker's history or the extraction.
+      the 'hours with data' rows above. This is either the broker's history or the extraction.
+      the 'hours with data' rows above. This is either the broker's history or the extraction.
+      2020-03-09 08:26:00 -> 2020-03-09 13:35:00   308 min   event: US equity circuit breaker / limit-down
+      2020-03-13 19:59:00 -> 2020-03-16 13:46:00   3946 min   event: US equity circuit breaker / limit-down
+      2020-03-17 19:59:00 -> 2020-03-18 13:30:00   1050 min   event: US equity circuit breaker
+      2025-01-09 14:29:00 -> 2025-01-09 23:00:00   510 min   event: NYSE closed: national day of mourning (Carter)
+      2025-11-28 06:48:00 -> 2025-11-28 13:50:00   421 min   event: CME Globex outage (data-centre cooling failure)
+      2016-01-08 20:59:00 -> 2016-01-26 08:00:00   25140 min missing   weekend_long
+      2016-06-17 19:59:00 -> 2016-06-27 07:00:00   13620 min missing   weekend_long
+      2020-10-09 09:22:00 -> 2020-10-13 13:13:00   5990 min missing   weekend_long
+      2018-09-07 13:14:00 -> 2018-09-11 13:33:00   5778 min missing   weekend_long
+      2017-02-24 19:59:00 -> 2017-02-27 14:31:00   3991 min missing   weekend_long
+      2017-03-03 19:59:00 -> 2017-03-06 14:31:00   3991 min missing   weekend_long
+      2017-01-20 19:59:00 -> 2017-01-23 14:30:00   3990 min missing   weekend_long
+      2017-01-27 19:59:00 -> 2017-01-30 14:30:00   3990 min missing   weekend_long
+      2017-02-03 19:59:00 -> 2017-02-06 14:30:00   3990 min missing   weekend_long
+      2017-02-10 19:59:00 -> 2017-02-13 14:30:00   3990 min missing   weekend_long
+      2017-03-10 19:59:00 -> 2017-03-13 13:31:00   3931 min missing   weekend_long
+      2017-03-17 19:59:00 -> 2017-03-20 13:31:00   3931 min missing   weekend_long
+      2017-03-24 19:59:00 -> 2017-03-27 13:31:00   3931 min missing   weekend_long
+      2017-03-31 19:59:00 -> 2017-04-03 13:31:00   3931 min missing   weekend_long
+      2017-04-07 19:59:00 -> 2017-04-10 13:31:00   3931 min missing   weekend_long
+scoring window for ALL variants: trades entering from 2017-01-12 (the table's 252-day warm-up)
+
+----------------------------------------------------------------------------------------------------------------------
+RESULTS (R per trade = unsized; sized R = R x the table's size; one position at a time)
+----------------------------------------------------------------------------------------------------------------------
+
+variant                                          n    win   net/tr  EDGE/tr  sizedR    maxDD   worst Q  trades per size (1 / .5 / .25)
+A  dip as it is (200-day, next open)           110    71%   +0.100   +0.226   +11.0     15.5  2018-Q1 -9.3  110 / 0 / 0
+B  + 1-hour confirmation                       111    70%   +0.077   +0.200    +8.6     18.3  2018-Q1 -9.1  111 / 0 / 0
+C  + Ezio's table (no 200-day)                  98    72%   +0.136   +0.265   +12.9     17.4  2018-Q1 -9.9  96 / 1 / 1
+D  Ezio's full design (table + confirmation)    99    72%   +0.126   +0.250   +12.2     17.0  2018-Q1 -9.4  97 / 1 / 1
+
+sized R by year:   2017  2018  2019  2020  2021  2022  2023  2024  2025  2026
+   A   +2.6   -9.0   -1.2   -3.8   +9.0   -2.8   -0.8  +11.9   -2.1   +7.2
+   B   +1.6   -9.7   -3.7   -0.7   +7.6   -2.7   -0.2  +12.5   -2.2   +6.0
+   C   +2.6  -10.0   -0.5   -5.5   +5.9   +2.5   +1.6  +11.5   +1.1   +3.7
+   D   +1.6  -10.1   -2.1   -2.3   +5.0   +2.0   +2.9  +11.9   +0.9   +2.3
+
+   R per unit of size: A +0.100  D +0.125   (does the table pick better trades, or just trade less?)
+   D - A: sized R +1.2 (noise bar 13.0), max drawdown +1.6 (noise bar 9.0)
+   VERDICT  dip itself on US Tech 100 (A): MIXED      Ezio's design (D vs A): INSIDE THE NOISE
+   (A PASS = net > +0.15 and EDGE > 0. D WINS = sized R beats A's by more than the noise bar and drawdown is not
+    worse; SAFER = drawdown smaller by more than its noise bar, sized R at most 25%% below A's; LOSES = sized R below
+    A's by more than the bar; else INSIDE THE NOISE.)
+
+2020 / 2022 sized R:  A -3.8 / -2.8   B -0.7 / -2.7   C -5.5 / +2.5   D -2.3 / +2.0
+
+YARDSTICK (10 fake US Tech 100 random walks WITH index-like drift + 2 without, 2026-10-13, BEFORE the test):
+    D - A sized R ranged -10.7 .. +12.5 and the drawdown gap -8.6 .. +4.5 on pure noise. With the first rule
+    ('D >= A and drawdown <= A') noise 'WON' 5 of 10 times, so the bars were set above every noise run:
+    WINS needs D - A > +13 R; SAFER needs a drawdown cut of more than 9 R. A on noise: net -0.31 .. +0.13, never PASS.
+    Power: about 100 trades over 9 years; only a large difference between D and A can show.
+
+marked done: D:\coding stuff\Trading research project\exam_hold\DIPDRIFT_DONE.txt -- the test will not run again.
+
+report folder: D:\coding stuff\Trading research project\reports\dipdrift_20261013_172831
+claude vision: wiped and refilled with 1 file(s) from dipdrift_20261013_172831

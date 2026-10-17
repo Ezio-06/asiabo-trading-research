@@ -1,0 +1,395 @@
+==============================================================================================================
+POCKET HUNT, step 2: DISCOVER on 2014-17 + A 2020-21 ONLY   (table built 2026-10-10 14:50 from D:\coding stuff\Trading research project\bars.db)
+==============================================================================================================
+Protocol: asiabo_hunt.py top. Pocket = a third of one state (cut points from this half) or a category, alone or
+crossed with the momentum axis (vr120); thirds, 10% tails and sign splits, good AND bad pockets. Kept: |t| >= 2.5
+(clustered by market x month), >= 60 trades inside and
+outside, at most 12 per part. diff = edge inside minus edge outside (R per trade, cost-free). The CHECK half is
+not read here. States: vol, atrchg, trendy, vr120, ac60, trend60_with, eff10_with, mv10_with, pos20_with, dist200_with, prev_range, risk_size, day_move_with, gap_with, spread_R, form20, n_trending, dir, market, weekday, hour, with_50d, with_slope20, nr7, risk_on, usd_up
+
+--------------------------------------------------------------------------------------------------------------
+brk: 887 discovery trades, edge +0.093/trade (t +1.2)
+--------------------------------------------------------------------------------------------------------------
+
+  brk-01  vr120 mid third (0.864 .. 1.02)  AND  form20 mid third (-7.5 .. 3.67)
+        in   98 out  789 | edge in -0.514 out +0.169 | diff -0.683 t -3.5 | BAD pocket (make it harmless) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 58% short 42% | GERMANY40 11% US500  1% USDJPY 58% XAUUSD 30% | 14-17 64% 20-21 36% | medians: vol 0.92, atrchg 0.99, vr120 0.95, trendy 0.21, trend60_with 0.21, dist200_with 2.53, n_trending 1.00, spread_R 0.02
+          outside | long 58% short 42% | GERMANY40 19% US500 12% USDJPY 33% XAUUSD 37% | 14-17 57% 20-21 43% | medians: vol 0.86, atrchg 1.01, vr120 0.94, trendy 0.26, trend60_with 0.35, dist200_with 2.55, n_trending 1.00, spread_R 0.02
+          controls: the sign holds in 58 of 58 strata of the other states; worst control weekday keeps 94%
+          within weekday: 1:-0.02 2:-0.68 3:-0.48 4:-1.77
+          concentration: best market-year USDJPY 2017 = 28% of the pocket's excess; without it diff -0.541 t -2.9
+
+  brk-02  vr120 low third (<= 0.864)  AND  dist200_with < 0
+        in   68 out  819 | edge in -0.639 out +0.154 | diff -0.793 t -2.8 | BAD pocket (make it harmless) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 16% short 84% | GERMANY40 31% US500 13% USDJPY 41% XAUUSD 15% | 14-17 50% 20-21 50% | medians: vol 0.88, atrchg 1.13, vr120 0.73, trendy 0.16, trend60_with 0.03, dist200_with -2.53, n_trending 1.00, spread_R 0.02
+          outside | long 62% short 38% | GERMANY40 17% US500 11% USDJPY 35% XAUUSD 38% | 14-17 59% 20-21 41% | medians: vol 0.87, atrchg 0.99, vr120 0.97, trendy 0.26, trend60_with 0.38, dist200_with 3.06, n_trending 1.00, spread_R 0.02
+          controls: the sign holds in 47 of 48 strata of the other states; worst control weekday keeps 76%
+          within weekday: 4:-0.60
+          concentration: best market-year USDJPY 2021 = 21% of the pocket's excess; without it diff -0.679 t -2.8
+
+  brk-03  vr120 low third (<= 0.864)  AND  prev_range high third (> 1.23)
+        in   93 out  794 | edge in -0.409 out +0.152 | diff -0.561 t -2.8 | BAD pocket (make it harmless) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 37% short 63% | GERMANY40 23% US500 19% USDJPY 29% XAUUSD 29% | 14-17 41% 20-21 59% | medians: vol 0.84, atrchg 1.14, vr120 0.75, trendy 0.23, trend60_with 0.18, dist200_with 1.48, n_trending 1.00, spread_R 0.01
+          outside | long 61% short 39% | GERMANY40 17% US500 10% USDJPY 36% XAUUSD 37% | 14-17 60% 20-21 40% | medians: vol 0.88, atrchg 0.98, vr120 0.97, trendy 0.25, trend60_with 0.35, dist200_with 2.72, n_trending 1.00, spread_R 0.02
+          controls: the sign holds in 57 of 60 strata of the other states; worst control risk_on keeps 46%  <-- DISGUISE? controlling for risk_on leaves 46% of it
+          within risk_on: 0:+0.36 1:-0.51
+          concentration: best market-year USDJPY 2015 = 23% of the pocket's excess; without it diff -0.458 t -2.3
+
+  brk-04  vr120 high third (> 1.02)  AND  usd_up = 1
+        in  146 out  741 | edge in +0.684 out -0.023 | diff +0.707 t +2.8 | GOOD pocket (keep the part on) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 60% short 40% | GERMANY40 21% US500  0% USDJPY 36% XAUUSD 43% | 14-17 63% 20-21 37% | medians: vol 0.95, atrchg 0.99, vr120 1.16, trendy 0.38, trend60_with 0.54, dist200_with 4.78, n_trending 1.00, spread_R 0.03
+          outside | long 58% short 42% | GERMANY40 17% US500 13% USDJPY 35% XAUUSD 34% | 14-17 57% 20-21 43% | medians: vol 0.86, atrchg 1.01, vr120 0.90, trendy 0.24, trend60_with 0.28, dist200_with 2.23, n_trending 1.00, spread_R 0.02
+          controls: the sign holds in 59 of 61 strata of the other states; worst control risk_on keeps 54%
+          within risk_on: 1:+0.38
+          concentration: best market-year USDJPY 2014 = 50% of the pocket's excess; without it diff +0.423 t +1.9  <-- ONE STRETCH?
+
+  brk-05  day_move_with bottom 10% (<= -0.452)
+        in   89 out  798 | edge in -0.356 out +0.143 | diff -0.499 t -2.7 | BAD pocket (make it harmless) | select-only (half split + yardstick only)
+          inside  | long 46% short 54% | GERMANY40 13% US500 24% USDJPY 35% XAUUSD 28% | 14-17 46% 20-21 54% | medians: vol 0.85, atrchg 1.09, vr120 0.94, trendy 0.24, trend60_with 0.35, dist200_with 2.63, n_trending 1.00, spread_R 0.02
+          outside | long 60% short 40% | GERMANY40 18% US500  9% USDJPY 35% XAUUSD 37% | 14-17 59% 20-21 41% | medians: vol 0.87, atrchg 0.99, vr120 0.95, trendy 0.25, trend60_with 0.33, dist200_with 2.54, n_trending 1.00, spread_R 0.02
+          controls: the sign holds in 57 of 60 strata of the other states; worst control risk_on keeps -10%  <-- DISGUISE? controlling for risk_on leaves -10% of it
+          within risk_on: 1:+0.05
+          concentration: best market-year USDJPY 2015 = 28% of the pocket's excess; without it diff -0.383 t -2.2
+
+  brk-06  usd_up = 1
+        in  445 out  442 | edge in +0.288 out -0.102 | diff +0.390 t +2.6 | GOOD pocket (keep the part on) | select-only (half split + yardstick only)
+          inside  | long 68% short 32% | GERMANY40 19% US500  8% USDJPY 37% XAUUSD 35% | 14-17 60% 20-21 40% | medians: vol 0.87, atrchg 0.97, vr120 0.95, trendy 0.27, trend60_with 0.38, dist200_with 3.94, n_trending 1.00, spread_R 0.02
+          outside | long 49% short 51% | GERMANY40 17% US500 13% USDJPY 33% XAUUSD 37% | 14-17 56% 20-21 44% | medians: vol 0.86, atrchg 1.02, vr120 0.94, trendy 0.23, trend60_with 0.26, dist200_with 1.28, n_trending 1.00, spread_R 0.02
+          controls: the sign holds in 59 of 67 strata of the other states; worst control risk_on keeps 64%
+          within risk_on: 0:+0.29 1:+0.24
+          concentration: best market-year USDJPY 2014 = 30% of the pocket's excess; without it diff +0.293 t +2.0
+
+  brk-07  usd_up = 0
+        in  442 out  445 | edge in -0.102 out +0.288 | diff -0.390 t -2.6 | BAD pocket (make it harmless) | select-only (half split + yardstick only)
+          inside  | long 49% short 51% | GERMANY40 17% US500 13% USDJPY 33% XAUUSD 37% | 14-17 56% 20-21 44% | medians: vol 0.86, atrchg 1.02, vr120 0.94, trendy 0.23, trend60_with 0.26, dist200_with 1.28, n_trending 1.00, spread_R 0.02
+          outside | long 68% short 32% | GERMANY40 19% US500  8% USDJPY 37% XAUUSD 35% | 14-17 60% 20-21 40% | medians: vol 0.87, atrchg 0.97, vr120 0.95, trendy 0.27, trend60_with 0.38, dist200_with 3.94, n_trending 1.00, spread_R 0.02
+          controls: the sign holds in 59 of 67 strata of the other states; worst control risk_on keeps 64%
+          within risk_on: 0:-0.29 1:-0.24
+          concentration: best market-year GERMANY40 2017 = 14% of the pocket's excess; without it diff -0.361 t -2.4
+
+  brk-08  vr120 >= 1  AND  vol high third (> 0.97)
+        in  130 out  757 | edge in +0.441 out +0.034 | diff +0.408 t +2.5 | GOOD pocket (keep the part on) | creatable: persist dial (D1)
+          inside  | long 58% short 42% | GERMANY40 15% US500  0% USDJPY 56% XAUUSD 29% | 14-17 57% 20-21 43% | medians: vol 1.19, atrchg 1.01, vr120 1.11, trendy 0.27, trend60_with 0.52, dist200_with 4.55, n_trending 1.00, spread_R 0.03
+          outside | long 58% short 42% | GERMANY40 18% US500 13% USDJPY 32% XAUUSD 37% | 14-17 58% 20-21 42% | medians: vol 0.83, atrchg 1.00, vr120 0.91, trendy 0.24, trend60_with 0.31, dist200_with 2.47, n_trending 1.00, spread_R 0.02
+          controls: the sign holds in 54 of 61 strata of the other states; worst control risk_on keeps 48%  <-- DISGUISE? controlling for risk_on leaves 48% of it
+          within risk_on: 0:+0.43 1:+0.10
+          concentration: best market-year USDJPY 2014 = 39% of the pocket's excess; without it diff +0.349 t +1.8
+
+--------------------------------------------------------------------------------------------------------------
+ins: 674 discovery trades, edge +0.125/trade (t +2.2)
+--------------------------------------------------------------------------------------------------------------
+
+  ins-01  vr120 >= 1  AND  prev_range mid third (0.51 .. 0.726)
+        in   60 out  614 | edge in -0.322 out +0.168 | diff -0.491 t -3.8 | BAD pocket (make it harmless) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 48% short 52% | GERMANY40 22% US500  0% USDJPY 25% XAUUSD 53% | 14-17 65% 20-21 35% | medians: vol 0.95, atrchg 0.93, vr120 1.13, trendy 0.32, trend60_with 0.09, dist200_with -0.40, n_trending 1.00, spread_R 0.03
+          outside | long 54% short 46% | GERMANY40 18% US500  9% USDJPY 38% XAUUSD 36% | 14-17 60% 20-21 40% | medians: vol 0.87, atrchg 0.96, vr120 0.90, trendy 0.19, trend60_with 0.06, dist200_with 0.23, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 45 of 45 strata of the other states; worst control risk_size keeps 65%
+          within risk_size: 1:-0.32
+          concentration: best market-year XAUUSD 2017 = 34% of the pocket's excess; without it diff -0.397 t -3.1
+
+  ins-02  trendy low third (<= 0.116)
+        in  225 out  449 | edge in +0.437 out -0.032 | diff +0.469 t +3.7 | GOOD pocket (keep the part on) | creatable: persist dial (D1)
+          inside  | long 55% short 45% | GERMANY40 17% US500  7% USDJPY 39% XAUUSD 37% | 14-17 54% 20-21 46% | medians: vol 0.92, atrchg 0.96, vr120 0.91, trendy 0.05, trend60_with 0.05, dist200_with 0.41, n_trending 0.00, spread_R 0.03
+          outside | long 53% short 47% | GERMANY40 19% US500  8% USDJPY 36% XAUUSD 37% | 14-17 63% 20-21 37% | medians: vol 0.86, atrchg 0.95, vr120 0.93, trendy 0.28, trend60_with 0.07, dist200_with 0.17, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 65 of 65 strata of the other states; worst control risk_on keeps 7%  <-- DISGUISE? controlling for risk_on leaves 7% of it
+          within risk_on: 1:+0.03
+          concentration: best market-year USDJPY 2014 = 19% of the pocket's excess; without it diff +0.429 t +3.3
+
+  ins-03  vr120 mid third (0.845 .. 0.991)  AND  market = USDJPY
+        in  105 out  569 | edge in +0.590 out +0.039 | diff +0.551 t +3.7 | GOOD pocket (keep the part on) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 58% short 42% | GERMANY40  0% US500  0% USDJPY 100% XAUUSD  0% | 14-17 63% 20-21 37% | medians: vol 0.88, atrchg 0.95, vr120 0.93, trendy 0.18, trend60_with -0.05, dist200_with -0.24, n_trending 1.00, spread_R 0.02
+          outside | long 53% short 47% | GERMANY40 22% US500  9% USDJPY 25% XAUUSD 44% | 14-17 60% 20-21 40% | medians: vol 0.87, atrchg 0.95, vr120 0.92, trendy 0.20, trend60_with 0.07, dist200_with 0.33, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 59 of 59 strata of the other states; worst control hour keeps 90%
+          within hour: 5h+:+0.49 pre-open:+0.50
+          concentration: best market-year USDJPY 2021 = 39% of the pocket's excess; without it diff +0.399 t +3.2
+
+  ins-04  vr120 < 1  AND  trendy low third (<= 0.116)
+        in  152 out  522 | edge in +0.540 out +0.004 | diff +0.536 t +3.6 | GOOD pocket (keep the part on) | creatable: persist dial (D1)
+          inside  | long 53% short 47% | GERMANY40 18% US500  9% USDJPY 39% XAUUSD 34% | 14-17 51% 20-21 49% | medians: vol 0.91, atrchg 0.95, vr120 0.84, trendy 0.05, trend60_with 0.07, dist200_with 0.41, n_trending 1.00, spread_R 0.03
+          outside | long 54% short 46% | GERMANY40 18% US500  8% USDJPY 36% XAUUSD 38% | 14-17 63% 20-21 37% | medians: vol 0.87, atrchg 0.96, vr120 0.96, trendy 0.25, trend60_with 0.06, dist200_with 0.17, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 60 of 61 strata of the other states; worst control risk_on keeps 30%  <-- DISGUISE? controlling for risk_on leaves 30% of it
+          within risk_on: 1:+0.16
+          concentration: best market-year USDJPY 2014 = 21% of the pocket's excess; without it diff +0.479 t +3.3
+
+  ins-05  vr120 < 1  AND  market = USDJPY
+        in  173 out  501 | edge in +0.429 out +0.019 | diff +0.410 t +3.4 | GOOD pocket (keep the part on) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 58% short 42% | GERMANY40  0% US500  0% USDJPY 100% XAUUSD  0% | 14-17 65% 20-21 35% | medians: vol 0.87, atrchg 0.95, vr120 0.89, trendy 0.18, trend60_with -0.01, dist200_with -0.29, n_trending 1.00, spread_R 0.02
+          outside | long 52% short 48% | GERMANY40 25% US500 11% USDJPY 15% XAUUSD 50% | 14-17 58% 20-21 42% | medians: vol 0.88, atrchg 0.96, vr120 0.97, trendy 0.20, trend60_with 0.08, dist200_with 0.34, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 59 of 61 strata of the other states; worst control trend60_with keeps 92%
+          within trend60_with: 0:+0.56 1:-0.02 2:+0.73
+          concentration: best market-year USDJPY 2021 = 37% of the pocket's excess; without it diff +0.297 t +2.6
+
+  ins-06  vr120 mid third (0.845 .. 0.991)  AND  trendy low third (<= 0.116)
+        in   73 out  601 | edge in +0.760 out +0.047 | diff +0.713 t +3.3 | GOOD pocket (keep the part on) | creatable: persist dial (D1)
+          inside  | long 52% short 48% | GERMANY40 15% US500  3% USDJPY 48% XAUUSD 34% | 14-17 48% 20-21 52% | medians: vol 0.92, atrchg 0.92, vr120 0.92, trendy 0.05, trend60_with -0.06, dist200_with 0.23, n_trending 1.00, spread_R 0.02
+          outside | long 54% short 46% | GERMANY40 19% US500  8% USDJPY 35% XAUUSD 37% | 14-17 62% 20-21 38% | medians: vol 0.87, atrchg 0.96, vr120 0.92, trendy 0.22, trend60_with 0.09, dist200_with 0.20, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 56 of 56 strata of the other states; worst control risk_on keeps 49%  <-- DISGUISE? controlling for risk_on leaves 49% of it
+          within risk_on: 1:+0.35
+          concentration: best market-year USDJPY 2020 = 21% of the pocket's excess; without it diff +0.704 t +2.7
+
+  ins-07  vr120 < 1  AND  risk_size low third (<= 0.271)
+        in  146 out  528 | edge in +0.535 out +0.011 | diff +0.524 t +3.1 | GOOD pocket (keep the part on) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 49% short 51% | GERMANY40 11% US500  6% USDJPY 45% XAUUSD 38% | 14-17 63% 20-21 37% | medians: vol 0.88, atrchg 0.86, vr120 0.86, trendy 0.16, trend60_with 0.02, dist200_with 0.32, n_trending 1.00, spread_R 0.06
+          outside | long 55% short 45% | GERMANY40 20% US500  8% USDJPY 34% XAUUSD 37% | 14-17 59% 20-21 41% | medians: vol 0.87, atrchg 0.99, vr120 0.97, trendy 0.20, trend60_with 0.07, dist200_with 0.19, n_trending 1.00, spread_R 0.02
+          controls: the sign holds in 56 of 60 strata of the other states; worst control risk_on keeps 89%
+          within risk_on: 1:+0.46
+          concentration: best market-year USDJPY 2021 = 22% of the pocket's excess; without it diff +0.442 t +2.8
+
+  ins-08  vr120 < 1  AND  market = GERMANY40
+        in   70 out  604 | edge in -0.305 out +0.174 | diff -0.479 t -3.1 | BAD pocket (make it harmless) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 47% short 53% | GERMANY40 100% US500  0% USDJPY  0% XAUUSD  0% | 14-17 46% 20-21 54% | medians: vol 0.87, atrchg 0.98, vr120 0.76, trendy 0.15, trend60_with -0.03, dist200_with -0.23, n_trending 1.00, spread_R 0.01
+          outside | long 54% short 46% | GERMANY40  9% US500  9% USDJPY 41% XAUUSD 41% | 14-17 62% 20-21 38% | medians: vol 0.87, atrchg 0.95, vr120 0.94, trendy 0.20, trend60_with 0.08, dist200_with 0.26, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 49 of 50 strata of the other states; worst control risk_on keeps 10%  <-- DISGUISE? controlling for risk_on leaves 10% of it
+          within risk_on: 1:-0.05
+          concentration: best market-year GERMANY40 2017 = 73% of the pocket's excess; without it diff -0.236 t -1.5  <-- ONE STRETCH?
+
+  ins-09  vr120 low third (<= 0.845)  AND  form20 >= 0
+        in  108 out  566 | edge in -0.176 out +0.182 | diff -0.357 t -3.0 | BAD pocket (make it harmless) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 51% short 49% | GERMANY40 22% US500 19% USDJPY 26% XAUUSD 32% | 14-17 46% 20-21 54% | medians: vol 0.93, atrchg 0.99, vr120 0.74, trendy 0.15, trend60_with 0.14, dist200_with 1.51, n_trending 1.00, spread_R 0.03
+          outside | long 54% short 46% | GERMANY40 17% US500  6% USDJPY 39% XAUUSD 38% | 14-17 63% 20-21 37% | medians: vol 0.86, atrchg 0.95, vr120 0.96, trendy 0.20, trend60_with 0.04, dist200_with 0.16, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 61 of 62 strata of the other states; worst control dist200_with keeps 79%
+          within dist200_with: 0:-0.39 1:-0.38 2:-0.12
+          concentration: best market-year US500 2021 = 26% of the pocket's excess; without it diff -0.299 t -2.4
+
+  ins-10  vr120 low third (<= 0.845)  AND  risk_size mid third (0.271 .. 0.389)
+        in   75 out  599 | edge in -0.238 out +0.170 | diff -0.408 t -3.0 | BAD pocket (make it harmless) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 49% short 51% | GERMANY40 19% US500 12% USDJPY 36% XAUUSD 33% | 14-17 56% 20-21 44% | medians: vol 0.86, atrchg 0.94, vr120 0.76, trendy 0.20, trend60_with 0.12, dist200_with 0.68, n_trending 1.00, spread_R 0.03
+          outside | long 54% short 46% | GERMANY40 18% US500  7% USDJPY 37% XAUUSD 38% | 14-17 61% 20-21 39% | medians: vol 0.88, atrchg 0.96, vr120 0.95, trendy 0.20, trend60_with 0.04, dist200_with 0.20, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 52 of 55 strata of the other states; worst control prev_range keeps 51%
+          within prev_range: 1:-0.21
+          concentration: best market-year US500 2021 = 16% of the pocket's excess; without it diff -0.382 t -2.7
+
+  ins-11  market = USDJPY
+        in  248 out  426 | edge in +0.351 out -0.007 | diff +0.357 t +3.0 | GOOD pocket (keep the part on) | select-only (half split + yardstick only)
+          inside  | long 57% short 43% | GERMANY40  0% US500  0% USDJPY 100% XAUUSD  0% | 14-17 68% 20-21 32% | medians: vol 0.90, atrchg 0.96, vr120 0.93, trendy 0.18, trend60_with 0.02, dist200_with -0.01, n_trending 1.00, spread_R 0.03
+          outside | long 52% short 48% | GERMANY40 29% US500 12% USDJPY  0% XAUUSD 59% | 14-17 56% 20-21 44% | medians: vol 0.87, atrchg 0.95, vr120 0.92, trendy 0.20, trend60_with 0.07, dist200_with 0.33, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 63 of 64 strata of the other states; worst control risk_size keeps 92%
+          within risk_size: 0:+0.40 1:+0.35 2:+0.23
+          concentration: best market-year USDJPY 2014 = 29% of the pocket's excess; without it diff +0.319 t +2.4
+
+  ins-12  vr120 mid third (0.845 .. 0.991)  AND  n_trending low third (<= 0)
+        in   80 out  594 | edge in +0.575 out +0.064 | diff +0.511 t +2.9 | GOOD pocket (keep the part on) | creatable: persist dial (D1)
+          inside  | long 51% short 49% | GERMANY40 12% US500  4% USDJPY 52% XAUUSD 31% | 14-17 70% 20-21 30% | medians: vol 0.87, atrchg 0.92, vr120 0.92, trendy 0.13, trend60_with 0.02, dist200_with 0.65, n_trending 0.00, spread_R 0.03
+          outside | long 54% short 46% | GERMANY40 19% US500  8% USDJPY 35% XAUUSD 38% | 14-17 59% 20-21 41% | medians: vol 0.88, atrchg 0.96, vr120 0.93, trendy 0.21, trend60_with 0.07, dist200_with 0.17, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 56 of 57 strata of the other states; worst control risk_on keeps 49%  <-- DISGUISE? controlling for risk_on leaves 49% of it
+          within risk_on: 1:+0.25
+          concentration: best market-year USDJPY 2015 = 22% of the pocket's excess; without it diff +0.476 t +2.5
+
+--------------------------------------------------------------------------------------------------------------
+fast: 820 discovery trades, edge +0.159/trade (t +2.9)
+--------------------------------------------------------------------------------------------------------------
+
+  fast-01  vr120 high third (> 1.06)  AND  ac60 mid third (-0.057 .. 0.066)
+        in   84 out  736 | edge in +0.572 out +0.112 | diff +0.459 t +3.3 | GOOD pocket (keep the part on) | creatable: persist dial (D1)
+          inside  | long 75% short 25% | GERMANY40  5% US500  0% USDJPY 44% XAUUSD 51% | 14-17 95% 20-21  5% | medians: vol 0.93, atrchg 0.99, vr120 1.26, trendy 0.44, trend60_with 0.69, dist200_with 5.37, n_trending 1.00, spread_R 0.05
+          outside | long 60% short 40% | GERMANY40 15% US500  7% USDJPY 38% XAUUSD 40% | 14-17 59% 20-21 41% | medians: vol 0.87, atrchg 0.98, vr120 0.94, trendy 0.33, trend60_with 0.45, dist200_with 3.00, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 50 of 51 strata of the other states; worst control form20 keeps 90%
+          within form20: 0:+0.59 1:+0.40 2:+0.34
+          concentration: best market-year USDJPY 2014 = 49% of the pocket's excess; without it diff +0.408 t +2.3
+
+  fast-02  usd_up = 0
+        in  346 out  474 | edge in -0.038 out +0.304 | diff -0.342 t -3.2 | BAD pocket (make it harmless) | select-only (half split + yardstick only)
+          inside  | long 51% short 49% | GERMANY40 16% US500  5% USDJPY 34% XAUUSD 46% | 14-17 61% 20-21 39% | medians: vol 0.85, atrchg 1.01, vr120 0.97, trendy 0.28, trend60_with 0.42, dist200_with 1.94, n_trending 1.00, spread_R 0.03
+          outside | long 69% short 31% | GERMANY40 13% US500  7% USDJPY 42% XAUUSD 38% | 14-17 64% 20-21 36% | medians: vol 0.88, atrchg 0.95, vr120 0.96, trendy 0.39, trend60_with 0.52, dist200_with 4.73, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 65 of 66 strata of the other states; worst control risk_on keeps 88%
+          within risk_on: 0:-0.05 1:-0.36
+          concentration: best market-year XAUUSD 2017 = 15% of the pocket's excess; without it diff -0.331 t -2.9
+
+  fast-03  usd_up = 1
+        in  474 out  346 | edge in +0.304 out -0.038 | diff +0.342 t +3.2 | GOOD pocket (keep the part on) | select-only (half split + yardstick only)
+          inside  | long 69% short 31% | GERMANY40 13% US500  7% USDJPY 42% XAUUSD 38% | 14-17 64% 20-21 36% | medians: vol 0.88, atrchg 0.95, vr120 0.96, trendy 0.39, trend60_with 0.52, dist200_with 4.73, n_trending 1.00, spread_R 0.03
+          outside | long 51% short 49% | GERMANY40 16% US500  5% USDJPY 34% XAUUSD 46% | 14-17 61% 20-21 39% | medians: vol 0.85, atrchg 1.01, vr120 0.97, trendy 0.28, trend60_with 0.42, dist200_with 1.94, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 65 of 66 strata of the other states; worst control risk_on keeps 88%
+          within risk_on: 0:+0.05 1:+0.36
+          concentration: best market-year USDJPY 2014 = 22% of the pocket's excess; without it diff +0.315 t +2.9
+
+  fast-04  vr120 >= 1  AND  usd_up = 1
+        in  190 out  630 | edge in +0.490 out +0.060 | diff +0.430 t +3.1 | GOOD pocket (keep the part on) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 63% short 37% | GERMANY40 18% US500  0% USDJPY 37% XAUUSD 45% | 14-17 71% 20-21 29% | medians: vol 0.95, atrchg 0.96, vr120 1.15, trendy 0.45, trend60_with 0.67, dist200_with 5.37, n_trending 1.00, spread_R 0.04
+          outside | long 61% short 39% | GERMANY40 13% US500  8% USDJPY 39% XAUUSD 40% | 14-17 60% 20-21 40% | medians: vol 0.84, atrchg 0.99, vr120 0.89, trendy 0.31, trend60_with 0.42, dist200_with 2.83, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 60 of 61 strata of the other states; worst control risk_on keeps 44%  <-- DISGUISE? controlling for risk_on leaves 44% of it
+          within risk_on: 1:+0.19
+          concentration: best market-year USDJPY 2014 = 30% of the pocket's excess; without it diff +0.401 t +2.5
+
+  fast-05  vr120 >= 1  AND  n_trending low third (<= 1)
+        in  187 out  633 | edge in +0.466 out +0.069 | diff +0.398 t +2.7 | GOOD pocket (keep the part on) | creatable: persist dial (D1)
+          inside  | long 66% short 34% | GERMANY40  9% US500  0% USDJPY 29% XAUUSD 61% | 14-17 70% 20-21 30% | medians: vol 0.91, atrchg 0.96, vr120 1.15, trendy 0.27, trend60_with 0.43, dist200_with 2.64, n_trending 1.00, spread_R 0.04
+          outside | long 60% short 40% | GERMANY40 16% US500  8% USDJPY 41% XAUUSD 35% | 14-17 61% 20-21 39% | medians: vol 0.86, atrchg 0.99, vr120 0.89, trendy 0.36, trend60_with 0.47, dist200_with 3.36, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 56 of 59 strata of the other states; worst control risk_on keeps -88%  <-- DISGUISE? controlling for risk_on leaves -88% of it
+          within risk_on: 1:-0.35
+          concentration: best market-year USDJPY 2014 = 31% of the pocket's excess; without it diff +0.346 t +2.1
+
+  fast-06  mv10_with bottom 10% (<= 1.46)
+        in   83 out  737 | edge in +0.490 out +0.122 | diff +0.368 t +2.7 | GOOD pocket (keep the part on) | creatable: persist dial (D1)
+          inside  | long 57% short 43% | GERMANY40  0% US500  0% USDJPY 55% XAUUSD 45% | 14-17 64% 20-21 36% | medians: vol 0.89, atrchg 0.88, vr120 0.97, trendy 0.26, trend60_with 0.35, dist200_with 2.31, n_trending 1.00, spread_R 0.02
+          outside | long 62% short 38% | GERMANY40 16% US500  7% USDJPY 36% XAUUSD 41% | 14-17 63% 20-21 37% | medians: vol 0.87, atrchg 1.00, vr120 0.97, trendy 0.35, trend60_with 0.48, dist200_with 3.36, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 50 of 51 strata of the other states; worst control risk_on keeps 25%  <-- DISGUISE? controlling for risk_on leaves 25% of it
+          within risk_on: 1:+0.09
+          concentration: best market-year XAUUSD 2020 = 22% of the pocket's excess; without it diff +0.323 t +2.2
+
+  fast-07  vr120 high third (> 1.06)  AND  usd_up = 1
+        in  140 out  680 | edge in +0.554 out +0.078 | diff +0.476 t +2.7 | GOOD pocket (keep the part on) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 59% short 41% | GERMANY40 14% US500  0% USDJPY 35% XAUUSD 51% | 14-17 74% 20-21 26% | medians: vol 0.90, atrchg 0.92, vr120 1.23, trendy 0.46, trend60_with 0.67, dist200_with 5.37, n_trending 1.00, spread_R 0.04
+          outside | long 62% short 38% | GERMANY40 14% US500  8% USDJPY 39% XAUUSD 39% | 14-17 60% 20-21 40% | medians: vol 0.86, atrchg 0.99, vr120 0.92, trendy 0.32, trend60_with 0.43, dist200_with 2.87, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 59 of 60 strata of the other states; worst control risk_on keeps 52%
+          within risk_on: 1:+0.25
+          concentration: best market-year USDJPY 2014 = 39% of the pocket's excess; without it diff +0.413 t +2.0
+
+  fast-08  vr120 >= 1  AND  dir = short
+        in  119 out  701 | edge in +0.586 out +0.087 | diff +0.499 t +2.7 | GOOD pocket (keep the part on) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long  0% short 100% | GERMANY40  8% US500  0% USDJPY 27% XAUUSD 66% | 14-17 66% 20-21 34% | medians: vol 0.91, atrchg 1.02, vr120 1.13, trendy 0.35, trend60_with 0.20, dist200_with 1.94, n_trending 1.00, spread_R 0.04
+          outside | long 72% short 28% | GERMANY40 15% US500  7% USDJPY 40% XAUUSD 37% | 14-17 62% 20-21 38% | medians: vol 0.85, atrchg 0.97, vr120 0.92, trendy 0.34, trend60_with 0.49, dist200_with 3.71, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 56 of 58 strata of the other states; worst control risk_on keeps -42%  <-- DISGUISE? controlling for risk_on leaves -42% of it
+          within risk_on: 1:-0.21
+          concentration: best market-year XAUUSD 2015 = 35% of the pocket's excess; without it diff +0.384 t +2.5
+
+  fast-09  vr120 high third (> 1.06)  AND  market = USDJPY
+        in   72 out  748 | edge in +0.676 out +0.110 | diff +0.566 t +2.6 | GOOD pocket (keep the part on) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 71% short 29% | GERMANY40  0% US500  0% USDJPY 100% XAUUSD  0% | 14-17 89% 20-21 11% | medians: vol 1.09, atrchg 1.01, vr120 1.17, trendy 0.46, trend60_with 1.04, dist200_with 6.51, n_trending 1.00, spread_R 0.05
+          outside | long 60% short 40% | GERMANY40 16% US500  7% USDJPY 32% XAUUSD 45% | 14-17 60% 20-21 40% | medians: vol 0.85, atrchg 0.98, vr120 0.94, trendy 0.33, trend60_with 0.45, dist200_with 3.02, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 46 of 48 strata of the other states; worst control gap_with keeps 29%  <-- DISGUISE? controlling for gap_with leaves 29% of it
+          within gap_with: 1:+0.17
+          concentration: best market-year USDJPY 2014 = 87% of the pocket's excess; without it diff +0.182 t +0.8  <-- ONE STRETCH?
+
+  fast-10  n_trending bottom 10% (<= 0)
+        in  181 out  639 | edge in +0.463 out +0.073 | diff +0.390 t +2.6 | GOOD pocket (keep the part on) | creatable: persist dial on all markets
+          inside  | long 54% short 46% | GERMANY40 10% US500  3% USDJPY 45% XAUUSD 41% | 14-17 69% 20-21 31% | medians: vol 0.88, atrchg 0.90, vr120 0.97, trendy 0.15, trend60_with 0.12, dist200_with 1.52, n_trending 0.00, spread_R 0.04
+          outside | long 64% short 36% | GERMANY40 15% US500  7% USDJPY 36% XAUUSD 41% | 14-17 61% 20-21 39% | medians: vol 0.87, atrchg 1.00, vr120 0.96, trendy 0.40, trend60_with 0.54, dist200_with 4.03, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 56 of 61 strata of the other states; worst control risk_on keeps 78%
+          within risk_on: 1:+0.31
+          concentration: best market-year XAUUSD 2015 = 31% of the pocket's excess; without it diff +0.296 t +2.1
+
+  fast-11  form20 high third (> 4.66)
+        in  265 out  555 | edge in +0.335 out +0.076 | diff +0.259 t +2.6 | GOOD pocket (keep the part on) | select-only (half split + yardstick only)
+          inside  | long 62% short 38% | GERMANY40 13% US500  3% USDJPY 42% XAUUSD 42% | 14-17 54% 20-21 46% | medians: vol 0.89, atrchg 1.01, vr120 1.01, trendy 0.40, trend60_with 0.61, dist200_with 5.01, n_trending 2.00, spread_R 0.03
+          outside | long 61% short 39% | GERMANY40 15% US500  8% USDJPY 37% XAUUSD 41% | 14-17 67% 20-21 33% | medians: vol 0.85, atrchg 0.96, vr120 0.95, trendy 0.32, trend60_with 0.40, dist200_with 2.61, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 61 of 64 strata of the other states; worst control vr120 keeps 73%
+          within vr120: 0:+0.33 1:-0.04 2:+0.28
+          concentration: best market-year USDJPY 2014 = 36% of the pocket's excess; without it diff +0.207 t +2.1
+
+  fast-12  vr120 high third (> 1.06)  AND  dir = short
+        in   90 out  730 | edge in +0.643 out +0.100 | diff +0.543 t +2.6 | GOOD pocket (keep the part on) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long  0% short 100% | GERMANY40  6% US500  0% USDJPY 23% XAUUSD 71% | 14-17 72% 20-21 28% | medians: vol 0.89, atrchg 1.03, vr120 1.16, trendy 0.35, trend60_with 0.14, dist200_with 2.32, n_trending 2.00, spread_R 0.04
+          outside | long 69% short 31% | GERMANY40 15% US500  7% USDJPY 40% XAUUSD 38% | 14-17 62% 20-21 38% | medians: vol 0.86, atrchg 0.97, vr120 0.93, trendy 0.34, trend60_with 0.49, dist200_with 3.55, n_trending 1.00, spread_R 0.03
+          controls: the sign holds in 56 of 56 strata of the other states; worst control dist200_with keeps 87%
+          within dist200_with: 0:+0.31 1:+0.64
+          concentration: best market-year XAUUSD 2015 = 45% of the pocket's excess; without it diff +0.351 t +2.1
+
+--------------------------------------------------------------------------------------------------------------
+dip: 64 discovery trades, edge +0.392/trade (t +1.9)
+--------------------------------------------------------------------------------------------------------------
+  too few trades to hunt
+
+--------------------------------------------------------------------------------------------------------------
+dipx: 391 discovery trades, edge +0.369/trade (t +2.9)
+--------------------------------------------------------------------------------------------------------------
+
+  dipx-01  vr120 low third (<= 0.677)  AND  eff10_with < 0
+        in   85 out  306 | edge in +0.865 out +0.232 | diff +0.634 t +4.2 | GOOD pocket (keep the part on) | creatable: persist dial (D1)
+          inside  | long 100% short  0% | GERMANY40 60% US500 40% | 14-17  1% 20-21 99% | medians: vol 0.85, atrchg 1.13, vr120 0.59, trendy 0.14, trend60_with 0.19, dist200_with 5.96, n_trending 1.00, spread_R 0.00
+          outside | long 100% short  0% | GERMANY40 73% US500 27% | 14-17 36% 20-21 64% | medians: vol 0.85, atrchg 0.98, vr120 0.85, trendy 0.16, trend60_with 0.47, dist200_with 5.98, n_trending 1.00, spread_R 0.01
+          controls: the sign holds in 53 of 53 strata of the other states; worst control mv10_with keeps 80%
+          within mv10_with: 0:+0.42 1:+0.61
+          concentration: best market-year US500 2021 = 58% of the pocket's excess; without it diff +0.467 t +3.0  <-- ONE STRETCH?
+
+  dipx-02  vr120 < 1  AND  day_move_with < 0
+        in  187 out  204 | edge in +0.079 out +0.636 | diff -0.557 t -4.0 | BAD pocket (make it harmless) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 100% short  0% | GERMANY40 69% US500 31% | 14-17 25% 20-21 75% | medians: vol 0.86, atrchg 1.07, vr120 0.71, trendy 0.17, trend60_with 0.39, dist200_with 6.26, n_trending 1.00, spread_R 0.01
+          outside | long 100% short  0% | GERMANY40 72% US500 28% | 14-17 31% 20-21 69% | medians: vol 0.83, atrchg 0.97, vr120 0.84, trendy 0.13, trend60_with 0.47, dist200_with 5.88, n_trending 1.00, spread_R 0.01
+          controls: the sign holds in 57 of 58 strata of the other states; worst control spread_R keeps 91%
+          within spread_R: 0:-0.40 1:-0.49 2:-0.63
+          concentration: best market-year GERMANY40 2020 = 34% of the pocket's excess; without it diff -0.490 t -3.4
+
+  dipx-03  day_move_with >= 0
+        in  173 out  218 | edge in +0.635 out +0.158 | diff +0.477 t +3.8 | GOOD pocket (keep the part on) | select-only (half split + yardstick only)
+          inside  | long 100% short  0% | GERMANY40 66% US500 34% | 14-17 31% 20-21 69% | medians: vol 0.84, atrchg 0.97, vr120 0.79, trendy 0.14, trend60_with 0.44, dist200_with 5.57, n_trending 1.00, spread_R 0.01
+          outside | long 100% short  0% | GERMANY40 73% US500 27% | 14-17 27% 20-21 73% | medians: vol 0.85, atrchg 1.06, vr120 0.75, trendy 0.17, trend60_with 0.42, dist200_with 6.58, n_trending 1.00, spread_R 0.01
+          controls: the sign holds in 59 of 60 strata of the other states; worst control gap_with keeps 78%
+          within gap_with: 1:+0.37
+          concentration: best market-year US500 2021 = 43% of the pocket's excess; without it diff +0.430 t +2.8
+
+  dipx-04  day_move_with high third (> 0.0794)
+        in  130 out  261 | edge in +0.653 out +0.228 | diff +0.426 t +3.3 | GOOD pocket (keep the part on) | select-only (half split + yardstick only)
+          inside  | long 100% short  0% | GERMANY40 67% US500 33% | 14-17 29% 20-21 71% | medians: vol 0.82, atrchg 0.98, vr120 0.77, trendy 0.14, trend60_with 0.40, dist200_with 5.41, n_trending 1.00, spread_R 0.01
+          outside | long 100% short  0% | GERMANY40 72% US500 28% | 14-17 28% 20-21 72% | medians: vol 0.85, atrchg 1.04, vr120 0.76, trendy 0.17, trend60_with 0.42, dist200_with 6.26, n_trending 1.00, spread_R 0.01
+          controls: the sign holds in 54 of 59 strata of the other states; worst control trendy keeps 94%
+          within trendy: 0:+0.49 1:+0.45 2:+0.20
+          concentration: best market-year US500 2021 = 51% of the pocket's excess; without it diff +0.345 t +2.3  <-- ONE STRETCH?
+
+  dipx-05  vr120 high third (> 0.872)  AND  spread_R mid third (0.0058 .. 0.0096)
+        in   62 out  329 | edge in +0.886 out +0.272 | diff +0.614 t +3.2 | GOOD pocket (keep the part on) | creatable: persist dial (D1)
+          inside  | long 100% short  0% | GERMANY40 81% US500 19% | 14-17 47% 20-21 53% | medians: vol 0.71, atrchg 1.01, vr120 1.02, trendy 0.16, trend60_with 0.61, dist200_with 7.56, n_trending 1.00, spread_R 0.01
+          outside | long 100% short  0% | GERMANY40 68% US500 32% | 14-17 25% 20-21 75% | medians: vol 0.89, atrchg 1.02, vr120 0.73, trendy 0.14, trend60_with 0.39, dist200_with 5.50, n_trending 1.00, spread_R 0.01
+          controls: the sign holds in 44 of 44 strata of the other states; worst control weekday keeps 80%
+          within weekday: 0:+0.49
+          concentration: best market-year GERMANY40 2017 = 26% of the pocket's excess; without it diff +0.704 t +2.9
+
+  dipx-06  vr120 < 1  AND  form20 >= 0
+        in  245 out  146 | edge in +0.143 out +0.750 | diff -0.607 t -3.1 | BAD pocket (make it harmless) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 100% short  0% | GERMANY40 66% US500 34% | 14-17 27% 20-21 73% | medians: vol 0.85, atrchg 1.02, vr120 0.73, trendy 0.14, trend60_with 0.41, dist200_with 6.60, n_trending 1.00, spread_R 0.01
+          outside | long 100% short  0% | GERMANY40 78% US500 22% | 14-17 31% 20-21 69% | medians: vol 0.82, atrchg 1.01, vr120 0.91, trendy 0.15, trend60_with 0.43, dist200_with 5.50, n_trending 1.00, spread_R 0.01
+          controls: the sign holds in 56 of 59 strata of the other states; worst control risk_on keeps 86%
+          within risk_on: 0:+0.10 1:-0.67
+          concentration: best market-year GERMANY40 2017 = 30% of the pocket's excess; without it diff -0.526 t -2.1
+
+  dipx-07  vr120 < 1  AND  eff10_with >= 0
+        in  132 out  259 | edge in +0.038 out +0.538 | diff -0.500 t -3.0 | BAD pocket (make it harmless) | creatable: persist dial (D1)
+          inside  | long 100% short  0% | GERMANY40 60% US500 40% | 14-17 23% 20-21 77% | medians: vol 0.82, atrchg 0.92, vr120 0.76, trendy 0.18, trend60_with 0.72, dist200_with 8.67, n_trending 1.00, spread_R 0.01
+          outside | long 100% short  0% | GERMANY40 76% US500 24% | 14-17 31% 20-21 69% | medians: vol 0.86, atrchg 1.09, vr120 0.77, trendy 0.14, trend60_with 0.30, dist200_with 5.00, n_trending 1.00, spread_R 0.01
+          controls: the sign holds in 53 of 56 strata of the other states; worst control mv10_with keeps 78%
+          within mv10_with: 1:-0.16 2:-0.64
+          concentration: best market-year GERMANY40 2021 = 33% of the pocket's excess; without it diff -0.448 t -2.5
+
+  dipx-08  vr120 mid third (0.677 .. 0.872)  AND  day_move_with < 0
+        in   65 out  326 | edge in -0.286 out +0.500 | diff -0.785 t -3.0 | BAD pocket (make it harmless) | partly creatable: persist dial (D1) + a select-only state
+          inside  | long 100% short  0% | GERMANY40 72% US500 28% | 14-17 42% 20-21 58% | medians: vol 0.97, atrchg 1.07, vr120 0.75, trendy 0.16, trend60_with 0.15, dist200_with 4.93, n_trending 1.00, spread_R 0.01
+          outside | long 100% short  0% | GERMANY40 70% US500 30% | 14-17 26% 20-21 74% | medians: vol 0.83, atrchg 1.01, vr120 0.79, trendy 0.14, trend60_with 0.47, dist200_with 6.78, n_trending 1.00, spread_R 0.01
+          controls: the sign holds in 45 of 47 strata of the other states; worst control trendy keeps 75%
+          within trendy: 1:-1.17 2:+0.08
+          concentration: best market-year GERMANY40 2020 = 42% of the pocket's excess; without it diff -0.636 t -2.2
+
+  dipx-09  eff10_with < 0
+        in  237 out  154 | edge in +0.526 out +0.128 | diff +0.398 t +2.7 | GOOD pocket (keep the part on) | creatable: persist dial (D1)
+          inside  | long 100% short  0% | GERMANY40 73% US500 27% | 14-17 32% 20-21 68% | medians: vol 0.88, atrchg 1.10, vr120 0.75, trendy 0.14, trend60_with 0.25, dist200_with 5.00, n_trending 1.00, spread_R 0.01
+          outside | long 100% short  0% | GERMANY40 66% US500 34% | 14-17 22% 20-21 78% | medians: vol 0.76, atrchg 0.90, vr120 0.81, trendy 0.20, trend60_with 0.71, dist200_with 7.76, n_trending 1.00, spread_R 0.01
+          controls: the sign holds in 57 of 58 strata of the other states; worst control mv10_with keeps 24%  <-- DISGUISE? controlling for mv10_with leaves 24% of it
+          within mv10_with: 1:+0.10
+          concentration: best market-year US500 2021 = 56% of the pocket's excess; without it diff +0.193 t +1.1  <-- ONE STRETCH?
+
+  dipx-10  spread_R mid third (0.0058 .. 0.0096)
+        in  130 out  261 | edge in +0.679 out +0.215 | diff +0.464 t +2.7 | GOOD pocket (keep the part on) | creatable: spread dial
+          inside  | long 100% short  0% | GERMANY40 51% US500 49% | 14-17 31% 20-21 69% | medians: vol 0.80, atrchg 0.96, vr120 0.87, trendy 0.13, trend60_with 0.47, dist200_with 7.33, n_trending 1.00, spread_R 0.01
+          outside | long 100% short  0% | GERMANY40 80% US500 20% | 14-17 27% 20-21 73% | medians: vol 0.89, atrchg 1.04, vr120 0.74, trendy 0.17, trend60_with 0.39, dist200_with 5.50, n_trending 1.00, spread_R 0.01
+          controls: the sign holds in 60 of 62 strata of the other states; worst control risk_on keeps 79%
+          within risk_on: 0:-0.35 1:+0.55
+          concentration: best market-year US500 2021 = 57% of the pocket's excess; without it diff +0.367 t +1.7  <-- ONE STRETCH?
+
+  dipx-11  mv10_with low third (<= -1.24)
+        in  131 out  260 | edge in +0.671 out +0.217 | diff +0.454 t +2.6 | GOOD pocket (keep the part on) | creatable: persist dial (D1)
+          inside  | long 100% short  0% | GERMANY40 72% US500 28% | 14-17 31% 20-21 69% | medians: vol 0.93, atrchg 1.13, vr120 0.75, trendy 0.14, trend60_with 0.11, dist200_with 4.23, n_trending 1.00, spread_R 0.01
+          outside | long 100% short  0% | GERMANY40 70% US500 30% | 14-17 27% 20-21 73% | medians: vol 0.80, atrchg 0.97, vr120 0.79, trendy 0.16, trend60_with 0.55, dist200_with 7.13, n_trending 1.00, spread_R 0.01
+          controls: the sign holds in 56 of 57 strata of the other states; worst control pos20_with keeps 77%
+          within pos20_with: 0:+0.37 1:+0.33
+          concentration: best market-year US500 2021 = 38% of the pocket's excess; without it diff +0.454 t +2.1
+
+  dipx-12  mv10_with high third (> 0.39)
+        in  130 out  261 | edge in +0.106 out +0.501 | diff -0.395 t -2.6 | BAD pocket (make it harmless) | creatable: persist dial (D1)
+          inside  | long 100% short  0% | GERMANY40 63% US500 37% | 14-17 21% 20-21 79% | medians: vol 0.75, atrchg 0.86, vr120 0.83, trendy 0.22, trend60_with 0.71, dist200_with 7.42, n_trending 1.00, spread_R 0.01
+          outside | long 100% short  0% | GERMANY40 74% US500 26% | 14-17 32% 20-21 68% | medians: vol 0.86, atrchg 1.10, vr120 0.75, trendy 0.14, trend60_with 0.30, dist200_with 5.03, n_trending 1.00, spread_R 0.01
+          controls: the sign holds in 54 of 56 strata of the other states; worst control pos20_with keeps 66%
+          within pos20_with: 1:+0.01 2:-0.53
+          concentration: best market-year US500 2021 = 36% of the pocket's excess; without it diff -0.194 t -1.2
+
+==============================================================================================================
+YARDSTICK: the same hunt 20 times with each market's states circularly shifted against its trades
+(discover on the discovery half, confirm on the check half; same rules, caps and cut points method)
+==============================================================================================================
+  pockets discovered by chance, all parts: median 27, 90th percentile 32   (real: 44)
+  of those, CONFIRMED by chance on the check half: median 0, 90th percentile 2, max 2
+    brk  discovered median 6 (90%: 12) | confirmed by chance median 0 (90%: 0)
+    ins  discovered median 12 (90%: 12) | confirmed by chance median 0 (90%: 1)
+    fast discovered median 8 (90%: 12) | confirmed by chance median 0 (90%: 0)
+    dipx discovered median 2 (90%: 6) | confirmed by chance median 0 (90%: 1)
+
+LOCKED 44 pockets -> D:\coding stuff\Trading research project\reports\hunt\pockets_locked.csv (hash a0bb85ee3d9c). Next: Claude writes a theory per pocket into the 'theory' column, then
+python asiabo_hunt.py confirm  (the one-shot check on 2018-19 + B 2024+).

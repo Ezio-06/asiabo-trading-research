@@ -1,0 +1,253 @@
+# 2026-10-13 21:37:55  module explore
+# asiabo_explore.py
+
+========================================================================================================================
+EXPLORE: every living candidate on the TRAINING data (explore_spec.md). EXPLORATION, NOT CONFIRMATION.
+Sealed years 2022-23 are never read. t = clustered by market x month. EDGE = net minus the coin flip (same timing).
+========================================================================================================================
+explore: XAUUSD ...
+
+========================================================================================================================
+XAUUSD   (a BOOK market for fast)
+========================================================================================================================
+  F fast:
+   fast ALL                 n   548  win  36%  net +0.112 (t +1.1)  EDGE +0.201 (t +3.0)  total   +61.3 R
+     orb30                  n   290  win  26%  net +0.137 (t +0.8)  EDGE +0.239 (t +2.2)  total   +39.8 R
+     main2                  n   258  win  47%  net +0.083 (t +1.0)  EDGE +0.159 (t +2.4)  total   +21.4 R
+     2014-17                n   231  win  32%  net -0.002 (t -0.0)  EDGE +0.208 (t +1.8)  total    -0.5 R
+     2018-21                n   184  win  41%  net +0.169 (t +1.1)  EDGE +0.220 (t +2.2)  total   +31.2 R
+     2024+                  n   133  win  35%  net +0.230 (t +1.0)  EDGE +0.164 (t +1.2)  total   +30.6 R
+
+  N5 XAUUSD: 326 fast trades with a 2h reading. Rest of the day = R from the 2h mark to the exit (close or stop).
+   up    n   67  trade +0.309 (t +0.9)  mirror -0.194 (t -2.1)  |  2014-17 +0.74 (n 26)  2018-21 +0.36 (n 26)  2024+ -0.54 (n 15)
+   flat  n  201  trade +0.423 (t +2.9)  mirror -0.249 (t -3.0)  |  2014-17 +0.16 (n 76)  2018-21 +0.59 (n 70)  2024+ +0.58 (n 55)
+   down  n   58  trade +0.134 (t +0.7)  mirror +0.241 (t +0.8)  |  2014-17 +0.50 (n 29)  2018-21 -0.21 (n 21)  2024+ -0.28 (n 8)
+   flat group, best London hours (mean R gained in that hour): 13:00 +0.155 (n 185)  12:00 +0.091 (n 190)  17:00 +0.069 (n 131)
+
+  N3 XAUUSD: raw orb30 + main2 breaks (exit at the close), by the 20-day trend at entry. FADE = the mirror trade.
+   WITH     n   697  RIDE net +0.024 (t +0.3)  FADE net -0.230 (t -3.2)  ride EDGE +0.127 (t +1.9; fade EDGE = minus this) | 2014-17 fade -0.46 (n 263)  2018-21 fade -0.13 (n 256)  2024+ fade -0.03 (n 178)
+   NONE     n  2818  RIDE net -0.017 (t -0.4)  FADE net -0.036 (t -0.2)  ride EDGE +0.009 (t +0.1; fade EDGE = minus this) | 2014-17 fade +0.19 (n 1011)  2018-21 fade -0.17 (n 1148)  2024+ fade -0.15 (n 659)
+   AGAINST  n   642  RIDE net -0.008 (t -0.1)  FADE net -0.087 (t -1.1)  ride EDGE +0.039 (t +0.5; fade EDGE = minus this) | 2014-17 fade +0.04 (n 260)  2018-21 fade -0.17 (n 225)  2024+ fade -0.18 (n 157)
+
+  N4 XAUUSD trend legs (zigzag, 3 x ATR20 reversal): 80 legs  days median 28  p75 49  p90 69  p95 89  max 145 | >= 20 days 59%  >= 40 days 38%  | move median 6.5 ATR, p90 12.1 ATR
+  N4 XAUUSD design: n 28  win 54%  net +0.562 (t +1.4)  mirror -0.454 (t -2.0)  EDGE +0.508 (t +1.9)  total +15.7 R | top 5% trades = +7.8 R (total without them +8.0) | longs 11 shorts 17
+      exits: max n 1 avg +7.79 R  price n 9 avg -1.01 R  time n 9 avg +0.52 R  trail n 9 avg +1.37 R   | eras: 2014-17 +0.39 (n 14)  2018-21 +0.95 (n 7)  2024+ +0.25 (n 5)
+explore: US500 ...
+
+========================================================================================================================
+US500   (a BOOK market for fast)
+========================================================================================================================
+  F fast:
+   fast ALL                 n   222  win  47%  net +0.063 (t +0.9)  EDGE +0.042 (t +0.6)  total   +14.0 R
+     orb30                  n   119  win  44%  net +0.144 (t +1.3)  EDGE +0.097 (t +1.2)  total   +17.1 R
+     main2                  n   103  win  50%  net -0.030 (t -0.3)  EDGE -0.022 (t -0.2)  total    -3.1 R
+     2014-17                    0
+     2018-21                n    51  win  47%  net +0.034 (t +0.3)  EDGE +0.034 (t +0.3)  total    +1.8 R
+     2024+                  n   171  win  47%  net +0.072 (t +0.8)  EDGE +0.044 (t +0.5)  total   +12.2 R
+
+  N5 US500: 137 fast trades with a 2h reading. Rest of the day = R from the 2h mark to the exit (close or stop).
+   up    n   40  trade -0.202 (t -0.9)  mirror +0.133 (t +0.7)  |  2018-21 -0.69 (n 11)  2024+ -0.02 (n 29)
+   flat  n   68  trade +0.077 (t +0.8)  mirror -0.070 (t -0.5)  |  2018-21 +0.52 (n 12)  2024+ -0.02 (n 56)
+   down  n   29  trade -0.240 (t -2.4)  mirror +0.027 (t +0.1)  |  2018-21 -0.42 (n 8)  2024+ -0.17 (n 21)
+   flat group, best London hours (mean R gained in that hour): 19:00 +0.088 (n 61)  20:00 +0.081 (n 53)  02:00 +0.049 (n 31)
+
+  N3 US500: raw orb30 + main2 breaks (exit at the close), by the 20-day trend at entry. FADE = the mirror trade.
+   WITH     n   374  RIDE net -0.031 (t -0.4)  FADE net -0.109 (t -1.7)  ride EDGE +0.039 (t +0.7; fade EDGE = minus this) | 2018-21 fade -0.13 (n 95)  2024+ fade -0.10 (n 279)
+   NONE     n   762  RIDE net -0.050 (t -1.0)  FADE net -0.053 (t -1.2)  ride EDGE +0.002 (t +0.0; fade EDGE = minus this) | 2018-21 fade -0.14 (n 154)  2024+ fade -0.03 (n 608)
+   AGAINST  n   323  RIDE net +0.045 (t +0.5)  FADE net -0.217 (t -3.3)  ride EDGE +0.131 (t +2.1; fade EDGE = minus this) | 2018-21 fade -0.01 (n 87)  2024+ fade -0.29 (n 236)
+
+  N4 US500 trend legs (zigzag, 3 x ATR20 reversal): 40 legs  days median 22  p75 43  p90 62  p95 77  max 130 | >= 20 days 55%  >= 40 days 30%  | move median 4.7 ATR, p90 16.8 ATR
+  N4 US500 design: n 12  win 42%  net -0.057 (t -0.2)  mirror +0.118 (t +0.2)  EDGE -0.088 (t -0.2)  total -0.7 R | top 5% trades = +2.7 R (total without them -3.4) | longs 6 shorts 6
+      exits: price n 4 avg -1.02 R  time n 5 avg +0.30 R  trail n 3 avg +0.62 R   | eras: 2018-21 +0.89 (n 4)  2024+ -0.53 (n 8)
+explore: GERMANY40 ...
+
+========================================================================================================================
+GERMANY40   (a BOOK market for fast)
+========================================================================================================================
+  F fast:
+   fast ALL                 n   335  win  43%  net +0.107 (t +1.2)  EDGE +0.098 (t +1.3)  total   +35.7 R
+     orb30                  n   259  win  43%  net +0.082 (t +0.8)  EDGE +0.107 (t +1.2)  total   +21.3 R
+     main2                  n    76  win  45%  net +0.189 (t +1.0)  EDGE +0.067 (t +0.4)  total   +14.4 R
+     2014-17                n    56  win  29%  net -0.318 (t -2.2)  EDGE -0.141 (t -1.2)  total   -17.8 R
+     2018-21                n   131  win  49%  net +0.232 (t +1.5)  EDGE +0.287 (t +2.6)  total   +30.4 R
+     2024+                  n   148  win  44%  net +0.156 (t +1.2)  EDGE +0.020 (t +0.2)  total   +23.1 R
+
+  N5 GERMANY40: 176 fast trades with a 2h reading. Rest of the day = R from the 2h mark to the exit (close or stop).
+   up    n   43  trade +0.601 (t +2.5)  mirror -0.190 (t -2.1)  |  2014-17 +0.33 (n 4)  2018-21 +1.13 (n 18)  2024+ +0.20 (n 21)
+   flat  n   87  trade +0.045 (t +0.3)  mirror -0.099 (t -1.1)  |  2014-17 -0.70 (n 13)  2018-21 +0.35 (n 31)  2024+ +0.05 (n 43)
+   down  n   46  trade +0.133 (t +1.0)  mirror -0.163 (t -1.0)  |  2014-17 -0.03 (n 13)  2018-21 +0.23 (n 15)  2024+ +0.17 (n 18)
+   flat group, best London hours (mean R gained in that hour): 12:00 +0.102 (n 76)  16:00 +0.065 (n 57)  13:00 +0.058 (n 72)
+
+  N3 GERMANY40: raw orb30 + main2 breaks (exit at the close), by the 20-day trend at entry. FADE = the mirror trade.
+   WITH     n   474  RIDE net +0.161 (t +2.0)  FADE net -0.038 (t -0.5)  ride EDGE +0.100 (t +1.5; fade EDGE = minus this) | 2014-17 fade -0.14 (n 79)  2018-21 fade -0.19 (n 186)  2024+ fade +0.14 (n 209)
+   NONE     n  1668  RIDE net -0.002 (t -0.1)  FADE net -0.103 (t -3.2)  ride EDGE +0.051 (t +1.9; fade EDGE = minus this) | 2014-17 fade -0.23 (n 286)  2018-21 fade -0.06 (n 615)  2024+ fade -0.09 (n 767)
+   AGAINST  n   478  RIDE net -0.121 (t -1.6)  FADE net -0.079 (t -1.2)  ride EDGE -0.021 (t -0.3; fade EDGE = minus this) | 2014-17 fade -0.14 (n 90)  2018-21 fade -0.09 (n 213)  2024+ fade -0.03 (n 175)
+
+  N4 GERMANY40 trend legs (zigzag, 3 x ATR20 reversal): 67 legs  days median 23  p75 41  p90 59  p95 84  max 132 | >= 20 days 60%  >= 40 days 27%  | move median 5.3 ATR, p90 11.6 ATR
+  N4 GERMANY40 design: n 16  win 44%  net -0.013 (t -0.0)  mirror -0.039 (t -0.1)  EDGE +0.013 (t +0.0)  total -0.2 R | top 5% trades = +2.8 R (total without them -3.0) | longs 12 shorts 4
+      exits: price n 4 avg -1.02 R  time n 7 avg +0.33 R  trail n 5 avg +0.31 R   | eras: 2014-17 -0.53 (n 5)  2018-21 +0.51 (n 8)  2024+ -0.55 (n 3)
+explore: USDJPY ...
+
+========================================================================================================================
+USDJPY   (a BOOK market for fast)
+========================================================================================================================
+  F fast:
+   fast ALL                 n   574  win  37%  net +0.108 (t +1.3)  EDGE +0.065 (t +1.0)  total   +61.9 R
+     orb30                  n   301  win  27%  net +0.060 (t +0.4)  EDGE +0.028 (t +0.3)  total   +18.0 R
+     main2                  n   273  win  48%  net +0.161 (t +2.0)  EDGE +0.106 (t +1.6)  total   +43.8 R
+     2014-17                n   227  win  32%  net +0.103 (t +0.6)  EDGE +0.168 (t +1.4)  total   +23.5 R
+     2018-21                n   188  win  39%  net +0.083 (t +0.7)  EDGE -0.033 (t -0.3)  total   +15.7 R
+     2024+                  n   159  win  40%  net +0.143 (t +1.1)  EDGE +0.035 (t +0.4)  total   +22.7 R
+
+  N5 USDJPY: 354 fast trades with a 2h reading. Rest of the day = R from the 2h mark to the exit (close or stop).
+   up    n   80  trade +0.340 (t +1.5)  mirror +0.035 (t +0.3)  |  2014-17 +0.33 (n 24)  2018-21 +0.52 (n 34)  2024+ +0.07 (n 22)
+   flat  n  215  trade +0.144 (t +1.4)  mirror -0.025 (t -0.3)  |  2014-17 +0.21 (n 83)  2018-21 +0.00 (n 72)  2024+ +0.22 (n 60)
+   down  n   59  trade +0.067 (t +0.4)  mirror +0.710 (t +2.2)  |  2014-17 +0.66 (n 23)  2018-21 -0.31 (n 22)  2024+ -0.32 (n 14)
+   flat group, best London hours (mean R gained in that hour): 13:00 +0.062 (n 200)  15:00 +0.050 (n 159)  01:00 +0.041 (n 112)
+
+  N3 USDJPY: raw orb30 + main2 breaks (exit at the close), by the 20-day trend at entry. FADE = the mirror trade.
+   WITH     n   788  RIDE net +0.110 (t +1.3)  FADE net -0.068 (t -0.7)  ride EDGE +0.089 (t +1.4; fade EDGE = minus this) | 2014-17 fade -0.24 (n 284)  2018-21 fade -0.02 (n 281)  2024+ fade +0.08 (n 223)
+   NONE     n  3024  RIDE net -0.057 (t -1.5)  FADE net -0.175 (t -5.2)  ride EDGE +0.059 (t +2.1; fade EDGE = minus this) | 2014-17 fade -0.28 (n 1111)  2018-21 fade -0.09 (n 1200)  2024+ fade -0.16 (n 713)
+   AGAINST  n   719  RIDE net -0.081 (t -0.8)  FADE net -0.135 (t -1.7)  ride EDGE +0.027 (t +0.4; fade EDGE = minus this) | 2014-17 fade -0.19 (n 258)  2018-21 fade -0.36 (n 247)  2024+ fade +0.19 (n 214)
+
+  N4 USDJPY trend legs (zigzag, 3 x ATR20 reversal): 106 legs  days median 23  p75 40  p90 61  p95 72  max 102 | >= 20 days 58%  >= 40 days 25%  | move median 5.6 ATR, p90 10.1 ATR
+  N4 USDJPY design: n 51  win 43%  net +0.143 (t +0.7)  mirror -0.696 (t -8.2)  EDGE +0.419 (t +3.6)  total +7.3 R | top 5% trades = +11.2 R (total without them -3.9) | longs 24 shorts 27
+      exits: max n 2 avg +3.42 R  price n 19 avg -1.04 R  time n 12 avg +0.14 R  trail n 18 avg +1.03 R   | eras: 2014-17 +0.22 (n 22)  2018-21 -0.05 (n 12)  2024+ +0.58 (n 6)
+explore: EURUSD ...
+
+========================================================================================================================
+EURUSD   (a CONTROL (T8: should not work) market for fast)
+========================================================================================================================
+  F fast:
+   fast ALL                 n   610  win  35%  net -0.027 (t -0.4)  EDGE +0.062 (t +1.1)  total   -16.4 R
+     orb30                  n   272  win  25%  net -0.147 (t -1.1)  EDGE -0.002 (t -0.0)  total   -39.9 R
+     main2                  n   338  win  43%  net +0.070 (t +0.8)  EDGE +0.115 (t +1.6)  total   +23.5 R
+     2014-17                n   234  win  40%  net +0.177 (t +1.4)  EDGE +0.227 (t +2.4)  total   +41.4 R
+     2018-21                n   216  win  32%  net -0.149 (t -1.1)  EDGE -0.037 (t -0.3)  total   -32.3 R
+     2024+                  n   160  win  32%  net -0.159 (t -1.5)  EDGE -0.044 (t -0.5)  total   -25.5 R
+
+  N5 EURUSD: 321 fast trades with a 2h reading. Rest of the day = R from the 2h mark to the exit (close or stop).
+   up    n   81  trade -0.093 (t -0.5)  mirror +0.119 (t +0.9)  |  2014-17 +0.07 (n 39)  2018-21 -0.50 (n 25)  2024+ +0.13 (n 17)
+   flat  n  161  trade -0.011 (t -0.1)  mirror -0.023 (t -0.2)  |  2014-17 -0.06 (n 55)  2018-21 +0.04 (n 63)  2024+ -0.01 (n 43)
+   down  n   79  trade +0.090 (t +0.5)  mirror +0.111 (t +0.6)  |  2014-17 +0.18 (n 31)  2018-21 +0.15 (n 30)  2024+ -0.17 (n 18)
+   flat group, best London hours (mean R gained in that hour): 17:00 +0.091 (n 95)  12:00 +0.056 (n 145)  14:00 +0.046 (n 119)
+
+  N3 EURUSD: raw orb30 + main2 breaks (exit at the close), by the 20-day trend at entry. FADE = the mirror trade.
+   WITH     n   838  RIDE net +0.073 (t +0.7)  FADE net -0.136 (t -2.0)  ride EDGE +0.105 (t +1.5; fade EDGE = minus this) | 2014-17 fade -0.23 (n 331)  2018-21 fade -0.07 (n 302)  2024+ fade -0.08 (n 205)
+   NONE     n  3455  RIDE net -0.043 (t -1.1)  FADE net -0.122 (t -3.7)  ride EDGE +0.040 (t +1.3; fade EDGE = minus this) | 2014-17 fade -0.10 (n 1223)  2018-21 fade -0.13 (n 1357)  2024+ fade -0.14 (n 875)
+   AGAINST  n   850  RIDE net +0.002 (t +0.0)  FADE net -0.174 (t -2.7)  ride EDGE +0.088 (t +1.4; fade EDGE = minus this) | 2014-17 fade -0.25 (n 353)  2018-21 fade -0.12 (n 303)  2024+ fade -0.13 (n 194)
+
+  N4 EURUSD trend legs (zigzag, 3 x ATR20 reversal): 92 legs  days median 27  p75 40  p90 62  p95 110  max 128 | >= 20 days 60%  >= 40 days 26%  | move median 5.6 ATR, p90 10.1 ATR
+  N4 EURUSD design: n 34  win 41%  net +0.035 (t +0.1)  mirror -0.530 (t -4.8)  EDGE +0.282 (t +1.6)  total +1.2 R | top 5% trades = +10.3 R (total without them -9.1) | longs 23 shorts 11
+      exits: max n 1 avg +0.19 R  price n 10 avg -1.02 R  time n 13 avg -0.04 R  trail n 10 avg +1.17 R   | eras: 2014-17 +0.25 (n 16)  2018-21 -0.05 (n 6)  2024+ -0.70 (n 1)
+explore: XTIUSD ...
+
+========================================================================================================================
+XTIUSD   (a CONTROL (T8: should not work) market for fast)
+========================================================================================================================
+  F fast:
+   fast ALL                 n   571  win  41%  net -0.098 (t -1.7)  EDGE +0.004 (t +0.1)  total   -55.9 R
+     orb30                  n   254  win  33%  net -0.136 (t -1.2)  EDGE +0.003 (t +0.0)  total   -34.5 R
+     main2                  n   317  win  47%  net -0.067 (t -1.6)  EDGE +0.005 (t +0.1)  total   -21.4 R
+     2014-17                n   166  win  38%  net -0.054 (t -0.3)  EDGE +0.008 (t +0.1)  total    -9.0 R
+     2018-21                n   261  win  41%  net -0.124 (t -2.1)  EDGE -0.022 (t -0.4)  total   -32.4 R
+     2024+                  n   144  win  44%  net -0.100 (t -1.6)  EDGE +0.047 (t +0.9)  total   -14.4 R
+
+  N5 XTIUSD: 304 fast trades with a 2h reading. Rest of the day = R from the 2h mark to the exit (close or stop).
+   up    n   69  trade +0.191 (t +1.5)  mirror -0.110 (t -1.5)  |  2014-17 +0.35 (n 18)  2018-21 +0.23 (n 30)  2024+ +0.01 (n 21)
+   flat  n  164  trade +0.005 (t +0.1)  mirror -0.088 (t -0.9)  |  2014-17 +0.04 (n 43)  2018-21 +0.00 (n 71)  2024+ -0.02 (n 50)
+   down  n   71  trade -0.070 (t -0.9)  mirror -0.013 (t -0.1)  |  2014-17 +0.08 (n 18)  2018-21 -0.06 (n 35)  2024+ -0.23 (n 18)
+   flat group, best London hours (mean R gained in that hour): 21:00 +0.038 (n 81)  07:00 +0.037 (n 122)  09:00 +0.032 (n 119)
+
+  N3 XTIUSD: raw orb30 + main2 breaks (exit at the close), by the 20-day trend at entry. FADE = the mirror trade.
+   WITH     n   795  RIDE net -0.110 (t -1.9)  FADE net -0.121 (t -2.6)  ride EDGE +0.006 (t +0.1; fade EDGE = minus this) | 2014-17 fade -0.13 (n 231)  2018-21 fade -0.08 (n 374)  2024+ fade -0.20 (n 190)
+   NONE     n  2551  RIDE net -0.059 (t -2.1)  FADE net -0.124 (t -5.0)  ride EDGE +0.032 (t +1.5; fade EDGE = minus this) | 2014-17 fade -0.21 (n 767)  2018-21 fade -0.08 (n 926)  2024+ fade -0.09 (n 858)
+   AGAINST  n   720  RIDE net -0.121 (t -1.9)  FADE net -0.056 (t -1.1)  ride EDGE -0.033 (t -0.6; fade EDGE = minus this) | 2014-17 fade +0.00 (n 202)  2018-21 fade -0.04 (n 346)  2024+ fade -0.15 (n 172)
+
+  N4 XTIUSD trend legs (zigzag, 3 x ATR20 reversal): 59 legs  days median 26  p75 45  p90 76  p95 87  max 127 | >= 20 days 64%  >= 40 days 31%  | move median 6.5 ATR, p90 13.1 ATR
+  N4 XTIUSD design: n 12  win 42%  net +0.330 (t +0.8)  mirror -0.610 (t -3.5)  EDGE +0.470 (t +1.8)  total +4.0 R | top 5% trades = +3.5 R (total without them +0.5) | longs 8 shorts 4
+      exits: max n 1 avg +3.49 R  price n 2 avg -1.04 R  time n 5 avg +0.28 R  trail n 4 avg +0.29 R   | eras: 2014-17 +0.64 (n 7)  2018-21 +0.16 (n 3)  2024+ -0.51 (n 2)
+
+========================================================================================================================
+POOLED
+========================================================================================================================
+  F fast, book markets pooled vs controls pooled:
+   book (gold+US500+GER+JPY) n  1679  win  39%  net +0.103 (t +2.1)  EDGE +0.113 (t +3.2)  total  +172.8 R
+   book without gold        n  1131  win  41%  net +0.099 (t +1.9)  EDGE +0.070 (t +1.7)  total  +111.5 R
+   controls (EURUSD+WTI)    n  1181  win  38%  net -0.061 (t -1.3)  EDGE +0.034 (t +0.9)  total   -72.3 R
+
+  N5 book markets pooled: 993 fast trades with a 2h reading. Rest of the day = R from the 2h mark to the exit (close or stop).
+   up    n  230  trade +0.285 (t +2.0)  mirror -0.057 (t -0.9)  |  2014-17 +0.53 (n 54)  2018-21 +0.45 (n 89)  2024+ -0.03 (n 87)
+   flat  n  571  trade +0.219 (t +3.1)  mirror -0.120 (t -2.4)  |  2014-17 +0.12 (n 172)  2018-21 +0.31 (n 185)  2024+ +0.22 (n 214)
+   down  n  192  trade +0.057 (t +0.7)  mirror +0.256 (t +1.7)  |  2014-17 +0.45 (n 65)  2018-21 -0.17 (n 66)  2024+ -0.12 (n 61)
+   flat group, best London hours (mean R gained in that hour): 13:00 +0.091 (n 487)  12:00 +0.044 (n 503)  19:00 +0.037 (n 333)
+
+  N5 book markets WITHOUT gold: 667 fast trades with a 2h reading. Rest of the day = R from the 2h mark to the exit (close or stop).
+   up    n  163  trade +0.276 (t +1.9)  mirror -0.000 (t -0.0)  |  2014-17 +0.33 (n 28)  2018-21 +0.48 (n 63)  2024+ +0.07 (n 72)
+   flat  n  370  trade +0.109 (t +1.5)  mirror -0.051 (t -0.8)  |  2014-17 +0.09 (n 96)  2018-21 +0.15 (n 115)  2024+ +0.09 (n 159)
+   down  n  134  trade +0.023 (t +0.3)  mirror +0.262 (t +1.5)  |  2014-17 +0.41 (n 36)  2018-21 -0.15 (n 45)  2024+ -0.09 (n 53)
+   flat group, best London hours (mean R gained in that hour): 13:00 +0.052 (n 302)  19:00 +0.041 (n 216)  06:00 +0.029 (n 146)
+
+  N3 all markets pooled: raw orb30 + main2 breaks (exit at the close), by the 20-day trend at entry. FADE = the mirror trade.
+   WITH     n  3966  RIDE net +0.036 (t +1.0)  FADE net -0.122 (t -4.1)  ride EDGE +0.079 (t +3.0; fade EDGE = minus this) | 2014-17 fade -0.26 (n 1188)  2018-21 fade -0.09 (n 1494)  2024+ fade -0.03 (n 1284)
+   NONE     n 14278  RIDE net -0.039 (t -2.3)  FADE net -0.111 (t -3.4)  ride EDGE +0.036 (t +1.7; fade EDGE = minus this) | 2014-17 fade -0.11 (n 4398)  2018-21 fade -0.11 (n 5400)  2024+ fade -0.11 (n 4480)
+   AGAINST  n  3732  RIDE net -0.052 (t -1.4)  FADE net -0.120 (t -4.1)  ride EDGE +0.034 (t +1.3; fade EDGE = minus this) | 2014-17 fade -0.12 (n 1163)  2018-21 fade -0.14 (n 1421)  2024+ fade -0.10 (n 1148)
+
+  N4 all markets pooled trend legs (zigzag, 3 x ATR20 reversal): 444 legs  days median 24  p75 42  p90 65  p95 78  max 145 | >= 20 days 59%  >= 40 days 29%  | move median 5.7 ATR, p90 11.4 ATR
+  N4 all markets pooled design: n 153  win 44%  net +0.178 (t +1.4)  mirror -0.476 (t -5.9)  EDGE +0.327 (t +3.8)  total +27.3 R | top 5% trades = +39.9 R (total without them -12.7) | longs 84 shorts 69
+      exits: max n 5 avg +3.66 R  price n 48 avg -1.03 R  time n 51 avg +0.22 R  trail n 49 avg +0.96 R   | eras: 2014-17 +0.25 (n 64)  2018-21 +0.35 (n 40)  2024+ -0.12 (n 25)
+
+========================================================================================================================
+DIP: skip while ATR(w) >= 1.3 x its 1-year median AND rising. Candidate gauge ATR 40 (marked *; seen first on spent data).
+========================================================================================================================
+explore dip: US500 from exam_us500.db ...
+US500 exam_us500.db: 31 dip trades (2016-01-01 .. 2020-01-01)
+explore dip: US500 from bars.db ...
+US500 bars.db: 48 dip trades (2020-01-01 .. 2100-01-01)
+explore dip: GERMANY40 from bars.db ...
+GERMANY40 bars.db: 91 dip trades
+explore dip: USTECH100 from ustech100.db ...
+USTECH100 ustech100.db: 113 dip trades
+
+----------------------------------------------------------------------------------------------------------------
+GERMANY40
+----------------------------------------------------------------------------------------------------------------
+gauge    trades scored | SKIPPED (high+rising)       | KEPT                        | skip - kept    | total R plain -> rule | max DD plain -> rule
+ATR5         91     90 | n   14  +0.358 R/tr (t  +0.7) | n   76  +0.116 R/tr (t  +0.7) | +0.242 (t +0.4) |   +13.8 ->    +8.8 |  10.4 ->   6.2
+ATR10        91     90 | n   11  +0.068 R/tr (t  +0.1) | n   79  +0.166 R/tr (t  +1.1) | -0.098 (t -0.1) |   +13.8 ->   +13.1 |  10.4 ->   5.8
+ATR20        91     90 | n    9  +0.304 R/tr (t  +0.4) | n   81  +0.137 R/tr (t  +0.9) | +0.167 (t +0.2) |   +13.8 ->   +11.1 |  10.4 ->   9.6
+ATR40  *     91     90 | n    7  +1.049 R/tr (t  +1.7) | n   83  +0.078 R/tr (t  +0.5) | +0.971 (t +1.5) |   +13.8 ->    +6.5 |  10.4 ->   9.8
+   (* = primary gauge, fixed before the run. 'scored' = trades with enough history to read the gauge.)
+
+----------------------------------------------------------------------------------------------------------------
+US500
+----------------------------------------------------------------------------------------------------------------
+gauge    trades scored | SKIPPED (high+rising)       | KEPT                        | skip - kept    | total R plain -> rule | max DD plain -> rule
+ATR5         79     73 | n   24  +0.312 R/tr (t  +0.7) | n   49  +0.326 R/tr (t  +1.6) | -0.014 (t -0.0) |   +23.5 ->   +16.0 |  11.6 ->   5.2
+ATR10        79     73 | n   15  +0.456 R/tr (t  +0.7) | n   58  +0.287 R/tr (t  +1.4) | +0.169 (t +0.2) |   +23.5 ->   +16.6 |  11.6 ->   8.0
+ATR20        79     73 | n   12  -0.072 R/tr (t  -0.1) | n   61  +0.399 R/tr (t  +2.3) | -0.470 (t -0.7) |   +23.5 ->   +24.3 |  11.6 ->   5.2
+ATR40  *     79     73 | n    6  -1.523 R/tr (t  -2.2) | n   67  +0.487 R/tr (t  +3.3) | -2.010 (t -2.8) |   +23.5 ->   +32.6 |  11.6 ->   3.8
+   (* = primary gauge, fixed before the run. 'scored' = trades with enough history to read the gauge.)
+
+----------------------------------------------------------------------------------------------------------------
+USTECH100
+----------------------------------------------------------------------------------------------------------------
+gauge    trades scored | SKIPPED (high+rising)       | KEPT                        | skip - kept    | total R plain -> rule | max DD plain -> rule
+ATR5        113    110 | n   37  +0.066 R/tr (t  +0.2) | n   73  +0.117 R/tr (t  +0.6) | -0.051 (t -0.1) |   +11.0 ->    +8.5 |  15.5 ->  12.2
+ATR10       113    110 | n   34  +0.126 R/tr (t  +0.3) | n   76  +0.089 R/tr (t  +0.5) | +0.037 (t +0.1) |   +11.0 ->    +6.7 |  15.5 ->  11.8
+ATR20       113    110 | n   27  -0.083 R/tr (t  -0.2) | n   83  +0.159 R/tr (t  +1.0) | -0.242 (t -0.5) |   +11.0 ->   +13.2 |  15.5 ->   6.8
+ATR40  *    113    110 | n   19  -0.439 R/tr (t  -1.3) | n   91  +0.212 R/tr (t  +1.3) | -0.651 (t -1.7) |   +11.0 ->   +19.3 |  15.5 ->  12.1
+   (* = primary gauge, fixed before the run. 'scored' = trades with enough history to read the gauge.)
+
+----------------------------------------------------------------------------------------------------------------
+DIP: ALL INDICES POOLED
+----------------------------------------------------------------------------------------------------------------
+gauge    trades scored | SKIPPED (high+rising)       | KEPT                        | skip - kept    | total R plain -> rule | max DD plain -> rule
+ATR5        283    273 | n   75  +0.200 R/tr (t  +0.8) | n  198  +0.168 R/tr (t  +1.6) | +0.031 (t +0.1) |   +48.3 ->   +33.3 |  33.2 ->  20.0
+ATR10       283    273 | n   60  +0.197 R/tr (t  +0.7) | n  213  +0.171 R/tr (t  +1.7) | +0.026 (t +0.1) |   +48.3 ->   +36.5 |  33.2 ->  21.7
+ATR20       283    273 | n   48  -0.007 R/tr (t  -0.0) | n  225  +0.216 R/tr (t  +2.3) | -0.224 (t -0.6) |   +48.3 ->   +48.7 |  33.2 ->  18.7
+ATR40  *    283    273 | n   32  -0.317 R/tr (t  -0.9) | n  241  +0.242 R/tr (t  +2.6) | -0.559 (t -1.6) |   +48.3 ->   +58.4 |  33.2 ->  21.2
+   (* = primary gauge, fixed before the run. 'scored' = trades with enough history to read the gauge.)
+
+report folder: D:\coding stuff\Trading research project\reports\explore_20261013_213755
+claude vision: wiped and refilled with 1 file(s) from explore_20261013_213755

@@ -1,0 +1,106 @@
+==============================================================================
+ASIA BREAKOUT  --  STUDY: what goes with the strategy working?
+==============================================================================
+data 2020-01-01 .. 2026-10-02 | 1574 trades (flat 1%, same rules as the main report)
+DISCOVERY = before 2024-01-01, CONFIRM = from 2024-01-01 on. A feature only counts if it shows up in BOTH.
+All R is net of costs. +/- is one standard error. With ~30 buckets, expect 1-2 to look 'significant' by luck.
+
+------------------------------------------------------------------------------
+A. DOES THE BREAKOUT DIRECTION MATTER?  (same entries, same stop distance, same exits)
+------------------------------------------------------------------------------
+  cross-check: light simulator -0.014R/trade vs main simulator -0.014R/trade (should be close)
+  strategy direction : -0.014R per trade (+/- 0.023)
+  OPPOSITE direction : -0.042R per trade (+/- 0.022)
+  RANDOM direction   : -0.030R per trade on average over 200 shuffles (middle 90%: -0.063 .. +0.007)
+  -> the real direction beats 74% of random-direction shuffles (95%+ would mean the direction carries signal)
+    discovery  strategy -0.040R (+/- 0.031)  vs opposite -0.004R (+/- 0.031)   n=972
+    confirm    strategy +0.029R (+/- 0.033)  vs opposite -0.103R (+/- 0.032)   n=602
+
+------------------------------------------------------------------------------
+B. THE AFTERNOON DRIFT, MEASURED HONESTLY
+------------------------------------------------------------------------------
+  The main report's 'open R by hour' only averages trades still open, so stopped trades drop out
+  and the line drifts up even with zero edge (survivorship). Here closed trades keep their final R.
+  hour (UTC)            09     10     11     12     13     14     15     16
+  strategy           -0.01  -0.01  -0.01  -0.01  -0.02  +0.01  +0.01  +0.01
+  opposite           +0.01  +0.01  +0.01  +0.00  +0.02  -0.00  -0.01  -0.02
+  random time+dir    +0.01  +0.00  +0.00  +0.00  +0.00  -0.01  -0.00  -0.00
+  random time+direction overall: -0.023R per trade (+/- 0.007), n=15740
+  -> a real drift shows as the strategy line climbing while random stays near its cost level.
+
+------------------------------------------------------------------------------
+C. FEATURES KNOWN AT ENTRY vs RESULT  (expectancy R per trade, by bucket)
+------------------------------------------------------------------------------
+  baseline: discovery -0.040R (n=972) | confirm +0.029R (n=602)
+  'holds' = beats the baseline by > 2 se in discovery AND by > 1 se in confirm, same direction
+
+  direction
+    bucket                              discovery            confirm
+    long                        -0.076 n=519       +0.084 n=341     
+    short                       +0.000 n=453       -0.043 n=261     
+
+  weekday
+    bucket                              discovery            confirm
+    Fri                         +0.047 n=189       +0.009 n=118     
+    Mon                         -0.078 n=184       +0.165 n=113     
+    Thu                         +0.046 n=200       -0.000 n=122     
+    Tue                         -0.078 n=200       +0.002 n=125     
+    Wed                         -0.138 n=199       -0.021 n=124     
+
+  entry hour
+    bucket                              discovery            confirm
+    07-08                       -0.048 n=541       +0.069 n=292     
+    09-11                       +0.001 n=248       -0.013 n=158     
+    12-15                       -0.075 n=183       -0.004 n=152     
+
+  box size (ATR)
+    bucket                              discovery            confirm
+    low (< 4.71)                -0.095 n=324       -0.036 n=125     
+    mid                         +0.027 n=324       +0.065 n=197     
+    high (> 6.00)               -0.053 n=324       +0.032 n=280     
+
+  box size (% of price)
+    bucket                              discovery            confirm
+    low (< 0.41)                -0.143 n=324       +0.040 n=90      
+    mid                         -0.024 n=324       -0.065 n=135     
+    high (> 0.58)               +0.047 n=324       +0.060 n=377     
+
+  breakout extent (ATR)
+    bucket                              discovery            confirm
+    low (< 0.33)                -0.017 n=324       +0.029 n=172     
+    mid                         -0.052 n=324       +0.038 n=219     
+    high (> 0.70)               -0.052 n=324       +0.019 n=211     
+
+  box-end position (toward trade)
+    bucket                              discovery            confirm
+    low (< 0.55)                -0.086 n=324       -0.003 n=177     
+    mid                         -0.016 n=324       +0.005 n=183     
+    high (> 0.79)               -0.019 n=324       +0.070 n=242     
+
+  prior day with trade
+    bucket                              discovery            confirm
+    against                     -0.058 n=472       +0.018 n=313     
+    with                        -0.024 n=483       +0.040 n=289     
+
+  20-day trend with trade (%)
+    bucket                              discovery            confirm
+    low (< -0.46)               -0.037 n=318       -0.014 n=199     
+    mid                         -0.013 n=318       +0.008 n=183     
+    high (> 1.27)               -0.072 n=319       +0.084 n=220     
+
+  volatility regime (prev day / 20d avg)
+    bucket                              discovery            confirm
+    low (< 0.77)                -0.027 n=318       +0.002 n=191     
+    mid                         -0.071 n=318       +0.081 n=221     
+    high (> 1.09)               -0.025 n=319       -0.005 n=190     
+
+------------------------------------------------------------------------------
+D. SHORTLIST  (buckets that held in both periods)
+------------------------------------------------------------------------------
+  real data: 0 bucket(s) held | shuffled results (no real link to any feature): 0.1 on average, 95th pct 1
+  -> NOT more than luck produces. Treat everything below as noise until proven otherwise.
+  none. Nothing known at entry separated good trades from bad ones in both periods.
+  A shortlisted bucket is a CANDIDATE, not a result: a filter built from it needs a fresh test
+  (forward on paper), because the confirm period has now been looked at.
+
+runtime 40.4s

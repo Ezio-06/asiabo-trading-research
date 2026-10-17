@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="250" viewBox="0 0 960 250" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#818b98"/></marker></defs>
+<rect width="960" height="250" rx="12" fill="#ffffff"/>
+<polyline points="0,148.2 10,151.8 20,150.2 30,148.0 40,141.5 50,140.0 60,147.8 70,150.7 80,158.0 90,159.8 100,162.5 110,163.8 120,152.1 130,158.1 140,161.7 150,165.2 160,153.3 170,141.1 180,134.9 190,131.6 200,133.8 210,133.4 220,137.1 230,132.6 240,134.7 250,137.5 260,132.9 270,144.9 280,148.8 290,157.2 300,152.8 310,147.7 320,145.3 330,144.5 340,148.9 350,150.7 360,147.5 370,140.8 380,137.2 390,145.7 400,140.1 410,141.8 420,144.8 430,134.4 440,134.7 450,143.8 460,129.7 470,127.5 480,126.7 490,121.0 500,124.5 510,124.1 520,113.8 530,119.6 540,124.3 550,130.9 560,141.0 570,143.5 580,144.4 590,135.3 600,139.6 610,135.3 620,132.1 630,123.3 640,116.5 650,112.8 660,121.8 670,107.6 680,97.4 690,99.1 700,109.2 710,113.2 720,99.9 730,82.3 740,84.8 750,79.6 760,71.8 770,78.6 780,86.4 790,87.5 800,89.2 810,92.2 820,103.4 830,107.7 840,111.3 850,115.2 860,104.2 870,113.2 880,119.8 890,123.6 900,109.7 910,105.3 920,111.2 930,98.5 940,97.2 950,104.4 960,95.2" fill="none" stroke="#2a78d6" stroke-width="2" opacity="0.18"/>
+<text x="40" y="82.0" font-size="46" fill="#1f2328" font-weight="800" text-anchor="start" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace">asiabo</text>
+<text x="42" y="116.0" font-size="18" fill="#59636e" font-weight="500" text-anchor="start">A trading-strategy research lab built to prove its own ideas wrong.</text>
+<text x="42" y="182.0" font-size="28" fill="#2a78d6" font-weight="800" text-anchor="start">13 yrs</text>
+<text x="42" y="206.0" font-size="12.5" fill="#59636e" font-weight="400" text-anchor="start">of 1-minute bars</text>
+<text x="252" y="182.0" font-size="28" fill="#2a78d6" font-weight="800" text-anchor="start">8</text>
+<text x="252" y="206.0" font-size="12.5" fill="#59636e" font-weight="400" text-anchor="start">markets</text>
+<text x="462" y="182.0" font-size="28" fill="#2a78d6" font-weight="800" text-anchor="start">~30</text>
+<text x="462" y="206.0" font-size="12.5" fill="#59636e" font-weight="400" text-anchor="start">ideas tested</text>
+<text x="672" y="182.0" font-size="28" fill="#2a78d6" font-weight="800" text-anchor="start">0</text>
+<text x="672" y="206.0" font-size="12.5" fill="#59636e" font-weight="400" text-anchor="start">deployable edges</text>
+</svg>

@@ -1,0 +1,46 @@
+# 2026-10-12 16:20:54  module young_engine
+# asiabo_young_engine.py
+
+young engine: start
+real8_s5: done in 673s
+real8_s6: done in 554s
+momentum_s1: done in 572s
+momentum_s2: done in 555s
+neutral_s1: done in 557s
+neutral_s2: done in 557s
+==============================================================================================================
+YOUNG ENGINE: batch-1 younglings through our systems (asiabo_young_engine.py; predictions at its top)
+==============================================================================================================
+
+CHECK A. REAL vs 6 REALISTIC v8 WORLDS (gate-passing seeds). EDGE per trade (n).
+   worlds: real8_s1, real8_s2, real8_s3, real8_s4, real8_s5, real8_s6
+   31 mirror dip                  REAL +0.062 t+1.6 (n 93) | fakes: +0.061(90) -0.029(96) -0.057(98) +0.062(95) +0.088(103) +0.044(116) | fakes at or above real: 2 of 6
+   31 mirror dip / long-stretch   REAL +0.138 t+2.3 (n 35) | fakes: +0.070(47) +0.019(34) +0.030(44) +0.084(46) +0.092(37) +0.061(57) | fakes at or above real: 0 of 6
+   31 mirror dip / short-stretch  REAL +0.015 t+0.3 (n 58) | fakes: +0.053(43) -0.056(62) -0.129(54) +0.041(49) +0.085(66) +0.028(59) | fakes at or above real: 4 of 6
+   19 squeeze                     REAL -0.139 t-1.2 (n 93) | fakes: -0.090(90) -0.028(85) +0.044(77) -0.915(71) +0.138(79) -0.044(83) | fakes at or above real: 5 of 6
+   27 gap closes                  REAL +0.408 t+1.2 (n 6) | fakes: +0.177(14) -0.251(14) -0.123(10) +0.070(16) +0.266(14) +0.066(8) | fakes at or above real: 0 of 6
+
+CHECK B. CAUSE TEST: the same lanes in worlds dialled from MOMENTUM to SNAP-BACK (2 seeds each, pooled).
+   31 mirror dip                  momentum -0.108 t-3.5 (n 187)  neutral -0.041 t-1.5 (n 182)  snapback +0.015 t+0.6 (n 186)
+   31 mirror dip / long-stretch   momentum -0.070 t-1.9 (n 74)  neutral -0.057 t-1.5 (n 73)  snapback +0.048 t+1.4 (n 81)
+   31 mirror dip / short-stretch  momentum -0.134 t-3.1 (n 113)  neutral -0.030 t-0.8 (n 109)  snapback -0.011 t-0.3 (n 105)
+   19 squeeze                     momentum -0.037 t-0.3 (n 167)  neutral -0.300 t-3.3 (n 176)  snapback -0.060 t-0.7 (n 175)
+   27 gap closes                  momentum -0.067 t-0.4 (n 31)  neutral +0.021 t+0.1 (n 22)  snapback -0.037 t-0.3 (n 28)
+   read: #31 should rise from momentum to snap-back, #19 should fall. A clear slope = the lane responds to the
+   state it assumes (a cause, not a quirk); flat = its result is not coming from that mechanism.
+
+CHECK C. PLACEBOS on the real data (EDGE per trade, n) and the best market-year test.
+   31 mirror dip          +0.062 t+1.6 (n 93)
+      P-no-trigger        -0.000 t-0.0 (n 740)
+      P-delay-1d          +0.066 t+1.6 (n 93)
+      without its best market-year (EURUSD 2020, +1.33 R): +0.049 t+1.3 (n 90)
+   19 squeeze             -0.139 t-1.2 (n 93)
+      P-no-break          +0.127 t+0.7 (n 262)
+      P-delay-1d          -0.054 t-0.4 (n 85)
+      without its best market-year (EURUSD 2026, +2.57 R): -0.171 t-1.4 (n 91)
+
+YARDSTICK: on fake random walks the whole-lane t reached +-3.5 (young1 report); a cause-test slope or a
+placebo gap counts only if it is large next to that.
+
+report folder: D:\coding stuff\Trading research project\reports\young_engine_20261012_171844
+claude vision: wiped and refilled with 1 file(s) from young_engine_20261012_171844

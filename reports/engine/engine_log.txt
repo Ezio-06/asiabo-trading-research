@@ -1,0 +1,166 @@
+
+================================================================================
+engine 2026-10-10 12:29: 23 worlds, 0 already measured, 23 to build
+  $ C:\python314\python.exe make_synth.py cache
+    0s
+parallel jobs: 3  (cores 4, free memory 12.8 GB, free disk 98 GB; each job budgeted 1.5 GB memory, 2 GB disk; 3 GB memory always kept free)
+[1/23] real seed 0: ok
+
+real seed 0   (started 12:29)
+  $ C:\python314\python.exe asiabo_engine.py measure --out D:\coding stuff\Trading research project\reports\engine\worlds\real.json
+    237s
+[2/23] pers_p150 seed 1: ok
+
+pers_p150 seed 1   (started 12:29)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --persist 1.5 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 1 --out D:\coding stuff\Trading research project\synth\eng_pers_p150_s1.db
+    169s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_pers_p150_s1.db --out D:\coding stuff\Trading research project\reports\engine\worlds\pers_p150_s1.json
+    170s
+[3/23] pers_p150 seed 2: ok
+
+pers_p150 seed 2   (started 12:29)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --persist 1.5 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 2 --out D:\coding stuff\Trading research project\synth\eng_pers_p150_s2.db
+    170s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_pers_p150_s2.db --out D:\coding stuff\Trading research project\reports\engine\worlds\pers_p150_s2.json
+    172s
+[4/23] pers_p050 seed 1: ok
+
+pers_p050 seed 1   (started 12:33)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --persist 0.5 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 1 --out D:\coding stuff\Trading research project\synth\eng_pers_p050_s1.db
+    168s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_pers_p050_s1.db --out D:\coding stuff\Trading research project\reports\engine\worlds\pers_p050_s1.json
+    166s
+[5/23] shuffle seed 1: ok
+
+shuffle seed 1   (started 12:35)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --markets XAUUSD,US500,GERMANY40,USDJPY --seed 1 --out D:\coding stuff\Trading research project\synth\eng_shuffle_s1.db
+    117s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_shuffle_s1.db --out D:\coding stuff\Trading research project\reports\engine\worlds\shuffle_s1.json
+    169s
+[6/23] pers_p050 seed 2: ok
+
+pers_p050 seed 2   (started 12:35)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --persist 0.5 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 2 --out D:\coding stuff\Trading research project\synth\eng_pers_p050_s2.db
+    169s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_pers_p050_s2.db --out D:\coding stuff\Trading research project\reports\engine\worlds\pers_p050_s2.json
+    169s
+[7/23] shuffle seed 2: ok
+
+shuffle seed 2   (started 12:39)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --markets XAUUSD,US500,GERMANY40,USDJPY --seed 2 --out D:\coding stuff\Trading research project\synth\eng_shuffle_s2.db
+    121s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_shuffle_s2.db --out D:\coding stuff\Trading research project\reports\engine\worlds\shuffle_s2.json
+    173s
+[8/23] pers_m020 seed 1: ok
+
+pers_m020 seed 1   (started 12:40)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --persist -0.2 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 1 --out D:\coding stuff\Trading research project\synth\eng_pers_m020_s1.db
+    168s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_pers_m020_s1.db --out D:\coding stuff\Trading research project\reports\engine\worlds\pers_m020_s1.json
+    172s
+[9/23] pers_m020 seed 2: ok
+
+pers_m020 seed 2   (started 12:41)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --persist -0.2 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 2 --out D:\coding stuff\Trading research project\synth\eng_pers_m020_s2.db
+    169s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_pers_m020_s2.db --out D:\coding stuff\Trading research project\reports\engine\worlds\pers_m020_s2.json
+    175s
+[10/23] pers_m040 seed 1: ok
+
+pers_m040 seed 1   (started 12:44)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --persist -0.4 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 1 --out D:\coding stuff\Trading research project\synth\eng_pers_m040_s1.db
+    170s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_pers_m040_s1.db --out D:\coding stuff\Trading research project\reports\engine\worlds\pers_m040_s1.json
+    169s
+[11/23] dayshuffle seed 1: ok
+
+dayshuffle seed 1   (started 12:46)
+  $ C:\python314\python.exe make_synth.py gen --preset dayshuffle --markets XAUUSD,US500,GERMANY40,USDJPY --seed 1 --out D:\coding stuff\Trading research project\synth\eng_dayshuffle_s1.db
+    119s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_dayshuffle_s1.db --out D:\coding stuff\Trading research project\reports\engine\worlds\dayshuffle_s1.json
+    171s
+[12/23] pers_m040 seed 2: ok
+
+pers_m040 seed 2   (started 12:45)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --persist -0.4 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 2 --out D:\coding stuff\Trading research project\synth\eng_pers_m040_s2.db
+    169s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_pers_m040_s2.db --out D:\coding stuff\Trading research project\reports\engine\worlds\pers_m040_s2.json
+    173s
+[13/23] dayshuffle seed 2: ok
+
+dayshuffle seed 2   (started 12:49)
+  $ C:\python314\python.exe make_synth.py gen --preset dayshuffle --markets XAUUSD,US500,GERMANY40,USDJPY --seed 2 --out D:\coding stuff\Trading research project\synth\eng_dayshuffle_s2.db
+    120s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_dayshuffle_s2.db --out D:\coding stuff\Trading research project\reports\engine\worlds\dayshuffle_s2.json
+    164s
+[14/23] longblock seed 1: ok
+
+longblock seed 1   (started 12:51)
+  $ C:\python314\python.exe make_synth.py gen --preset longblock --markets XAUUSD,US500,GERMANY40,USDJPY --seed 1 --out D:\coding stuff\Trading research project\synth\eng_longblock_s1.db
+    121s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_longblock_s1.db --out D:\coding stuff\Trading research project\reports\engine\worlds\longblock_s1.json
+    171s
+[15/23] longblock seed 2: ok
+
+longblock seed 2   (started 12:51)
+  $ C:\python314\python.exe make_synth.py gen --preset longblock --markets XAUUSD,US500,GERMANY40,USDJPY --seed 2 --out D:\coding stuff\Trading research project\synth\eng_longblock_s2.db
+    123s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_longblock_s2.db --out D:\coding stuff\Trading research project\reports\engine\worlds\longblock_s2.json
+    178s
+[16/23] vol060 seed 1: ok
+
+vol060 seed 1   (started 12:54)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --vol 0.6 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 1 --out D:\coding stuff\Trading research project\synth\eng_vol060_s1.db
+    171s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_vol060_s1.db --out D:\coding stuff\Trading research project\reports\engine\worlds\vol060_s1.json
+    167s
+[17/23] vol060 seed 2: ok
+
+vol060 seed 2   (started 12:56)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --vol 0.6 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 2 --out D:\coding stuff\Trading research project\synth\eng_vol060_s2.db
+    174s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_vol060_s2.db --out D:\coding stuff\Trading research project\reports\engine\worlds\vol060_s2.json
+    170s
+[18/23] vol080 seed 1: ok
+
+vol080 seed 1   (started 12:56)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --vol 0.8 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 1 --out D:\coding stuff\Trading research project\synth\eng_vol080_s1.db
+    170s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_vol080_s1.db --out D:\coding stuff\Trading research project\reports\engine\worlds\vol080_s1.json
+    167s
+[19/23] vol080 seed 2: ok
+
+vol080 seed 2   (started 13:00)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --vol 0.8 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 2 --out D:\coding stuff\Trading research project\synth\eng_vol080_s2.db
+    173s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_vol080_s2.db --out D:\coding stuff\Trading research project\reports\engine\worlds\vol080_s2.json
+    169s
+[20/23] vol125 seed 1: ok
+
+vol125 seed 1   (started 13:02)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --vol 1.25 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 1 --out D:\coding stuff\Trading research project\synth\eng_vol125_s1.db
+    173s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_vol125_s1.db --out D:\coding stuff\Trading research project\reports\engine\worlds\vol125_s1.json
+    167s
+[21/23] vol125 seed 2: ok
+
+vol125 seed 2   (started 13:02)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --vol 1.25 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 2 --out D:\coding stuff\Trading research project\synth\eng_vol125_s2.db
+    173s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_vol125_s2.db --out D:\coding stuff\Trading research project\reports\engine\worlds\vol125_s2.json
+    170s
+[22/23] vol160 seed 1: ok
+
+vol160 seed 1   (started 13:05)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --vol 1.6 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 1 --out D:\coding stuff\Trading research project\synth\eng_vol160_s1.db
+    163s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_vol160_s1.db --out D:\coding stuff\Trading research project\reports\engine\worlds\vol160_s1.json
+    139s
+[23/23] vol160 seed 2: ok
+
+vol160 seed 2   (started 13:07)
+  $ C:\python314\python.exe make_synth.py gen --preset shuffle --vol 1.6 --markets XAUUSD,US500,GERMANY40,USDJPY --seed 2 --out D:\coding stuff\Trading research project\synth\eng_vol160_s2.db
+    141s
+  $ C:\python314\python.exe asiabo_engine.py measure --db D:\coding stuff\Trading research project\synth\eng_vol160_s2.db --out D:\coding stuff\Trading research project\reports\engine\worlds\vol160_s2.json
+    133s
+worlds done in 0.7 h

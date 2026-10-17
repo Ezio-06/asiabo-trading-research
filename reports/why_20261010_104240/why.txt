@@ -1,0 +1,336 @@
+==============================================================================================================
+THE WHY PHASE (why_phase_plan.md, pre-registered 2026-10-09) on the FROZEN omega book   mode: all
+==============================================================================================================
+Sealed exam years 2022-01-01 .. 2024-01-01 and Japan 225: not read. Costs REAL (commission + recorded spread + swap), as in
+the lab's omega run. Markets: XAUUSD, US500, USDJPY, GERMANY40 (dip: US500, GERMANY40). Each era is judged on its own.
+
+==============================================================================================================
+IDENTITY  (this file must trade the frozen book, or nothing below means anything)
+==============================================================================================================
+  book from this file vs the lab's own _k_sleeves + _k_walk (gates off): 4814 vs 4814 trades, IDENTICAL
+  XAUUSD detector copy vs the lab's: 0 day(s) differ
+  US500 detector copy vs the lab's: 0 day(s) differ
+  USDJPY detector copy vs the lab's: 0 day(s) differ
+  GERMANY40 detector copy vs the lab's: 0 day(s) differ
+  orb30 rebuilt at 30 minutes vs the lab's orb30:      16291 vs 16291 rows, IDENTICAL
+  inside rebuilt with the stop at 0.5 vs the lab's:     1256 vs 1256 rows, IDENTICAL
+  rsi2 rebuilt at level 10 vs the lab's (long):         101 vs 101 rows, IDENTICAL
+  dip3 rebuilt with 3 down closes vs the lab's (long):  102 vs 102 rows, IDENTICAL
+  pdh2 'mid' exit 'close' on inside days vs the inside lane (same rule): 1256 vs 1256, IDENTICAL
+
+THE FROZEN BOOK here (net R per trade / coin-flip EDGE per trade and its clustered t / R per year; 1R per trade):
+  (YARDSTICK, 3 fake random walks: these per-era t values ranged -1.7 .. +3.0 over 60 cells of pure noise)
+  brk  | 14-17 n 514 net +0.021 edge +0.135 t +1.3   +2.7 R/yr | 18-19 n 282 net +0.021 edge +0.189 t +1.9   +3.0 R/yr | 20-21 n 373 net +0.047 edge +0.036 t +0.3   +8.8 R/yr | 2024+ n 571 net +0.230 edge +0.162 t +1.9  +47.7 R/yr
+  ins  | 14-17 n 405 net -0.051 edge +0.095 t +1.2   -5.2 R/yr | 18-19 n 217 net +0.019 edge +0.143 t +1.8   +2.1 R/yr | 20-21 n 269 net +0.155 edge +0.169 t +2.1  +20.9 R/yr | 2024+ n 365 net +0.051 edge +0.100 t +1.7   +6.8 R/yr
+  dip  | 14-17 n  15 net +0.183 edge +0.283 t +0.8   +0.7 R/yr | 18-19 n  14 net -0.094 edge -0.023 t -0.0   -0.7 R/yr | 20-21 n  49 net +0.355 edge +0.425 t +1.7   +8.7 R/yr | 2024+ n  61 net +0.429 edge +0.503 t +3.5   +9.5 R/yr
+  fast | 14-17 n 514 net +0.010 edge +0.153 t +2.0   +1.3 R/yr | 18-19 n 248 net +0.019 edge +0.086 t +1.0   +2.4 R/yr | 20-21 n 306 net +0.243 edge +0.171 t +2.2  +37.1 R/yr | 2024+ n 611 net +0.145 edge +0.062 t +1.1  +32.2 R/yr
+  ALL  | 14-17 n1448 net -0.001 edge +0.132 t +2.2   -0.5 R/yr | 18-19 n 761 net +0.018 edge +0.139 t +2.3   +6.8 R/yr | 20-21 n 997 net +0.151 edge +0.132 t +2.1  +75.4 R/yr | 2024+ n1608 net +0.165 edge +0.123 t +2.8  +96.3 R/yr
+
+==============================================================================================================
+W5. COST STRESS: the recorded spread x1.5 and x2 on the SAME trades (commission and swap unchanged)
+==============================================================================================================
+PREDICTION (2026-10-09): fast and ins suffer most (short holds); brk and dip barely.
+RULE: FLAG (not kill) a part net < 0 per trade at x1.5 in 3 of 4 eras -> live only if real spreads are confirmed
+      at or below the tested level.
+Each cell: net R per trade at x1 / x1.5 / x2   (spread cost per trade in R at x1)
+  brk  | 14-17 +0.021 -0.012 -0.045 (0.066) | 18-19 +0.021 +0.007 -0.006 (0.028) | 20-21 +0.047 +0.038 +0.030 (0.017) | 2024+ +0.230 +0.224 +0.219 (0.011)   -> ok
+  ins  | 14-17 -0.051 -0.111 -0.170 (0.119) | 18-19 +0.019 -0.004 -0.027 (0.046) | 20-21 +0.155 +0.129 +0.103 (0.052) | 2024+ +0.051 +0.043 +0.035 (0.017)   -> ok
+  dip  | 14-17 +0.183 +0.178 +0.172 (0.010) | 18-19 -0.094 -0.098 -0.102 (0.008) | 20-21 +0.355 +0.352 +0.349 (0.006) | 2024+ +0.429 +0.426 +0.422 (0.007)   -> ok
+  fast | 14-17 +0.010 -0.025 -0.061 (0.071) | 18-19 +0.019 +0.003 -0.013 (0.032) | 20-21 +0.243 +0.231 +0.219 (0.024) | 2024+ +0.145 +0.140 +0.135 (0.010)   -> ok
+  ALL  | 14-17 -0.001 -0.042 -0.083 (0.082) | 18-19 +0.018 +0.001 -0.016 (0.034) | 20-21 +0.151 +0.137 +0.123 (0.028) | 2024+ +0.165 +0.159 +0.153 (0.012)
+
+  money, $10,000, fixed risk 0.25 / 0.25 / 0.50 / 0.10 %, the lab's K4 engine:
+  spreads x1                         $10,000   |14-17  +0.8%/yr dd 23.3% under 26mo m+ 39% small 164 cap 0  |18-19  +1.0%/yr dd 10.6% under 17mo m+ 44% small 212 cap 0  |20-21 +15.8%/yr dd  6.1% under  5mo m+ 71% small 272 cap 0  |2024+ +18.6%/yr dd  3.0% under  5mo m+ 62% small 583 cap 0
+  spreads x1.5                       $10,000   |14-17  -1.6%/yr dd 24.2% under 26mo m+ 39% small 173 cap 0  |18-19  -0.1%/yr dd 12.2% under 17mo m+ 44% small 212 cap 0  |20-21 +14.2%/yr dd  6.3% under  6mo m+ 67% small 272 cap 0  |2024+ +18.0%/yr dd  3.1% under  5mo m+ 62% small 585 cap 0
+  spreads x2                         $10,000   |14-17  -4.0%/yr dd 25.2% under 26mo m+ 35% small 182 cap 0  |18-19  -1.2%/yr dd 13.7% under 17mo m+ 40% small 212 cap 0  |20-21 +12.7%/yr dd  6.5% under  6mo m+ 67% small 274 cap 0  |2024+ +17.4%/yr dd  3.3% under  6mo m+ 62% small 586 cap 0
+YARDSTICK (this file on 3 fake random-walk markets, 2026-10-10): with no edge every part is net < 0, so every
+    part FLAGs there. W5 only means something for a part that is net > 0 at x1: read how far x1.5 pulls it.
+
+==============================================================================================================
+W3. WHERE THE MONEY COMES FROM
+==============================================================================================================
+RULE: KILL a part if, without its best market-year, it is net <= 0 in 3 of 4 eras.
+Shares are of the era's total net R (n/a when the total is <= 0). Best market-year = market x calendar year with
+the most net R inside that era.
+  brk
+    2014-17    n  514 net   +11.0 R | best 5% ( 26 trades) 2680% | best month 2014-09  401% | best market-year USDJPY 2014      669% | without it   -62.4 R
+    2018-19    n  282 net    +6.0 R | best 5% ( 15 trades) 2148% | best month 2018-02  306% | best market-year USDJPY 2018      482% | without it   -22.8 R
+    A 2020-21  n  373 net   +17.5 R | best 5% ( 19 trades) 1043% | best month 2020-03  189% | best market-year XAUUSD 2020      199% | without it   -17.4 R
+    B 2024+    n  571 net  +131.1 R | best 5% ( 29 trades)  218% | best month 2025-10   15% | best market-year XAUUSD 2025       42% | without it   +75.8 R
+    -> KILL (net <= 0 without the best market-year in 3 of 4 eras)
+  ins
+    2014-17    n  405 net   -20.7 R | best 5% ( 21 trades)  n/a | best month 2014-10  n/a | best market-year XAUUSD 2015      n/a | without it   -32.8 R
+    2018-19    n  217 net    +4.1 R | best 5% ( 11 trades) 1208% | best month 2019-07  253% | best market-year USDJPY 2018      159% | without it    -2.4 R
+    A 2020-21  n  269 net   +41.7 R | best 5% ( 14 trades)  202% | best month 2021-02   38% | best market-year USDJPY 2021       69% | without it   +12.9 R
+    B 2024+    n  365 net   +18.7 R | best 5% ( 19 trades)  397% | best month 2025-04   69% | best market-year XAUUSD 2025      174% | without it   -13.8 R
+    -> KILL (net <= 0 without the best market-year in 3 of 4 eras)
+  dip
+    2014-17    n   15 net    +2.7 R | best 5% (  1 trades)   83% | best month 2017-03  110% | best market-year GERMANY40 2016    59% | without it    +1.1 R
+    2018-19    n   14 net    -1.3 R | best 5% (  1 trades)  n/a | best month 2019-12  n/a | best market-year GERMANY40 2019   n/a | without it    -6.5 R
+    A 2020-21  n   49 net   +17.4 R | best 5% (  3 trades)   42% | best month 2021-05   36% | best market-year US500 2021        71% | without it    +5.1 R
+    B 2024+    n   61 net   +26.2 R | best 5% (  4 trades)   40% | best month 2026-02   16% | best market-year GERMANY40 2025    44% | without it   +14.7 R
+    -> keep (net <= 0 without the best market-year in 1 of 4 eras)
+  fast
+    2014-17    n  514 net    +5.1 R | best 5% ( 26 trades) 3724% | best month 2014-09  594% | best market-year USDJPY 2014      879% | without it   -40.0 R
+    2018-19    n  248 net    +4.8 R | best 5% ( 13 trades) 1372% | best month 2018-08  224% | best market-year XAUUSD 2019      170% | without it    -3.3 R
+    A 2020-21  n  306 net   +74.2 R | best 5% ( 16 trades)  140% | best month 2020-11   29% | best market-year USDJPY 2020       35% | without it   +48.3 R
+    B 2024+    n  611 net   +88.7 R | best 5% ( 31 trades)  203% | best month 2024-07   19% | best market-year XAUUSD 2026       32% | without it   +59.9 R
+    -> keep (net <= 0 without the best market-year in 2 of 4 eras)
+
+W3b. TRADE ANATOMY (brk, fast): gross R (no costs) of the open trade after 1h / 4h / 1 day / 3 days of trading
+     bars (a trade that has ended counts at its final R); MFE / MAE so far, in R. Medians.
+PREDICTION: breakout winners show early follow-through (positive by hour 4). If winners only appear on day 3-5,
+            the edge is macro trend riding, not breakout follow-through, and T1 needs rewriting.
+READ AGAINST THE YARDSTICK: on a random walk a winner is also 'positive early' more often than not (a path that
+            ends up is more likely to have been up along the way). Only the gap above the yardstick is follow-through.
+  brk  OLD 2014-21 winners n  275 hold 117.0h | 1h  59%+ R +0.07 mfe 0.29 mae -0.14 | 4h  77%+ R +0.38 mfe 0.65 mae -0.25 | 1d  94%+ R +1.41 mfe 2.23 mae -0.33 | 3d  99%+ R +2.20 mfe 3.99 mae -0.34 | share of final R in place: 1h    2% 4h   14% 1d   79% 3d  100%
+  brk  OLD 2014-21 losers  n  894 hold   8.0h | 1h  43%+ R -0.06 mfe 0.19 mae -0.24 | 4h  35%+ R -0.23 mfe 0.35 mae -0.57 | 1d  17%+ R -1.00 mfe 0.59 mae -1.07 | 3d   5%+ R -1.00 mfe 0.61 mae -1.10 |
+  brk  NEW 2024+   winners n  163 hold 126.8h | 1h  62%+ R +0.06 mfe 0.24 mae -0.13 | 4h  69%+ R +0.25 mfe 0.54 mae -0.26 | 1d  94%+ R +1.42 mfe 2.38 mae -0.33 | 3d  98%+ R +2.06 mfe 3.65 mae -0.35 | share of final R in place: 1h    2% 4h   10% 1d   83% 3d  100%
+  brk  NEW 2024+   losers  n  408 hold   9.0h | 1h  43%+ R -0.04 mfe 0.18 mae -0.23 | 4h  37%+ R -0.27 mfe 0.32 mae -0.59 | 1d  15%+ R -1.00 mfe 0.50 mae -1.09 | 3d   5%+ R -1.00 mfe 0.50 mae -1.12 |
+  brk  ALL         winners n  438 hold 121.8h | 1h  60%+ R +0.06 mfe 0.26 mae -0.13 | 4h  74%+ R +0.34 mfe 0.61 mae -0.25 | 1d  94%+ R +1.41 mfe 2.31 mae -0.33 | 3d  99%+ R +2.10 mfe 3.81 mae -0.35 | share of final R in place: 1h    2% 4h   13% 1d   80% 3d  100%
+  brk  ALL         losers  n 1302 hold   8.2h | 1h  43%+ R -0.05 mfe 0.19 mae -0.24 | 4h  36%+ R -0.24 mfe 0.34 mae -0.57 | 1d  16%+ R -1.00 mfe 0.54 mae -1.08 | 3d   5%+ R -1.00 mfe 0.57 mae -1.11 |
+  fast OLD 2014-21 winners n  401 hold  13.2h | 1h  64%+ R +0.14 mfe 0.40 mae -0.16 | 4h  81%+ R +0.54 mfe 0.98 mae -0.25 | 1d 100%+ R +1.21 mfe 1.97 mae -0.36 | 3d 100%+ R +1.21 mfe 1.97 mae -0.36 | share of final R in place: 1h    8% 4h   40% 1d  100% 3d  100%
+  fast OLD 2014-21 losers  n  667 hold   4.5h | 1h  37%+ R -0.11 mfe 0.24 mae -0.36 | 4h  24%+ R -0.66 mfe 0.39 mae -0.90 | 1d   2%+ R -1.00 mfe 0.46 mae -1.17 | 3d   2%+ R -1.00 mfe 0.46 mae -1.17 |
+  fast NEW 2024+   winners n  256 hold   8.5h | 1h  73%+ R +0.23 mfe 0.38 mae -0.15 | 4h  84%+ R +0.55 mfe 0.88 mae -0.26 | 1d 100%+ R +1.00 mfe 1.60 mae -0.33 | 3d 100%+ R +1.00 mfe 1.60 mae -0.33 | share of final R in place: 1h   19% 4h   53% 1d  100% 3d  100%
+  fast NEW 2024+   losers  n  355 hold   4.0h | 1h  37%+ R -0.17 mfe 0.23 mae -0.46 | 4h  23%+ R -1.00 mfe 0.33 mae -0.96 | 1d   3%+ R -1.00 mfe 0.37 mae -1.15 | 3d   3%+ R -1.00 mfe 0.37 mae -1.15 |
+  fast ALL         winners n  657 hold  12.8h | 1h  68%+ R +0.16 mfe 0.40 mae -0.16 | 4h  82%+ R +0.55 mfe 0.94 mae -0.25 | 1d 100%+ R +1.15 mfe 1.84 mae -0.35 | 3d 100%+ R +1.15 mfe 1.84 mae -0.35 | share of final R in place: 1h   12% 4h   44% 1d  100% 3d  100%
+  fast ALL         losers  n 1022 hold   4.4h | 1h  37%+ R -0.13 mfe 0.24 mae -0.39 | 4h  24%+ R -0.70 mfe 0.36 mae -0.91 | 1d   2%+ R -1.00 mfe 0.43 mae -1.16 | 3d   2%+ R -1.00 mfe 0.43 mae -1.16 |
+YARDSTICK (3 fake random walks, 2026-10-10): every part is net < 0 on noise, so the market-year rule kills all
+    four there; the rule only bites on a profitable part. ANATOMY on noise (ALL eras, winners, medians):
+    brk  winners positive at 1h 65-66%  4h 75-77%  1d 93%   share of final R in place at 4h 13-18%  1d 69-74%
+    fast winners positive at 1h 68-70%  4h 81-82%  1d 100%  share of final R in place at 4h 51-56%
+    So 'positive by hour 4' is ~75% (brk) / ~82% (fast) by geometry alone. Follow-through = clearly ABOVE these.
+
+==============================================================================================================
+W1. PLATEAU: each frozen number moved about +-25%, one at a time, everything else frozen (books re-deduped)
+==============================================================================================================
+PREDICTION: real mechanisms degrade smoothly; the neighbours keep at least half the edge in most eras.
+RULE: KILL a part if its frozen value is an isolated PEAK: both neighbours keep less than half of the frozen
+      EDGE per trade in 3 of 4 eras (an era counts only where the frozen edge is > 0). Edge = net minus the
+      coin-flip average (the lab's definition). Each cell: edge/trade (n) low | FROZEN | high, then R/yr.
+      The ORB window uses minute bars for 22 / 38 (not whole M15 bars).
+
+  edge20 window (days): 15 | 20 | 25
+    brk  | 14-17 +0.093(522) +0.135(514) +0.115(521) R/yr +4/+3/+2 | 18-19 +0.163(273) +0.189(282) +0.210(278) R/yr -1/+3/+11 | 20-21 +0.063(375) +0.036(373) +0.035(367) R/yr +10/+9/+11 | 2024+ +0.131(568) +0.162(571) +0.204(575) R/yr +48/+48/+46   -> plateau / ok (0 peak eras)
+    fast | 14-17 +0.173(508) +0.153(514) +0.123(521) R/yr +5/+1/-4 | 18-19 +0.055(246) +0.086(248) +0.077(253) R/yr -2/+2/+1 | 20-21 +0.174(308) +0.171(306) +0.150(297) R/yr +38/+37/+34 | 2024+ +0.089(608) +0.062(611) +0.063(619) R/yr +33/+32/+32   -> plateau / ok (0 peak eras)
+
+  edge20 threshold: 0.80 | 0.85 | 0.90
+    brk  | 14-17 +0.152(588) +0.135(514) +0.107(454) R/yr +13/+3/-1 | 18-19 +0.216(315) +0.189(282) +0.112(247) R/yr +0/+3/-11 | 20-21 +0.077(431) +0.036(373) -0.035(332) R/yr +17/+9/+5 | 2024+ +0.121(656) +0.162(571) +0.074(518) R/yr +39/+48/+34   -> plateau / ok (0 peak eras)
+    fast | 14-17 +0.145(579) +0.153(514) +0.161(455) R/yr +2/+1/-1 | 18-19 +0.069(282) +0.086(248) +0.068(222) R/yr +2/+2/+0 | 20-21 +0.137(331) +0.171(306) +0.149(271) R/yr +31/+37/+31 | 2024+ +0.065(694) +0.062(611) +0.081(543) R/yr +36/+32/+30   -> plateau / ok (0 peak eras)
+
+  er10 window (days): 8 | 10 | 12
+    brk  | 14-17 +0.172(488) +0.135(514) +0.097(510) R/yr -7/+3/+11 | 18-19 +0.214(269) +0.189(282) +0.247(267) R/yr +4/+3/+12 | 20-21 +0.118(389) +0.036(373) +0.028(376) R/yr +19/+9/+4 | 2024+ +0.115(574) +0.162(571) +0.183(561) R/yr +32/+48/+52   -> plateau / ok (0 peak eras)
+    fast | 14-17 +0.181(468) +0.153(514) +0.175(516) R/yr +0/+1/+10 | 18-19 +0.048(228) +0.086(248) +0.144(240) R/yr -2/+2/+5 | 20-21 +0.140(300) +0.171(306) +0.105(320) R/yr +23/+37/+25 | 2024+ +0.035(593) +0.062(611) +0.024(602) R/yr +21/+32/+20   -> plateau / ok (0 peak eras)
+
+  er10 straightness: 0.3 | 0.4 | 0.5
+    brk  | 14-17 +0.173(527) +0.135(514) +0.150(480) R/yr +9/+3/-0 | 18-19 +0.222(292) +0.189(282) +0.182(261) R/yr +10/+3/+10 | 20-21 +0.034(395) +0.036(373) -0.006(352) R/yr +7/+9/+6 | 2024+ +0.135(602) +0.162(571) +0.162(527) R/yr +45/+48/+46   -> plateau / ok (0 peak eras)
+    fast | 14-17 +0.180(543) +0.153(514) +0.164(447) R/yr +4/+1/-2 | 18-19 +0.066(267) +0.086(248) +0.043(199) R/yr -0/+2/-2 | 20-21 +0.126(339) +0.171(306) +0.194(266) R/yr +29/+37/+34 | 2024+ +0.062(657) +0.062(611) +0.031(536) R/yr +33/+32/+18   -> plateau / ok (0 peak eras)
+
+  er10 move (ATR): 1.5 | 2.0 | 2.5
+    brk  | 14-17 +0.073(541) +0.135(514) +0.091(479) R/yr +5/+3/-10 | 18-19 +0.171(298) +0.189(282) +0.202(261) R/yr +6/+3/+9 | 20-21 +0.029(392) +0.036(373) +0.044(357) R/yr +3/+9/+13 | 2024+ +0.147(593) +0.162(571) +0.156(541) R/yr +47/+48/+45   -> plateau / ok (0 peak eras)
+    fast | 14-17 +0.125(549) +0.153(514) +0.153(433) R/yr -2/+1/-1 | 18-19 +0.056(275) +0.086(248) +0.094(206) R/yr +2/+2/+1 | 20-21 +0.133(345) +0.171(306) +0.192(268) R/yr +33/+37/+31 | 2024+ +0.059(648) +0.062(611) +0.064(539) R/yr +30/+32/+29   -> plateau / ok (0 peak eras)
+
+  chandelier length (days): 4 | 5 | 6
+    brk  | 14-17 +0.172(529) +0.135(514) +0.107(498) R/yr +11/+3/+0 | 18-19 +0.147(296) +0.189(282) +0.192(275) R/yr +6/+3/+6 | 20-21 +0.043(382) +0.036(373) +0.033(371) R/yr +16/+9/+5 | 2024+ +0.137(601) +0.162(571) +0.144(555) R/yr +45/+48/+36   -> plateau / ok (0 peak eras)
+
+  chandelier distance (N): 0.75 | 1.0 | 1.25
+    brk  | 14-17 +0.173(591) +0.135(514) +0.199(473) R/yr +14/+3/+11 | 18-19 +0.160(334) +0.189(282) +0.199(258) R/yr +7/+3/+3 | 20-21 -0.002(439) +0.036(373) +0.092(341) R/yr +6/+9/+26 | 2024+ +0.151(665) +0.162(571) +0.171(524) R/yr +51/+48/+44   -> plateau / ok (0 peak eras)
+
+  ORB window (minutes): 22 | 30 | 38
+    brk  | 14-17 +0.092(537) +0.135(514) +0.143(502) R/yr -6/+3/+5 | 18-19 +0.181(295) +0.189(282) +0.177(271) R/yr +3/+3/-2 | 20-21 +0.005(381) +0.036(373) +0.071(356) R/yr +20/+9/+4 | 2024+ +0.194(593) +0.162(571) +0.131(557) R/yr +63/+48/+43   -> plateau / ok (0 peak eras)
+    fast | 14-17 +0.078(514) +0.153(514) +0.141(504) R/yr -7/+1/+6 | 18-19 +0.119(249) +0.086(248) +0.109(242) R/yr +1/+2/+1 | 20-21 +0.093(318) +0.171(306) +0.148(307) R/yr +36/+37/+26 | 2024+ +0.065(625) +0.062(611) +0.061(609) R/yr +27/+32/+24   -> plateau / ok (0 peak eras)
+
+  inside-day stop (fraction): 0.4 | 0.5 | 0.6
+    ins  | 14-17 +0.029(405) +0.095(405) +0.107(405) R/yr -5/-5/-5 | 18-19 +0.093(217) +0.143(217) +0.166(217) R/yr +1/+2/-3 | 20-21 +0.123(269) +0.169(269) +0.209(269) R/yr +15/+21/+27 | 2024+ +0.079(365) +0.100(365) +0.110(365) R/yr +7/+7/+7   -> plateau / ok (0 peak eras)
+
+  rsi2 entry level: 7.5 | 10 | 12.5
+    dip  | 14-17 +0.185(14) +0.283(15) +0.154(16) R/yr +0/+1/+0 | 18-19 +0.374(12) -0.023(14) -0.036(17) R/yr +2/-1/-1 | 20-21 +0.496(46) +0.425(49) +0.302(56) R/yr +10/+9/+6 | 2024+ +0.583(56) +0.503(61) +0.407(65) R/yr +10/+10/+8   -> plateau / ok (0 peak eras)
+
+  dip3 count (down closes): 2 | 3 | 4
+    dip  | 14-17 +0.185(26) +0.283(15) +0.080(11) R/yr +1/+1/-0 | 18-19 -0.381(25) -0.023(14) -0.267(12) R/yr -6/-1/-2 | 20-21 +0.224(83) +0.425(49) +0.533(33) R/yr +6/+9/+8 | 2024+ +0.063(87) +0.503(61) +0.603(51) R/yr -0/+10/+10   -> plateau / ok (0 peak eras)
+
+  long average (days): 150 | 200 | 250
+    dip  | 14-17 +0.294(16) +0.283(15) +0.185(14) R/yr +1/+1/+0 | 18-19 +0.170(12) -0.023(14) -0.222(15) R/yr +1/-1/-2 | 20-21 +0.532(49) +0.425(49) +0.308(47) R/yr +11/+9/+6 | 2024+ +0.422(61) +0.503(61) +0.516(59) R/yr +8/+10/+10   -> plateau / ok (0 peak eras)
+
+  DERIVED-RULE CANDIDATES (written 2026-10-09): at the frozen point each reproduces the frozen value exactly, so
+  they are judged in W1's neighbourhood: does tying the number to the mechanism keep MORE of the frozen edge
+  when the neighbouring number moves? Cells: edge/trade (n), fixed rule vs derived rule. A swap is worth
+  proposing only if the derived rule keeps more in most eras on both sides (decision is Ezio's, not automatic).
+  D1  range lookback = 4 x hold
+    brk  fixed 20, hold 4           vs derived 16, hold 4         | 14-17 +0.172(529) +0.100(528) | 18-19 +0.147(296) +0.188(284) | 20-21 +0.043(382) +0.061(380) | 2024+ +0.137(601) +0.094(598)   derived better in 2 of 4
+    brk  fixed 20, hold 6           vs derived 24, hold 6         | 14-17 +0.107(498) +0.095(505) | 18-19 +0.192(275) +0.189(277) | 20-21 +0.033(371) +0.028(368) | 2024+ +0.144(555) +0.141(551)   derived better in 0 of 4
+  D2  er10 move = 0.632 x sqrt(window) ATR
+    brk  fixed 2.0, window 8        vs derived 1.79, window 8     | 14-17 +0.172(488) +0.229(514) | 18-19 +0.214(269) +0.215(287) | 20-21 +0.118(389) +0.136(397) | 2024+ +0.115(574) +0.101(601)   derived better in 3 of 4
+    fast fixed 2.0, window 8        vs derived 1.79, window 8     | 14-17 +0.181(468) +0.219(503) | 18-19 +0.048(228) -0.031(259) | 20-21 +0.140(300) +0.089(327) | 2024+ +0.035(593) +0.008(637)   derived better in 1 of 4
+    brk  fixed 2.0, window 12       vs derived 2.19, window 12    | 14-17 +0.097(510) +0.093(501) | 18-19 +0.247(267) +0.251(264) | 20-21 +0.028(376) +0.017(371) | 2024+ +0.183(561) +0.193(552)   derived better in 2 of 4
+    fast fixed 2.0, window 12       vs derived 2.19, window 12    | 14-17 +0.175(516) +0.168(504) | 18-19 +0.144(240) +0.139(236) | 20-21 +0.105(320) +0.089(312) | 2024+ +0.024(602) +0.045(585)   derived better in 1 of 4
+
+YARDSTICK (3 fake random walks, 2026-10-10): 1-3 PEAK eras out of 72 per seed, no part killed; edge/trade of
+    neighbours swung by up to +-0.10 R per era on noise. D1 / D2 'derived better' ranged 0-4 of 4 on noise, so a
+    derived rule needs 4 of 4 on both sides (and a sensible size) before it is worth proposing.
+
+==============================================================================================================
+W2. DOSE-RESPONSE: does more of the cause give more of the effect?  (ALL candidate trades, before the trend filter
+    and before the one-position rule; edge = net minus the coin-flip average, per trade)
+    Each bin: edge/trade (n, t). t and the slope's t are CLUSTERED by market x month: the candidates overlap
+    heavily (five brk lanes on the same day, multi-day holds), so n hugely overstates the evidence. Judge a
+    response by the slope's t against the yardstick, and by OLD and NEW agreeing -- never by the rank corr alone.
+==============================================================================================================
+READING: flat or non-monotonic = the threshold is not tracking the cause. Not a kill on its own; lowers confidence.
+
+  brk (5-day chandelier lanes): 32133 candidate trades
+
+  yesterday's close in the 20-day range, IN the trade's direction (edge20 fires at >= .85)   (prediction: rises toward the edge)
+    OLD 2014-21 <.15 -0.014(3257,t -0.2)  .15-.3 -0.118(3107,t -1.6)  .3-.5 +0.102(3859,t +1.8)  .5-.7 +0.003(3821,t +0.1)  .7-.85 +0.268(3134,t +3.9)  .85-.95 +0.080(2555,t +1.1)  >=.95 +0.262(1519,t +2.4)
+                  -> slope +0.048 R per bin step, t +2.3 (clustered)   rank corr +0.71
+    NEW 2024+   <.15 +0.042(1780,t +0.5)  .15-.3 -0.066(1421,t -0.7)  .3-.5 -0.050(1826,t -0.7)  .5-.7 +0.188(1877,t +2.6)  .7-.85 +0.124(1593,t +1.3)  .85-.95 +0.267(1373,t +2.3)  >=.95 +0.018(1011,t +0.2)
+                  -> slope +0.032 R per bin step, t +1.2 (clustered)   rank corr +0.43
+    ALL         <.15 +0.006(5037,t +0.1)  .15-.3 -0.102(4528,t -1.7)  .3-.5 +0.053(5685,t +1.2)  .5-.7 +0.064(5698,t +1.5)  .7-.85 +0.220(4727,t +3.9)  .85-.95 +0.146(3928,t +2.3)  >=.95 +0.164(2530,t +2.1)
+                  -> slope +0.042 R per bin step, t +2.6 (clustered)   rank corr +0.86
+
+  er10 straightness, signed with the trade (er10 needs >= +.4)   (prediction: rises with straighter trends in the trade's direction)
+    OLD 2014-21 <-.4 +0.059(3362,t +0.9)  -.4..-.2 -0.031(3001,t -0.4)  -.2..0 +0.013(3785,t +0.2)  0..+.2 +0.090(4048,t +1.7)  +.2..+.4 +0.125(3332,t +1.7)  +.4..+.6 +0.093(2070,t +1.0)  >=+.6 +0.181(1654,t +1.5)
+                  -> slope +0.025 R per bin step, t +1.2 (clustered)   rank corr +0.86
+    NEW 2024+   <-.4 +0.016(1663,t +0.2)  -.4..-.2 -0.019(1434,t -0.2)  -.2..0 +0.049(2097,t +0.8)  0..+.2 +0.157(1991,t +2.0)  +.2..+.4 +0.113(1684,t +1.1)  +.4..+.6 +0.029(1082,t +0.2)  >=+.6 +0.205(930,t +1.8)
+                  -> slope +0.026 R per bin step, t +1.1 (clustered)   rank corr +0.71
+    ALL         <-.4 +0.045(5025,t +0.9)  -.4..-.2 -0.027(4435,t -0.4)  -.2..0 +0.026(5882,t +0.6)  0..+.2 +0.112(6039,t +2.5)  +.2..+.4 +0.121(5016,t +2.0)  +.4..+.6 +0.071(3152,t +1.0)  >=+.6 +0.190(2584,t +2.2)
+                  -> slope +0.025 R per bin step, t +1.6 (clustered)   rank corr +0.79
+
+  10-day move in daily ATRs, signed with the trade (er10 needs >= 2)   (prediction: rises with bigger moves in the trade's direction)
+    OLD 2014-21 <-2 +0.084(3196,t +1.3)  -2..-1 -0.083(2935,t -1.0)  -1..0 +0.033(4017,t +0.6)  0..1 +0.087(4400,t +1.7)  1..2 +0.116(3168,t +1.4)  2..3 +0.127(2013,t +1.4)  >=3 +0.177(1523,t +1.8)
+                  -> slope +0.026 R per bin step, t +1.3 (clustered)   rank corr +0.89
+    NEW 2024+   <-2 +0.024(1582,t +0.3)  -2..-1 -0.013(1526,t -0.1)  -1..0 +0.040(2086,t +0.6)  0..1 +0.155(2038,t +2.0)  1..2 +0.065(1702,t +0.6)  2..3 +0.172(1082,t +1.7)  >=3 +0.127(865,t +1.1)
+                  -> slope +0.026 R per bin step, t +1.1 (clustered)   rank corr +0.79
+    ALL         <-2 +0.064(4778,t +1.2)  -2..-1 -0.059(4461,t -0.9)  -1..0 +0.035(6103,t +0.9)  0..1 +0.109(6438,t +2.5)  1..2 +0.098(4870,t +1.5)  2..3 +0.143(3095,t +2.1)  >=3 +0.159(2388,t +2.1)
+                  -> slope +0.026 R per bin step, t +1.7 (clustered)   rank corr +0.86
+
+  fast (orb30 + main2, exit at the close): 12767 candidate trades
+
+  yesterday's close in the 20-day range, IN the trade's direction (edge20 fires at >= .85)   (prediction: rises toward the edge)
+    OLD 2014-21 <.15 +0.019(1380,t +0.4)  .15-.3 -0.113(1223,t -0.6)  .3-.5 +0.099(1542,t +2.4)  .5-.7 -0.009(1511,t -0.2)  .7-.85 +0.084(1249,t +1.9)  .85-.95 +0.129(963,t +2.3)  >=.95 +0.107(481,t +1.6)
+                  -> slope +0.025 R per bin step, t +1.5 (clustered)   rank corr +0.71
+    NEW 2024+   <.15 +0.065(782,t +1.0)  .15-.3 -0.035(577,t -0.4)  .3-.5 +0.055(747,t +1.1)  .5-.7 +0.169(771,t +3.1)  .7-.85 +0.051(652,t +0.8)  .85-.95 +0.064(538,t +0.8)  >=.95 +0.030(351,t +0.4)
+                  -> slope +0.005 R per bin step, t +0.3 (clustered)   rank corr -0.18
+    ALL         <.15 +0.035(2162,t +1.0)  .15-.3 -0.088(1800,t -0.6)  .3-.5 +0.085(2289,t +2.6)  .5-.7 +0.051(2282,t +1.6)  .7-.85 +0.072(1901,t +2.0)  .85-.95 +0.105(1501,t +2.3)  >=.95 +0.075(832,t +1.4)
+                  -> slope +0.018 R per bin step, t +1.5 (clustered)   rank corr +0.68
+
+  er10 straightness, signed with the trade (er10 needs >= +.4)   (prediction: rises with straighter trends in the trade's direction)
+    OLD 2014-21 <-.4 +0.090(1369,t +1.9)  -.4..-.2 -0.142(1191,t -0.7)  -.2..0 +0.011(1520,t +0.3)  0..+.2 +0.096(1588,t +2.3)  +.2..+.4 +0.035(1297,t +0.8)  +.4..+.6 +0.080(785,t +1.4)  >=+.6 +0.126(599,t +2.0)
+                  -> slope +0.017 R per bin step, t +1.0 (clustered)   rank corr +0.46
+    NEW 2024+   <-.4 +0.104(723,t +1.5)  -.4..-.2 +0.033(588,t +0.5)  -.2..0 +0.065(843,t +1.3)  0..+.2 +0.086(817,t +1.8)  +.2..+.4 +0.034(685,t +0.6)  +.4..+.6 +0.079(413,t +0.7)  >=+.6 +0.015(349,t +0.2)
+                  -> slope -0.008 R per bin step, t -0.5 (clustered)   rank corr -0.46
+    ALL         <-.4 +0.095(2092,t +2.4)  -.4..-.2 -0.084(1779,t -0.6)  -.2..0 +0.030(2363,t +0.9)  0..+.2 +0.092(2405,t +2.9)  +.2..+.4 +0.034(1982,t +1.0)  +.4..+.6 +0.080(1198,t +1.5)  >=+.6 +0.085(948,t +1.7)
+                  -> slope +0.009 R per bin step, t +0.7 (clustered)   rank corr +0.04
+
+  10-day move in daily ATRs, signed with the trade (er10 needs >= 2)   (prediction: rises with bigger moves in the trade's direction)
+    OLD 2014-21 <-2 +0.099(1304,t +2.1)  -2..-1 -0.168(1171,t -0.8)  -1..0 +0.024(1605,t +0.6)  0..1 +0.110(1738,t +2.8)  1..2 +0.008(1228,t +0.2)  2..3 +0.093(761,t +1.6)  >=3 +0.119(542,t +2.0)
+                  -> slope +0.017 R per bin step, t +1.0 (clustered)   rank corr +0.39
+    NEW 2024+   <-2 +0.071(684,t +1.0)  -2..-1 +0.091(629,t +1.4)  -1..0 +0.052(841,t +1.1)  0..1 +0.084(842,t +1.7)  1..2 -0.003(689,t -0.0)  2..3 +0.108(419,t +1.3)  >=3 +0.053(314,t +0.6)
+                  -> slope -0.004 R per bin step, t -0.3 (clustered)   rank corr -0.07
+    ALL         <-2 +0.089(1988,t +2.3)  -2..-1 -0.077(1800,t -0.6)  -1..0 +0.033(2446,t +1.1)  0..1 +0.102(2580,t +3.3)  1..2 +0.004(1917,t +0.1)  2..3 +0.098(1180,t +2.0)  >=3 +0.095(856,t +1.9)
+                  -> slope +0.010 R per bin step, t +0.8 (clustered)   rank corr +0.43
+
+  ins: 1256 candidate trades
+
+  inside day's width in daily ATRs   (prediction: narrower is better (compression; read the rank corr NEGATIVE))
+    OLD 2014-21 <.4 +0.653(137,t +3.3)  .4-.6 +0.051(254,t +0.7)  .6-.8 -0.046(280,t -0.6)  .8-1 +0.135(141,t +1.7)  >=1 +0.081(79,t +0.8)
+                  -> slope -0.109 R per bin step, t -2.3 (clustered)   rank corr -0.20
+    NEW 2024+   <.4 +0.412(32,t +1.5)  .4-.6 +0.203(104,t +1.5)  .6-.8 +0.107(110,t +1.1)  .8-1 -0.075(70,t -0.6)  >=1 -0.089(49,t -0.6)
+                  -> slope -0.124 R per bin step, t -2.1 (clustered)   rank corr -1.00
+    ALL         <.4 +0.607(169,t +3.7)  .4-.6 +0.095(358,t +1.4)  .6-.8 -0.003(390,t -0.0)  .8-1 +0.065(211,t +0.9)  >=1 +0.015(128,t +0.2)
+                  -> slope -0.113 R per bin step, t -3.0 (clustered)   rank corr -0.70
+
+  dip (US500, Germany 40; LOOSE versions: every signal day, overlapping trades allowed, same exits):
+    rsi2 long with RSI(2) < 30: 498 trades; down-close streaks of 2+ above the 200-day average: 408 trades
+
+  RSI(2) on the signal day (rsi2 enters below 10)   (prediction: deeper (lower RSI) bounces more, until a crash regime; read the rank corr NEGATIVE)
+    OLD 2014-21 <2.5 +0.262(21,t +0.4)  2.5-5 +0.586(17,t +1.6)  5-10 +0.246(46,t +1.1)  10-20 +0.155(94,t +1.1)  20-30 +0.247(98,t +1.5)
+                  -> slope -0.033 R per bin step, t -0.3 (clustered)   rank corr -0.40
+    NEW 2024+   <2.5 +0.314(12,t +0.6)  2.5-5 +0.123(23,t +0.2)  5-10 +0.449(42,t +2.2)  10-20 +0.240(72,t +1.7)  20-30 +0.034(73,t +0.3)
+                  -> slope -0.076 R per bin step, t -0.8 (clustered)   rank corr -0.40
+    ALL         <2.5 +0.281(33,t +0.6)  2.5-5 +0.320(40,t +0.9)  5-10 +0.343(88,t +2.2)  10-20 +0.191(166,t +1.9)  20-30 +0.156(171,t +1.4)
+                  -> slope -0.051 R per bin step, t -0.7 (clustered)   rank corr -0.60
+
+  down closes in a row (dip3 enters at 3)   (prediction: more down days bounce more)
+    OLD 2014-21 2 +0.204(139,t +1.5)  3 +0.530(51,t +2.9)  4 -0.020(18,t -0.0)  5+ +0.258(11,t +0.6)
+                  -> slope +0.020 R per bin step, t +0.1 (clustered)   rank corr -
+    NEW 2024+   2 +0.126(107,t +1.0)  3 +0.534(51,t +3.8)  4 +0.451(23,t +2.1)  5+ +0.456(8,t +1.8)
+                  -> slope +0.174 R per bin step, t +1.9 (clustered)   rank corr +0.50
+    ALL         2 +0.170(246,t +1.9)  3 +0.532(102,t +4.6)  4 +0.244(41,t +1.1)  5+ +0.341(19,t +1.3)
+                  -> slope +0.092 R per bin step, t +1.1 (clustered)   rank corr +0.50
+
+  depth of the streak in daily ATRs   (prediction: deeper bounces more, until a crash)
+    OLD 2014-21 <.5 +0.144(44,t +0.8)  .5-1 +0.474(65,t +3.0)  1-1.5 +0.140(41,t +0.6)  1.5-2.5 +0.343(49,t +1.6)  >=2.5 -0.087(20,t -0.2)
+                  -> slope -0.038 R per bin step, t -0.4 (clustered)   rank corr -0.50
+    NEW 2024+   <.5 +0.163(41,t +1.3)  .5-1 +0.046(48,t +0.3)  1-1.5 +0.267(43,t +1.9)  1.5-2.5 +0.315(42,t +1.2)  >=2.5 +1.406(15,t +3.0)
+                  -> slope +0.191 R per bin step, t +2.1 (clustered)   rank corr +0.80
+    ALL         <.5 +0.153(85,t +1.3)  .5-1 +0.292(113,t +2.4)  1-1.5 +0.205(84,t +1.6)  1.5-2.5 +0.330(91,t +1.9)  >=2.5 +0.553(35,t +1.3)
+                  -> slope +0.067 R per bin step, t +1.0 (clustered)   rank corr +0.90
+
+YARDSTICK (3 fake random walks, 2026-10-10): the clustered slope t ranged -2.7 .. +2.2 over 90 slopes of pure
+    noise, and the RANK CORR reached -0.9 / -1.0 on noise (seven bins of overlapping trades). A dose-response
+    counts only if the slope's t is beyond about +-3 AND points the predicted way in OLD and NEW.
+
+==============================================================================================================
+W4. PLACEBOS: the edge must fade the way the mechanism says
+==============================================================================================================
+PREDICTIONS: delayed entry -- brk decays slowly over hours (multi-day momentum); fast / ins decay fast (intraday
+             follow-through); dip barely changes over 1 day (a multi-day snap-back).
+             random entry day, same filter, same exits -- the edge must vanish.
+a. DELAYED ENTRY: each book trade re-entered at the bar open 15 min / 1h / 1 trading day after its real fill,
+   same direction, same stop distance, same exit rule (fast / ins: the same day's close for +15m / +1h, the next
+   day's close for +1d; trades with no time left are dropped and counted). Cells: edge/trade (n), net/trade.
+  brk  2014-17    real +0.135(514) t +1.3 net +0.021 | +15m +0.102(514) net +0.041 kept   76% drop 0 | +1h +0.105(514) net -0.021 kept   78% drop 0 | +1d -0.092(509) net -0.254 kept  -68% drop 5
+  brk  2018-19    real +0.189(282) t +1.9 net +0.021 | +15m +0.131(282) net -0.071 kept   69% drop 0 | +1h +0.103(282) net -0.086 kept   55% drop 0 | +1d -0.460(282) net -0.027 kept -243% drop 0
+  brk  A 2020-21  real +0.036(373) t +0.3 net +0.047 | +15m -0.006(372) net +0.014 kept  -16% drop 1 | +1h -0.007(372) net -0.045 kept  -21% drop 1 | +1d -0.134(366) net -0.174 kept -375% drop 7
+  brk  B 2024+    real +0.162(571) t +1.9 net +0.230 | +15m +0.126(571) net +0.226 kept   77% drop 0 | +1h +0.072(571) net +0.065 kept   45% drop 0 | +1d +0.245(566) net +0.169 kept  151% drop 5
+  brk  ALL        real +0.132(1740) t +2.6 net +0.095 | +15m +0.091(1739) net +0.078 kept   69% drop 1 | +1h +0.070(1739) net -0.008 kept   53% drop 1 | +1d -0.050(1723) net -0.061 kept  -38% drop 17
+  ins  2014-17    real +0.095(405) t +1.2 net -0.051 | +15m -0.137(404) net -0.185 kept -144% drop 1 | +1h -0.180(400) net -0.243 kept -190% drop 5 | +1d -0.122(397) net -0.233 kept -128% drop 8
+  ins  2018-19    real +0.143(217) t +1.8 net +0.019 | +15m +0.095(217) net +0.021 kept   67% drop 0 | +1h +0.058(217) net -0.002 kept   41% drop 0 | +1d +0.022(217) net -0.178 kept   15% drop 0
+  ins  A 2020-21  real +0.169(269) t +2.1 net +0.155 | +15m +0.141(268) net +0.093 kept   83% drop 1 | +1h +0.054(268) net +0.032 kept   32% drop 1 | +1d +0.117(266) net -0.101 kept   69% drop 3
+  ins  B 2024+    real +0.100(365) t +1.7 net +0.051 | +15m +0.042(365) net +0.015 kept   42% drop 0 | +1h +0.037(363) net +0.013 kept   37% drop 2 | +1d -0.029(361) net -0.141 kept  -29% drop 4
+  ins  ALL        real +0.121(1256) t +3.3 net +0.035 | +15m +0.015(1254) net -0.032 kept   12% drop 2 | +1h -0.025(1248) net -0.068 kept  -21% drop 8 | +1d -0.018(1241) net -0.168 kept  -15% drop 15
+  dip  2014-17    real +0.283(15) t +0.8 net +0.183 | +15m +0.290(15) net +0.190 kept  103% drop 0 | +1h +0.384(15) net +0.284 kept  136% drop 0 | +1d +0.599(14) net +0.506 kept  212% drop 1
+  dip  2018-19    real -0.023(14) t -0.0 net -0.094 | +15m -0.117(14) net -0.187 drop 0 | +1h -0.090(14) net -0.159 drop 0 | +1d +0.212(14) net +0.155 drop 0
+  dip  A 2020-21  real +0.425(49) t +1.7 net +0.355 | +15m +0.462(49) net +0.392 kept  109% drop 0 | +1h +0.419(49) net +0.349 kept   99% drop 0 | +1d +0.296(49) net +0.233 kept   70% drop 0
+  dip  B 2024+    real +0.503(61) t +3.5 net +0.429 | +15m +0.502(61) net +0.429 kept  100% drop 0 | +1h +0.508(61) net +0.435 kept  101% drop 0 | +1d +0.463(60) net +0.401 kept   92% drop 1
+  dip  ALL        real +0.399(139) t +3.2 net +0.324 | +15m +0.403(139) net +0.328 kept  101% drop 0 | +1h +0.403(139) net +0.329 kept  101% drop 0 | +1d +0.392(137) net +0.326 kept   98% drop 2
+  fast 2014-17    real +0.153(514) t +2.0 net +0.010 | +15m +0.136(514) net -0.050 kept   89% drop 0 | +1h +0.155(514) net -0.006 kept  101% drop 0 | +1d -0.080(488) net -0.340 kept  -53% drop 26
+  fast 2018-19    real +0.086(248) t +1.0 net +0.019 | +15m -0.021(248) net -0.254 kept  -24% drop 0 | +1h -0.013(248) net -0.218 kept  -15% drop 0 | +1d +0.161(228) net +0.025 kept  187% drop 20
+  fast A 2020-21  real +0.171(306) t +2.2 net +0.243 | +15m +0.160(306) net +0.219 kept   94% drop 0 | +1h +0.080(306) net +0.102 kept   47% drop 0 | +1d +0.066(300) net -0.083 kept   39% drop 6
+  fast B 2024+    real +0.062(611) t +1.1 net +0.145 | +15m +0.080(611) net +0.227 kept  130% drop 0 | +1h +0.005(611) net +0.021 kept    8% drop 0 | +1d +0.165(595) net +0.112 kept  266% drop 16
+  fast ALL        real +0.113(1679) t +3.2 net +0.103 | +15m +0.097(1679) net +0.070 kept   86% drop 0 | +1h +0.062(1679) net -0.008 kept   55% drop 0 | +1d +0.072(1611) net -0.074 kept   63% drop 68
+
+b. RANDOM ENTRY DAY: for every book trade, a random day of the same market and era where the SAME filter points
+   (brk: edge20 or er10; fast: its own detector; dip: above the 200-day average), traded in the filter's
+   direction at the same local time (dip: the next open), same stop in daily ATRs, same exits. 3 draws.
+   This asks whether the ENTRY TRIGGER adds anything beyond the filter. Cells: edge/trade (n) net/trade, per draw.
+  brk  2014-17    real +0.135(514) t +1.3 net +0.021 | draw 1 +0.002(507) net -0.282 | draw 2 +0.006(499) net -0.293 | draw 3 +0.085(503) net -0.128 | ALL DRAWS +0.031 t +0.4 net -0.234
+  brk  2018-19    real +0.189(282) t +1.9 net +0.021 | draw 1 +0.054(279) net -0.280 | draw 2 +0.254(281) net +0.060 | draw 3 +0.200(278) net -0.125 | ALL DRAWS +0.169 t +1.5 net -0.115
+  brk  A 2020-21  real +0.036(373) t +0.3 net +0.047 | draw 1 +0.079(363) net +0.078 | draw 2 +0.055(364) net +0.072 | draw 3 +0.015(364) net -0.003 | ALL DRAWS +0.050 t +0.5 net +0.049
+  brk  B 2024+    real +0.162(571) t +1.9 net +0.230 | draw 1 +0.086(557) net +0.061 | draw 2 +0.036(549) net +0.027 | draw 3 +0.098(551) net +0.005 | ALL DRAWS +0.073 t +0.8 net +0.031
+  brk  ALL        real +0.132(1740) t +2.6 net +0.095 | draw 1 +0.054(1706) net -0.094 | draw 2 +0.067(1693) net -0.052 | draw 3 +0.093(1696) net -0.057 | ALL DRAWS +0.072 t +1.5 net -0.068
+  fast 2014-17    real +0.153(514) t +2.0 net +0.010 | draw 1 +0.058(455) net -0.270 | draw 2 -0.124(481) net -0.338 | draw 3 +0.114(481) net -0.167 | ALL DRAWS +0.015 t +0.2 net -0.258
+  fast 2018-19    real +0.086(248) t +1.0 net +0.019 | draw 1 +0.132(217) net -0.159 | draw 2 +0.157(226) net +0.077 | draw 3 +0.193(218) net +0.021 | ALL DRAWS +0.160 t +2.2 net -0.019
+  fast A 2020-21  real +0.171(306) t +2.2 net +0.243 | draw 1 -0.016(288) net -0.259 | draw 2 -0.010(290) net -0.159 | draw 3 +0.012(292) net -0.139 | ALL DRAWS -0.005 t -0.1 net -0.185
+  fast B 2024+    real +0.062(611) t +1.1 net +0.145 | draw 1 +0.022(570) net -0.081 | draw 2 +0.122(580) net +0.044 | draw 3 +0.056(574) net -0.031 | ALL DRAWS +0.067 t +1.1 net -0.022
+  fast ALL        real +0.113(1679) t +3.2 net +0.103 | draw 1 +0.041(1530) net -0.182 | draw 2 +0.028(1577) net -0.105 | draw 3 +0.085(1565) net -0.086 | ALL DRAWS +0.051 t +1.4 net -0.124
+  dip  2014-17    real +0.283(15) t +0.8 net +0.183 | draw 1 +0.356(14) net +0.285 | draw 2 +0.220(15) net +0.133 | draw 3 +0.819(15) net +0.734 | ALL DRAWS +0.468 t +2.8 net +0.387
+  dip  2018-19    real -0.023(14) t -0.0 net -0.094 | draw 1 -0.256(13) net -0.312 | draw 2 +0.030(13) net -0.032 | draw 3 +0.134(14) net +0.058 | ALL DRAWS -0.026 t -0.1 net -0.092
+  dip  A 2020-21  real +0.425(49) t +1.7 net +0.355 | draw 1 +0.327(47) net +0.261 | draw 2 +0.505(48) net +0.444 | draw 3 +0.104(48) net +0.040 | ALL DRAWS +0.312 t +2.9 net +0.248
+  dip  B 2024+    real +0.503(61) t +3.5 net +0.429 | draw 1 +0.095(61) net +0.042 | draw 2 +0.158(60) net +0.099 | draw 3 +0.260(61) net +0.207 | ALL DRAWS +0.171 t +2.1 net +0.116
+  dip  ALL        real +0.399(139) t +3.2 net +0.324 | draw 1 +0.169(135) net +0.109 | draw 2 +0.275(136) net +0.212 | draw 3 +0.254(138) net +0.191 | ALL DRAWS +0.233 t +3.8 net +0.171
+
+   ins: the inside condition removed -- the same rule (stop orders on yesterday's high / low, stop at its middle,
+   out at the close) on every day that was NOT an inside day (= the lab's pdh2 'mid' with the close exit):
+    2014-17    inside days +0.095(405) t +1.2 net -0.051   | every other day +0.008(1696) t +0.3 net -0.064
+    2018-19    inside days +0.143(217) t +1.8 net +0.019   | every other day +0.013(1103) t +0.5 net -0.058
+    A 2020-21  inside days +0.169(269) t +2.1 net +0.155   | every other day +0.020(1491) t +0.9 net -0.038
+    B 2024+    inside days +0.100(365) t +1.7 net +0.051   | every other day +0.032(2020) t +1.6 net -0.002
+    ALL        inside days +0.121(1256) t +3.3 net +0.035   | every other day +0.019(6310) t +1.7 net -0.037
+
+YARDSTICK (3 fake random walks, 2026-10-10): a part's real edge reached t +2.2 on noise; 'kept %' then swung from
+    -2251% to +173% (meaningless when the real edge's t is small: read 'kept' only where the real t is ~3+).
+    Random-day placebos (all draws): t -1.8 .. +1.4. ins inside-days vs every other day: t -2.1 .. +2.3.
+
+runtime 552s

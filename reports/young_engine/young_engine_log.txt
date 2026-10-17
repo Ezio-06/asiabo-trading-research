@@ -1,0 +1,7 @@
+2026-10-12 16:20:54 young engine: start
+2026-10-12 16:32:07 real8_s5: done in 673s
+2026-10-12 16:41:22 real8_s6: done in 554s
+2026-10-12 16:50:54 momentum_s1: done in 572s
+2026-10-12 17:00:10 momentum_s2: done in 555s
+2026-10-12 17:09:26 neutral_s1: done in 557s
+2026-10-12 17:18:43 neutral_s2: done in 557s

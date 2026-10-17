@@ -1,0 +1,774 @@
+====================================================================================================
+THE LAB  --  every open idea, labelled, in one run. Shadow only: it measures, it decides nothing.
+====================================================================================================
+Sealed exam years 2022-01-01 .. 2024-01-01: not read by any part.
+
+====================================================================================================
+PART 1: LABELS   which days and states separate good trades from bad ones
+====================================================================================================
+trades from: d:\coding stuff\Trading research project\reports\collect_20261007_161416
+Every kept trade of every lane and market, labelled by what was KNOWN when it was entered. For each label:
+average R of the trades inside it, minus the average of the same group's trades outside it.
+  A / B        the two training periods. A label only counts if both point the same way.
+  in R (n)     average R per trade inside the label, pooled over all markets, and how many trades
+  diff (z)     inside minus outside, and how many standard errors that is
+  mk+          on how many of the markets (with enough trades) inside was BETTER than outside
+  control      the same diff for the random control lane: if random trades shift the same way, the
+               label is describing the day, not improving the lane's idea
+News dates: US jobs report, US CPI, FOMC. 'before / after' = entered before or after the release time.
+'turn of the month' = last weekday of a month and the first three of the next.
+
+----------------------------------------------------------------------------------------------------
+ALL LANES   (pooled over XAUUSD, US500, EURUSD, USDJPY, XTIUSD, GERMANY40)
+----------------------------------------------------------------------------------------------------
+  label                              | A: in R (n)   diff (z)   mk+    | B: in R (n)   diff (z)   mk+    | control A / B | verdict
+  cpi_day                            | -0.180 ( 676) -0.068 (-1.7) 1/6 | -0.116 (1196) +0.006 (+0.2) 2/6 | -0.02 / -0.04 | 
+  day after a release                | -0.155 (1795) -0.045 (-1.8) 2/6 | -0.105 (2993) +0.019 (+0.9) 5/6 | -0.02 / +0.05 | 
+  day after a shock (other market)   | -0.108 (1499) +0.008 (+0.3) 4/6 | -0.090 (2340) +0.035 (+1.5) 5/6 | +0.03 / -0.01 | 
+  day after a shock (own market)     | -0.053 ( 924) +0.066 (+1.9) 4/6 | -0.045 (1495) +0.081 (+2.9) 6/6 | -0.02 / -0.01 | leans better
+  day before the Fed                 | -0.043 ( 410) +0.074 (+1.4) 4/6 | -0.134 ( 801) -0.013 (-0.4) 4/6 | +0.00 / +0.03 | 
+  fast and slow trend disagree       | -0.133 (4917) -0.027 (-1.5) 3/6 | -0.132 (8455) -0.016 (-1.1) 2/6 | -0.07 / -0.01 | leans worse
+  fed_day                            | -0.122 ( 479) -0.008 (-0.1) 3/6 | -0.024 ( 804) +0.100 (+2.3) 5/6 | +0.12 / +0.09 | 
+  jobs_report_day                    | -0.146 ( 709) -0.033 (-0.8) 1/6 | -0.114 (1273) +0.007 (+0.2) 4/6 | -0.02 / -0.00 | 
+  news: entered AFTER release        | -0.140 ( 992) -0.027 (-0.9) 3/6 | -0.087 (1849) +0.037 (+1.5) 4/6 | +0.03 / -0.02 | 
+  news: entered BEFORE release       | -0.176 ( 780) -0.065 (-1.5) 2/6 | -0.100 (1389) +0.022 (+0.6) 4/6 | +0.02 / +0.03 | 
+  news_day (any of the 3)            | -0.156 (1772) -0.046 (-1.8) 2/6 | -0.093 (3238) +0.033 (+1.6) 5/6 | +0.03 / +0.01 | 
+  opened with a gap                  | -0.091 (2153) +0.027 (+1.1) 4/6 | -0.093 (2045) +0.030 (+1.2) 4/6 | -0.04 / +0.01 | leans better
+  regime choppy                      | -0.145 (3997) -0.041 (-2.1) 1/6 | -0.117 (5865) +0.005 (+0.3) 3/6 | -0.01 / +0.01 | 
+  regime drift                       | -0.113 (4025) +0.003 (+0.1) 3/6 | -0.130 (6687) -0.011 (-0.7) 3/6 | +0.04 / +0.04 | 
+  regime trending                    | -0.100 (3492) +0.019 (+0.9) 5/6 | -0.133 (5520) -0.015 (-0.9) 3/6 | -0.06 / -0.04 | 
+  regime volatile                    | -0.095 (2700) +0.024 (+1.1) 5/6 | -0.095 (6308) +0.034 (+2.2) 5/6 | +0.03 / -0.02 | leans better
+  turn of the month                  | -0.077 (2788) +0.047 (+2.1) 6/6 | -0.084 (4769) +0.046 (+2.6) 5/6 | -0.02 / +0.02 | HOLDS: better inside
+  volatility high (top 20%)          | -0.094 (2535) +0.025 (+1.1) 4/6 | -0.098 (6088) +0.031 (+1.9) 5/6 | +0.03 / -0.00 | leans better
+  volatility low (lower half)        | -0.115 (8166) -0.001 (-0.1) 3/6 | -0.132 (12405) -0.021 (-1.6) 2/ | -0.05 / +0.01 | 
+  volatility middle                  | -0.132 (3513) -0.022 (-1.1) 1/6 | -0.111 (5887) +0.013 (+0.8) 3/6 | +0.04 / -0.02 | 
+  weekday fri                        | -0.110 (3012) +0.006 (+0.3) 2/6 | -0.155 (4998) -0.042 (-2.5) 1/6 | +0.05 / -0.00 | 
+  weekday mon                        | -0.100 (3084) +0.019 (+0.9) 3/6 | -0.129 (5102) -0.009 (-0.6) 2/6 | +0.06 / -0.01 | 
+  weekday thu                        | -0.147 (3066) -0.040 (-1.9) 2/6 | -0.089 (5331) +0.040 (+2.4) 5/6 | -0.09 / +0.04 | 
+  weekday tue                        | -0.106 (3097) +0.011 (+0.5) 3/6 | -0.117 (5129) +0.006 (+0.3) 4/6 | -0.05 / -0.02 | 
+  weekday wed                        | -0.112 (3005) +0.004 (+0.2) 4/6 | -0.119 (5040) +0.003 (+0.2) 3/6 | +0.03 / -0.01 | 
+
+----------------------------------------------------------------------------------------------------
+BREAKOUT   (pooled over XAUUSD, US500, EURUSD, USDJPY, XTIUSD, GERMANY40)
+----------------------------------------------------------------------------------------------------
+  label                              | A: in R (n)   diff (z)   mk+    | B: in R (n)   diff (z)   mk+    | control A / B | verdict
+  cpi_day                            | -0.168 ( 291) -0.110 (-2.0) 1/6 | -0.089 ( 475) -0.048 (-1.1) 2/6 | -0.02 / -0.04 | leans worse
+  day after a release                | -0.061 ( 737) +0.003 (+0.1) 4/6 | -0.052 (1167) -0.010 (-0.3) 3/6 | -0.02 / +0.05 | 
+  day after a shock (other market)   | -0.028 ( 574) +0.039 (+0.9) 5/6 | +0.047 ( 884) +0.099 (+3.0) 6/6 | +0.03 / -0.01 | 
+  day after a shock (own market)     | +0.063 ( 278) +0.132 (+2.5) 4/6 | -0.058 ( 492) -0.015 (-0.4) 3/6 | -0.02 / -0.01 | 
+  day before the Fed                 | -0.166 ( 167) -0.106 (-1.6) 1/5 | -0.061 ( 336) -0.018 (-0.4) 3/6 | +0.00 / +0.03 | 
+  fast and slow trend disagree       | -0.092 (2024) -0.042 (-1.7) 3/6 | -0.096 (3422) -0.078 (-4.1) 0/6 | -0.07 / -0.01 | leans worse
+  fed_day                            | +0.012 ( 210) +0.078 (+1.0) 4/6 | +0.050 ( 329) +0.097 (+1.6) 4/6 | +0.12 / +0.09 | leans better
+  jobs_report_day                    | -0.086 ( 286) -0.024 (-0.4) 2/6 | -0.046 ( 501) -0.003 (-0.1) 2/6 | -0.02 / -0.00 | 
+  news: entered AFTER release        | -0.103 ( 328) -0.042 (-1.0) 1/6 | -0.098 ( 646) -0.058 (-1.7) 2/6 | +0.03 / -0.02 | 
+  news: entered BEFORE release       | -0.089 ( 423) -0.028 (-0.5) 2/6 | +0.022 ( 646) +0.070 (+1.5) 4/6 | +0.02 / +0.03 | 
+  news_day (any of the 3)            | -0.095 ( 751) -0.036 (-1.0) 2/6 | -0.038 (1292) +0.006 (+0.2) 4/6 | +0.03 / +0.01 | 
+  opened with a gap                  | +0.014 ( 698) +0.087 (+2.4) 6/6 | -0.033 ( 797) +0.011 (+0.3) 3/6 | -0.04 / +0.01 | 
+  regime choppy                      | -0.086 (1653) -0.032 (-1.2) 2/6 | -0.016 (2325) +0.036 (+1.7) 3/6 | -0.01 / +0.01 | 
+  regime drift                       | -0.095 (1659) -0.044 (-1.6) 2/6 | -0.050 (2724) -0.009 (-0.4) 3/6 | +0.04 / +0.04 | 
+  regime trending                    | -0.041 (1401) +0.028 (+1.0) 5/6 | -0.057 (2229) -0.017 (-0.8) 3/6 | -0.06 / -0.04 | 
+  regime volatile                    | -0.010 (1096) +0.065 (+2.1) 3/6 | -0.026 (2532) +0.024 (+1.1) 4/6 | +0.03 / -0.02 | leans better
+  turn of the month                  | -0.029 (1125) +0.042 (+1.3) 4/6 | +0.018 (1866) +0.075 (+3.1) 5/6 | -0.02 / +0.02 | leans better
+  volatility high (top 20%)          | -0.002 (1022) +0.073 (+2.3) 5/6 | -0.036 (2435) +0.010 (+0.5) 4/6 | +0.03 / -0.00 | 
+  volatility low (lower half)        | -0.060 (3336) +0.007 (+0.3) 4/6 | -0.034 (5025) +0.018 (+1.0) 4/6 | -0.05 / +0.01 | 
+  volatility middle                  | -0.116 (1451) -0.068 (-2.5) 2/6 | -0.045 (2350) -0.001 (-0.1) 2/6 | +0.04 / -0.02 | 
+  weekday fri                        | -0.039 (1240) +0.030 (+1.0) 5/6 | -0.094 (1997) -0.062 (-2.7) 1/6 | +0.05 / -0.00 | 
+  weekday mon                        | -0.042 (1178) +0.026 (+0.9) 3/6 | -0.004 (2051) +0.050 (+2.3) 5/6 | +0.06 / -0.01 | 
+  weekday thu                        | -0.080 (1276) -0.021 (-0.7) 2/6 | -0.012 (2112) +0.040 (+1.7) 4/6 | -0.09 / +0.04 | 
+  weekday tue                        | -0.099 (1284) -0.045 (-1.5) 1/6 | -0.057 (2128) -0.017 (-0.8) 1/6 | -0.05 / -0.02 | 
+  weekday wed                        | -0.054 (1268) +0.012 (+0.4) 4/6 | -0.053 (2037) -0.012 (-0.5) 1/6 | +0.03 / -0.01 | 
+
+----------------------------------------------------------------------------------------------------
+REVERSAL   (pooled over XAUUSD, US500, EURUSD, USDJPY, XTIUSD, GERMANY40)
+----------------------------------------------------------------------------------------------------
+  label                              | A: in R (n)   diff (z)   mk+    | B: in R (n)   diff (z)   mk+    | control A / B | verdict
+  cpi_day                            | -0.171 ( 188) +0.029 (+0.3) 3/5 | -0.225 ( 382) -0.009 (-0.1) 3/6 | -0.02 / -0.04 | 
+  day after a release                | -0.294 ( 531) -0.108 (-2.1) 2/6 | -0.123 ( 965) +0.107 (+2.3) 5/6 | -0.02 / +0.05 | 
+  day after a shock (other market)   | -0.266 ( 471) -0.075 (-1.3) 2/6 | -0.243 ( 769) -0.030 (-0.6) 3/6 | +0.03 / -0.01 | 
+  day after a shock (own market)     | -0.218 ( 324) -0.021 (-0.3) 4/6 | +0.011 ( 546) +0.244 (+4.3) 6/6 | -0.02 / -0.01 | 
+  day before the Fed                 | +0.273 ( 111) +0.484 (+3.8) 4/4 | -0.155 ( 252) +0.063 (+0.8) 3/6 | +0.00 / +0.03 | 
+  fast and slow trend disagree       | -0.230 (1412) -0.045 (-1.2) 2/6 | -0.149 (2676) +0.101 (+3.2) 5/6 | -0.07 / -0.01 | 
+  fed_day                            | -0.271 ( 126) -0.074 (-0.7) 2/4 | -0.050 ( 248) +0.172 (+1.8) 3/6 | +0.12 / +0.09 | 
+  jobs_report_day                    | -0.187 ( 208) +0.012 (+0.1) 2/5 | -0.157 ( 420) +0.063 (+1.0) 3/6 | -0.02 / -0.00 | 
+  news: entered AFTER release        | -0.122 ( 262) +0.082 (+1.1) 4/5 | -0.073 ( 527) +0.154 (+2.9) 6/6 | +0.03 / -0.02 | leans better
+  news: entered BEFORE release       | -0.281 ( 233) -0.086 (-1.0) 2/4 | -0.248 ( 510) -0.033 (-0.5) 2/6 | +0.02 / +0.03 | 
+  news_day (any of the 3)            | -0.197 ( 495) +0.002 (+0.0) 3/5 | -0.159 (1037) +0.066 (+1.5) 4/6 | +0.03 / +0.01 | 
+  opened with a gap                  | -0.294 ( 638) -0.111 (-2.2) 3/6 | -0.140 ( 619) +0.083 (+1.4) 4/6 | -0.04 / +0.01 | 
+  regime choppy                      | -0.264 (1126) -0.087 (-2.1) 2/6 | -0.209 (1837) +0.010 (+0.3) 2/6 | -0.01 / +0.01 | 
+  regime drift                       | -0.168 (1165) +0.042 (+1.0) 3/6 | -0.229 (2064) -0.017 (-0.5) 2/6 | +0.04 / +0.04 | 
+  regime trending                    | -0.158 (1008) +0.053 (+1.2) 4/6 | -0.256 (1771) -0.050 (-1.4) 3/6 | -0.06 / -0.04 | 
+  regime volatile                    | -0.205 ( 831) -0.007 (-0.1) 3/6 | -0.185 (2027) +0.042 (+1.2) 5/6 | +0.03 / -0.02 | 
+  turn of the month                  | -0.175 ( 819) +0.029 (+0.6) 3/6 | -0.200 (1538) +0.020 (+0.5) 4/6 | -0.02 / +0.02 | 
+  volatility high (top 20%)          | -0.207 ( 781) -0.010 (-0.2) 2/6 | -0.170 (1958) +0.062 (+1.8) 6/6 | +0.03 / -0.00 | 
+  volatility low (lower half)        | -0.207 (2306) -0.017 (-0.5) 2/6 | -0.255 (3878) -0.073 (-2.5) 0/6 | -0.05 / +0.01 | 
+  volatility middle                  | -0.175 (1043) +0.031 (+0.7) 4/6 | -0.196 (1863) +0.027 (+0.8) 4/6 | +0.04 / -0.02 | 
+  weekday fri                        | -0.214 ( 861) -0.019 (-0.4) 3/6 | -0.190 (1562) +0.033 (+0.9) 5/6 | +0.05 / -0.00 | 
+  weekday mon                        | -0.193 ( 976) +0.007 (+0.2) 3/6 | -0.308 (1578) -0.113 (-3.2) 0/6 | +0.06 / -0.01 | 
+  weekday thu                        | -0.268 ( 870) -0.086 (-1.9) 3/6 | -0.201 (1744) +0.020 (+0.5) 4/6 | -0.09 / +0.04 | 
+  weekday tue                        | -0.126 ( 849) +0.090 (+1.8) 5/6 | -0.194 (1589) +0.028 (+0.7) 4/6 | -0.05 / -0.02 | 
+  weekday wed                        | -0.192 ( 853) +0.009 (+0.2) 2/6 | -0.192 (1589) +0.031 (+0.8) 3/6 | +0.03 / -0.01 | 
+
+----------------------------------------------------------------------------------------------------
+MOMENTUM   (pooled over XAUUSD, US500, EURUSD, USDJPY, XTIUSD, GERMANY40)
+----------------------------------------------------------------------------------------------------
+  label                              | A: in R (n)   diff (z)   mk+    | B: in R (n)   diff (z)   mk+    | control A / B | verdict
+  cpi_day                            | -0.178 ( 188) -0.080 (-1.1) 2/6 | -0.062 ( 316) +0.068 (+1.3) 5/6 | -0.02 / -0.04 | 
+  day after a release                | -0.142 ( 512) -0.046 (-1.0) 4/6 | -0.147 ( 835) -0.023 (-0.6) 2/6 | -0.02 / +0.05 | 
+  day after a shock (other market)   | -0.070 ( 437) +0.035 (+0.7) 5/6 | -0.085 ( 659) +0.046 (+1.1) 4/6 | +0.03 / -0.01 | 
+  day after a shock (own market)     | +0.004 ( 312) +0.114 (+2.1) 4/6 | -0.091 ( 443) +0.038 (+0.8) 4/6 | -0.02 / -0.01 | 
+  day before the Fed                 | -0.165 ( 127) -0.065 (-0.8) 2/6 | -0.211 ( 201) -0.086 (-1.3) 3/6 | +0.00 / +0.03 | 
+  fast and slow trend disagree       | -0.091 (1419) +0.016 (+0.5) 4/6 | -0.169 (2262) -0.062 (-2.5) 1/6 | -0.07 / -0.01 | 
+  fed_day                            | -0.201 ( 134) -0.103 (-1.1) 2/6 | -0.102 ( 211) +0.026 (+0.3) 3/6 | +0.12 / +0.09 | 
+  jobs_report_day                    | -0.171 ( 203) -0.073 (-1.2) 2/6 | -0.164 ( 332) -0.039 (-0.8) 3/6 | -0.02 / -0.00 | 
+  news: entered AFTER release        | -0.172 ( 381) -0.077 (-1.6) 2/6 | -0.108 ( 631) +0.021 (+0.6) 5/6 | +0.03 / -0.02 | 
+  news: entered BEFORE release       | -0.264 ( 116) -0.167 (-1.6) 0/6 | -0.105 ( 219) +0.023 (+0.3) 2/6 | +0.02 / +0.03 | 
+  news_day (any of the 3)            | -0.193 ( 497) -0.103 (-2.3) 1/6 | -0.107 ( 850) +0.023 (+0.6) 4/6 | +0.03 / +0.01 | 
+  opened with a gap                  | -0.003 ( 775) +0.120 (+3.1) 4/6 | -0.131 ( 597) -0.005 (-0.1) 3/6 | -0.04 / +0.01 | 
+  regime choppy                      | -0.114 (1146) -0.017 (-0.5) 2/6 | -0.158 (1608) -0.041 (-1.5) 2/6 | -0.01 / +0.01 | 
+  regime drift                       | -0.077 (1150) +0.034 (+1.0) 5/6 | -0.139 (1812) -0.016 (-0.6) 3/6 | +0.04 / +0.04 | 
+  regime trending                    | -0.120 (1060) -0.024 (-0.7) 2/6 | -0.101 (1490) +0.033 (+1.1) 3/6 | -0.06 / -0.04 | 
+  regime volatile                    | -0.091 ( 743) +0.013 (+0.3) 5/6 | -0.090 (1683) +0.049 (+1.7) 5/6 | +0.03 / -0.02 | 
+  turn of the month                  | -0.041 ( 809) +0.074 (+2.0) 4/6 | -0.098 (1298) +0.036 (+1.2) 4/6 | -0.02 / +0.02 | leans better
+  volatility high (top 20%)          | -0.096 ( 706) +0.006 (+0.2) 3/6 | -0.098 (1634) +0.038 (+1.3) 4/6 | +0.03 / -0.00 | 
+  volatility low (lower half)        | -0.102 (2415) -0.001 (-0.0) 4/6 | -0.138 (3359) -0.022 (-0.9) 2/6 | -0.05 / +0.01 | 
+  volatility middle                  | -0.101 ( 978) +0.001 (+0.0) 3/6 | -0.114 (1600) +0.017 (+0.6) 2/6 | +0.04 / -0.02 | 
+  weekday fri                        | -0.099 ( 872) +0.003 (+0.1) 3/6 | -0.198 (1382) -0.089 (-3.1) 1/6 | +0.05 / -0.00 | 
+  weekday mon                        | -0.071 ( 888) +0.038 (+1.0) 4/6 | -0.116 (1414) +0.013 (+0.5) 4/6 | +0.06 / -0.01 | 
+  weekday thu                        | -0.126 ( 889) -0.031 (-0.8) 3/6 | -0.066 (1415) +0.077 (+2.6) 5/6 | -0.09 / +0.04 | 
+  weekday tue                        | -0.096 ( 928) +0.007 (+0.2) 2/6 | -0.121 (1359) +0.007 (+0.2) 4/6 | -0.05 / -0.02 | 
+  weekday wed                        | -0.116 ( 850) -0.018 (-0.5) 3/6 | -0.135 (1357) -0.010 (-0.3) 3/6 | +0.03 / -0.01 | 
+
+----------------------------------------------------------------------------------------------------
+SWING   (pooled over XAUUSD, US500, EURUSD, USDJPY, XTIUSD, GERMANY40)
+----------------------------------------------------------------------------------------------------
+  label                              | A: in R (n)   diff (z)   mk+    | B: in R (n)   diff (z)   mk+    | control A / B | verdict
+  cpi_day                            | too few (n=9)                   | +0.401 (  23) +0.549 (+1.1) 0/0 | -0.02 / -0.04 | 
+  day after a release                | -0.292 (  15) -0.116 (-0.3) 0/0 | -0.430 (  26) -0.359 (-2.1) 0/0 | -0.02 / +0.05 | 
+  day after a shock (other market)   | +0.609 (  17) +0.876 (+1.3) 0/0 | -0.303 (  28) -0.221 (-1.2) 0/0 | +0.03 / -0.01 | 
+  day after a shock (own market)     | too few (n=10)                  | too few (n=14)                  | -0.02 / -0.01 | 
+  day before the Fed                 | too few (n=5)                   | too few (n=12)                  | +0.00 / +0.03 | 
+  fast and slow trend disagree       | -0.243 (  62) -0.087 (-0.4) 0/0 | -0.099 (  95) +0.006 (+0.0) 3/4 | -0.07 / -0.01 | 
+  fed_day                            | too few (n=9)                   | -0.141 (  16) -0.039 (-0.1) 0/0 | +0.12 / +0.09 | 
+  jobs_report_day                    | too few (n=12)                  | -0.108 (  20) -0.005 (-0.0) 0/0 | -0.02 / -0.00 | 
+  news: entered AFTER release        | -0.366 (  21) -0.203 (-0.9) 0/0 | +0.200 (  45) +0.360 (+1.2) 0/0 | +0.03 / -0.02 | 
+  news: entered BEFORE release       | too few (n=8)                   | too few (n=14)                  | +0.02 / +0.03 | 
+  news_day (any of the 3)            | -0.401 (  29) -0.256 (-1.2) 0/0 | +0.081 (  59) +0.233 (+1.0) 0/0 | +0.03 / +0.01 | 
+  opened with a gap                  | -0.404 (  42) -0.284 (-1.0) 1/2 | +0.012 (  32) +0.130 (+0.6) 0/0 | -0.04 / +0.01 | 
+  regime choppy                      | -0.127 (  72) +0.096 (+0.5) 2/2 | -0.133 (  95) -0.044 (-0.2) 1/5 | -0.01 / +0.01 | 
+  regime drift                       | -0.274 (  51) -0.122 (-0.6) 1/1 | -0.064 (  87) +0.057 (+0.3) 2/3 | +0.04 / +0.04 | 
+  regime trending                    | -0.306 (  23) -0.138 (-0.5) 0/0 | -0.105 (  30) -0.002 (-0.0) 0/0 | -0.06 / -0.04 | 
+  regime volatile                    | -0.305 (  30) -0.143 (-0.6) 0/0 | -0.178 (  66) -0.097 (-0.6) 1/2 | +0.03 / -0.02 | 
+  turn of the month                  | -0.150 (  35) +0.044 (+0.2) 0/0 | -0.004 (  67) +0.129 (+0.8) 0/0 | -0.02 / +0.02 | 
+  volatility high (top 20%)          | -0.233 (  26) -0.055 (-0.2) 0/0 | -0.247 (  61) -0.182 (-1.1) 0/1 | +0.03 / -0.00 | 
+  volatility low (lower half)        | -0.181 ( 109) +0.012 (+0.1) 1/2 | -0.120 ( 143) -0.033 (-0.2) 3/6 | -0.05 / +0.01 | 
+  volatility middle                  | -0.331 (  41) -0.188 (-1.0) 0/0 | -0.013 (  74) +0.122 (+0.6) 0/2 | +0.04 / -0.02 | 
+  weekday fri                        | -0.284 (  39) -0.125 (-0.6) 0/0 | -0.298 (  57) -0.243 (-1.3) 0/0 | +0.05 / -0.00 | 
+  weekday mon                        | -0.174 (  42) +0.015 (+0.1) 0/0 | +0.020 (  59) +0.155 (+0.9) 0/0 | +0.06 / -0.01 | 
+  weekday thu                        | -0.137 (  31) +0.058 (+0.2) 0/0 | -0.127 (  60) -0.029 (-0.1) 0/0 | -0.09 / +0.04 | 
+  weekday tue                        | -0.143 (  36) +0.054 (+0.2) 0/0 | -0.052 (  53) +0.063 (+0.3) 1/1 | -0.05 / -0.02 | 
+  weekday wed                        | -0.177 (  34) +0.010 (+0.0) 0/0 | -0.060 (  57) +0.054 (+0.3) 0/0 | +0.03 / -0.01 | 
+
+READING IT: 119 label-and-group pairs were tested. By luck alone about 0.1 would 'hold' (2+ standard errors
+the same way in both periods) and about 6 would 'lean' (1+ both). Found: 1 hold, 12 lean.
+The ones that hold:
+  all lanes  turn of the month                  A +0.047 (z +2.1)  B +0.046 (z +2.6)
+A label that holds as 'worse inside' is a day to stay home on; 'better inside' is not an edge until the
+'in R' column itself is above zero. Check its control column before believing either.
+every cell, per market: labels_cells.csv
+
+====================================================================================================
+PART 2: DAILY IDEAS   three ideas from the literature, on daily closes from bars.db
+====================================================================================================
+daily closes: XAUUSD 2014-01-01..2026-10-05 (2781 days); US500 2020-01-02..2026-10-02 (1235 days); EURUSD 2014-01-01..2026-10-06 (2798 days); USDJPY 2014-01-01..2026-10-07 (2799 days); XTIUSD 2014-09-29..2026-10-07 (2386 days); GERMANY40 2015-12-16..2026-10-07 (2229 days)
+Periods: 2014-17 = older check (less weight), 2018-19 = early check, A and B = the training periods. 2022-01-01..2024-01-01 sealed.
+A day's return is skipped when the closes are more than 5 calendar days apart (a data hole).
+
+----------------------------------------------------------------------------------------------------
+2a. TURN OF THE MONTH   (long over the last weekday of a month and the first three of the next)
+----------------------------------------------------------------------------------------------------
+  The claim (stock indices): most of a month's gain comes in these four days. US500 and GERMANY40 are the test;
+  the other markets are placebos (no reason to expect it there).
+  window / other = average daily return in basis points (1 bp = 0.01%) on window days and on all other days
+  net/month      = the four days' return minus one round trip and the swap for the nights held, in %
+  market     period     |  window   other      t | net/month      t months      up
+  XAUUSD     2014-17    |    +4.5    +0.2   +0.6 |    -0.17%   -0.7     49     49%
+  XAUUSD     2018-19    |   +11.8    +1.2   +1.2 |    +0.14%   +0.6     25     56%
+  XAUUSD     A 2020-21  |   +10.7    +2.7   +0.7 |    +0.17%   +0.5     25     48%
+  XAUUSD     B 2024+    |   +21.5    +8.2   +0.9 |    +0.70%   +1.8     34     65%
+  US500      A 2020-21  |   +11.9    +8.0   +0.3 |    +0.28%   +0.6     25     48%
+  US500      B 2024+    |    +5.3    +7.8   -0.3 |    +0.09%   +0.3     34     56%
+  EURUSD     2014-17    |    +2.1    -1.8   +0.9 |    -0.05%   -0.3     49     41%
+  EURUSD     2018-19    |    -2.3    -1.0   -0.3 |    -0.21%   -1.5     25     44%
+  EURUSD     A 2020-21  |    -0.9    +0.6   -0.3 |    -0.16%   -1.0     25     36%
+  EURUSD     B 2024+    |    +2.7    -0.2   +0.7 |    -0.02%   -0.1     34     47%
+  USDJPY     2014-17    |    -1.8    +1.4   -0.6 |    -0.10%   -0.5     49     49%
+  USDJPY     2018-19    |    -4.4    +0.2   -0.9 |    -0.21%   -1.1     25     44%
+  USDJPY     A 2020-21  |    +1.9    +1.1   +0.2 |    +0.04%   +0.3     25     52%
+  USDJPY     B 2024+    |    -8.3    +4.1   -1.9 |    -0.36%   -1.5     34     38%
+  XTIUSD     2014-17    |    -4.5    -4.7   +0.0 |    -0.45%   -0.6     38     42%
+  XTIUSD     2018-19    |   -24.7    +7.9   -1.5 |    -1.17%   -1.7     25     32%
+  XTIUSD     A 2020-21  |  +185.7    -1.9   +1.9 |    +6.54%   +1.5     19     58%
+  XTIUSD     B 2024+    |    -9.9    +9.7   -0.8 |    -0.58%   -0.6     34     41%
+  GERMANY40  2014-17    |    -7.6    +7.8   -1.2 |    -0.37%   -0.9     25     48%
+  GERMANY40  2018-19    |    -5.5    +2.1   -0.6 |    -0.29%   -0.7     25     48%
+  GERMANY40  A 2020-21  |   +18.2    +2.4   +0.9 |    +0.60%   +1.2     24     58%
+  GERMANY40  B 2024+    |    +3.3    +6.9   -0.3 |    +0.06%   +0.1     34     47%
+  Read: it is real where 'window' is clearly above 'other' (t of 2 or more) in SEVERAL periods on the indices and
+  not on the placebos, and net/month stays positive after costs.
+
+----------------------------------------------------------------------------------------------------
+2b. THE DAY BEFORE THE FED   (long from 14:00 New York the day before a scheduled FOMC statement to just before it)
+----------------------------------------------------------------------------------------------------
+  The claim (Lucca and Moench, US stocks): the index drifts up in the 24 hours before the statement.
+  Eight events a year, so every period here is a small sample: read the t column, not the average.
+  fed = average 24-hour return into the statement, other = the same 24-hour window on every other day (bp)
+  market     period     |    n     fed   other      t |   net bp     up
+  XAUUSD     2014-17    |   32    +9.7    +0.5   +0.9 |     +1.4    41%
+  XAUUSD     2018-19    |   16    +3.6    +3.2   +0.0 |     -4.6    44%
+  XAUUSD     A 2020-21  |   15    +6.6    +4.1   +0.1 |     +0.2    33%
+  XAUUSD     B 2024+    |   22   +20.3   +10.4   +0.4 |    +16.2    45%
+  US500      A 2020-21  |   15   +16.2    +8.1   +0.3 |     +9.6    53%
+  US500      B 2024+    |   22    +6.2    +7.4   -0.1 |     +0.9    55%
+  EURUSD     2014-17    |   32   +13.7    -1.5   +2.1 |     +9.4    53%
+  EURUSD     2018-19    |   16    +2.7    -1.4   +0.6 |     -1.7    50%
+  EURUSD     A 2020-21  |   15    +6.5    +0.2   +0.8 |     +2.1    33%
+  EURUSD     B 2024+    |   22    -5.6    +0.7   -0.9 |    -10.0    27%
+  USDJPY     2014-17    |   32    +1.3    +0.8   +0.1 |     -1.0    50%
+  USDJPY     2018-19    |   16    -0.3    -0.6   +0.1 |     -2.7    38%
+  USDJPY     A 2020-21  |   15    -3.7    +1.4   -0.6 |     -6.1    53%
+  USDJPY     B 2024+    |   22   -10.2    +2.1   -1.0 |    -12.5    50%
+  XTIUSD     2014-17    |   24   +20.5    -5.7   +0.5 |     +1.9    50%
+  XTIUSD     2018-19    |   16   -16.2    +2.9   -0.5 |    -31.3    44%
+  XTIUSD     A 2020-21  |   12  +400.3    +4.6   +1.1 |   +377.8    58%
+  XTIUSD     B 2024+    |   22   +37.2    +5.7   +0.6 |    +24.8    64%
+  GERMANY40  2014-17    |   16   +28.7    +5.3   +1.4 |    +23.9    75%
+  GERMANY40  2018-19    |   16    -1.3    +1.0   -0.1 |     -6.1    44%
+  GERMANY40  A 2020-21  |   15   +37.8    +4.0   +1.1 |    +33.1    67%
+  GERMANY40  B 2024+    |   21   +14.3    +6.4   +0.6 |    +10.1    52%
+  Read: the published effect was about +30 to +50 bp per event on US stocks before 2011 and has faded since.
+  If 'fed' is not clearly above 'other' on US500 in both A and B, it is not there to trade.
+
+----------------------------------------------------------------------------------------------------
+2c. SLOW TREND   (time-series momentum: be long a market that is up over the lookback, short one that is down)
+----------------------------------------------------------------------------------------------------
+  Rules, textbook and fixed in advance: decide on the first trading day of each month; long if the close is above
+  the close 21/63/252 trading days ago, else short; size each market to 10% a year of its own volatility (last 60 days,
+  never above 2x); hold to the next month. Costs: your spread + commission on every change of position, swap every night.
+  'blend' averages the three lookbacks. 'always long' uses the same sizing and never goes short: trend following
+  has to beat THAT, because gold and stocks went up for most of these years.
+  Each cell: yearly return % / Sharpe ratio (return per unit of risk; 0.5 is good for one idea, above 1 is rare).
+  The sealed years are not read, so period B has to rebuild its lookback from January 2024: the 12-month signal
+  only starts trading in 2025.
+  WHAT HOLDING OVERNIGHT COSTS at this broker (swap from your symbol sheets, as % of the price per year):
+    XAUUSD     long   -7.1% a year | short   -0.2% a year
+    US500      long   -4.7% a year | short   -4.7% a year
+    EURUSD     long   -7.9% a year | short   -0.3% a year
+    USDJPY     long   -0.8% a year | short   -5.3% a year
+    XTIUSD     long   -5.3% a year | short   +0.0% a year
+    GERMANY40  long   -2.2% a year | short   -2.2% a year
+  Every cell below is AFTER that. The ALL MARKETS lines also show the result before swap, so you can see how much
+  of a bad number is the idea and how much is financing.
+
+  12-MONTH     market      | 2014-17         | 2018-19         | A 2020-21       | B 2024+        
+               XAUUSD      | -10.7% / -1.10  | -12.8% / -1.21  |  -2.8% / -0.23  | +16.0% / +1.31 
+               US500       | -               | -               | +12.2% / +1.19  |  +5.5% / +0.43 
+               EURUSD      |  +3.7% / +0.36  |  -1.9% / -0.19  |  -4.5% / -0.40  |  -6.9% / -0.68 
+               USDJPY      |  -5.0% / -0.53  |  -9.5% / -0.93  |  +0.3% / +0.02  |  -6.4% / -0.61 
+               XTIUSD      |  +6.6% / +0.75  |  -1.7% / -0.16  |  +7.1% / +0.25  |  +1.5% / +0.12 
+               GERMANY40   |  +1.7% / +0.18  |  -8.9% / -0.84  | -13.6% / -0.94  | +14.8% / +1.14 
+               ALL MARKETS |  -2.4% / -0.36  |  -6.9% / -1.30  |  -2.9% / -0.42  |  +2.9% / +0.56 
+                 2014-17: -0.20% a month, t -0.5, worst drop 12.2%, risk 6.6% a year | before swap: +0.5% a year / +0.08
+                 2018-19: -0.58% a month, t -1.9, worst drop 19.0%, risk 5.3% a year | before swap: -1.4% a year / -0.26
+                 A 2020-21: -0.24% a month, t -0.6, worst drop 12.9%, risk 6.7% a year | before swap: +3.0% a year / +0.45
+                 B 2024+: +0.24% a month, t +0.8, worst drop 6.5%, risk 5.1% a year | before swap: +6.3% a year / +1.24
+
+  BLEND        market      | 2014-17         | 2018-19         | A 2020-21       | B 2024+        
+               XAUUSD      | -11.1% / -1.53  |  -6.2% / -0.72  |  -1.7% / -0.17  | +15.4% / +1.39 
+               US500       | -               | -               |  +7.4% / +0.79  |  +1.6% / +0.19 
+               EURUSD      |  +4.0% / +0.49  |  -0.3% / -0.04  |  -5.9% / -0.82  |  -1.7% / -0.22 
+               USDJPY      |  -7.7% / -1.03  |  -7.2% / -0.91  |  +2.1% / +0.20  |  -4.7% / -0.62 
+               XTIUSD      |  +4.7% / +0.74  |  -4.3% / -0.53  |  +1.4% / +0.05  |  +2.4% / +0.24 
+               GERMANY40   |  +0.5% / +0.08  |  -1.1% / -0.17  |  -1.2% / -0.13  | +10.6% / +1.27 
+               ALL MARKETS |  -3.8% / -0.76  |  -3.8% / -0.91  |  -0.5% / -0.07  |  +3.2% / +0.75 
+                 2014-17: -0.32% a month, t -1.1, worst drop 12.1%, risk 5.0% a year | before swap: -1.1% a year / -0.23
+                 2018-19: -0.32% a month, t -1.3, worst drop 10.9%, risk 4.2% a year | before swap: -0.5% a year / -0.11
+                 A 2020-21: -0.04% a month, t -0.1, worst drop 7.3%, risk 6.3% a year | before swap: +3.9% a year / +0.62
+                 B 2024+: +0.26% a month, t +1.0, worst drop 3.8%, risk 4.2% a year | before swap: +5.3% a year / +1.25
+
+  ALWAYS LONG  market      | 2014-17         | 2018-19         | A 2020-21       | B 2024+        
+               XAUUSD      | -21.4% / -2.11  | -14.4% / -1.35  |  -3.3% / -0.28  | +13.0% / +1.09 
+               US500       | -               | -               | +11.8% / +1.27  |  +6.1% / +0.49 
+               EURUSD      | -18.0% / -1.71  | -16.3% / -1.69  | -13.2% / -1.19  | -10.7% / -1.04 
+               USDJPY      |  +6.6% / +0.64  |  -6.5% / -0.63  |  +4.2% / +0.37  |  +0.3% / +0.02 
+               XTIUSD      |  -0.8% / -0.09  |  -3.7% / -0.34  | -13.0% / -0.62  |  +3.5% / +0.29 
+               GERMANY40   |  +6.2% / +0.64  |  -4.0% / -0.38  |  -2.2% / -0.15  | +10.1% / +0.89 
+               ALL MARKETS |  -9.2% / -2.20  |  -9.0% / -1.79  |  -2.8% / -0.40  |  +3.7% / +0.64 
+                 2014-17: -0.76% a month, t -4.1, worst drop 34.7%, risk 4.2% a year | before swap: -0.6% a year / -0.15
+                 2018-19: -0.75% a month, t -2.6, worst drop 22.6%, risk 5.0% a year | before swap: -0.7% a year / -0.13
+                 A 2020-21: -0.23% a month, t -0.6, worst drop 14.6%, risk 6.9% a year | before swap: +3.4% a year / +0.49
+                 B 2024+: +0.31% a month, t +1.0, worst drop 6.1%, risk 5.7% a year | before swap: +8.2% a year / +1.44
+
+  3-MONTH      market      | 2014-17         | 2018-19         | A 2020-21       | B 2024+        
+               XAUUSD      | -19.7% / -1.94  |  -7.7% / -0.72  |  -4.3% / -0.36  | +11.1% / +0.93 
+               US500       | -               | -               |  +1.5% / +0.16  |  +1.9% / +0.16 
+               EURUSD      |  +2.2% / +0.21  |  -2.5% / -0.26  |  -9.1% / -0.82  |  -2.3% / -0.23 
+               USDJPY      |  +3.2% / +0.32  |  -8.3% / -0.81  |  +4.3% / +0.38  |  -0.9% / -0.09 
+               XTIUSD      |  +1.0% / +0.11  |  -1.3% / -0.12  |  -8.8% / -0.42  |  -1.2% / -0.10 
+               GERMANY40   |  -9.6% / -1.00  |  -3.7% / -0.35  |  +4.6% / +0.32  |  -0.1% / -0.01 
+               ALL MARKETS |  -3.6% / -0.56  |  -4.7% / -0.81  |  -0.9% / -0.12  |  +1.6% / +0.31 
+
+  1-MONTH      market      | 2014-17         | 2018-19         | A 2020-21       | B 2024+        
+               XAUUSD      | -11.9% / -1.18  |  -9.7% / -0.91  |  -3.7% / -0.31  | +13.0% / +1.08 
+               US500       | -               | -               |  -5.1% / -0.55  |  -6.4% / -0.51 
+               EURUSD      |  +3.1% / +0.29  |  -3.6% / -0.37  | -11.2% / -1.01  |  -3.6% / -0.35 
+               USDJPY      |  -3.7% / -0.36  | -11.3% / -1.11  |  -1.8% / -0.16  | -12.9% / -1.21 
+               XTIUSD      |  -3.5% / -0.37  | -11.3% / -1.03  |  -2.4% / -0.12  |  +0.8% / +0.07 
+               GERMANY40   |  +9.8% / +1.03  |  +4.9% / +0.47  |  +3.5% / +0.24  |  -0.9% / -0.08 
+               ALL MARKETS |  -2.6% / -0.39  |  -6.1% / -1.20  |  -2.4% / -0.34  |  -1.6% / -0.30 
+
+  Read: ALL MARKETS is the average of the markets that had a position that day (it runs at low risk; returns
+  scale with size). Trend following is worth keeping if its ALL MARKETS Sharpe is positive in most periods AND it
+  is not just 'always long' in disguise (compare the two tables, and look at its short side: EURUSD, USDJPY, WTI).
+  t = how sure the average is; below 2 in a 2-year period is normal even for a real edge, which is why the four
+  periods are shown side by side.
+every number above: daily_results.csv
+
+====================================================================================================
+PART 3: MACHINE   the house replay with extra machinery, one piece at a time
+====================================================================================================
+trades from: d:\coding stuff\Trading research project\reports\collect_20261007_161416
+'plain house' is the same replay as the house mode (same numbers). Each '+' line switches ONE thing on:
+  news blackout     no new trade on a jobs / CPI / Fed day until 60 minutes after the release
+  confidence gate   each lane learns, from its OWN past trades only, which entry reads have gone with its results
+                    (80+ trades, 2.5+ standard errors). While the account is 1%+ below its high, a signal whose
+                    proven reads say 'below average' stays home. Soft: it never acts at a new high.
+  merit entry       a trade OUTSIDE its zone (or from a lane with no zone) may go out at minimum size once that
+                    lane's whole record (100+ trades) is above zero even at its pessimistic end
+  recovery scouts   while 1%+ below the high, the 2 best-proven lanes go out at 2x minimum size, one at a time
+  harvest           a week that earns 0.25%+ of the floor banks 25% of its profit, if equity stays above the floor
+total = end equity + banked. Start $10000 per market and period. Sizes are small, so read direction, not dollars.
+
+####################################################################################################
+XAUUSD  period A   (518 trading days)
+####################################################################################################
+                          equity   banked     total    drop  trades   under  what it did
+  plain house              10711        0     10711    2.3%     481     179  
+  + news blackout          11061        0     11061    4.4%     633     179  news blackout kept 262 home
+    control for it         10519              10519    4.7%     589          the same share of signals kept home AT RANDOM (average of 5)
+  + confidence gate        10714        0     10714    3.4%     501     146  confidence gate kept 188 home
+    control for it         10517              10517    4.9%     596          the same share of signals kept home AT RANDOM (average of 5)
+  + merit entry            10208        0     10208    4.3%     597     461  merit: 78 trades, -419
+  + recovery scouts        10308        0     10308    5.4%     566     179  recovery scout: 15 trades, +110
+  + harvest                10242      513     10755    2.5%     538     151  25 harvests
+  ALL of them               9850      444     10293    8.7%     634     179  news blackout kept 262 home; confidence gate kept 190 home; merit: 61 trades, -29; recovery scout: 83 trades, -343; 18 harvests
+  CONFIDENCE SCORE, tested on every trade it scored (not only the ones it could block):
+    scored below average: -0.049R (n=294) | at or above: -0.027R (n=171) | gap +0.022 (z +0.3)   no skill shown
+    reads proven at the end of the period: nyaft: er60; pdh: day_eff, asia_rel; sar: day_eff
+  CONSISTENCY TRACKER (plain house): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         28%     31%     41%    +0.00%    -0.82%    +1.26%
+    1 week        47%     48%      4%    +0.00%    -1.72%    +3.05%
+    2 weeks       53%     44%      3%    +0.03%    -1.37%    +3.96%
+    3 weeks       53%     46%      2%    +0.06%    -1.66%    +5.13%
+    1 month       59%     41%      0%    +0.09%    -1.82%    +5.56%
+    3 months      58%     42%      0%    +0.23%    -2.09%    +6.01%
+  CONSISTENCY TRACKER (ALL of them): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         28%     33%     39%    +0.00%    -0.90%    +1.27%
+    1 week        47%     49%      4%    +0.00%    -1.75%    +3.06%
+    2 weeks       49%     48%      3%    +0.00%    -2.61%    +4.38%
+    3 weeks       48%     51%      2%    -0.05%    -3.17%    +5.30%
+    1 month       46%     54%      0%    -0.10%    -2.70%    +5.56%
+    3 months      50%     50%      0%    +0.03%    -4.46%    +6.72%
+  HARVEST (ALL of them): $444 banked in 18 weeks out of 104; that is 0.18% of the start a month on average.
+
+####################################################################################################
+XAUUSD  period B   (693 trading days)
+####################################################################################################
+                          equity   banked     total    drop  trades   under  what it did
+  plain house              12011        0     12011    2.8%     823      64  
+  + news blackout          12188        0     12188    3.3%     802      68  news blackout kept 412 home
+    control for it         11917              11917    3.8%     770          the same share of signals kept home AT RANDOM (average of 5)
+  + confidence gate        12017        0     12017    3.9%     817      79  confidence gate kept 102 home
+    control for it         11874              11874    3.5%     794          the same share of signals kept home AT RANDOM (average of 5)
+  + merit entry            12070        0     12070    3.7%     926     149  merit: 211 trades, -203
+  + recovery scouts        12493        0     12493    2.8%     851      60  recovery scout: 39 trades, +933
+  + harvest                10993     1074     12067    2.8%     781      66  50 harvests
+  ALL of them              11069      909     11978    4.3%     781     193  news blackout kept 412 home; confidence gate kept 116 home; merit: 155 trades, +38; recovery scout: 64 trades, +410; 39 harvests
+  CONFIDENCE SCORE, tested on every trade it scored (not only the ones it could block):
+    scored below average: -0.017R (n=186) | at or above: -0.048R (n=173) | gap -0.031 (z -0.2)   no skill shown
+    reads proven at the end of the period: fade: open_move_with; nr7: day_eff, prev_range_rel, vol3rel, cost_r, setup_range_rel
+  CONSISTENCY TRACKER (plain house): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         32%     34%     34%    +0.00%    -1.00%    +1.83%
+    1 week        53%     42%      5%    +0.04%    -1.78%    +2.36%
+    2 weeks       57%     40%      2%    +0.16%    -2.32%    +3.72%
+    3 weeks       58%     41%      2%    +0.22%    -2.31%    +4.45%
+    1 month       63%     36%      1%    +0.56%    -2.33%    +4.36%
+    3 months      86%     14%      0%    +1.96%    -1.80%    +4.89%
+  CONSISTENCY TRACKER (ALL of them): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         32%     36%     32%    +0.00%    -1.16%    +1.83%
+    1 week        52%     43%      5%    +0.03%    -2.81%    +3.65%
+    2 weeks       57%     40%      3%    +0.20%    -2.81%    +4.13%
+    3 weeks       60%     38%      2%    +0.33%    -3.52%    +4.49%
+    1 month       64%     36%      1%    +0.38%    -4.00%    +4.31%
+    3 months      84%     16%      0%    +1.65%    -2.32%    +6.92%
+  HARVEST (ALL of them): $909 banked in 39 weeks out of 140; that is 0.28% of the start a month on average.
+
+####################################################################################################
+US500  period A   (475 trading days)
+####################################################################################################
+                          equity   banked     total    drop  trades   under  what it did
+  plain house               6611        0      6611   34.1%     389     446  
+  + news blackout           6793        0      6793   32.2%     378     446  news blackout kept 78 home
+    control for it          6726               6726   32.9%     382          the same share of signals kept home AT RANDOM (average of 5)
+  + confidence gate         6621        0      6621   34.0%     382     446  confidence gate kept 96 home
+    control for it          6733               6733   32.8%     380          the same share of signals kept home AT RANDOM (average of 5)
+  + merit entry             6570        0      6570   34.5%     392     446  merit: 3 trades, -41
+  + recovery scouts         6595        0      6595   34.2%     389     446  recovery scout: 2 trades, -70
+  + harvest                 6611        0      6611   34.1%     389     446  
+  ALL of them               6765        0      6765   32.5%     376     446  news blackout kept 78 home; confidence gate kept 94 home; merit: 3 trades, -41
+  CONFIDENCE SCORE, tested on every trade it scored (not only the ones it could block):
+    scored below average: -0.248R (n=95) | at or above: -0.262R (n=60) | gap -0.014 (z -0.1)   no skill shown
+    reads proven at the end of the period: exhaust: ret60_with, cost_r; gapfill: er5; pdh: vol3rel
+  CONSISTENCY TRACKER (plain house): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         19%     38%     43%    +0.00%    -1.03%    +0.72%
+    1 week        17%     72%     11%    -0.34%    -1.94%    +0.88%
+    2 weeks        9%     83%      7%    -0.79%    -3.08%    +0.88%
+    3 weeks        7%     89%      4%    -1.27%    -4.38%    +0.59%
+    1 month        3%     95%      2%    -1.74%    -5.16%    +0.17%
+    3 months       0%    100%      0%    -5.24%    -9.75%    -0.36%
+  CONSISTENCY TRACKER (ALL of them): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         18%     37%     45%    +0.00%    -1.03%    +0.72%
+    1 week        18%     71%     11%    -0.33%    -1.92%    +0.88%
+    2 weeks       10%     83%      7%    -0.75%    -3.07%    +0.88%
+    3 weeks        7%     89%      4%    -1.24%    -4.18%    +0.63%
+    1 month        3%     96%      2%    -1.74%    -4.97%    +0.35%
+    3 months       0%    100%      0%    -5.14%    -8.95%    -0.60%
+
+####################################################################################################
+US500  period B   (717 trading days)
+####################################################################################################
+                          equity   banked     total    drop  trades   under  what it did
+  plain house               6247        0      6247   38.2%     438     690  
+  + news blackout           6223        0      6223   38.4%     424     690  news blackout kept 133 home
+    control for it          6321               6321   37.4%     429          the same share of signals kept home AT RANDOM (average of 5)
+  + confidence gate         6339        0      6339   37.4%     412     690  confidence gate kept 374 home
+    control for it          6500               6500   35.5%     411          the same share of signals kept home AT RANDOM (average of 5)
+  + merit entry             6247        0      6247   38.2%     438     690  
+  + recovery scouts         6247        0      6247   38.2%     438     690  
+  + harvest                 6247        0      6247   38.2%     438     690  
+  ALL of them               6374        0      6374   37.0%     401     690  news blackout kept 133 home; confidence gate kept 361 home
+  CONFIDENCE SCORE, tested on every trade it scored (not only the ones it could block):
+    scored below average: -0.256R (n=374) | at or above: -0.119R (n=389) | gap +0.137 (z +1.9)   no skill shown
+    reads proven at the end of the period: fade: prev_range_rel, room_r; london: er5; nr7: bar_extreme; nyaft: day_eff, open_move_with; pdh: trend20_with; range: cost_r; scalp: stop_atr; vwap: asia_rel, er20, cost_r, day_used
+  CONSISTENCY TRACKER (plain house): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         16%     32%     52%    +0.00%    -1.07%    +1.55%
+    1 week        24%     64%     12%    -0.32%    -2.29%    +1.55%
+    2 weeks       19%     76%      5%    -0.64%    -3.25%    +1.67%
+    3 weeks       14%     84%      2%    -0.96%    -4.64%    +1.09%
+    1 month       10%     89%      0%    -1.33%    -4.74%    +1.02%
+    3 months       0%    100%      0%    -4.13%    -9.47%    -0.22%
+  CONSISTENCY TRACKER (ALL of them): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         15%     30%     55%    +0.00%    -1.06%    +0.94%
+    1 week        23%     63%     14%    -0.24%    -2.26%    +1.30%
+    2 weeks       18%     76%      6%    -0.60%    -3.28%    +1.34%
+    3 weeks       13%     85%      2%    -0.86%    -4.59%    +1.05%
+    1 month        9%     91%      0%    -1.27%    -4.69%    +0.97%
+    3 months       0%    100%      0%    -4.17%    -8.51%    +0.09%
+
+####################################################################################################
+EURUSD  period A   (522 trading days)
+####################################################################################################
+                          equity   banked     total    drop  trades   under  what it did
+  plain house               8023        0      8023   22.7%     572     462  
+  + news blackout           7933        0      7933   22.4%     559     462  news blackout kept 338 home
+    control for it          8315               8315   19.8%     525          the same share of signals kept home AT RANDOM (average of 5)
+  + confidence gate         8226        0      8226   20.7%     584     462  confidence gate kept 338 home
+    control for it          8315               8315   19.8%     525          the same share of signals kept home AT RANDOM (average of 5)
+  + merit entry             8023        0      8023   22.7%     572     462  
+  + recovery scouts         8023        0      8023   22.7%     572     462  
+  + harvest                 7966       93      8060   22.5%     564     462  7 harvests
+  ALL of them               8177       56      8233   19.6%     524     462  news blackout kept 338 home; confidence gate kept 292 home; 4 harvests
+  CONFIDENCE SCORE, tested on every trade it scored (not only the ones it could block):
+    scored below average: -0.134R (n=338) | at or above: -0.215R (n=256) | gap -0.081 (z -1.0)   no skill shown
+    reads proven at the end of the period: main: stretch_atr, cost_r; nyaft: room_r
+  CONSISTENCY TRACKER (plain house): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         25%     41%     34%    +0.00%    -0.88%    +1.06%
+    1 week        35%     61%      4%    -0.19%    -2.11%    +1.21%
+    2 weeks       33%     64%      3%    -0.33%    -2.68%    +1.67%
+    3 weeks       28%     70%      2%    -0.57%    -3.22%    +1.83%
+    1 month       25%     74%      0%    -0.84%    -4.03%    +2.41%
+    3 months      10%     90%      0%    -3.17%    -7.73%    +3.20%
+  CONSISTENCY TRACKER (ALL of them): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         21%     38%     41%    +0.00%    -0.92%    +1.78%
+    1 week        32%     63%      5%    -0.18%    -2.13%    +1.93%
+    2 weeks       33%     64%      3%    -0.26%    -2.87%    +1.87%
+    3 weeks       29%     69%      2%    -0.47%    -3.66%    +1.62%
+    1 month       23%     77%      0%    -0.73%    -3.64%    +2.29%
+    3 months       7%     93%      0%    -2.58%    -5.99%    +1.72%
+  HARVEST (ALL of them): $56 banked in 4 weeks out of 104; that is 0.02% of the start a month on average.
+
+####################################################################################################
+EURUSD  period B   (722 trading days)
+####################################################################################################
+                          equity   banked     total    drop  trades   under  what it did
+  plain house               9043        0      9043   10.8%     496     698  
+  + news blackout           9060        0      9060   10.1%     436     697  news blackout kept 470 home
+    control for it          8965               8965   11.7%     492          the same share of signals kept home AT RANDOM (average of 5)
+  + confidence gate         9068        0      9068   11.2%     526     698  confidence gate kept 371 home
+    control for it          8976               8976   11.5%     497          the same share of signals kept home AT RANDOM (average of 5)
+  + merit entry             9043        0      9043   10.8%     496     698  
+  + recovery scouts         9043        0      9043   10.8%     496     698  
+  + harvest                 9043        0      9043   10.8%     496     698  
+  ALL of them               9008        0      9008   10.9%     456     697  news blackout kept 470 home; confidence gate kept 331 home
+  CONFIDENCE SCORE, tested on every trade it scored (not only the ones it could block):
+    scored below average: -0.193R (n=368) | at or above: -0.109R (n=475) | gap +0.085 (z +1.0)   no skill shown
+    reads proven at the end of the period: exhaust: cost_r; fade: cost_r; range: trend5_with; retest: er60; trend: room_r
+  CONSISTENCY TRACKER (plain house): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         21%     29%     50%    +0.00%    -0.87%    +1.00%
+    1 week        37%     54%      9%    -0.02%    -1.84%    +1.50%
+    2 weeks       39%     56%      5%    -0.07%    -2.09%    +1.79%
+    3 weeks       39%     58%      3%    -0.10%    -2.60%    +1.64%
+    1 month       36%     62%      2%    -0.15%    -3.06%    +1.73%
+    3 months      29%     71%      0%    -0.42%    -4.51%    +2.00%
+  CONSISTENCY TRACKER (ALL of them): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         17%     27%     55%    +0.00%    -0.87%    +0.78%
+    1 week        35%     56%      9%    -0.06%    -1.83%    +1.27%
+    2 weeks       36%     62%      3%    -0.14%    -1.91%    +1.46%
+    3 weeks       34%     64%      1%    -0.24%    -2.33%    +1.60%
+    1 month       31%     68%      0%    -0.37%    -2.61%    +1.88%
+    3 months      20%     80%      0%    -1.04%    -3.75%    +2.93%
+
+####################################################################################################
+USDJPY  period A   (522 trading days)
+####################################################################################################
+                          equity   banked     total    drop  trades   under  what it did
+  plain house               9020        0      9020   12.4%     612     472  
+  + news blackout           9053        0      9053   11.7%     546     472  news blackout kept 298 home
+    control for it          8939               8939   13.0%     566          the same share of signals kept home AT RANDOM (average of 5)
+  + confidence gate         8804        0      8804   14.3%     581     472  confidence gate kept 260 home
+    control for it          8898               8898   13.4%     573          the same share of signals kept home AT RANDOM (average of 5)
+  + merit entry             8941        0      8941   13.2%     648     472  merit: 35 trades, -71
+  + recovery scouts         9011        0      9011   12.5%     612     472  recovery scout: 2 trades, -104
+  + harvest                 8959       72      9031   12.4%     614     472  3 harvests
+  ALL of them               8694       69      8763   14.5%     551     472  news blackout kept 298 home; confidence gate kept 247 home; merit: 33 trades, -105; recovery scout: 1 trades, -52; 4 harvests
+  CONFIDENCE SCORE, tested on every trade it scored (not only the ones it could block):
+    scored below average: -0.144R (n=259) | at or above: -0.175R (n=187) | gap -0.031 (z -0.3)   no skill shown
+    reads proven at the end of the period: fade: bar_extreme; nyaft: day_eff, er60, stretch_atr; range: trend5_with; scalp: trend20_with; vwap: cost_r, stop_atr
+  CONSISTENCY TRACKER (plain house): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         25%     39%     36%    +0.00%    -0.76%    +1.70%
+    1 week        39%     56%      4%    -0.12%    -1.83%    +2.39%
+    2 weeks       39%     58%      3%    -0.20%    -2.98%    +2.46%
+    3 weeks       39%     59%      2%    -0.30%    -3.30%    +2.84%
+    1 month       40%     59%      1%    -0.45%    -3.53%    +2.94%
+    3 months      23%     77%      0%    -1.69%    -4.46%    +3.71%
+  CONSISTENCY TRACKER (ALL of them): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         22%     36%     41%    +0.00%    -0.75%    +1.70%
+    1 week        37%     58%      5%    -0.15%    -1.83%    +2.20%
+    2 weeks       35%     62%      3%    -0.26%    -2.98%    +1.94%
+    3 weeks       35%     63%      2%    -0.38%    -3.20%    +2.41%
+    1 month       36%     63%      1%    -0.50%    -3.25%    +2.46%
+    3 months      12%     88%      0%    -1.76%    -5.04%    +2.32%
+  HARVEST (ALL of them): $69 banked in 4 weeks out of 104; that is 0.03% of the start a month on average.
+
+####################################################################################################
+USDJPY  period B   (723 trading days)
+####################################################################################################
+                          equity   banked     total    drop  trades   under  what it did
+  plain house               8873        0      8873   11.4%     583     696  
+  + news blackout           9015        0      9015   10.4%     521     692  news blackout kept 477 home
+    control for it          9003               9003   10.1%     547          the same share of signals kept home AT RANDOM (average of 5)
+  + confidence gate         8789        0      8789   12.2%     562     696  confidence gate kept 408 home
+    control for it          8966               8966   10.5%     554          the same share of signals kept home AT RANDOM (average of 5)
+  + merit entry             8875        0      8875   11.4%     583     696  merit: 1 trades, -2
+  + recovery scouts         8873        0      8873   11.4%     583     696  
+  + harvest                 8873        0      8873   11.4%     583     696  
+  ALL of them               8861        8      8869   11.7%     504     692  news blackout kept 477 home; confidence gate kept 365 home; merit: 1 trades, -14; 1 harvests
+  CONFIDENCE SCORE, tested on every trade it scored (not only the ones it could block):
+    scored below average: -0.255R (n=404) | at or above: -0.246R (n=353) | gap +0.008 (z +0.1)   no skill shown
+    reads proven at the end of the period: fade: cost_r; london: stretch_atr, cost_r, stop_atr; range: asia_rel, setup_range_rel, day_used
+  CONSISTENCY TRACKER (plain house): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         27%     35%     39%    +0.00%    -0.69%    +1.03%
+    1 week        39%     55%      6%    -0.06%    -1.46%    +1.17%
+    2 weeks       39%     58%      2%    -0.12%    -2.09%    +1.11%
+    3 weeks       35%     64%      1%    -0.21%    -2.59%    +1.36%
+    1 month       31%     68%      1%    -0.30%    -2.69%    +1.74%
+    3 months      22%     78%      0%    -1.00%    -4.45%    +2.30%
+  CONSISTENCY TRACKER (ALL of them): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         23%     30%     47%    +0.00%    -0.69%    +0.84%
+    1 week        38%     54%      9%    -0.04%    -1.44%    +1.16%
+    2 weeks       39%     57%      5%    -0.10%    -2.12%    +1.15%
+    3 weeks       36%     61%      3%    -0.18%    -2.86%    +1.60%
+    1 month       32%     66%      1%    -0.25%    -2.96%    +1.57%
+    3 months      20%     80%      0%    -0.94%    -3.83%    +1.00%
+  HARVEST (ALL of them): $8 banked in 1 weeks out of 144; that is 0.00% of the start a month on average.
+
+####################################################################################################
+XTIUSD  period A   (331 trading days)
+####################################################################################################
+                          equity   banked     total    drop  trades   under  what it did
+  plain house               9982        0      9982    3.5%     343     194  
+  + news blackout           9924        0      9924    4.3%     334     194  news blackout kept 44 home
+    control for it          9939               9939    3.3%     334          the same share of signals kept home AT RANDOM (average of 5)
+  + confidence gate         9909        0      9909    3.7%     317     194  confidence gate kept 75 home
+    control for it          9922               9922    3.6%     329          the same share of signals kept home AT RANDOM (average of 5)
+  + merit entry             9982        0      9982    3.5%     343     194  
+  + recovery scouts         9881        0      9881    3.9%     328     194  recovery scout: 29 trades, -3
+  + harvest                 9875      107      9982    3.5%     343     194  6 harvests
+  ALL of them               9704       96      9800    4.8%     303     194  news blackout kept 44 home; confidence gate kept 72 home; recovery scout: 12 trades, -52; 6 harvests
+  CONFIDENCE SCORE, tested on every trade it scored (not only the ones it could block):
+    scored below average: -0.054R (n=85) | at or above: -0.016R (n=75) | gap +0.038 (z +0.4)   no skill shown
+    reads proven at the end of the period: nyaft: volrank, cost_r
+  CONSISTENCY TRACKER (plain house): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         26%     32%     42%    +0.00%    -0.58%    +1.02%
+    1 week        43%     48%      9%    +0.00%    -1.35%    +1.27%
+    2 weeks       49%     47%      4%    +0.00%    -1.77%    +1.53%
+    3 weeks       51%     47%      2%    +0.02%    -2.23%    +2.45%
+    1 month       51%     49%      0%    +0.01%    -2.37%    +2.74%
+    3 months      50%     50%      0%    +0.03%    -2.74%    +2.48%
+  CONSISTENCY TRACKER (ALL of them): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         23%     31%     45%    +0.00%    -0.79%    +1.02%
+    1 week        41%     49%     10%    +0.00%    -0.95%    +1.27%
+    2 weeks       45%     52%      4%    -0.01%    -1.57%    +1.52%
+    3 weeks       45%     53%      2%    -0.01%    -1.86%    +2.16%
+    1 month       43%     57%      0%    -0.09%    -1.98%    +2.30%
+    3 months      37%     63%      0%    -0.80%    -2.85%    +1.97%
+  HARVEST (ALL of them): $96 banked in 6 weeks out of 68; that is 0.06% of the start a month on average.
+
+####################################################################################################
+XTIUSD  period B   (694 trading days)
+####################################################################################################
+                          equity   banked     total    drop  trades   under  what it did
+  plain house               8833        0      8833   13.0%     550     661  
+  + news blackout           8878        0      8878   12.3%     527     660  news blackout kept 129 home
+    control for it          8866               8866   12.8%     534          the same share of signals kept home AT RANDOM (average of 5)
+  + confidence gate         8961        0      8961   11.6%     511     661  confidence gate kept 214 home
+    control for it          8895               8895   12.4%     521          the same share of signals kept home AT RANDOM (average of 5)
+  + merit entry             8833        0      8833   13.0%     550     661  
+  + recovery scouts         8833        0      8833   13.0%     550     661  
+  + harvest                 8809       24      8833   13.0%     550     661  2 harvests
+  ALL of them               8992       15      9007   11.0%     489     660  news blackout kept 129 home; confidence gate kept 208 home; 1 harvests
+  CONFIDENCE SCORE, tested on every trade it scored (not only the ones it could block):
+    scored below average: -0.125R (n=214) | at or above: -0.191R (n=236) | gap -0.066 (z -0.8)   no skill shown
+    reads proven at the end of the period: nyaft: open_move_with; vwap: volrank, cost_r
+  CONSISTENCY TRACKER (plain house): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         18%     31%     51%    +0.00%    -0.77%    +1.34%
+    1 week        34%     55%     11%    -0.05%    -1.71%    +1.26%
+    2 weeks       35%     60%      6%    -0.18%    -2.53%    +1.36%
+    3 weeks       34%     63%      3%    -0.26%    -2.79%    +1.94%
+    1 month       32%     67%      1%    -0.33%    -2.84%    +1.93%
+    3 months      28%     72%      0%    -0.99%    -5.46%    +1.20%
+  CONSISTENCY TRACKER (ALL of them): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day         16%     29%     55%    +0.00%    -0.77%    +1.35%
+    1 week        33%     53%     15%    -0.02%    -1.24%    +1.51%
+    2 weeks       34%     59%      7%    -0.14%    -1.97%    +1.35%
+    3 weeks       36%     61%      4%    -0.20%    -2.14%    +1.95%
+    1 month       34%     65%      1%    -0.27%    -2.38%    +1.94%
+    3 months      26%     74%      0%    -0.77%    -4.88%    +1.35%
+  HARVEST (ALL of them): $15 banked in 1 weeks out of 139; that is 0.00% of the start a month on average.
+
+####################################################################################################
+GERMANY40  period A   (492 trading days)
+####################################################################################################
+                          equity   banked     total    drop  trades   under  what it did
+  plain house               9408        0      9408    7.5%      56     310  
+  + news blackout           9507        0      9507    7.0%      52     146  news blackout kept 71 home
+    control for it          9459               9459    7.3%      54          the same share of signals kept home AT RANDOM (average of 5)
+  + confidence gate         9408        0      9408    7.5%      56     310  confidence gate kept 6 home
+    control for it          9431               9431    7.4%      56          the same share of signals kept home AT RANDOM (average of 5)
+  + merit entry             9408        0      9408    7.5%      56     310  
+  + recovery scouts         9408        0      9408    7.5%      56     310  
+  + harvest                 9351       57      9408    7.5%      56     310  2 harvests
+  ALL of them               9418       90      9507    7.1%      52     146  news blackout kept 71 home; confidence gate kept 6 home; 4 harvests
+  CONFIDENCE SCORE: too few scored trades to judge (6 below, 10 above): no read was proven for most lanes.
+    reads proven at the end of the period: pdh: day_eff
+  CONSISTENCY TRACKER (plain house): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day          4%      7%     89%    +0.00%    -0.83%    +1.38%
+    1 week        11%     24%     65%    +0.00%    -1.64%    +2.16%
+    2 weeks       15%     35%     50%    +0.00%    -2.31%    +3.07%
+    3 weeks       17%     40%     43%    +0.00%    -2.42%    +3.13%
+    1 month       18%     45%     37%    +0.00%    -2.88%    +3.13%
+    3 months      19%     56%     24%    -0.40%    -5.46%    +2.85%
+  CONSISTENCY TRACKER (ALL of them): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day          4%      7%     89%    +0.00%    -0.82%    +1.38%
+    1 week        11%     23%     67%    +0.00%    -1.63%    +2.14%
+    2 weeks       15%     32%     52%    +0.00%    -2.30%    +2.71%
+    3 weeks       18%     38%     44%    +0.00%    -2.41%    +2.78%
+    1 month       19%     44%     37%    +0.00%    -2.86%    +2.78%
+    3 months      22%     53%     24%    -0.15%    -5.03%    +2.91%
+  HARVEST (ALL of them): $90 banked in 4 weeks out of 100; that is 0.04% of the start a month on average.
+
+####################################################################################################
+GERMANY40  period B   (706 trading days)
+####################################################################################################
+                          equity   banked     total    drop  trades   under  what it did
+  plain house               9316        0      9316    6.8%      27     642  
+  + news blackout           9381        0      9381    6.2%      26     642  news blackout kept 385 home
+    control for it          9384               9384    6.2%      26          the same share of signals kept home AT RANDOM (average of 5)
+  + confidence gate         9363        0      9363    6.4%      26     642  confidence gate kept 388 home
+    control for it          9384               9384    6.2%      26          the same share of signals kept home AT RANDOM (average of 5)
+  + merit entry             9185        0      9185    8.2%      29     642  
+  + recovery scouts         9316        0      9316    6.8%      27     642  
+  + harvest                 9316        0      9316    6.8%      27     642  
+  ALL of them               9427        0      9427    5.7%      25     642  news blackout kept 385 home; confidence gate kept 351 home
+  CONFIDENCE SCORE, tested on every trade it scored (not only the ones it could block):
+    scored below average: -0.077R (n=393) | at or above: -0.053R (n=463) | gap +0.024 (z +0.3)   no skill shown
+    reads proven at the end of the period: fade: prev_range_rel, cost_r; nr7: bar_extreme; retest: vol3rel; sar: er20
+  CONSISTENCY TRACKER (plain house): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day          1%      3%     96%    +0.00%    -0.80%    +1.31%
+    1 week         3%     12%     85%    +0.00%    -1.42%    +1.31%
+    2 weeks        4%     20%     75%    +0.00%    -2.05%    +1.31%
+    3 weeks        5%     26%     68%    +0.00%    -2.81%    +1.31%
+    1 month        6%     34%     60%    +0.00%    -3.30%    +1.31%
+    3 months       2%     69%     29%    -0.45%    -3.34%    +0.59%
+  CONSISTENCY TRACKER (ALL of them): how each stretch of trading days ended, equity plus anything banked
+    stretch        up    down    flat    middle     worst      best
+    1 day          1%      3%     96%    +0.00%    -0.79%    +1.30%
+    1 week         3%     10%     87%    +0.00%    -1.41%    +1.30%
+    2 weeks        4%     18%     77%    +0.00%    -2.02%    +1.30%
+    3 weeks        5%     25%     70%    +0.00%    -2.78%    +1.30%
+    1 month        6%     33%     61%    +0.00%    -3.27%    +1.30%
+    3 months       2%     69%     29%    -0.44%    -3.27%    +0.59%
+
+----------------------------------------------------------------------------------------------------
+ALL MARKETS TOGETHER   (sum of each market's gain or loss on its own $10000; total = equity + banked)
+----------------------------------------------------------------------------------------------------
+                           period A     period B    vs plain, A    vs plain, B   markets it helped, A / B
+  plain house                 -6244        -5678             +0             +0   0 / 0
+  + news blackout             -5729        -5256           +515           +422   4 / 5
+    control for it            -6104        -5542           +140           +135
+  + confidence gate           -6317        -5465            -73           +213   3 / 5
+    control for it            -6185        -5406            +60           +272
+  + merit entry               -6867        -5748           -623            -70   0 / 2
+  + recovery scouts           -6774        -5196           -529           +482   0 / 1
+  + harvest                   -6153        -5622            +92            +56   3 / 1
+  ALL of them                 -6639        -5338           -395           +340   3 / 3
+  THE CONTROL LINES MATTER: where the lanes lose money on average, keeping ANY trades home 'helps'. A blackout or a
+  gate has skill only if it beats its control (the same number of trades kept home at random).
+  Read: a piece earns its place if it helps in BOTH periods and on most markets, not in the sum alone (gold
+  dominates the sum because the zones were found there). Harvest never adds money: judge it by 'banked' and by
+  whether the worst drop and time under water got worse.
+every row: machine_variants.csv
+
+runtime 341.8s

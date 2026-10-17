@@ -1,0 +1,108 @@
+====================================================================================================
+THE LAB  --  every open idea, labelled, in one run. Shadow only: it measures, it decides nothing.
+====================================================================================================
+Sealed exam years 2022-01-01 .. 2024-01-01: not read by any part.
+
+====================================================================================================
+PART 7: PROBE   what price does after the moments the reads point at (no lane's stop or target involved)
+====================================================================================================
+The lanes' own stops and targets cost 0.06-0.17R a trade, about as much as the reads are worth. So this part
+drops them: it takes each MOMENT, enters at the close of that bar in the stated direction, and measures the raw move.
+Moments (fixed before measuring):
+  1 bad fade           a fade fires with 4+ of its 5 bad signs -> go WITH the move it is fading
+  2 fade stopped       a fade lane's trade is stopped out -> go WITH the move that stopped it
+  3 clean breakout     a breakout fires with none of its 3 bad signs -> go WITH the breakout
+  4 bad breakout       a breakout fires with all 3 bad signs -> go AGAINST the breakout
+  5 strong momentum    a momentum trade fires with all 5 good signs -> go WITH it
+  base: any fade       every fade entry (the comparison for 1) -> go AGAINST the fade
+  base: any breakout   every breakout entry (the comparison for 3 and 4) -> go WITH the breakout
+  base: any momentum   every momentum entry (the comparison for 5) -> go WITH it
+  base: random         the control lane's random entries -> its random direction
+bad signs of a fade: day_pos_with low, trends agree, far target, few tests of the level, choppy last 60 days.
+bad signs of a breakout: trends disagree, no failed fade against it, far target.
+good signs of a momentum trade: a failed fade against it, straight day, with the day's move, with the 1-hour trend, stretched.
+One moment per market, kind and direction every 2 hours. ATR = M15 ATR(14) at the moment.
+For 'fade stopped' the entry is the close of the M15 bar in which the stop was hit, so the stop-out move itself is
+already over and is not counted.
+
+----------------------------------------------------------------------------------------------------
+7a. THE RAW MOVE   (in ATR, in the stated direction; + = price went the way the moment points)
+----------------------------------------------------------------------------------------------------
+  n = moments. 1h..8h = average move after that long, with its z (standard errors from zero) under it. best / worst
+  = the average furthest point for and against within 4 hours. cost = one round trip in ATR: a move has to beat it.
+  2024-26
+    moment                    n |      1h      2h      4h      8h |   best  worst |  cost
+    1 bad fade             1036 |  -0.039  +0.111  +0.256  +0.605 |   2.40   2.28 |  0.25
+                                | ( -0.8) ( +1.7) ( +2.4) ( +2.7) |
+    2 fade stopped         3383 |  -0.011  -0.025  +0.094  +0.187 |   2.33   2.31 |  0.24
+                                | ( -0.4) ( -0.6) ( +1.5) ( +1.4) |
+    3 clean breakout        522 |  +0.193  +0.245  +0.371  +0.506 |   2.78   2.34 |  0.23
+                                | ( +2.1) ( +2.1) ( +2.1) ( +1.0) |
+    4 bad breakout          916 |  +0.043  +0.009  +0.241  +0.082 |   2.69   2.40 |  0.29
+                                | ( +0.7) ( +0.1) ( +2.0) ( +0.4) |
+    5 strong momentum       516 |  -0.063  +0.089  +0.072  +0.149 |   1.95   1.94 |  0.21
+                                | ( -0.9) ( +1.1) ( +0.6) ( +0.5) |
+    base: any fade         6194 |  +0.020  +0.040  +0.103  +0.290 |   2.41   2.34 |  0.25
+                                | ( +1.0) ( +1.4) ( +2.3) ( +3.1) |
+    base: any breakout     7062 |  -0.002  +0.023  +0.037  +0.265 |   2.53   2.53 |  0.28
+                                | ( -0.1) ( +0.7) ( +0.8) ( +2.7) |
+    base: any momentum     5947 |  +0.008  +0.030  +0.012  +0.253 |   2.37   2.37 |  0.26
+                                | ( +0.3) ( +0.9) ( +0.3) ( +1.2) |
+    base: random           4011 |  +0.014  +0.035  +0.090  +0.123 |   2.34   2.22 |  0.25
+                                | ( +0.6) ( +1.0) ( +1.6) ( +0.9) |
+  2014-21
+    moment                    n |      1h      2h      4h      8h |   best  worst |  cost
+    1 bad fade             1324 |  +0.036  +0.098  +0.155  +0.271 |   2.46   2.28 |  0.27
+                                | ( +0.7) ( +1.4) ( +1.6) ( +1.8) |
+    2 fade stopped         5234 |  +0.005  +0.036  +0.026  +0.049 |  20.33   2.26 |  0.26
+                                | ( +0.2) ( +1.1) ( +0.6) ( +0.6) |
+    3 clean breakout        739 |  +0.097  +0.133  +0.286  +0.588 |   2.62   2.27 |  0.27
+                                | ( +1.5) ( +1.6) ( +2.3) ( +3.1) |
+    4 bad breakout         1988 |  -0.028  -0.027  +0.069  +0.071 |   2.63   2.64 |  0.30
+                                | ( -0.6) ( -0.4) ( +0.8) ( +0.5) |
+    5 strong momentum      1024 |  +0.080  +0.102  +0.171  +0.094 |   2.09   1.84 |  0.23
+                                | ( +1.7) ( +1.6) ( +1.9) ( +0.7) |
+    base: any fade        10409 |  +0.036  +0.026  +0.031  +0.048 |  18.43   7.35 |  0.27
+                                | ( +2.1) ( +1.1) ( +0.9) ( +0.8) |
+    base: any breakout    14071 |  +0.012  +0.023  +0.035  +0.062 |   9.49   4.00 |  0.29
+                                | ( +0.7) ( +1.0) ( +1.1) ( +1.1) |
+    base: any momentum    10969 |  +0.015  +0.028  +0.049  +0.051 |  17.52   6.95 |  0.27
+                                | ( +0.8) ( +1.1) ( +1.6) ( +0.9) |
+    base: random           7318 |  +0.004  -0.008  +0.007  +0.001 |   2.39   2.36 |  0.27
+                                | ( +0.2) ( -0.3) ( +0.2) ( +0.0) |
+  Read: a moment is worth something if its move is clearly above zero (z of 2+) in BOTH periods, above its 'base' line
+  (otherwise the bad / good signs added nothing), and bigger than the cost column.
+
+----------------------------------------------------------------------------------------------------
+7b. IS THERE A STOP AND TARGET THAT PAYS?   (R per trade AFTER costs; enter at the moment's bar close)
+----------------------------------------------------------------------------------------------------
+  Twelve plain structures, fixed in advance: stop 1 or 2 ATR; target 1R, 2R or none; out at the stop, the target, or
+  after 4 or 8 hours, whichever comes first. A bar that touches stop and target counts as the stop.
+  2024-26   (stop / target / time limit)
+    moment               1ATR/1R/4h    1ATR/2R/4h    1ATR/time/4h  2ATR/1R/4h    2ATR/2R/4h    2ATR/time/4h  1ATR/1R/8h    1ATR/2R/8h    1ATR/time/8h  2ATR/1R/8h    2ATR/2R/8h    2ATR/time/8h 
+    1 bad fade           -0.269 (-8.7) -0.282 (-6.8) -0.246 (-4.3) -0.133 (-4.9) -0.092 (-2.8) -0.090 (-2.4) -0.268 (-8.6) -0.275 (-6.6) -0.230 (-3.5) -0.129 (-4.6) -0.072 (-2.0) -0.064 (-1.4)
+    2 fade stopped       -0.278 (-16.2) -0.245 (-10.6) -0.191 (-5.5) -0.135 (-8.9) -0.122 (-6.6) -0.100 (-4.7) -0.279 (-16.2) -0.248 (-10.6) -0.196 (-5.2) -0.135 (-8.6) -0.117 (-5.9) -0.092 (-3.8)
+    3 clean breakout     -0.284 (-6.6) -0.257 (-4.3) -0.044 (-0.4) -0.132 (-3.3) -0.108 (-2.2) -0.024 (-0.4) -0.284 (-6.5) -0.254 (-4.2) -0.073 (-0.6) -0.117 (-2.9) -0.092 (-1.7) +0.006 (+0.1)
+    4 bad breakout       -0.264 (-7.8) -0.185 (-3.9) -0.112 (-1.5) -0.104 (-3.4) -0.089 (-2.3) -0.074 (-1.6) -0.265 (-7.9) -0.186 (-3.9) -0.217 (-2.6) -0.105 (-3.3) -0.084 (-2.0) -0.114 (-2.2)
+    5 strong momentum    -0.255 (-5.9) -0.217 (-3.7) -0.215 (-2.9) -0.117 (-3.1) -0.106 (-2.4) -0.119 (-2.6) -0.254 (-5.9) -0.215 (-3.7) -0.161 (-1.9) -0.096 (-2.5) -0.077 (-1.6) -0.068 (-1.3)
+    base: any fade       -0.280 (-22.1) -0.274 (-16.0) -0.261 (-10.4) -0.128 (-11.3) -0.118 (-8.5) -0.100 (-6.2) -0.280 (-22.1) -0.269 (-15.5) -0.245 (-8.4) -0.123 (-10.4) -0.096 (-6.3) -0.066 (-3.4)
+    base: any breakout   -0.333 (-28.0) -0.303 (-18.6) -0.260 (-10.1) -0.164 (-15.0) -0.148 (-11.0) -0.136 (-8.6) -0.333 (-28.0) -0.301 (-18.3) -0.227 (-7.2) -0.162 (-14.3) -0.146 (-10.0) -0.110 (-5.6)
+    base: any momentum   -0.286 (-22.1) -0.264 (-15.1) -0.248 (-9.8) -0.133 (-11.4) -0.117 (-8.2) -0.114 (-7.1) -0.286 (-22.1) -0.262 (-14.9) -0.213 (-7.1) -0.132 (-11.1) -0.115 (-7.6) -0.096 (-5.1)
+    base: random         -0.242 (-15.6) -0.227 (-10.8) -0.193 (-6.2) -0.118 (-8.7) -0.114 (-7.0) -0.091 (-4.4) -0.243 (-15.6) -0.231 (-10.9) -0.210 (-5.9) -0.121 (-8.6) -0.109 (-6.1) -0.093 (-4.0)
+  2014-21   (stop / target / time limit)
+    moment               1ATR/1R/4h    1ATR/2R/4h    1ATR/time/4h  2ATR/1R/4h    2ATR/2R/4h    2ATR/time/4h  1ATR/1R/8h    1ATR/2R/8h    1ATR/time/8h  2ATR/1R/8h    2ATR/2R/8h    2ATR/time/8h 
+    1 bad fade           -0.244 (-8.9) -0.224 (-5.9) -0.179 (-3.3) -0.090 (-3.7) -0.063 (-2.1) -0.062 (-1.8) -0.245 (-8.9) -0.234 (-6.1) -0.177 (-2.8) -0.089 (-3.5) -0.056 (-1.7) -0.054 (-1.3)
+    2 fade stopped       -0.257 (-18.7) -0.242 (-13.0) -0.213 (-7.7) -0.118 (-9.8) -0.115 (-7.8) -0.103 (-6.1) -0.256 (-18.5) -0.238 (-12.6) -0.192 (-6.0) -0.120 (-9.5) -0.119 (-7.4) -0.099 (-5.0)
+    3 clean breakout     -0.295 (-8.0) -0.264 (-5.3) -0.110 (-1.3) -0.146 (-4.4) -0.130 (-3.1) -0.094 (-1.9) -0.292 (-7.9) -0.257 (-5.1) -0.093 (-1.0) -0.128 (-3.7) -0.119 (-2.6) -0.070 (-1.2)
+    4 bad breakout       -0.364 (-15.9) -0.339 (-11.0) -0.217 (-4.5) -0.196 (-9.4) -0.154 (-5.9) -0.118 (-3.8) -0.362 (-15.8) -0.343 (-11.0) -0.243 (-4.4) -0.215 (-9.9) -0.154 (-5.3) -0.140 (-3.8)
+    5 strong momentum    -0.191 (-6.3) -0.204 (-5.0) -0.164 (-3.0) -0.072 (-2.8) -0.030 (-0.9) -0.050 (-1.5) -0.186 (-6.1) -0.188 (-4.5) -0.170 (-2.9) -0.069 (-2.5) -0.031 (-0.9) -0.076 (-2.2)
+    base: any fade       -0.258 (-26.4) -0.236 (-17.7) -0.204 (-10.4) -0.120 (-13.6) -0.115 (-10.7) -0.106 (-8.6) -0.258 (-26.3) -0.237 (-17.4) -0.197 (-8.5) -0.117 (-12.7) -0.108 (-9.1) -0.093 (-6.2)
+    base: any breakout   -0.300 (-35.4) -0.272 (-23.3) -0.196 (-10.4) -0.135 (-17.4) -0.126 (-13.0) -0.095 (-8.1) -0.300 (-35.3) -0.271 (-22.9) -0.177 (-7.8) -0.132 (-16.3) -0.126 (-11.8) -0.080 (-5.5)
+    base: any momentum   -0.275 (-29.0) -0.255 (-19.8) -0.205 (-10.6) -0.136 (-16.1) -0.119 (-11.4) -0.103 (-8.6) -0.275 (-28.8) -0.255 (-19.6) -0.203 (-9.6) -0.134 (-15.4) -0.121 (-11.0) -0.101 (-7.6)
+    base: random         -0.266 (-23.1) -0.259 (-16.7) -0.226 (-9.8) -0.139 (-13.6) -0.131 (-10.6) -0.115 (-7.9) -0.265 (-22.9) -0.258 (-16.3) -0.209 (-7.5) -0.137 (-12.9) -0.127 (-9.4) -0.104 (-5.9)
+  Each cell: average R after costs (z). A structure is a candidate only if it is above zero in BOTH periods for the
+  same moment. There are 12 structures per moment, so one positive cell alone means little: look for a whole row,
+  or a whole column pattern (all the wide stops, all the long holds), that is positive in both.
+  every number: probe.csv
+
+runtime 240.4s

@@ -1,0 +1,54 @@
+==============================================================================================================
+THE LADDER TRADE (pre-registered: ladder_spec.md / asiabo_ladder.py top)   2026-10-10 17:33
+==============================================================================================================
+Per unit of risk = size-weighted net R per trade (t clustered by world x market x month). 'R/yr at brk's risk' =
+net R per year per world, rescaled so the variant deploys the same TOTAL risk as brk today. max DD = worst
+peak-to-trough of that rescaled monthly curve, in R. Ladder rows are RUNGS; 'last rung' = the rung that ended
+each ladder (not a target hit).
+
+##############################################################################################################
+REGIME SYNTH (known truth, strength 0.25)   worlds: 3
+##############################################################################################################
+  brk today (5-day chandelier)   n  5708  risk/world   1903 | net per risk +0.312 (t +4.9) | edge +0.275 | R/yr at brk's risk  +55.3 | max DD   159 R
+      by true state at entry: mom +1.312 (2246)  none -0.081 (1925)  snap -0.655 (1535)
+  brk + er40 switch              n  2509  risk/world    836 | net per risk +0.819 (t +8.7) | edge +0.685 | R/yr at brk's risk +145.0 | max DD   125 R
+      by true state at entry: mom +1.276 (1831)  none -0.331 (509)  snap -0.672 (169)
+  LADDER (40/50/60 taper)        n  2995  risk/world    501 | net per risk +0.661 (t +9.5) | edge +0.665 | R/yr at brk's risk +116.9 | max DD   141 R
+      targets hit 35% | last rung of each ladder: n 1997, net per risk -1.107 | by rung: #1 +0.690 (1997)  #2 +0.704 (588)  #3 +0.524 (227)  #>=4 +0.471 (183)
+      by true state at entry: mom +0.896 (2136)  none -0.061 (696)  snap -0.789 (163)
+  ladder, no taper (control)     n  3022  risk/world    581 | net per risk +0.687 (t +10.8) | edge +0.689 | R/yr at brk's risk +121.7 | max DD   124 R
+      targets hit 35% | last rung of each ladder: n 2004, net per risk -1.116 | by rung: #1 +0.729 (2004)  #2 +0.682 (595)  #3 +0.620 (227)  #>=4 +0.494 (196)
+      by true state at entry: mom +0.903 (2162)  none -0.075 (696)  snap -0.773 (164)
+
+  brk TODAY by the trend-day counter on its entry day (does the trend's age matter?): net per trade (n)
+     c 0-2: -0.108 (3218)  c 3-10: +0.637 (1035)  c 11-20: +0.824 (607)  c 21-40: +1.039 (618)  c 41-49: +1.293 (130)  c 50-60: +1.610 (100)
+
+##############################################################################################################
+AGING SYNTH (momentum fades, then the last 30% of each spell REVERSES)   worlds: 3
+##############################################################################################################
+  brk today (5-day chandelier)   n  5360  risk/world   1787 | net per risk -0.174 (t -2.6) | edge -0.061 | R/yr at brk's risk  -29.0 | max DD   723 R
+      by true state at entry: mom +0.535 (1436)  rev -0.737 (497)  none -0.207 (1929)  snap -0.626 (1497)
+  brk + er40 switch              n  1355  risk/world    452 | net per risk +0.098 (t +1.1) | edge +0.178 | R/yr at brk's risk  +16.2 | max DD   362 R
+      by true state at entry: mom +0.453 (748)  rev -0.753 (91)  none -0.255 (415)  snap -0.323 (101)
+  LADDER (40/50/60 taper)        n  1754  risk/world    232 | net per risk +0.109 (t +1.2) | edge +0.177 | R/yr at brk's risk  +18.2 | max DD   250 R
+      targets hit 22% | last rung of each ladder: n 1383, net per risk -1.095 | by rung: #1 +0.106 (1383)  #2 +0.130 (272)  #3 -0.151 (74)  #>=4 +0.690 (25)
+      by true state at entry: mom +0.375 (886)  rev -1.207 (60)  none -0.016 (673)  snap -0.669 (135)
+  ladder, no taper (control)     n  1754  risk/world    232 | net per risk +0.108 (t +1.2) | edge +0.176 | R/yr at brk's risk  +18.0 | max DD   250 R
+      targets hit 22% | last rung of each ladder: n 1383, net per risk -1.094 | by rung: #1 +0.105 (1383)  #2 +0.135 (272)  #3 -0.168 (74)  #>=4 +0.692 (25)
+      by true state at entry: mom +0.372 (886)  rev -1.207 (60)  none -0.017 (673)  snap -0.669 (135)
+
+  brk TODAY by the trend-day counter on its entry day (does the trend's age matter?): net per trade (n)
+     c 0-2: -0.329 (3793)  c 3-10: +0.256 (982)  c 11-20: +0.264 (371)  c 21-40: -0.197 (199)  c 41-49: +0.136 (13)  c 50-60: -0.560 (2)
+
+##############################################################################################################
+REAL bars.db -- EXPLORATORY (the real eras are already spent)   worlds: 1
+##############################################################################################################
+  brk today (5-day chandelier)   n  1740  risk/world   1740 | net per risk +0.095 (t +1.4) | edge +0.132 | R/yr at brk's risk  +15.4 | max DD    89 R
+  brk + er40 switch              n   429  risk/world    429 | net per risk +0.316 (t +2.0) | edge +0.275 | R/yr at brk's risk  +51.1 | max DD    81 R
+  LADDER (40/50/60 taper)        n   632  risk/world    240 | net per risk +0.055 (t +0.4) | edge +0.120 | R/yr at brk's risk   +8.9 | max DD   165 R
+      targets hit 25% | last rung of each ladder: n 485, net per risk -1.096 | by rung: #1 +0.098 (485)  #2 +0.024 (108)  #3 -0.226 (30)  #>=4 -0.477 (9)
+  ladder, no taper (control)     n   632  risk/world    240 | net per risk +0.055 (t +0.4) | edge +0.120 | R/yr at brk's risk   +8.9 | max DD   165 R
+      targets hit 25% | last rung of each ladder: n 485, net per risk -1.096 | by rung: #1 +0.098 (485)  #2 +0.024 (108)  #3 -0.226 (30)  #>=4 -0.477 (9)
+
+  brk TODAY by the trend-day counter on its entry day (does the trend's age matter?): net per trade (n)
+     c 0-2: +0.128 (1209)  c 3-10: -0.032 (348)  c 11-20: +0.095 (138)  c 21-40: +0.184 (45)  c 41-49: - (0)  c 50-60: - (0)

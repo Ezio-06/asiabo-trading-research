@@ -1,0 +1,1271 @@
+====================================================================================================
+THE LAB  --  every open idea, labelled, in one run. Shadow only: it measures, it decides nothing.
+====================================================================================================
+Sealed exam years 2022-01-01 .. 2024-01-01: not read by any part.
+
+==============================================================================================================
+PART 9: POWER   the audit's rebuild list. Same costs as 'final' (REAL), every trade against a random direction
+==============================================================================================================
+Read every cell as:  n   R/trade (net)   EDGE (R/trade minus the coin-flip average with the same timing, stop,
+exit and costs)   t (of the edge).  OLD = 2014-21 (2014-17, 2018-19, 2020-21), NEW = 2024+.  2022-23 sealed.
++ = net R/trade above 0 in BOTH old and new.  E = edge above 0 in both with t >= 2 in at least one.
+There are about 90 cells and many share the same trades: a few will show |t| above 2.5 by chance. A cell
+counts only if it holds in both periods AND on more than one market (see the by-market lines).
+Swing2 / rsi2 control = the same trade held over the same time in the other direction (their exits are not
+mirror images). TESTED on a pure random walk before shipping: edges came out at 0 within noise.
+Exits:
+  orig   as recorded (the lane's own target / clock)
+  close  no target, out at the session close
+  24h    no target, out after 24 trading hours
+  48h    no target, out after 48 trading hours
+  trail  stop trails at the trade's own risk distance behind the best close (48h cap)
+  5d     chandelier: 1 daily ATR behind the best close, up to 5 trading days
+  2R     the old way: 2R target, else out at the session close
+  own    the lane's own exit rule
+Sessions (local): gold, EURUSD, USDJPY open 08:00 London, day ends 17:00 New York; Germany 40 08:00-16:30 London;
+US 500 09:30-16:00 New York; WTI 09:00-14:30 New York. N / D = daily ATR(20), FX days ending 17:00 New York.
+Gold: commission $25 per million a side, swap -2.0895 / -1.92 pips (0.01) a night: the broker's sheet (2026-10-08).
+
+--------------------------------------------------------------------------------------------------------------
+A. EXIT TEST   same entries as collect / oldcollect, six exits (control lane included)
+--------------------------------------------------------------------------------------------------------------
+lane      variant   exit   | OLD 2014-21            | NEW 2024+              | marks
+main      exit      24h    |  6649 -0.027 +0.038 t +2.8 |  3563 -0.025 +0.013 t +0.7 | E
+main      exit      48h    |  6620 -0.036 +0.050 t +3.1 |  3554 -0.043 +0.013 t +0.6 | E
+main      exit      5d     |  6603 -0.065 +0.031 t +1.6 |  3541 -0.045 +0.016 t +0.7 | 
+main      exit      close  |  6678 -0.048 +0.017 t +1.5 |  3569 -0.017 +0.021 t +1.5 | 
+main      exit      orig   |  6678 -0.044                 |  3569 -0.030                 | 
+main      exit      trail  |  6643 -0.050 +0.020 t +1.7 |  3561 -0.040 +0.008 t +0.5 | 
+london    exit      24h    |  6136 -0.051 +0.009 t +0.6 |  2930 -0.034 +0.012 t +0.6 | 
+london    exit      48h    |  6108 -0.056 +0.019 t +1.1 |  2924 -0.045 -0.004 t -0.2 | 
+london    exit      5d     |  6094 -0.107 -0.005 t -0.3 |  2910 -0.056 -0.014 t -0.5 | 
+london    exit      close  |  6162 -0.072 +0.000 t +0.0 |  2936 -0.042 -0.002 t -0.2 | 
+london    exit      orig   |  6166 -0.059                 |  2936 -0.060                 | 
+london    exit      trail  |  6125 -0.064 +0.004 t +0.3 |  2928 -0.039 +0.001 t +0.1 | 
+pdh       exit      24h    |  3078 -0.039 +0.016 t +0.8 |  1475 -0.029 +0.012 t +0.5 | 
+pdh       exit      48h    |  3070 -0.064 -0.005 t -0.2 |  1471 -0.012 +0.021 t +0.6 | 
+pdh       exit      5d     |  3055 -0.088 -0.019 t -0.7 |  1463 -0.042 -0.009 t -0.2 | 
+pdh       exit      close  |  3082 -0.045 +0.004 t +0.2 |  1477 -0.028 +0.001 t +0.0 | 
+pdh       exit      orig   |  3082 -0.083                 |  1477 -0.053                 | 
+pdh       exit      trail  |  3074 -0.047 +0.002 t +0.1 |  1471 -0.041 +0.012 t +0.5 | 
+retest    exit      24h    |  2958 -0.093 +0.017 t +0.6 |  1764 +0.022 +0.030 t +0.8 | 
+retest    exit      48h    |  2953 -0.105 +0.030 t +0.9 |  1763 -0.002 +0.039 t +0.8 | 
+retest    exit      5d     |  2945 -0.206 -0.008 t -0.2 |  1758 -0.020 +0.018 t +0.4 | 
+retest    exit      close  |  2971 -0.102 -0.004 t -0.2 |  1765 +0.043 +0.061 t +2.0 | 
+retest    exit      orig   |  2972 -0.128                 |  1766 -0.050                 | 
+retest    exit      trail  |  2965 -0.113 -0.006 t -0.3 |  1766 -0.060 -0.004 t -0.2 | 
+nr7       exit      24h    |  1219 -0.078 -0.031 t -1.1 |   573 +0.014 +0.030 t +0.8 | 
+nr7       exit      48h    |  1215 -0.081 -0.018 t -0.5 |   567 -0.026 -0.011 t -0.2 | 
+nr7       exit      5d     |  1211 -0.109 -0.019 t -0.5 |   565 -0.072 -0.034 t -0.6 | 
+nr7       exit      close  |  1223 -0.044 -0.005 t -0.2 |   574 +0.017 +0.041 t +1.3 | 
+nr7       exit      orig   |  1224 -0.052                 |   574 -0.004                 | 
+nr7       exit      trail  |  1219 -0.084 -0.029 t -1.1 |   567 -0.043 -0.031 t -0.8 | 
+fade      exit      24h    |  4047 -0.122 +0.006 t +0.2 |  2441 -0.057 +0.036 t +1.0 | 
+fade      exit      48h    |  4041 -0.143 -0.000 t -0.0 |  2440 -0.112 +0.028 t +0.6 | 
+fade      exit      5d     |  4041 -0.139 +0.012 t +0.3 |  2435 -0.129 +0.036 t +0.8 | 
+fade      exit      close  |  4060 -0.104 +0.019 t +0.9 |  2445 -0.082 +0.008 t +0.3 | 
+fade      exit      orig   |  4061 -0.125                 |  2446 -0.141                 | 
+fade      exit      trail  |  4055 -0.118 -0.013 t -0.8 |  2445 -0.065 +0.024 t +1.1 | 
+sar       exit      24h    |  1504 -0.124 -0.039 t -1.1 |   735 -0.095 +0.008 t +0.2 | 
+sar       exit      48h    |  1502 -0.147 -0.039 t -0.9 |   732 -0.139 +0.003 t +0.1 | 
+sar       exit      5d     |  1498 -0.163 -0.025 t -0.5 |   730 -0.123 -0.016 t -0.2 | 
+sar       exit      close  |  1507 -0.117 -0.012 t -0.4 |   736 -0.075 +0.000 t +0.0 | 
+sar       exit      orig   |  1509 -0.083                 |   736 -0.078                 | 
+sar       exit      trail  |  1504 -0.092 -0.027 t -1.0 |   733 -0.021 +0.020 t +0.5 | 
+range     exit      24h    |  1465 -0.198 -0.015 t -0.2 |  1216 -0.223 -0.103 t -1.3 | 
+range     exit      48h    |  1463 -0.198 -0.039 t -0.5 |  1216 -0.258 -0.129 t -1.4 | 
+range     exit      5d     |  1462 -0.227 -0.009 t -0.1 |  1216 -0.254 -0.110 t -1.1 | 
+range     exit      close  |  1465 -0.193 -0.001 t -0.0 |  1217 -0.262 -0.088 t -1.4 | 
+range     exit      orig   |  1465 -0.285                 |  1217 -0.370                 | 
+range     exit      trail  |  1465 -0.178 +0.028 t +0.9 |  1217 -0.236 -0.056 t -1.5 | 
+exhaust   exit      24h    |  2320 -0.323 -0.127 t -3.4 |  1431 -0.181 -0.021 t -0.4 | 
+exhaust   exit      48h    |  2314 -0.371 -0.144 t -3.3 |  1431 -0.191 +0.017 t +0.3 | 
+exhaust   exit      5d     |  2309 -0.384 -0.139 t -2.6 |  1427 -0.126 +0.051 t +0.8 | 
+exhaust   exit      close  |  2327 -0.247 -0.094 t -3.1 |  1432 -0.197 -0.007 t -0.2 | 
+exhaust   exit      orig   |  2328 -0.278                 |  1432 -0.214                 | 
+exhaust   exit      trail  |  2326 -0.276 -0.134 t -5.6 |  1432 -0.155 -0.014 t -0.5 | 
+vwap      exit      24h    |  3210 -0.356 -0.108 t -3.0 |  2009 -0.184 -0.012 t -0.3 | 
+vwap      exit      48h    |  3203 -0.406 -0.138 t -3.2 |  2007 -0.228 -0.020 t -0.4 | 
+vwap      exit      5d     |  3200 -0.385 -0.133 t -2.7 |  2004 -0.118 +0.046 t +0.7 | 
+vwap      exit      close  |  3220 -0.277 -0.076 t -2.8 |  2012 -0.213 -0.022 t -0.7 | 
+vwap      exit      orig   |  3221 -0.297                 |  2012 -0.290                 | 
+vwap      exit      trail  |  3220 -0.268 -0.097 t -4.4 |  2011 -0.135 -0.000 t -0.0 | 
+bigrev    exit      24h    |   263 -0.123 -0.072 t -1.6 |   148 -0.033 -0.009 t -0.1 | 
+bigrev    exit      48h    |   262 -0.165 -0.110 t -1.9 |   148 -0.088 -0.022 t -0.3 | 
+bigrev    exit      5d     |   261 -0.154 -0.124 t -2.2 |   148 -0.020 -0.055 t -0.8 | 
+bigrev    exit      close  |   265 -0.120 -0.074 t -2.0 |   148 +0.024 +0.056 t +1.2 | 
+bigrev    exit      orig   |   265 -0.085                 |   148 +0.035                 | 
+bigrev    exit      trail  |   263 -0.161 -0.126 t -2.5 |   148 -0.023 -0.041 t -0.6 | 
+gapfill   exit      24h    |   297 -0.029 +0.030 t +0.3 |    70 -0.173 +0.202 t +1.2 | 
+gapfill   exit      48h    |   297 -0.036 +0.049 t +0.4 |    70 -0.234 +0.306 t +1.6 | 
+gapfill   exit      5d     |   293 +0.020 +0.106 t +0.8 |    70 -0.117 +0.211 t +0.9 | 
+gapfill   exit      close  |   297 -0.078 +0.029 t +0.4 |    70 -0.197 +0.184 t +1.2 | 
+gapfill   exit      orig   |   297 -0.048                 |    70 -0.099                 | 
+gapfill   exit      trail  |   297 +0.012 +0.090 t +1.4 |    70 -0.030 +0.130 t +0.9 | 
+trend     exit      24h    |  6173 -0.067 +0.034 t +1.8 |  3309 -0.049 +0.028 t +1.1 | 
+trend     exit      48h    |  6151 -0.091 +0.043 t +1.9 |  3307 -0.064 +0.024 t +0.8 | 
+trend     exit      5d     |  6127 -0.123 +0.029 t +1.2 |  3298 -0.084 -0.013 t -0.4 | 
+trend     exit      close  |  6206 -0.099 +0.014 t +1.1 |  3315 -0.030 +0.024 t +1.3 | 
+trend     exit      orig   |  6206 -0.115                 |  3315 -0.081                 | 
+trend     exit      trail  |  6191 -0.080 +0.027 t +2.0 |  3311 -0.052 +0.016 t +0.9 | 
+nyaft     exit      24h    |  2625 -0.137 +0.101 t +3.0 |  1468 -0.167 -0.018 t -0.4 | 
+nyaft     exit      48h    |  2618 -0.161 +0.078 t +1.8 |  1466 -0.198 -0.052 t -0.9 | 
+nyaft     exit      5d     |  2614 -0.212 +0.080 t +1.9 |  1464 -0.164 -0.039 t -0.6 | 
+nyaft     exit      close  |  2638 -0.099 +0.057 t +2.3 |  1471 -0.090 +0.042 t +1.4 | E
+nyaft     exit      orig   |  2640 -0.140                 |  1473 -0.150                 | 
+nyaft     exit      trail  |  2632 -0.158 +0.040 t +2.0 |  1469 -0.135 +0.014 t +0.5 | 
+scalp     exit      24h    |  3233 -0.118 +0.028 t +0.8 |  1987 -0.070 +0.004 t +0.1 | 
+scalp     exit      48h    |  3225 -0.145 +0.041 t +1.0 |  1982 -0.173 -0.019 t -0.4 | 
+scalp     exit      5d     |  3220 -0.183 +0.048 t +1.1 |  1976 -0.126 -0.009 t -0.2 | 
+scalp     exit      close  |  3242 -0.158 -0.010 t -0.4 |  1990 -0.127 -0.007 t -0.2 | 
+scalp     exit      orig   |  3242 -0.171                 |  1991 -0.189                 | 
+scalp     exit      trail  |  3242 -0.098 +0.018 t +0.8 |  1991 -0.118 -0.003 t -0.1 | 
+bigcont   exit      24h    |   263 +0.020 +0.072 t +1.6 |   148 -0.015 +0.009 t +0.1 | 
+bigcont   exit      48h    |   262 +0.055 +0.110 t +1.9 |   148 -0.043 +0.022 t +0.3 | 
+bigcont   exit      5d     |   261 +0.095 +0.124 t +2.2 |   148 +0.091 +0.055 t +0.8 | +E
+bigcont   exit      close  |   265 +0.029 +0.074 t +2.0 |   148 -0.087 -0.056 t -1.2 | 
+bigcont   exit      orig   |   265 +0.027                 |   148 -0.089                 | 
+bigcont   exit      trail  |   263 +0.091 +0.126 t +2.5 |   148 +0.060 +0.041 t +0.6 | +E
+swing     exit      24h    |   345 +0.001 +0.022 t +0.9 |   168 +0.016 +0.033 t +0.9 | +
+swing     exit      48h    |   345 -0.031 +0.003 t +0.1 |   168 +0.046 +0.053 t +1.1 | 
+swing     exit      5d     |   345 -0.014 +0.015 t +0.6 |   168 +0.066 +0.069 t +1.8 | 
+swing     exit      close  |   346 -0.001 +0.019 t +1.2 |   168 +0.048 +0.063 t +3.1 | E
+swing     exit      orig   |   346 -0.337                 |   168 -0.088                 | 
+swing     exit      trail  |   345 -0.027 +0.004 t +0.1 |   168 +0.036 +0.046 t +1.0 | 
+dip       exit      24h    |   237 -0.142 -0.091 t -1.7 |   117 -0.112 -0.068 t -1.1 | 
+dip       exit      48h    |   236 -0.137 -0.078 t -1.2 |   117 -0.069 -0.008 t -0.1 | 
+dip       exit      5d     |   234 -0.101 -0.048 t -0.7 |   116 -0.158 -0.087 t -1.1 | 
+dip       exit      close  |   238 -0.083 -0.048 t -1.2 |   117 -0.030 +0.001 t +0.0 | 
+dip       exit      orig   |   238 -0.127                 |   117 -0.133                 | 
+dip       exit      trail  |   236 -0.121 -0.083 t -1.4 |   117 -0.111 -0.036 t -0.5 | 
+control   exit      24h    |  7280 -0.094 -0.006 t -0.5 |  4000 -0.034 +0.016 t +0.9 | 
+control   exit      48h    |  7256 -0.108 -0.005 t -0.3 |  3990 -0.088 -0.012 t -0.5 | 
+control   exit      5d     |  7231 -0.148 -0.014 t -0.8 |  3977 -0.100 -0.019 t -0.8 | 
+control   exit      close  |  7308 -0.083 +0.000 t +0.0 |  4009 -0.027 +0.020 t +1.5 | 
+control   exit      orig   |  7311 -0.070                 |  4011 -0.046                 | 
+control   exit      trail  |  7274 -0.103 -0.009 t -0.8 |  3997 -0.039 +0.009 t +0.6 | 
+
+A. marked cells by market (power = net R per year from this cell on that market):
+  main exit 24h
+    XAUUSD     old  1674 -0.061 +0.003 t +0.1   new   602 +0.052 +0.076 t +1.8   power   -6.6 R/year
+    US500      old   346 -0.001 +0.106 t +1.6   new   617 -0.103 -0.043 t -1.0   power   -5.9 R/year
+    EURUSD     old  1922 -0.043 +0.021 t +0.8   new   690 -0.065 +0.001 t +0.0   power  -11.8 R/year
+    USDJPY     old  1733 +0.022 +0.084 t +3.2   new   620 +0.053 +0.066 t +1.5   power   +6.6 R/year
+    XTIUSD     old   974 -0.037 +0.028 t +0.9   new   504 -0.123 -0.064 t -1.6   power   -9.1 R/year
+    GERMANY40  old                    n=0   new   530 +0.036 +0.031 t +0.6   power   +1.8 R/year
+  main exit 48h
+    XAUUSD     old  1668 -0.047 +0.031 t +0.9   new   601 +0.059 +0.091 t +1.8   power   -3.9 R/year
+    US500      old   344 -0.088 +0.120 t +1.6   new   616 -0.140 -0.044 t -0.9   power  -10.8 R/year
+    EURUSD     old  1917 -0.066 +0.028 t +0.9   new   690 -0.087 -0.004 t -0.1   power  -17.4 R/year
+    USDJPY     old  1730 +0.014 +0.084 t +2.7   new   619 +0.026 +0.075 t +1.4   power   +3.7 R/year
+    XTIUSD     old   961 -0.032 +0.037 t +1.0   new   503 -0.128 -0.049 t -1.0   power   -8.8 R/year
+    GERMANY40  old                    n=0   new   525 +0.013 +0.001 t +0.0   power   +0.7 R/year
+  nyaft exit close
+    XAUUSD     old   391 -0.027 +0.076 t +1.8   new   242 +0.054 +0.110 t +1.2   power   +0.2 R/year
+    US500      old   162 +0.021 +0.076 t +0.7   new   290 -0.205 -0.035 t -0.6   power   -5.2 R/year
+    EURUSD     old   663 -0.190 +0.014 t +0.4   new   218 -0.077 +0.028 t +0.5   power  -13.3 R/year
+    USDJPY     old   648 -0.236 +0.007 t +0.2   new   247 -0.160 +0.023 t +0.4   power  -17.9 R/year
+    XTIUSD     old   423 -0.162 -0.008 t -0.2   new   255 -0.146 -0.033 t -0.7   power   -9.8 R/year
+    GERMANY40  old   351 +0.268 +0.281 t +2.1   new   219 +0.035 +0.191 t +1.7   power   +9.5 R/year
+  bigcont exit 5d
+    XAUUSD     old    53 +0.180 +0.283 t +3.0   new    22 +0.436 +0.280 t +1.3   power   +1.8 R/year
+    US500      old    20 +0.445 +0.220 t +0.8   new    33 -0.042 -0.038 t -0.2   power   +0.7 R/year
+    EURUSD     old    50 -0.210 -0.120 t -1.1   new    23 +0.180 +0.245 t +1.6   power   -0.6 R/year
+    USDJPY     old    56 +0.032 +0.111 t +1.0   new    25 -0.106 -0.058 t -0.4   power   -0.1 R/year
+    XTIUSD     old    30 +0.120 +0.175 t +1.3   new    23 +0.069 -0.138 t -0.6   power   +0.5 R/year
+    GERMANY40  old    52 +0.219 +0.146 t +0.9   new    22 +0.098 +0.103 t +0.5   power   +1.3 R/year
+  bigcont exit trail
+    XAUUSD     old    53 +0.230 +0.309 t +3.6   new    22 +0.245 +0.185 t +1.0   power   +1.6 R/year
+    US500      old    20 +0.263 +0.192 t +0.8   new    33 +0.001 -0.009 t -0.1   power   +0.5 R/year
+    EURUSD     old    50 -0.163 -0.065 t -0.6   new    23 +0.197 +0.219 t +1.4   power   -0.3 R/year
+    USDJPY     old    56 +0.150 +0.177 t +1.8   new    25 -0.049 -0.033 t -0.2   power   +0.7 R/year
+    XTIUSD     old    32 -0.072 +0.036 t +0.3   new    23 +0.037 -0.097 t -0.5   power   -0.1 R/year
+    GERMANY40  old    52 +0.166 +0.100 t +0.7   new    22 -0.032 +0.018 t +0.1   power   +0.7 R/year
+  swing exit 24h
+    XAUUSD     old    75 +0.014 +0.040 t +0.8   new    25 +0.162 +0.166 t +2.0   power   +0.5 R/year
+    US500      old                   n=19   new    31 -0.043 -0.017 t -0.2   power   -0.3 R/year
+    EURUSD     old    81 -0.003 +0.012 t +0.3   new    31 +0.068 +0.107 t +1.4   power   +0.2 R/year
+    USDJPY     old    78 +0.033 +0.040 t +0.8   new    28 -0.134 -0.133 t -1.6   power   -0.1 R/year
+    XTIUSD     old    38 +0.004 +0.024 t +0.4   new    24 +0.072 +0.090 t +1.1   power   +0.2 R/year
+    GERMANY40  old    54 -0.027 -0.000 t -0.0   new    29 -0.006 +0.003 t +0.0   power   -0.2 R/year
+  swing exit close
+    XAUUSD     old    75 +0.026 +0.048 t +1.3   new    25 +0.128 +0.128 t +2.0   power   +0.5 R/year
+    US500      old                   n=19   new    31 -0.014 +0.003 t +0.1   power   -0.2 R/year
+    EURUSD     old    81 +0.009 +0.031 t +1.2   new    31 +0.030 +0.060 t +1.1   power   +0.2 R/year
+    USDJPY     old    78 -0.049 -0.031 t -0.9   new    28 +0.018 +0.031 t +0.6   power   -0.3 R/year
+    XTIUSD     old    38 +0.025 +0.043 t +1.3   new    24 +0.020 +0.035 t +0.9   power   +0.1 R/year
+    GERMANY40  old    55 +0.021 +0.033 t +0.7   new    29 +0.118 +0.127 t +2.8   power   +0.4 R/year
+
+--------------------------------------------------------------------------------------------------------------
+B. REBUILT LANES   standard versions (stop orders, daily-ATR / structural stops, real sessions)
+--------------------------------------------------------------------------------------------------------------
+lane      variant   exit   | OLD 2014-21            | NEW 2024+              | marks
+main2     0.3D      24h    |  5866 -0.052 +0.044 t +2.5 |  2936 -0.020 +0.030 t +1.2 | E
+main2     0.3D      2R     |  5893 -0.067 +0.023 t +1.6 |  2943 -0.001 +0.048 t +2.5 | E
+main2     0.3D      48h    |  5847 -0.068 +0.047 t +2.3 |  2930 -0.028 +0.044 t +1.4 | E
+main2     0.3D      5d     |  5827 -0.103 +0.032 t +1.4 |  2921 -0.068 +0.018 t +0.5 | 
+main2     0.3D      close  |  5893 -0.058 +0.040 t +2.6 |  2943 -0.000 +0.041 t +1.9 | E
+main2     0.3D      trail  |  5882 -0.034 +0.037 t +2.7 |  2939 -0.025 +0.031 t +1.6 | E
+main2     box       24h    |  5862 -0.026 +0.041 t +2.7 |  2936 -0.005 +0.029 t +1.4 | E
+main2     box       2R     |  5893 -0.048 +0.025 t +2.0 |  2943 +0.012 +0.048 t +2.9 | E
+main2     box       48h    |  5834 -0.022 +0.052 t +2.8 |  2927 -0.006 +0.037 t +1.4 | E
+main2     box       5d     |  5806 -0.041 +0.040 t +1.8 |  2915 -0.014 +0.034 t +1.1 | 
+main2     box       close  |  5892 -0.039 +0.032 t +2.4 |  2943 +0.006 +0.037 t +2.1 | E
+main2     box       trail  |  5864 -0.030 +0.035 t +2.7 |  2936 -0.022 +0.019 t +1.1 | E
+retest2   0.25D     24h    |  5199 -0.129 +0.014 t +0.6 |  2596 -0.075 +0.034 t +1.0 | 
+retest2   0.25D     2R     |  5218 -0.123 +0.001 t +0.0 |  2601 -0.063 +0.033 t +1.5 | 
+retest2   0.25D     48h    |  5185 -0.161 +0.007 t +0.3 |  2592 -0.048 +0.065 t +1.6 | 
+retest2   0.25D     5d     |  5169 -0.195 -0.015 t -0.5 |  2585 -0.125 +0.021 t +0.5 | 
+retest2   0.25D     close  |  5218 -0.115 +0.024 t +1.2 |  2601 -0.058 +0.029 t +1.0 | 
+retest2   0.25D     trail  |  5214 -0.109 -0.001 t -0.1 |  2600 -0.083 +0.012 t +0.6 | 
+orb30     0.1D      24h    |  9140 -0.087 +0.102 t +3.9 |  3965 -0.093 +0.051 t +1.3 | E
+orb30     0.1D      2R     |  9174 -0.168 +0.062 t +4.9 |  3969 -0.146 +0.037 t +1.9 | E
+orb30     0.1D      48h    |  9118 -0.107 +0.100 t +3.2 |  3960 -0.170 +0.013 t +0.3 | E
+orb30     0.1D      5d     |  9096 -0.111 +0.097 t +2.8 |  3958 -0.175 +0.032 t +0.7 | E
+orb30     0.1D      close  |  9171 -0.099 +0.095 t +4.3 |  3969 -0.100 +0.048 t +1.5 | E
+orb30     0.1D      trail  |  9167 -0.158 +0.052 t +3.9 |  3969 -0.133 +0.018 t +0.9 | E
+orb30     range     24h    |  9119 -0.030 +0.054 t +1.6 |  3962 +0.026 +0.063 t +2.0 | E
+orb30     range     2R     |  9174 -0.073 +0.045 t +3.7 |  3969 -0.042 +0.045 t +2.5 | E
+orb30     range     48h    |  9080 -0.047 +0.067 t +2.5 |  3954 -0.005 +0.046 t +1.2 | E
+orb30     range     5d     |  9060 -0.079 +0.052 t +1.8 |  3951 +0.008 +0.080 t +2.1 | E
+orb30     range     close  |  9172 -0.046 +0.045 t +1.4 |  3969 +0.006 +0.061 t +2.4 | E
+orb30     range     trail  |  9155 -0.052 +0.047 t +3.8 |  3967 -0.077 +0.011 t +0.7 | E
+orb60     0.1D      24h    |  9038 -0.149 +0.064 t +2.5 |  3933 -0.066 +0.043 t +1.1 | E
+orb60     0.1D      2R     |  9074 -0.193 +0.040 t +3.1 |  3937 -0.153 +0.038 t +2.0 | E
+orb60     0.1D      48h    |  9020 -0.152 +0.061 t +1.9 |  3928 -0.139 +0.051 t +1.1 | 
+orb60     0.1D      5d     |  8999 -0.155 +0.079 t +2.3 |  3926 -0.149 +0.043 t +0.9 | E
+orb60     0.1D      close  |  9071 -0.163 +0.055 t +2.6 |  3937 -0.081 +0.053 t +1.7 | E
+orb60     0.1D      trail  |  9066 -0.179 +0.030 t +2.2 |  3937 -0.146 +0.021 t +1.0 | E
+orb60     range     24h    |  9009 -0.015 +0.064 t +3.0 |  3928 +0.019 +0.054 t +2.1 | E
+orb60     range     2R     |  9073 -0.057 +0.030 t +2.6 |  3937 -0.035 +0.028 t +1.7 | E
+orb60     range     48h    |  8962 -0.017 +0.080 t +3.7 |  3921 +0.002 +0.077 t +2.6 | E
+orb60     range     5d     |  8933 -0.036 +0.087 t +3.7 |  3913 -0.005 +0.088 t +2.7 | E
+orb60     range     close  |  9071 -0.043 +0.036 t +1.9 |  3937 +0.004 +0.046 t +2.2 | E
+orb60     range     trail  |  9033 -0.027 +0.044 t +3.8 |  3930 -0.057 +0.006 t +0.3 | E
+pdh2      lvl0.25D  24h    |  8282 -0.061 +0.039 t +2.3 |  3566 -0.037 +0.027 t +1.0 | E
+pdh2      lvl0.25D  2R     |  8331 -0.084 +0.024 t +2.0 |  3575 -0.042 +0.035 t +1.8 | 
+pdh2      lvl0.25D  48h    |  8248 -0.083 +0.039 t +2.0 |  3560 -0.112 -0.008 t -0.3 | 
+pdh2      lvl0.25D  5d     |  8210 -0.098 +0.035 t +1.6 |  3550 -0.068 +0.011 t +0.3 | 
+pdh2      lvl0.25D  close  |  8325 -0.077 +0.030 t +2.0 |  3575 -0.054 +0.020 t +0.9 | E
+pdh2      lvl0.25D  trail  |  8306 -0.027 +0.051 t +4.2 |  3572 -0.053 +0.023 t +1.3 | E
+pdh2      mid       24h    |  8272 -0.036 +0.037 t +2.7 |  3564 -0.031 +0.023 t +1.2 | E
+pdh2      mid       2R     |  8330 -0.055 +0.024 t +2.3 |  3575 -0.030 +0.030 t +1.9 | E
+pdh2      mid       48h    |  8224 -0.048 +0.043 t +2.6 |  3555 -0.084 -0.004 t -0.2 | 
+pdh2      mid       5d     |  8179 -0.083 +0.029 t +1.7 |  3541 -0.065 +0.014 t +0.6 | 
+pdh2      mid       close  |  8324 -0.045 +0.030 t +2.6 |  3575 -0.014 +0.030 t +1.8 | E
+pdh2      mid       trail  |  8271 -0.022 +0.048 t +4.3 |  3566 -0.025 +0.037 t +2.3 | E
+trend2    gen       close  | 14569 -0.150 +0.039 t +2.6 |  6239 -0.135 +0.021 t +0.9 | E
+trend2    gen       trail  | 14556 -0.154 +0.037 t +3.6 |  6240 -0.160 -0.003 t -0.2 | 
+trend2    own       own    | 14210 -0.247                 |  6151 -0.180                 | 
+gao       0.25D     close  |  8947 -0.139 +0.006 t +1.5 |  3960 -0.085 -0.002 t -0.3 | 
+range2    asia      own    |  5973 -0.108 -0.011 t -2.0 |  2531 -0.072 -0.006 t -0.7 | 
+swing2    close     own    |   301 -0.374 -0.108 t -1.1 |   133 -0.197 -0.024 t -0.2 | 
+swing2    stop      own    |   367 -0.359 -0.107 t -1.3 |   159 -0.177 -0.015 t -0.1 | 
+swing2    stop+pyr  own    |   419 -0.898 -0.236 t -1.0 |   186 -0.609 -0.213 t -0.6 | 
+rsi2      long      own    |   205 +0.014 +0.137 t +1.3 |    96 +0.154 +0.242 t +1.7 | +
+rsi2      short     own    |   165 -0.068 +0.067 t +0.7 |    39 +0.007 +0.096 t +0.5 | 
+dipx      pullback  2R     |   378 -0.055 -0.013 t -0.3 |   152 -0.055 -0.013 t -0.2 | 
+dipx      pullback  48h    |   375 -0.055 +0.015 t +0.3 |   152 +0.033 +0.062 t +0.7 | 
+dipx      pullback  5d     |   371 +0.005 +0.039 t +0.6 |   151 -0.053 -0.013 t -0.1 | 
+
+B. marked cells by market (power = net R per year from this cell on that market):
+  main2 0.3D 24h
+    XAUUSD     old  1406 -0.017 +0.079 t +2.3   new   436 +0.152 +0.128 t +2.0   power   +4.0 R/year (home)
+    US500      old                    n=0   new   468 -0.109 -0.058 t -0.9   power   -4.8 R/year
+    EURUSD     old  1825 -0.047 +0.033 t +1.1   new   576 -0.072 -0.019 t -0.3   power  -11.9 R/year (home)
+    USDJPY     old  1335 -0.027 +0.082 t +2.3   new   452 +0.077 +0.109 t +1.7   power   -0.1 R/year (home)
+    XTIUSD     old  1300 -0.121 -0.017 t -0.4   new   532 -0.150 +0.035 t +0.6   power  -22.1 R/year
+    GERMANY40  old                    n=0   new   472 +0.029 +0.008 t +0.1   power   +1.3 R/year
+  main2 0.3D 2R
+    XAUUSD     old  1415 -0.022 +0.047 t +1.6   new   437 +0.063 +0.105 t +2.0   power   -0.3 R/year (home)
+    US500      old                    n=0   new   468 -0.047 +0.012 t +0.2   power   -2.0 R/year
+    EURUSD     old  1828 -0.069 +0.010 t +0.4   new   577 -0.008 +0.029 t +0.6   power  -12.2 R/year (home)
+    USDJPY     old  1338 -0.071 +0.035 t +1.2   new   453 +0.031 +0.066 t +1.4   power   -7.5 R/year (home)
+    XTIUSD     old  1312 -0.109 +0.002 t +0.1   new   533 -0.053 +0.030 t +0.7   power  -15.9 R/year
+    GERMANY40  old                    n=0   new   475 +0.021 +0.059 t +1.2   power   +0.9 R/year
+  main2 0.3D 48h
+    XAUUSD     old  1400 -0.025 +0.104 t +2.5   new   435 +0.119 +0.109 t +1.4   power   +1.5 R/year (home)
+    US500      old                    n=0   new   468 -0.124 +0.041 t +0.6   power   -5.4 R/year
+    EURUSD     old  1822 -0.082 +0.041 t +1.2   new   576 -0.086 +0.012 t +0.2   power  -18.6 R/year (home)
+    USDJPY     old  1334 -0.047 +0.063 t +1.5   new   452 +0.058 +0.077 t +0.9   power   -3.4 R/year (home)
+    XTIUSD     old  1291 -0.115 -0.021 t -0.4   new   532 -0.075 +0.057 t +0.8   power  -17.6 R/year
+    GERMANY40  old                    n=0   new   467 -0.025 -0.024 t -0.3   power   -1.1 R/year
+  main2 0.3D close
+    XAUUSD     old  1415 -0.011 +0.086 t +2.7   new   437 +0.073 +0.096 t +1.7   power   +1.5 R/year (home)
+    US500      old                    n=0   new   468 -0.066 -0.029 t -0.5   power   -2.9 R/year
+    EURUSD     old  1828 -0.052 +0.027 t +0.9   new   577 -0.049 +0.013 t +0.2   power  -11.4 R/year (home)
+    USDJPY     old  1338 -0.071 +0.052 t +1.7   new   453 +0.083 +0.084 t +1.4   power   -5.4 R/year (home)
+    XTIUSD     old  1312 -0.102 -0.005 t -0.2   new   533 -0.061 +0.031 t +0.7   power  -15.5 R/year
+    GERMANY40  old                    n=0   new   475 +0.047 +0.068 t +1.2   power   +2.1 R/year
+  main2 0.3D trail
+    XAUUSD     old  1415 +0.011 +0.075 t +2.8   new   436 +0.011 +0.082 t +1.9   power   +2.0 R/year (home)
+    US500      old                    n=0   new   468 -0.065 -0.032 t -0.6   power   -2.8 R/year
+    EURUSD     old  1827 -0.074 +0.002 t +0.1   new   577 -0.041 +0.017 t +0.4   power  -14.7 R/year (home)
+    USDJPY     old  1337 +0.028 +0.080 t +2.8   new   452 -0.032 +0.034 t +0.7   power   +2.2 R/year (home)
+    XTIUSD     old  1303 -0.092 +0.002 t +0.1   new   532 -0.043 +0.050 t +1.1   power  -13.3 R/year
+    GERMANY40  old                    n=0   new   474 +0.027 +0.042 t +0.8   power   +1.2 R/year
+  main2 box 24h
+    XAUUSD     old  1405 -0.041 +0.058 t +1.8   new   436 +0.095 +0.112 t +2.1   power   -1.5 R/year (home)
+    US500      old                    n=0   new   468 -0.028 +0.008 t +0.1   power   -1.2 R/year
+    EURUSD     old  1824 -0.023 +0.030 t +1.0   new   576 -0.056 -0.013 t -0.3   power   -6.9 R/year (home)
+    USDJPY     old  1335 +0.014 +0.078 t +2.6   new   452 +0.025 +0.060 t +1.1   power   +2.8 R/year (home)
+    XTIUSD     old  1298 -0.056 -0.000 t -0.0   new   532 -0.088 -0.006 t -0.1   power  -11.1 R/year
+    GERMANY40  old                    n=0   new   472 +0.053 +0.037 t +0.6   power   +2.3 R/year
+  main2 box 2R
+    XAUUSD     old  1415 -0.044 +0.050 t +1.9   new   437 +0.059 +0.087 t +1.9   power   -3.4 R/year (home)
+    US500      old                    n=0   new   468 +0.016 +0.035 t +0.9   power   +0.7 R/year
+    EURUSD     old  1828 -0.061 -0.003 t -0.1   new   577 -0.009 +0.041 t +1.0   power  -10.9 R/year (home)
+    USDJPY     old  1338 -0.023 +0.055 t +2.2   new   453 +0.022 +0.056 t +1.4   power   -1.9 R/year (home)
+    XTIUSD     old  1312 -0.059 +0.005 t +0.2   new   533 -0.041 +0.005 t +0.2   power   -9.3 R/year
+    GERMANY40  old                    n=0   new   475 +0.040 +0.074 t +1.6   power   +1.8 R/year
+  main2 box 48h
+    XAUUSD     old  1399 -0.017 +0.095 t +2.4   new   435 +0.117 +0.111 t +1.7   power   +2.5 R/year (home)
+    US500      old                    n=0   new   466 -0.050 +0.033 t +0.5   power   -2.2 R/year
+    EURUSD     old  1819 -0.039 +0.038 t +1.1   new   576 -0.015 +0.035 t +0.5   power   -7.4 R/year (home)
+    USDJPY     old  1333 -0.005 +0.063 t +1.7   new   452 -0.000 +0.034 t +0.5   power   -0.6 R/year (home)
+    XTIUSD     old  1283 -0.023 +0.012 t +0.3   new   531 -0.075 +0.021 t +0.4   power   -6.5 R/year
+    GERMANY40  old                    n=0   new   467 +0.006 -0.002 t -0.0   power   +0.3 R/year
+  main2 box close
+    XAUUSD     old  1414 -0.033 +0.065 t +2.3   new   437 +0.040 +0.078 t +1.6   power   -2.7 R/year (home)
+    US500      old                    n=0   new   468 +0.007 +0.014 t +0.3   power   +0.3 R/year
+    EURUSD     old  1828 -0.039 +0.018 t +0.6   new   577 -0.041 +0.013 t +0.3   power   -8.8 R/year (home)
+    USDJPY     old  1338 -0.036 +0.048 t +1.9   new   453 +0.052 +0.053 t +1.1   power   -2.2 R/year (home)
+    XTIUSD     old  1312 -0.051 -0.000 t -0.0   new   533 -0.039 +0.008 t +0.3   power   -8.1 R/year
+    GERMANY40  old                    n=0   new   475 +0.040 +0.069 t +1.4   power   +1.8 R/year
+  main2 box trail
+    XAUUSD     old  1411 +0.039 +0.098 t +3.7   new   436 +0.063 +0.088 t +2.0   power   +7.7 R/year (home)
+    US500      old                    n=0   new   467 -0.065 -0.021 t -0.4   power   -2.8 R/year
+    EURUSD     old  1823 -0.079 -0.009 t -0.4   new   577 -0.057 -0.017 t -0.4   power  -16.4 R/year (home)
+    USDJPY     old  1337 -0.009 +0.055 t +2.1   new   452 -0.005 +0.042 t +0.9   power   -1.4 R/year (home)
+    XTIUSD     old  1293 -0.060 +0.007 t +0.3   new   532 -0.037 +0.028 t +0.7   power   -9.1 R/year
+    GERMANY40  old                    n=0   new   472 -0.012 +0.008 t +0.2   power   -0.5 R/year
+  orb30 0.1D 24h
+    XAUUSD     old  1743 -0.079 +0.065 t +1.2   new   557 +0.146 +0.134 t +1.3   power   -5.2 R/year
+    US500      old   336 -0.242 +0.000 t +0.0   new   655 -0.189 +0.184 t +2.0   power  -19.1 R/year (home)
+    EURUSD     old  2039 -0.039 +0.135 t +2.7   new   696 -0.265 -0.029 t -0.4   power  -24.5 R/year
+    USDJPY     old  2042 -0.082 +0.105 t +2.0   new   697 +0.039 +0.029 t +0.3   power  -13.1 R/year
+    XTIUSD     old  1518 -0.146 +0.083 t +1.2   new   686 -0.257 +0.055 t +0.6   power  -37.1 R/year
+    GERMANY40  old  1462 -0.074 +0.135 t +1.8   new   674 +0.012 -0.043 t -0.4   power   -9.3 R/year (home)
+  orb30 0.1D 2R
+    XAUUSD     old  1750 -0.048 +0.071 t +2.4   new   557 -0.048 +0.014 t +0.3   power  -10.3 R/year
+    US500      old   336 -0.297 -0.013 t -0.2   new   655 -0.099 +0.136 t +2.9   power  -15.3 R/year (home)
+    EURUSD     old  2041 -0.140 +0.081 t +3.0   new   697 -0.103 +0.067 t +1.4   power  -33.3 R/year
+    USDJPY     old  2043 -0.181 +0.060 t +2.2   new   697 -0.115 +0.032 t +0.7   power  -41.9 R/year
+    XTIUSD     old  1534 -0.311 +0.029 t +0.9   new   687 -0.306 -0.028 t -0.6   power  -63.9 R/year
+    GERMANY40  old  1470 -0.155 +0.077 t +2.5   new   676 -0.186 -0.001 t -0.0   power  -32.9 R/year (home)
+  orb30 0.1D 48h
+    XAUUSD     old  1741 -0.154 +0.016 t +0.2   new   557 +0.022 +0.051 t +0.4   power  -23.9 R/year
+    US500      old   336 -0.203 +0.061 t +0.3   new   655 -0.270 +0.223 t +2.5   power  -22.8 R/year (home)
+    EURUSD     old  2036 -0.067 +0.132 t +2.2   new   696 -0.361 -0.096 t -1.0   power  -36.1 R/year
+    USDJPY     old  2040 -0.050 +0.156 t +2.4   new   696 +0.047 +0.122 t +1.1   power   -6.3 R/year
+    XTIUSD     old  1509 -0.114 +0.060 t +0.7   new   686 -0.233 -0.012 t -0.1   power  -30.8 R/year
+    GERMANY40  old  1456 -0.157 +0.125 t +1.4   new   670 -0.197 -0.198 t -1.5   power  -33.6 R/year (home)
+  orb30 0.1D 5d
+    XAUUSD     old  1740 -0.058 +0.084 t +1.0   new   556 -0.032 +0.028 t +0.2   power  -11.1 R/year
+    US500      old   336 +0.220 +0.255 t +1.3   new   655 -0.258 +0.235 t +2.4   power   -8.9 R/year (home)
+    EURUSD     old  2034 -0.127 +0.099 t +1.4   new   696 -0.377 -0.079 t -0.7   power  -48.4 R/year
+    USDJPY     old  2037 -0.043 +0.161 t +2.2   new   695 +0.136 +0.180 t +1.5   power   +0.6 R/year
+    XTIUSD     old  1497 -0.295 -0.068 t -0.7   new   686 -0.270 +0.090 t +0.8   power  -58.3 R/year
+    GERMANY40  old  1452 -0.136 +0.153 t +1.8   new   670 -0.229 -0.260 t -1.8   power  -32.6 R/year (home)
+  orb30 0.1D close
+    XAUUSD     old  1749 -0.058 +0.087 t +1.7   new   557 +0.006 +0.063 t +0.7   power   -9.1 R/year
+    US500      old   336 -0.062 +0.055 t +0.5   new   655 -0.122 +0.147 t +2.1   power   -9.4 R/year (home)
+    EURUSD     old  2041 -0.052 +0.118 t +2.5   new   697 -0.227 -0.039 t -0.5   power  -24.6 R/year
+    USDJPY     old  2043 -0.157 +0.093 t +2.0   new   697 +0.101 +0.093 t +1.1   power  -23.3 R/year
+    XTIUSD     old  1533 -0.183 +0.058 t +1.1   new   687 -0.293 +0.024 t +0.4   power  -44.8 R/year
+    GERMANY40  old  1469 -0.052 +0.123 t +2.3   new   676 -0.046 +0.006 t +0.1   power  -10.0 R/year (home)
+  orb30 0.1D trail
+    XAUUSD     old  1750 -0.095 +0.061 t +2.2   new   557 -0.007 +0.007 t +0.1   power  -15.9 R/year
+    US500      old   336 -0.140 +0.034 t +0.4   new   655 -0.065 +0.151 t +2.9   power   -8.3 R/year (home)
+    EURUSD     old  2041 -0.098 +0.085 t +3.0   new   697 -0.131 +0.018 t +0.4   power  -27.1 R/year
+    USDJPY     old  2043 -0.181 +0.038 t +1.4   new   697 -0.091 +0.007 t +0.1   power  -40.3 R/year
+    XTIUSD     old  1527 -0.262 +0.032 t +0.9   new   687 -0.323 -0.040 t -0.8   power  -57.9 R/year
+    GERMANY40  old  1470 -0.179 +0.043 t +1.2   new   676 -0.154 -0.033 t -0.6   power  -34.2 R/year (home)
+  orb30 range 24h
+    XAUUSD     old  1741 -0.063 -0.069 t -0.5   new   557 +0.261 +0.201 t +2.1   power   +3.3 R/year
+    US500      old   333 -0.149 +0.011 t +0.1   new   655 -0.029 +0.105 t +1.8   power   -6.4 R/year (home)
+    EURUSD     old  2037 +0.022 +0.110 t +2.9   new   696 -0.020 +0.090 t +1.3   power   +2.8 R/year
+    USDJPY     old  2042 -0.042 +0.065 t +1.4   new   697 +0.123 +0.055 t +0.6   power   -0.0 R/year
+    XTIUSD     old  1515 -0.068 +0.064 t +1.4   new   685 -0.174 -0.018 t -0.3   power  -20.6 R/year
+    GERMANY40  old  1451 +0.022 +0.104 t +2.3   new   672 +0.036 -0.032 t -0.5   power   +5.2 R/year (home)
+  orb30 range 2R
+    XAUUSD     old  1750 -0.069 +0.073 t +2.5   new   557 +0.023 +0.070 t +1.4   power  -10.0 R/year
+    US500      old   336 -0.026 +0.053 t +0.9   new   655 -0.050 +0.049 t +1.2   power   -3.9 R/year (home)
+    EURUSD     old  2041 -0.041 +0.053 t +2.0   new   697 -0.009 +0.088 t +1.9   power   -8.3 R/year
+    USDJPY     old  2043 -0.106 +0.039 t +1.4   new   697 -0.035 +0.039 t +0.9   power  -22.5 R/year
+    XTIUSD     old  1534 -0.123 +0.017 t +0.6   new   687 -0.132 +0.018 t +0.4   power  -26.0 R/year
+    GERMANY40  old  1470 -0.033 +0.041 t +1.5   new   676 -0.037 +0.009 t +0.2   power   -6.8 R/year (home)
+  orb30 range 48h
+    XAUUSD     old  1736 -0.100 -0.038 t -0.4   new   557 +0.232 +0.200 t +1.8   power   -4.2 R/year
+    US500      old   333 -0.207 +0.000 t +0.0   new   655 -0.090 +0.100 t +1.6   power  -11.9 R/year (home)
+    EURUSD     old  2034 -0.010 +0.096 t +2.2   new   695 -0.124 +0.018 t +0.2   power  -10.0 R/year
+    USDJPY     old  2039 +0.015 +0.131 t +2.5   new   696 +0.188 +0.140 t +1.2   power  +15.1 R/year
+    XTIUSD     old  1501 -0.122 +0.033 t +0.6   new   684 -0.146 -0.047 t -0.6   power  -26.3 R/year
+    GERMANY40  old  1437 -0.008 +0.116 t +2.2   new   667 -0.050 -0.109 t -1.3   power   -4.2 R/year (home)
+  orb30 range 5d
+    XAUUSD     old  1733 -0.044 +0.026 t +0.3   new   557 +0.293 +0.252 t +2.0   power   +8.1 R/year
+    US500      old   335 +0.000 +0.091 t +0.8   new   655 -0.096 +0.096 t +1.4   power   -5.8 R/year (home)
+    EURUSD     old  2032 -0.131 +0.038 t +0.8   new   695 -0.160 +0.041 t +0.4   power  -35.2 R/year
+    USDJPY     old  2037 -0.003 +0.125 t +2.1   new   695 +0.156 +0.180 t +1.7   power   +9.5 R/year
+    XTIUSD     old  1491 -0.174 -0.040 t -0.7   new   684 -0.109 +0.036 t +0.4   power  -31.1 R/year
+    GERMANY40  old  1432 -0.073 +0.084 t +1.6   new   665 +0.014 -0.096 t -1.0   power   -8.8 R/year (home)
+  orb30 range close
+    XAUUSD     old  1749 -0.045 -0.036 t -0.2   new   557 +0.127 +0.139 t +1.7   power   -0.8 R/year
+    US500      old   336 -0.017 +0.043 t +0.6   new   655 -0.051 +0.056 t +1.2   power   -3.6 R/year (home)
+    EURUSD     old  2041 +0.014 +0.102 t +2.9   new   697 -0.027 +0.074 t +1.2   power   +0.8 R/year
+    USDJPY     old  2043 -0.111 +0.054 t +1.5   new   697 +0.153 +0.097 t +1.1   power  -11.1 R/year
+    XTIUSD     old  1534 -0.090 +0.034 t +1.0   new   687 -0.146 +0.010 t +0.2   power  -22.2 R/year
+    GERMANY40  old  1469 -0.003 +0.060 t +1.9   new   676 -0.000 +0.002 t +0.0   power   -0.4 R/year (home)
+  orb30 range trail
+    XAUUSD     old  1750 -0.057 +0.067 t +2.4   new   557 -0.021 +0.027 t +0.6   power  -10.4 R/year
+    US500      old   336 -0.003 +0.087 t +1.4   new   655 -0.045 +0.051 t +1.2   power   -2.8 R/year (home)
+    EURUSD     old  2041 -0.029 +0.060 t +2.5   new   697 -0.117 +0.017 t +0.4   power  -13.1 R/year
+    USDJPY     old  2042 -0.103 +0.021 t +0.8   new   697 -0.042 +0.012 t +0.3   power  -22.4 R/year
+    XTIUSD     old  1523 -0.086 +0.012 t +0.4   new   686 -0.198 -0.039 t -1.0   power  -24.9 R/year
+    GERMANY40  old  1463 +0.016 +0.065 t +2.2   new   675 -0.027 +0.005 t +0.1   power   +0.5 R/year (home)
+  orb60 0.1D 24h
+    XAUUSD     old  1741 -0.132 +0.017 t +0.3   new   556 -0.006 +0.078 t +0.8   power  -21.8 R/year
+    US500      old   326 -0.281 +0.116 t +0.8   new   638 -0.180 -0.071 t -0.7   power  -19.2 R/year (home)
+    EURUSD     old  2032 -0.132 +0.058 t +1.1   new   696 -0.197 +0.128 t +1.6   power  -37.7 R/year
+    USDJPY     old  2037 -0.089 +0.111 t +2.1   new   695 +0.033 +0.068 t +0.7   power  -14.8 R/year
+    XTIUSD     old  1477 -0.269 +0.066 t +1.1   new   681 -0.217 -0.054 t -0.5   power  -50.7 R/year
+    GERMANY40  old  1425 -0.123 +0.050 t +0.6   new   667 +0.181 +0.107 t +1.0   power   -5.1 R/year (home)
+  orb60 0.1D 2R
+    XAUUSD     old  1747 -0.113 +0.027 t +0.9   new   557 -0.099 -0.008 t -0.2   power  -23.5 R/year
+    US500      old   326 -0.220 -0.012 t -0.2   new   638 -0.112 +0.083 t +1.7   power  -13.3 R/year (home)
+    EURUSD     old  2034 -0.124 +0.063 t +2.3   new   696 -0.174 +0.090 t +2.0   power  -34.8 R/year
+    USDJPY     old  2038 -0.233 +0.043 t +1.6   new   695 -0.058 +0.074 t +1.6   power  -48.0 R/year
+    XTIUSD     old  1495 -0.316 +0.030 t +0.9   new   682 -0.314 -0.061 t -1.3   power  -63.8 R/year
+    GERMANY40  old  1434 -0.200 +0.040 t +1.3   new   669 -0.147 +0.044 t +0.9   power  -35.8 R/year (home)
+  orb60 0.1D 5d
+    XAUUSD     old  1737 -0.073 +0.077 t +1.0   new   556 -0.165 +0.023 t +0.2   power  -20.3 R/year
+    US500      old   326 +0.122 +0.359 t +1.9   new   638 -0.290 -0.030 t -0.3   power  -13.5 R/year (home)
+    EURUSD     old  2028 -0.169 +0.093 t +1.4   new   696 -0.247 +0.114 t +1.1   power  -47.8 R/year
+    USDJPY     old  2033 -0.082 +0.130 t +1.8   new   693 +0.058 +0.196 t +1.7   power  -11.7 R/year
+    XTIUSD     old  1459 -0.330 +0.015 t +0.2   new   679 -0.265 -0.025 t -0.2   power  -61.6 R/year
+    GERMANY40  old  1416 -0.227 -0.011 t -0.1   new   664 +0.004 -0.035 t -0.3   power  -29.6 R/year (home)
+  orb60 0.1D close
+    XAUUSD     old  1746 -0.123 +0.030 t +0.6   new   557 -0.089 +0.026 t +0.3   power  -24.5 R/year
+    US500      old   326 -0.176 +0.024 t +0.2   new   638 -0.100 +0.048 t +0.6   power  -11.3 R/year (home)
+    EURUSD     old  2034 -0.148 +0.058 t +1.3   new   696 -0.214 +0.090 t +1.2   power  -41.9 R/year
+    USDJPY     old  2038 -0.156 +0.099 t +2.2   new   695 +0.117 +0.139 t +1.6   power  -21.9 R/year
+    XTIUSD     old  1494 -0.248 +0.038 t +0.8   new   682 -0.285 -0.092 t -1.3   power  -52.6 R/year
+    GERMANY40  old  1433 -0.150 +0.045 t +0.9   new   669 +0.085 +0.103 t +1.3   power  -14.7 R/year (home)
+  orb60 0.1D trail
+    XAUUSD     old  1747 -0.127 +0.017 t +0.6   new   557 -0.027 +0.014 t +0.3   power  -22.1 R/year
+    US500      old   326 -0.214 -0.007 t -0.1   new   638 -0.124 +0.086 t +1.7   power  -13.8 R/year (home)
+    EURUSD     old  2034 -0.139 +0.047 t +1.7   new   696 -0.175 +0.073 t +1.8   power  -37.7 R/year
+    USDJPY     old  2038 -0.213 +0.023 t +0.9   new   695 -0.116 +0.006 t +0.1   power  -47.9 R/year
+    XTIUSD     old  1487 -0.256 +0.039 t +1.0   new   682 -0.332 -0.082 t -1.6   power  -56.5 R/year
+    GERMANY40  old  1434 -0.165 +0.032 t +0.9   new   669 -0.078 +0.030 t +0.6   power  -26.9 R/year (home)
+  orb60 range 24h
+    XAUUSD     old  1737 -0.046 -0.005 t -0.1   new   556 +0.109 +0.149 t +2.0   power   -1.7 R/year
+    US500      old   323 -0.088 +0.148 t +1.9   new   637 -0.094 +0.007 t +0.1   power   -8.2 R/year (home)
+    EURUSD     old  2030 -0.002 +0.068 t +2.1   new   695 -0.005 +0.076 t +1.3   power   -0.8 R/year
+    USDJPY     old  2034 +0.006 +0.097 t +2.5   new   695 +0.169 +0.125 t +1.6   power  +12.1 R/year
+    XTIUSD     old  1471 -0.016 +0.096 t +2.6   new   680 -0.163 -0.074 t -1.4   power  -12.4 R/year
+    GERMANY40  old  1414 -0.006 +0.045 t +1.1   new   665 +0.109 +0.053 t +0.9   power   +6.0 R/year (home)
+  orb60 range 2R
+    XAUUSD     old  1747 -0.073 +0.022 t +0.8   new   557 +0.005 +0.016 t +0.3   power  -11.6 R/year
+    US500      old   326 -0.031 +0.026 t +0.5   new   638 -0.041 +0.028 t +0.8   power   -3.4 R/year (home)
+    EURUSD     old  2034 -0.035 +0.046 t +1.8   new   696 -0.047 +0.035 t +0.8   power   -9.7 R/year
+    USDJPY     old  2038 -0.095 +0.025 t +1.0   new   695 +0.018 +0.096 t +2.2   power  -16.8 R/year
+    XTIUSD     old  1495 -0.053 +0.033 t +1.3   new   682 -0.144 -0.049 t -1.4   power  -16.5 R/year
+    GERMANY40  old  1433 -0.027 +0.024 t +1.0   new   669 +0.005 +0.039 t +1.0   power   -3.2 R/year (home)
+  orb60 range 48h
+    XAUUSD     old  1732 -0.013 +0.065 t +1.0   new   556 +0.076 +0.168 t +2.0   power   +1.9 R/year
+    US500      old   323 -0.082 +0.176 t +1.9   new   637 -0.144 -0.003 t -0.1   power  -11.0 R/year (home)
+    EURUSD     old  2025 -0.036 +0.085 t +2.3   new   694 -0.087 +0.019 t +0.3   power  -12.4 R/year
+    USDJPY     old  2031 +0.029 +0.120 t +2.6   new   694 +0.222 +0.248 t +2.8   power  +19.9 R/year
+    XTIUSD     old  1453 -0.048 +0.053 t +1.2   new   679 -0.140 -0.029 t -0.5   power  -15.3 R/year
+    GERMANY40  old  1398 -0.017 +0.039 t +0.8   new   661 +0.086 +0.066 t +0.9   power   +3.0 R/year (home)
+  orb60 range 5d
+    XAUUSD     old  1729 +0.008 +0.080 t +1.1   new   555 +0.133 +0.242 t +2.5   power   +8.1 R/year
+    US500      old   325 +0.051 +0.250 t +2.7   new   637 -0.159 +0.010 t +0.2   power   -7.9 R/year (home)
+    EURUSD     old  2023 -0.099 +0.088 t +2.1   new   694 -0.114 +0.035 t +0.4   power  -26.0 R/year
+    USDJPY     old  2029 +0.032 +0.133 t +2.5   new   693 +0.126 +0.188 t +2.1   power  +14.1 R/year
+    XTIUSD     old  1436 -0.067 +0.047 t +0.9   new   677 -0.144 +0.002 t +0.0   power  -18.0 R/year
+    GERMANY40  old  1391 -0.085 +0.032 t +0.7   new   657 +0.148 +0.071 t +0.9   power   -1.9 R/year (home)
+  orb60 range close
+    XAUUSD     old  1746 -0.050 -0.011 t -0.1   new   557 +0.035 +0.070 t +1.1   power   -6.2 R/year
+    US500      old   326 -0.024 +0.011 t +0.2   new   638 -0.062 +0.006 t +0.2   power   -4.4 R/year (home)
+    EURUSD     old  2034 -0.022 +0.049 t +1.6   new   696 -0.041 +0.047 t +0.9   power   -6.7 R/year
+    USDJPY     old  2038 -0.078 +0.065 t +2.1   new   695 +0.194 +0.167 t +2.6   power   -2.2 R/year
+    XTIUSD     old  1494 -0.042 +0.047 t +1.7   new   682 -0.147 -0.057 t -1.5   power  -15.2 R/year
+    GERMANY40  old  1433 -0.022 +0.025 t +1.0   new   669 +0.046 +0.042 t +1.0   power   -0.1 R/year (home)
+  orb60 range trail
+    XAUUSD     old  1745 -0.043 +0.052 t +1.9   new   557 +0.000 +0.008 t +0.2   power   -6.9 R/year
+    US500      old   326 -0.033 +0.068 t +1.1   new   637 -0.046 +0.023 t +0.6   power   -3.7 R/year (home)
+    EURUSD     old  2031 -0.036 +0.031 t +1.3   new   695 -0.103 +0.025 t +0.7   power  -13.5 R/year
+    USDJPY     old  2036 -0.037 +0.044 t +1.8   new   695 -0.008 +0.057 t +1.3   power   -7.6 R/year
+    XTIUSD     old  1475 -0.034 +0.044 t +1.5   new   680 -0.199 -0.122 t -2.9   power  -17.3 R/year
+    GERMANY40  old  1420 +0.027 +0.049 t +1.6   new   666 +0.025 +0.045 t +1.1   power   +5.1 R/year (home)
+  pdh2 lvl0.25D 24h
+    XAUUSD     old  1691 -0.027 +0.043 t +1.2   new   592 +0.274 +0.184 t +2.7   power  +10.9 R/year
+    US500      old   436 -0.106 +0.081 t +1.1   new   612 -0.219 -0.092 t -1.5   power  -16.8 R/year
+    EURUSD     old  1791 -0.123 +0.010 t +0.3   new   596 -0.163 -0.020 t -0.3   power  -29.5 R/year
+    USDJPY     old  1751 -0.015 +0.074 t +2.1   new   575 +0.073 +0.055 t +0.8   power   +1.4 R/year
+    XTIUSD     old  1339 -0.023 +0.074 t +1.7   new   593 -0.113 +0.011 t +0.2   power   -9.1 R/year
+    GERMANY40  old  1274 -0.108 -0.022 t -0.5   new   598 -0.061 +0.028 t +0.5   power  -16.2 R/year
+  pdh2 lvl0.25D close
+    XAUUSD     old  1697 -0.068 +0.036 t +1.1   new   594 +0.128 +0.124 t +2.2   power   -3.7 R/year
+    US500      old   440 -0.080 +0.022 t +0.4   new   613 -0.184 -0.046 t -0.9   power  -13.8 R/year
+    EURUSD     old  1797 -0.137 -0.001 t -0.0   new   596 -0.161 -0.041 t -0.8   power  -31.8 R/year
+    USDJPY     old  1756 -0.040 +0.050 t +1.5   new   576 +0.079 +0.066 t +1.1   power   -2.4 R/year
+    XTIUSD     old  1347 -0.075 +0.045 t +1.2   new   594 -0.077 +0.025 t +0.5   power  -13.6 R/year
+    GERMANY40  old  1288 -0.055 +0.022 t +0.6   new   602 -0.098 -0.002 t -0.0   power  -12.1 R/year
+  pdh2 lvl0.25D trail
+    XAUUSD     old  1697 +0.022 +0.083 t +3.1   new   594 +0.129 +0.146 t +3.4   power  +10.6 R/year
+    US500      old   438 -0.086 +0.012 t +0.2   new   613 -0.127 -0.047 t -1.1   power  -10.7 R/year
+    EURUSD     old  1795 -0.093 +0.005 t +0.2   new   596 -0.136 -0.045 t -1.0   power  -23.1 R/year
+    USDJPY     old  1754 -0.019 +0.068 t +2.6   new   575 -0.009 +0.057 t +1.3   power   -3.5 R/year
+    XTIUSD     old  1341 -0.019 +0.079 t +2.6   new   593 -0.092 +0.040 t +1.0   power   -7.5 R/year
+    GERMANY40  old  1281 -0.000 +0.034 t +1.0   new   601 -0.079 -0.006 t -0.1   power   -4.4 R/year
+  pdh2 mid 24h
+    XAUUSD     old  1690 +0.027 +0.059 t +2.0   new   591 +0.155 +0.129 t +2.6   power  +12.8 R/year
+    US500      old   435 -0.128 +0.020 t +0.3   new   612 -0.190 -0.056 t -1.3   power  -16.0 R/year
+    EURUSD     old  1791 -0.101 +0.007 t +0.3   new   595 -0.105 -0.003 t -0.1   power  -22.6 R/year
+    USDJPY     old  1750 -0.013 +0.081 t +2.8   new   575 +0.075 +0.067 t +1.3   power   +2.0 R/year
+    XTIUSD     old  1336 +0.032 +0.066 t +1.9   new   593 -0.083 -0.013 t -0.3   power   -0.6 R/year
+    GERMANY40  old  1270 -0.102 -0.036 t -1.0   new   598 -0.030 +0.020 t +0.4   power  -13.8 R/year
+  pdh2 mid 2R
+    XAUUSD     old  1698 -0.017 +0.048 t +2.1   new   594 +0.051 +0.077 t +2.0   power   +0.2 R/year
+    US500      old   440 -0.068 -0.017 t -0.4   new   613 -0.141 -0.045 t -1.2   power  -10.8 R/year
+    EURUSD     old  1797 -0.076 +0.020 t +0.9   new   596 -0.080 +0.007 t +0.2   power  -17.1 R/year
+    USDJPY     old  1756 -0.069 +0.042 t +1.9   new   576 +0.027 +0.079 t +2.0   power   -9.9 R/year
+    XTIUSD     old  1350 -0.056 +0.012 t +0.5   new   594 -0.022 +0.031 t +0.8   power   -8.2 R/year
+    GERMANY40  old  1289 -0.049 -0.001 t -0.0   new   602 -0.009 +0.033 t +0.9   power   -6.3 R/year
+  pdh2 mid close
+    XAUUSD     old  1697 -0.013 +0.050 t +1.9   new   594 +0.095 +0.091 t +2.1   power   +3.2 R/year
+    US500      old   440 -0.088 -0.018 t -0.4   new   613 -0.122 -0.021 t -0.5   power  -10.6 R/year
+    EURUSD     old  1797 -0.091 +0.011 t +0.4   new   596 -0.088 -0.009 t -0.2   power  -20.1 R/year
+    USDJPY     old  1756 -0.042 +0.052 t +1.9   new   576 +0.079 +0.079 t +1.7   power   -2.7 R/year
+    XTIUSD     old  1346 -0.006 +0.044 t +1.4   new   594 -0.019 +0.021 t +0.5   power   -1.8 R/year
+    GERMANY40  old  1288 -0.053 +0.004 t +0.2   new   602 -0.020 +0.022 t +0.6   power   -7.5 R/year
+  pdh2 mid trail
+    XAUUSD     old  1691 +0.039 +0.074 t +2.9   new   592 +0.111 +0.111 t +2.7   power  +12.2 R/year
+    US500      old   438 -0.096 +0.015 t +0.3   new   612 -0.104 -0.036 t -0.9   power   -9.8 R/year
+    EURUSD     old  1792 -0.072 +0.026 t +1.1   new   595 -0.136 -0.025 t -0.7   power  -19.6 R/year
+    USDJPY     old  1751 -0.006 +0.084 t +3.5   new   575 +0.013 +0.077 t +1.9   power   -0.2 R/year
+    XTIUSD     old  1332 -0.024 +0.036 t +1.3   new   593 -0.030 +0.056 t +1.5   power   -4.6 R/year
+    GERMANY40  old  1267 -0.026 +0.019 t +0.6   new   599 +0.003 +0.045 t +1.1   power   -2.9 R/year
+  trend2 gen close
+    XAUUSD     old  3275 -0.143 +0.011 t +0.3   new  1115 -0.077 +0.027 t +0.5   power  -51.4 R/year
+    US500      old   302 +0.186 +0.199 t +2.0   new   710 -0.274 -0.046 t -0.8   power  -12.9 R/year (home)
+    EURUSD     old  3973 -0.193 +0.012 t +0.4   new  1491 -0.234 -0.014 t -0.3   power -103.7 R/year
+    USDJPY     old  3696 -0.222 +0.026 t +0.9   new  1278 -0.032 +0.074 t +1.3   power  -80.0 R/year
+    XTIUSD     old  1433 -0.071 +0.102 t +2.2   new   692 -0.262 -0.055 t -1.0   power  -26.3 R/year
+    GERMANY40  old  1890 -0.047 +0.092 t +2.3   new   953 +0.009 +0.100 t +1.8   power   -7.5 R/year
+  rsi2 long own
+    XAUUSD     old    42 -0.188 -0.035 t -0.1   new                   n=17   power   -0.6 R/year
+    US500      old                   n=15   new    25 +0.773 +0.848 t +4.1   power   +3.1 R/year (home)
+    EURUSD     old    30 -0.310 -0.172 t -0.7   new                   n=16   power   -1.6 R/year
+    USDJPY     old    60 +0.258 +0.405 t +2.6   new                    n=9   power   +1.2 R/year
+    XTIUSD     old    20 -0.307 -0.227 t -0.8   new                    n=6   power   -0.8 R/year
+    GERMANY40  old    38 -0.081 -0.012 t -0.0   new    23 +0.286 +0.339 t +1.1   power   +0.3 R/year (home)
+
+B. home markets (where the literature says each lane lives), on each lane's PRIMARY exit (fixed beforehand):
+  gao     US500      0.25D     close  old   333 -0.159 -0.104 t -2.7   new   650 -0.088 -0.001 t -0.0
+  main2   XAUUSD     box       close  old  1414 -0.033 +0.065 t +2.3   new   437 +0.040 +0.078 t +1.6
+  main2   EURUSD     box       close  old  1828 -0.039 +0.018 t +0.6   new   577 -0.041 +0.013 t +0.3
+  main2   USDJPY     box       close  old  1338 -0.036 +0.048 t +1.9   new   453 +0.052 +0.053 t +1.1
+  orb30   US500      range     close  old   336 -0.017 +0.043 t +0.6   new   655 -0.051 +0.056 t +1.2
+  orb30   GERMANY40  range     close  old  1469 -0.003 +0.060 t +1.9   new   676 -0.000 +0.002 t +0.0
+  orb60   US500      range     close  old   326 -0.024 +0.011 t +0.2   new   638 -0.062 +0.006 t +0.2
+  orb60   GERMANY40  range     close  old  1433 -0.022 +0.025 t +1.0   new   669 +0.046 +0.042 t +1.0
+  range2  EURUSD     asia      own    old  2015 -0.097 -0.004 t -0.5   new   688 -0.113 -0.028 t -1.9
+  range2  USDJPY     asia      own    old  1981 -0.123 -0.015 t -1.3   new   681 -0.084 -0.019 t -0.9
+  rsi2    US500      long      own    old                   n=15   new    25 +0.773 +0.848 t +4.1
+  rsi2    GERMANY40  long      own    old    38 -0.081 -0.012 t -0.0   new    23 +0.286 +0.339 t +1.1
+  trend2  US500      own       own    old   301 +0.028                   new   708 -0.332                
+
+B. filters on main2 / orb / pdh2 (exit 'close', stop variant 1): does the tag change the result?
+  main2  nr7     yes: old   881 -0.041 -0.007 t -0.2 new   446 -0.003 +0.014 t +0.3   no : old  5011 -0.039 +0.039 t +2.7 new  2497 +0.008 +0.041 t +2.1
+  main2  trend   yes: old  2864 -0.040 +0.041 t +2.1 new  1497 +0.012 +0.034 t +1.3   no : old  2869 -0.037 +0.028 t +1.4 new  1339 +0.023 +0.059 t +2.3
+  orb30  nr7     yes: old  1369 +0.068 +0.124 t +2.7 new   590 -0.019 +0.023 t +0.4   no : old  7803 -0.066 +0.031 t +0.9 new  3379 +0.011 +0.067 t +2.4
+  orb30  trend   yes: old  4525 -0.057 +0.007 t +0.1 new  1967 +0.037 +0.091 t +2.6   no : old  4408 -0.033 +0.083 t +3.4 new  1880 -0.004 +0.041 t +1.1
+  orb60  nr7     yes: old  1354 -0.010 +0.026 t +0.7 new   588 -0.016 +0.049 t +0.9   no : old  7717 -0.049 +0.037 t +1.7 new  3349 +0.008 +0.045 t +2.0
+  orb60  trend   yes: old  4411 -0.059 +0.016 t +0.5 new  1985 +0.021 +0.045 t +1.5   no : old  4427 -0.028 +0.053 t +2.6 new  1830 +0.002 +0.054 t +1.7
+  pdh2   nr7     yes: old  1393 +0.001 +0.078 t +2.2 new   603 +0.046 +0.083 t +1.6   no : old  6932 -0.092 +0.020 t +1.2 new  2972 -0.074 +0.008 t +0.3
+  pdh2   trend   yes: old  4501 -0.061 +0.030 t +1.5 new  1926 -0.008 +0.050 t +1.6   no : old  3582 -0.091 +0.031 t +1.4 new  1493 -0.105 -0.012 t -0.4
+
+B. swing2 / rsi2 as a PORTFOLIO (all markets together): net R per year and per era
+  swing2 close     2014-17:  -14.6 R/yr (coin flip  -7.2, n 129)  2018-19:  -13.0 R/yr (coin flip -11.8, n 79)  2020-21:  -14.2 R/yr (coin flip -13.9, n 93)  B 2024+:   -9.5 R/yr (coin flip  -8.4, n 133)
+  swing2 stop      2014-17:  -15.1 R/yr (coin flip  -8.6, n 153)  2018-19:  -17.5 R/yr (coin flip -13.6, n 100)  2020-21:  -18.2 R/yr (coin flip -15.5, n 114)  B 2024+:  -10.2 R/yr (coin flip  -9.4, n 159)
+  swing2 stop+pyr  2014-17:  -51.7 R/yr (coin flip -26.4, n 179)  2018-19:  -40.8 R/yr (coin flip -38.0, n 111)  2020-21:  -43.9 R/yr (coin flip -47.9, n 129)  B 2024+:  -41.2 R/yr (coin flip -26.8, n 186)
+  rsi2 long        2014-17:   +3.5 R/yr (coin flip  -2.6, n 77)  2018-19:   -6.1 R/yr (coin flip  -3.0, n 54)  2020-21:   +0.5 R/yr (coin flip  -4.5, n 74)  B 2024+:   +5.4 R/yr (coin flip  -3.1, n 96)
+  rsi2 short       2014-17:   -2.7 R/yr (coin flip  -2.0, n 59)  2018-19:   +4.0 R/yr (coin flip  -4.7, n 68)  2020-21:   -4.3 R/yr (coin flip  -2.4, n 38)  B 2024+:   +0.1 R/yr (coin flip  -1.3, n 39)
+
+DATA CHECK: what happened on each day for orb30 (days per market and era)
+  XAUUSD     2014-17    entry 867   no bar at the open 27   no close bar 127
+  XAUUSD     2018-19    entry 367   no bar at the open 2   no close bar 149
+  XAUUSD     A 2020-21  entry 516   no bar at the open 1   no close bar 1
+  XAUUSD     B 2024+    entry 557   no bar at the open 1   no close bar 136
+  US500      A 2020-21  entry 336   no bar at the open 4   no break / both sides in one bar 1   no close bar 156   range bars missing 1
+  US500      B 2024+    entry 655   no bar at the open 2   no break / both sides in one bar 3   no close bar 33
+  EURUSD     2014-17    entry 1003   no bar at the open 71   no break / both sides in one bar 2   range bars missing 2
+  EURUSD     2018-19    entry 518   no bar at the open 5   range bars missing 1
+  EURUSD     A 2020-21  entry 520   no bar at the open 3
+  EURUSD     B 2024+    entry 697
+  USDJPY     2014-17    entry 1006   no bar at the open 69   range bars missing 2
+  USDJPY     2018-19    entry 518   no bar at the open 4   range bars missing 1
+  USDJPY     A 2020-21  entry 519   no bar at the open 3   no break / both sides in one bar 1
+  USDJPY     B 2024+    entry 697   no bar at the open 1
+  XTIUSD     2014-17    entry 648   no bar at the open 10   no break / both sides in one bar 1   no close bar 2
+  XTIUSD     2018-19    entry 513   no break / both sides in one bar 2   no close bar 1
+  XTIUSD     A 2020-21  entry 374   no bar at the open 1
+  XTIUSD     B 2024+    entry 687   no bar at the open 2   no break / both sides in one bar 2
+  GERMANY40  2014-17    entry 455   no bar at the open 5   no break / both sides in one bar 3
+  GERMANY40  2018-19    entry 508   no bar at the open 3   no break / both sides in one bar 1
+  GERMANY40  A 2020-21  entry 509   no bar at the open 2   no break / both sides in one bar 3
+  GERMANY40  B 2024+    entry 676   no break / both sides in one bar 6   no close bar 1
+
+--------------------------------------------------------------------------------------------------------------
+C. SIGNALS   which reads predict a lane working or failing, judged one by one (nothing dropped by a luck count)
+--------------------------------------------------------------------------------------------------------------
+For each read and bucket: ADVANTAGE = the lane's edge inside the bucket minus its edge outside it. 'eras' shows
+its sign in 2014-17, 2018-19, 2020-21, 2024+ ('.' = too few trades). Thirds are cut on 2014-21 only, so the
+2024+ column is out of sample. markets = on how many markets the advantage was positive. skip = net R a year
+the lane would have saved by not trading that bucket (only shown for buckets that point the bad way).
+Listed per lane: the 12 buckets with the most evidence, ranked by EVIDENCE = share of eras pointing the same way +
+share of markets agreeing + strength on 2014-21 + strength on 2024+ in the same direction (each 0-1, max 4).
+Nothing is labelled luck: the columns are the evidence. Every bucket of every read is in signal_dossier.csv.
+
+bigcont exit close   (413 trades)
+  ev 3.57  trendy         = low                    ---- every era       n   111  net -0.126  old adv -0.148 t -2.0  new adv -0.323 t -2.7  mkts+ 0/5   theory agrees  skip saves +1.3 R/yr
+  ev 3.55  trendy         = mid                    ++++ every era       n   133  net +0.139  old adv +0.125 t +1.7  new adv +0.343 t +3.3  mkts+ 5/5   
+  ev 2.99  weekday        = 0                      -.-- every era       n    98  net -0.118  old adv -0.194 t -2.1  new adv -0.096 t -0.8  mkts+ 0/3     skip saves +1.1 R/yr
+  ev 2.87  weekday        = 2                      +.++ every era       n    68  net +0.132  old adv +0.212 t +2.1  new adv +0.073 t +0.5  mkts+ 2/2   
+  ev 2.56  day_move_with  = mid                    +--- all but one era n   102  net -0.040  old adv +0.009 t +0.1  new adv -0.325 t -2.4  mkts+ 0/4     skip saves +0.4 R/yr
+  ev 2.42  vol            = mid                    -++. all but one era n    79  net +0.096  old adv +0.184 t +2.3  new adv      n/a       mkts+ 4/4   
+  ev 2.28  risk_size      = mid                    +-++ all but one era n   116  net +0.078  old adv +0.089 t +1.1  new adv +0.052 t +0.5  mkts+ 5/5   
+  ev 2.21  gap_with       = mid                    +-++ all but one era n   112  net +0.052  old adv +0.076 t +1.1  new adv +0.102 t +0.9  mkts+ 4/5   
+  ev 2.13  prev_range     = low                    ---+ all but one era n   133  net -0.035  old adv -0.137 t -1.8  new adv +0.122 t +1.1  mkts+ 1/5   AGAINST theory  skip saves +0.4 R/yr
+  ev 2.11  with_50d       = 0                      ---+ all but one era n   131  net -0.085  old adv -0.125 t -1.6  new adv +0.010 t +0.1  mkts+ 1/6   theory agrees  skip saves +1.0 R/yr
+  ev 2.11  with_50d       = 1                      +++- all but one era n   267  net +0.014  old adv +0.125 t +1.6  new adv -0.010 t -0.1  mkts+ 5/6   theory agrees
+  ev 2.11  form           = cold                   ..-- flips by era    n   115  net -0.120  old adv -0.174 t -1.5  new adv -0.032 t -0.3  mkts+ 1/2   theory agrees  skip saves +1.3 R/yr
+
+bigrev exit close   (413 trades)
+  ev 3.57  trendy         = low                    ++++ every era       n   111  net +0.040  old adv +0.148 t +2.0  new adv +0.323 t +2.7  mkts+ 5/5   theory agrees
+  ev 3.55  trendy         = mid                    ---- every era       n   133  net -0.192  old adv -0.125 t -1.7  new adv -0.343 t -3.3  mkts+ 0/5     skip saves +2.4 R/yr
+  ev 2.99  weekday        = 0                      +.++ every era       n    98  net +0.064  old adv +0.194 t +2.1  new adv +0.096 t +0.8  mkts+ 3/3   
+  ev 2.87  weekday        = 2                      -.-- every era       n    68  net -0.215  old adv -0.212 t -2.1  new adv -0.073 t -0.5  mkts+ 0/2     skip saves +1.4 R/yr
+  ev 2.42  vol            = mid                    +--. all but one era n    79  net -0.242  old adv -0.184 t -2.3  new adv      n/a       mkts+ 0/4     skip saves +1.8 R/yr
+  ev 2.36  gap_with       = mid                    -+-- all but one era n   111  net -0.178  old adv -0.108 t -1.5  new adv -0.102 t -0.9  mkts+ 1/5     skip saves +1.8 R/yr
+  ev 2.28  risk_size      = mid                    -+-- all but one era n   116  net -0.122  old adv -0.089 t -1.1  new adv -0.052 t -0.5  mkts+ 0/5     skip saves +1.3 R/yr
+  ev 2.13  prev_range     = low                    +++- all but one era n   133  net -0.056  old adv +0.137 t +1.8  new adv -0.122 t -1.1  mkts+ 4/5   AGAINST theory
+  ev 2.11  with_50d       = 0                      ---+ all but one era n   267  net -0.095  old adv -0.125 t -1.6  new adv +0.010 t +0.1  mkts+ 1/6   theory agrees  skip saves +2.4 R/yr
+  ev 2.11  with_50d       = 1                      +++- all but one era n   131  net -0.027  old adv +0.125 t +1.6  new adv -0.010 t -0.1  mkts+ 5/6   theory agrees
+  ev 2.11  form           = cold                   ..-- flips by era    n   178  net -0.085  old adv -0.174 t -1.5  new adv -0.032 t -0.3  mkts+ 1/2   theory agrees  skip saves +1.4 R/yr
+  ev 2.11  form           = hot                    ..++ flips by era    n   115  net +0.024  old adv +0.174 t +1.5  new adv +0.032 t +0.3  mkts+ 1/2   theory agrees
+
+control exit close   (11317 trades)
+  ev 2.54  gap_with       = high                   -+-- all but one era n  3623  net -0.075  old adv -0.033 t -1.5  new adv -0.027 t -0.9  mkts+ 0/5   AGAINST theory  skip saves +25.3 R/yr
+  ev 2.47  regime         = vol-low/trend-high     +-++ all but one era n   995  net -0.036  old adv +0.068 t +2.0  new adv +0.077 t +1.3  mkts+ 3/5   
+  ev 2.28  weekday        = 0                      ++++ every era       n  2232  net -0.041  old adv +0.032 t +1.2  new adv +0.018 t +0.6  mkts+ 4/6   
+  ev 2.20  trendy         = mid                    ---+ all but one era n  3558  net -0.084  old adv -0.043 t -1.9  new adv +0.010 t +0.3  mkts+ 1/5     skip saves +27.8 R/yr
+  ev 2.16  day_move_with  = low                    -+-- all but one era n  3638  net -0.075  old adv -0.029 t -1.3  new adv -0.015 t -0.5  mkts+ 1/5   theory agrees  skip saves +25.5 R/yr
+  ev 1.86  gap_with       = low                    +-++ all but one era n  3590  net -0.053  old adv +0.017 t +0.8  new adv +0.004 t +0.1  mkts+ 4/5   AGAINST theory
+  ev 1.85  prev_range     = mid                    +-++ all but one era n  3612  net -0.047  old adv +0.014 t +0.6  new adv +0.026 t +0.9  mkts+ 3/5   
+  ev 1.84  prev_range     = low                    -+-- all but one era n  3507  net -0.071  old adv -0.019 t -0.8  new adv -0.020 t -0.7  mkts+ 2/5   AGAINST theory  skip saves +23.0 R/yr
+  ev 1.83  regime         = vol-high/trend-mid     -+-- all but one era n  1260  net -0.086  old adv -0.011 t -0.3  new adv -0.042 t -1.1  mkts+ 2/5     skip saves +10.1 R/yr
+  ev 1.83  regime         = vol-mid/trend-mid      --+- all but one era n   914  net -0.100  old adv -0.044 t -1.2  new adv -0.011 t -0.2  mkts+ 2/5     skip saves +8.5 R/yr
+  ev 1.82  vol            = low                    +-++ all but one era n  2871  net -0.059  old adv +0.027 t +1.1  new adv +0.011 t +0.3  mkts+ 3/5   AGAINST theory
+  ev 1.78  regime         = vol-low/trend-mid      ---+ all but one era n   980  net -0.072  old adv -0.048 t -1.3  new adv +0.090 t +1.4  mkts+ 2/5     skip saves +6.6 R/yr
+
+dip exit close   (355 trades)
+  ev 2.50  risk_size      = high                   ---- every era       n   102  net -0.127  old adv -0.134 t -1.8  new adv -0.028 t -0.3  mkts+ 1/5   theory agrees  skip saves +1.2 R/yr
+  ev 2.43  hour           = 2-5h                   -.-- every era       n    72  net -0.191  old adv -0.098 t -0.9  new adv -0.179 t -1.9  mkts+ 1/2     skip saves +1.3 R/yr
+  ev 2.43  form           = cold                   ..++ flips by era    n   142  net +0.005  old adv +0.126 t +1.1  new adv +0.015 t +0.2  mkts+ 1/1   AGAINST theory
+  ev 2.43  form           = hot                    ..-- flips by era    n    93  net -0.072  old adv -0.126 t -1.1  new adv -0.015 t -0.2  mkts+ 0/1   AGAINST theory  skip saves +0.6 R/yr
+  ev 2.39  day_move_with  = low                    ++++ every era       n    99  net +0.006  old adv +0.159 t +1.7  new adv +0.015 t +0.1  mkts+ 4/5   AGAINST theory
+  ev 2.34  hour           = 5h+                    +++- all but one era n   117  net -0.040  old adv +0.134 t +1.8  new adv -0.079 t -0.8  mkts+ 4/4   
+  ev 2.17  nr7            = 0                      ---+ all but one era n   273  net -0.092  old adv -0.227 t -2.0  new adv +0.172 t +1.2  mkts+ 1/4   theory agrees  skip saves +2.3 R/yr
+  ev 2.17  nr7            = 1                      +++- all but one era n    82  net +0.022  old adv +0.227 t +2.0  new adv -0.172 t -1.2  mkts+ 3/4   theory agrees
+  ev 2.11  vol            = low                    ---. every era       n    77  net -0.116  old adv -0.099 t -1.1  new adv      n/a       mkts+ 1/4   theory agrees  skip saves +0.8 R/yr
+  ev 2.08  risk_size      = low                    -+++ all but one era n   108  net -0.013  old adv +0.134 t +1.4  new adv +0.025 t +0.2  mkts+ 4/5   theory agrees
+  ev 2.04  gap_with       = mid                    -+++ all but one era n    98  net +0.015  old adv +0.094 t +1.0  new adv +0.112 t +1.1  mkts+ 3/5   
+  ev 1.97  pos20_with     = mid                    ---- every era       n   107  net -0.133  old adv -0.057 t -0.7  new adv -0.042 t -0.4  mkts+ 2/5     skip saves +1.3 R/yr
+
+dipx pullback 5d   (522 trades)
+  ev 2.87  gap_with       = high                   ---- every era       n   158  net -0.103  old adv -0.264 t -1.8  new adv -0.161 t -0.8  mkts+ 0/5   AGAINST theory  skip saves +1.5 R/yr
+  ev 2.50  gap_with       = low                    +-++ all but one era n   179  net +0.059  old adv +0.060 t +0.5  new adv +0.463 t +2.4  mkts+ 4/5   AGAINST theory
+  ev 2.42  day_move_with  = mid                    ++++ every era       n   163  net +0.078  old adv +0.234 t +1.7  new adv +0.146 t +0.7  mkts+ 3/5   
+  ev 2.37  form           = cold                   ++++ every era       n   197  net +0.014  old adv +0.153 t +1.0  new adv +0.118 t +0.7  mkts+ 4/5   AGAINST theory
+  ev 2.37  form           = hot                    ---- every era       n   205  net -0.111  old adv -0.153 t -1.0  new adv -0.118 t -0.7  mkts+ 1/5   AGAINST theory  skip saves +2.1 R/yr
+  ev 2.25  day_move_with  = low                    ---- every era       n   146  net -0.096  old adv -0.170 t -1.2  new adv -0.234 t -0.8  mkts+ 2/5   theory agrees  skip saves +1.3 R/yr
+  ev 2.04  hour           = pre-open               -+-- all but one era n   151  net -0.172  old adv -0.092 t -0.7  new adv -0.215 t -1.2  mkts+ 2/6     skip saves +2.4 R/yr
+  ev 2.00  prev_range     = mid                    +++- all but one era n   159  net +0.055  old adv +0.185 t +1.3  new adv -0.195 t -0.9  mkts+ 4/5   
+  ev 1.98  prev_range     = high                   +--- all but one era n   152  net -0.101  old adv -0.057 t -0.5  new adv -0.152 t -0.8  mkts+ 1/5   theory agrees  skip saves +1.4 R/yr
+  ev 1.91  with_50d       = 0                      -++. all but one era n    70  net +0.087  old adv +0.114 t +0.7  new adv      n/a       mkts+ 2/2   AGAINST theory
+  ev 1.91  with_50d       = 1                      +--. all but one era n   438  net -0.030  old adv -0.114 t -0.7  new adv      n/a       mkts+ 0/2   AGAINST theory  skip saves +1.2 R/yr
+  ev 1.88  weekday        = 1                      --+- all but one era n    95  net -0.123  old adv +0.002 t +0.0  new adv -0.295 t -1.4  mkts+ 1/3     skip saves +1.1 R/yr
+
+exhaust exit close   (3759 trades)
+  ev 3.11  vol            = low                    ---- every era       n   942  net -0.360  old adv -0.185 t -2.7  new adv -0.067 t -0.7  mkts+ 0/5   theory agrees  skip saves +31.5 R/yr
+  ev 2.72  with_50d       = 0                      ++++ every era       n  1822  net -0.222  old adv +0.117 t +1.9  new adv +0.054 t +0.8  mkts+ 5/6   AGAINST theory
+  ev 2.72  with_50d       = 1                      ---- every era       n  1796  net -0.236  old adv -0.117 t -1.9  new adv -0.054 t -0.8  mkts+ 1/6   AGAINST theory  skip saves +39.4 R/yr
+  ev 2.58  vol            = mid                    +-++ all but one era n   926  net -0.203  old adv +0.122 t +1.9  new adv +0.061 t +0.6  mkts+ 5/5   
+  ev 2.52  regime         = vol-high/trend-mid     ++++ every era       n   409  net -0.061  old adv +0.206 t +2.1  new adv +0.005 t +0.0  mkts+ 4/5   
+  ev 2.47  gap_with       = mid                    ++++ every era       n  1053  net -0.211  old adv +0.047 t +0.8  new adv +0.105 t +1.3  mkts+ 4/5   
+  ev 2.25  regime         = vol-mid/trend-mid      ++++ every era       n   296  net -0.165  old adv +0.113 t +1.2  new adv +0.026 t +0.2  mkts+ 4/5   
+  ev 2.22  regime         = vol-low/trend-high     +--- all but one era n   333  net -0.410  old adv -0.172 t -1.6  new adv -0.061 t -0.4  mkts+ 1/5     skip saves +12.7 R/yr
+  ev 2.22  regime         = vol-mid/trend-low      +++- all but one era n   343  net -0.166  old adv +0.181 t +2.0  new adv -0.001 t -0.0  mkts+ 4/5   
+  ev 2.17  risk_size      = low                    +++- all but one era n  1313  net -0.221  old adv +0.129 t +1.9  new adv -0.009 t -0.1  mkts+ 4/5   
+  ev 2.13  vol            = high                   ++++ every era       n  1185  net -0.180  old adv +0.064 t +0.9  new adv +0.006 t +0.1  mkts+ 4/5   theory agrees
+  ev 2.12  nr7            = 0                      +-++ all but one era n  3136  net -0.212  old adv +0.066 t +0.8  new adv +0.142 t +1.4  mkts+ 4/6   
+
+fade exit close   (6505 trades)
+  ev 3.15  gap_with       = mid                    ++++ every era       n  1913  net -0.073  old adv +0.071 t +1.6  new adv +0.122 t +1.9  mkts+ 5/5   
+  ev 2.97  weekday        = 1                      ++++ every era       n  1297  net -0.039  old adv +0.106 t +2.0  new adv +0.059 t +0.9  mkts+ 6/6   
+  ev 2.77  regime         = vol-low/trend-high     +--- all but one era n   565  net -0.202  old adv -0.055 t -0.8  new adv -0.296 t -2.3  mkts+ 0/5     skip saves +10.6 R/yr
+  ev 2.66  trendy         = high                   ---- every era       n  2050  net -0.132  old adv -0.061 t -1.3  new adv -0.086 t -1.3  mkts+ 1/5   theory agrees  skip saves +25.1 R/yr
+  ev 2.65  prev_range     = low                    ++++ every era       n  2010  net -0.045  old adv +0.078 t +1.6  new adv +0.019 t +0.3  mkts+ 5/5   AGAINST theory
+  ev 2.56  risk_size      = high                   +--- all but one era n  1896  net -0.109  old adv -0.047 t -1.2  new adv -0.070 t -1.2  mkts+ 0/5     skip saves +19.3 R/yr
+  ev 2.39  vol            = mid                    ++++ every era       n  1590  net -0.018  old adv +0.080 t +1.6  new adv +0.060 t +0.7  mkts+ 3/5   
+  ev 2.37  weekday        = 0                      --+- all but one era n  1187  net -0.174  old adv -0.034 t -0.6  new adv -0.154 t -2.2  mkts+ 2/6     skip saves +19.2 R/yr
+  ev 2.24  trendy         = mid                    +-++ all but one era n  2027  net -0.051  old adv +0.058 t +1.3  new adv +0.057 t +0.8  mkts+ 4/5   
+  ev 2.13  regime         = vol-mid/trend-mid      -+++ all but one era n   499  net +0.050  old adv +0.106 t +1.4  new adv +0.051 t +0.4  mkts+ 4/5   
+  ev 2.08  prev_range     = mid                    --+- all but one era n  2044  net -0.107  old adv -0.021 t -0.5  new adv -0.081 t -1.1  mkts+ 1/5     skip saves +20.4 R/yr
+  ev 2.08  pos20_with     = mid                    ++-+ all but one era n  2054  net -0.066  old adv +0.059 t +1.3  new adv +0.021 t +0.3  mkts+ 4/5   
+
+gao 0.25D close   (12907 trades)
+  ev 3.38  pos20_with     = low                    ---- every era       n  4259  net -0.145  old adv -0.032 t -3.5  new adv -0.022 t -1.6  mkts+ 1/6   theory agrees  skip saves +57.4 R/yr
+  ev 3.36  form           = cold                   ---- every era       n  6163  net -0.141  old adv -0.036 t -4.2  new adv -0.014 t -1.1  mkts+ 0/6   theory agrees  skip saves +80.9 R/yr
+  ev 3.36  form           = hot                    ++++ every era       n  6624  net -0.108  old adv +0.036 t +4.2  new adv +0.014 t +1.1  mkts+ 6/6   theory agrees
+  ev 3.10  vol            = mid                    ---- every era       n  3435  net -0.148  old adv -0.027 t -2.9  new adv -0.015 t -0.9  mkts+ 1/6     skip saves +47.4 R/yr
+  ev 3.09  weekday        = 2                      ++++ every era       n  2622  net -0.149  old adv +0.017 t +1.5  new adv +0.030 t +1.8  mkts+ 6/6   
+  ev 3.00  gap_with       = low                    ++++ every era       n  4874  net -0.103  old adv +0.029 t +3.2  new adv +0.013 t +1.0  mkts+ 4/6   AGAINST theory
+  ev 2.77  prev_range     = mid                    ++++ every era       n  4318  net -0.116  old adv +0.006 t +0.7  new adv +0.029 t +2.1  mkts+ 5/6   
+  ev 2.75  with_50d       = 0                      ---+ all but one era n  6191  net -0.139  old adv -0.037 t -4.3  new adv +0.001 t +0.1  mkts+ 0/6   theory agrees  skip saves +79.9 R/yr
+  ev 2.75  with_50d       = 1                      +++- all but one era n  6373  net -0.109  old adv +0.037 t +4.3  new adv -0.001 t -0.1  mkts+ 6/6   theory agrees
+  ev 2.62  gap_with       = high                   ---- every era       n  4216  net -0.135  old adv -0.020 t -2.2  new adv -0.009 t -0.7  mkts+ 2/6   AGAINST theory  skip saves +52.8 R/yr
+  ev 2.58  pos20_with     = high                   +++- all but one era n  4233  net -0.104  old adv +0.040 t +4.4  new adv -0.000 t -0.0  mkts+ 5/6   theory agrees
+  ev 2.58  regime         = vol-mid/trend-mid      ---+ all but one era n  1150  net -0.156  old adv -0.043 t -3.2  new adv +0.014 t +0.5  mkts+ 1/6     skip saves +16.7 R/yr
+
+gapfill exit close   (367 trades)
+  ev 2.90  trendy         = mid                    ++++ every era       n   122  net +0.001  old adv +0.264 t +1.8  new adv +0.289 t +0.9  mkts+ 2/2   
+  ev 2.87  gap_with       = high                   ++++ every era       n   128  net -0.092  old adv +0.305 t +1.8  new adv +0.260 t +0.8  mkts+ 2/2   AGAINST theory
+  ev 2.74  pos20_with     = high                   ---- every era       n   122  net -0.232  old adv -0.285 t -1.4  new adv -0.263 t -0.8  mkts+ 0/2   theory agrees  skip saves +2.6 R/yr
+  ev 2.68  gap_with       = mid                    ---. every era       n   107  net -0.286  old adv -0.400 t -2.0  new adv      n/a       mkts+ 0/2     skip saves +2.8 R/yr
+  ev 2.64  trendy         = low                    +--- all but one era n   114  net -0.185  old adv -0.338 t -1.8  new adv -0.357 t -0.9  mkts+ 0/2   AGAINST theory  skip saves +2.0 R/yr
+  ev 2.55  pos20_with     = low                    +++. every era       n   107  net +0.018  old adv +0.250 t +1.7  new adv      n/a       mkts+ 2/2   theory agrees
+  ev 2.35  with_50d       = 0                      +-++ all but one era n   182  net -0.065  old adv +0.149 t +0.8  new adv +0.312 t +1.0  mkts+ 2/2   AGAINST theory
+  ev 2.35  with_50d       = 1                      -+-- all but one era n   159  net -0.153  old adv -0.149 t -0.8  new adv -0.312 t -1.0  mkts+ 0/2   AGAINST theory  skip saves +2.3 R/yr
+  ev 2.24  day_move_with  = mid                    +++- all but one era n   127  net +0.082  old adv +0.258 t +1.5  new adv -0.037 t -0.1  mkts+ 2/2   
+  ev 2.04  vol            = mid                    +--. all but one era n    91  net -0.075  old adv -0.242 t -1.1  new adv      n/a       mkts+ 0/2     skip saves +0.6 R/yr
+  ev 1.96  risk_size      = low                    +--- all but one era n   130  net -0.318  old adv -0.105 t -0.5  new adv -0.038 t -0.1  mkts+ 0/2     skip saves +3.9 R/yr
+  ev 1.90  day_move_with  = low                    -++. all but one era n   110  net +0.062  old adv +0.107 t +0.7  new adv      n/a       mkts+ 2/2   theory agrees
+
+london exit close   (9098 trades)
+  ev 3.10  gap_with       = low                    ++++ every era       n  3044  net -0.033  old adv +0.033 t +1.6  new adv +0.049 t +1.7  mkts+ 6/6   AGAINST theory
+  ev 2.51  form           = cold                   ++++ every era       n  4528  net -0.045  old adv +0.027 t +1.4  new adv +0.031 t +1.1  mkts+ 4/6   AGAINST theory
+  ev 2.51  form           = hot                    ---- every era       n  4450  net -0.080  old adv -0.027 t -1.4  new adv -0.031 t -1.1  mkts+ 2/6   AGAINST theory  skip saves +33.1 R/yr
+  ev 2.41  hour           = 2-5h                   -+++ all but one era n  1235  net -0.014  old adv +0.038 t +1.2  new adv +0.022 t +0.8  mkts+ 3/3   
+  ev 2.41  hour           = 5h+                    +--- all but one era n  7769  net -0.068  old adv -0.038 t -1.2  new adv -0.022 t -0.8  mkts+ 0/3     skip saves +49.3 R/yr
+  ev 2.18  weekday        = 4                      -+-- all but one era n  1796  net -0.077  old adv -0.019 t -0.8  new adv -0.051 t -1.5  mkts+ 2/6     skip saves +12.9 R/yr
+  ev 2.09  gap_with       = high                   ---- every era       n  2983  net -0.070  old adv -0.021 t -1.0  new adv -0.008 t -0.3  mkts+ 2/6   AGAINST theory  skip saves +19.3 R/yr
+  ev 2.05  pos20_with     = mid                    -+-- all but one era n  3023  net -0.079  old adv -0.014 t -0.7  new adv -0.034 t -1.2  mkts+ 2/6     skip saves +22.2 R/yr
+  ev 2.03  prev_range     = low                    ++++ every era       n  2965  net -0.047  old adv +0.023 t +1.1  new adv +0.015 t +0.5  mkts+ 3/6   theory agrees
+  ev 2.03  weekday        = 0                      -+++ all but one era n  1744  net -0.041  old adv +0.021 t +0.9  new adv +0.029 t +1.0  mkts+ 4/6   
+  ev 1.97  pos20_with     = high                   +-++ all but one era n  2930  net -0.049  old adv -0.004 t -0.2  new adv +0.048 t +1.7  mkts+ 4/6   theory agrees
+  ev 1.95  regime         = vol-mid/trend-low      ++++ every era       n   906  net -0.049  old adv +0.024 t +0.8  new adv +0.024 t +0.6  mkts+ 3/6   
+
+main exit close   (10247 trades)
+  ev 2.96  gap_with       = low                    ++++ every era       n  3309  net -0.016  old adv +0.044 t +1.8  new adv +0.054 t +1.6  mkts+ 4/5   AGAINST theory
+  ev 2.57  gap_with       = mid                    ---- every era       n  3100  net -0.064  old adv -0.025 t -1.1  new adv -0.042 t -1.3  mkts+ 1/5     skip saves +18.5 R/yr
+  ev 2.51  regime         = vol-mid/trend-mid      ---- every era       n   826  net -0.091  old adv -0.063 t -1.6  new adv -0.069 t -1.1  mkts+ 2/5     skip saves +7.0 R/yr
+  ev 2.49  pos20_with     = high                   +-++ all but one era n  3182  net -0.004  old adv +0.049 t +2.0  new adv +0.026 t +0.8  mkts+ 4/5   theory agrees
+  ev 2.48  trendy         = mid                    -+-- all but one era n  3221  net -0.071  old adv -0.052 t -2.2  new adv -0.021 t -0.6  mkts+ 1/5     skip saves +21.3 R/yr
+  ev 2.48  weekday        = 0                      -+++ all but one era n  1953  net -0.015  old adv +0.006 t +0.2  new adv +0.082 t +2.5  mkts+ 5/6   
+  ev 2.41  regime         = vol-low/trend-low      +-++ all but one era n   802  net +0.009  old adv +0.060 t +1.5  new adv +0.029 t +0.5  mkts+ 5/5   
+  ev 2.40  pos20_with     = mid                    ---- every era       n  3265  net -0.067  old adv -0.033 t -1.4  new adv -0.034 t -1.1  mkts+ 2/5     skip saves +20.2 R/yr
+  ev 2.40  weekday        = 4                      --+- all but one era n  1987  net -0.055  old adv -0.008 t -0.3  new adv -0.082 t -2.2  mkts+ 1/6     skip saves +10.2 R/yr
+  ev 2.38  vol            = mid                    ---- every era       n  2537  net -0.060  old adv -0.027 t -1.1  new adv -0.027 t -0.7  mkts+ 1/5     skip saves +14.2 R/yr
+  ev 2.35  trendy         = low                    +-++ all but one era n  3180  net -0.017  old adv +0.022 t +0.9  new adv +0.048 t +1.5  mkts+ 4/5   AGAINST theory
+  ev 2.32  vol            = low                    ++++ every era       n  2620  net -0.040  old adv +0.033 t +1.3  new adv +0.011 t +0.3  mkts+ 4/5   AGAINST theory
+
+main2 box close   (8835 trades)
+  ev 3.37  weekday        = 4                      ---- every era       n  1697  net -0.074  old adv -0.074 t -2.1  new adv -0.098 t -2.0  mkts+ 0/6     skip saves +11.6 R/yr
+  ev 2.98  vol            = mid                    ---- every era       n  2144  net -0.069  old adv -0.056 t -1.8  new adv -0.056 t -1.1  mkts+ 0/4     skip saves +13.7 R/yr
+  ev 2.91  prev_range     = high                   -+-- all but one era n  2595  net -0.071  old adv -0.032 t -1.1  new adv -0.108 t -2.3  mkts+ 0/4   theory agrees  skip saves +17.1 R/yr
+  ev 2.88  prev_range     = mid                    ++++ every era       n  2662  net -0.017  old adv +0.031 t +1.1  new adv +0.069 t +1.6  mkts+ 4/4   
+  ev 2.84  pos20_with     = high                   ++++ every era       n  2634  net +0.015  old adv +0.051 t +1.8  new adv +0.036 t +0.8  mkts+ 4/4   theory agrees
+  ev 2.72  gap_with       = mid                    ---- every era       n  2321  net -0.074  old adv -0.037 t -1.3  new adv -0.085 t -1.6  mkts+ 1/4     skip saves +16.0 R/yr
+  ev 2.66  regime         = vol-mid/trend-mid      ---- every era       n   690  net -0.122  old adv -0.109 t -2.3  new adv -0.030 t -0.4  mkts+ 1/4     skip saves +7.8 R/yr
+  ev 2.63  weekday        = 0                      -+++ all but one era n  1676  net -0.002  old adv +0.004 t +0.1  new adv +0.124 t +3.1  mkts+ 5/6   
+  ev 2.49  risk_size      = high                   ++++ every era       n  2721  net +0.001  old adv +0.038 t +1.5  new adv +0.031 t +0.7  mkts+ 3/4   AGAINST theory
+  ev 2.46  gap_with       = low                    +-++ all but one era n  2862  net -0.016  old adv +0.040 t +1.4  new adv +0.031 t +0.7  mkts+ 4/4   AGAINST theory
+  ev 2.36  weekday        = 3                      ++++ every era       n  1815  net +0.021  old adv +0.051 t +1.5  new adv +0.026 t +0.6  mkts+ 4/6   
+  ev 2.34  regime         = vol-mid/trend-low      +--- all but one era n   776  net -0.068  old adv -0.049 t -1.1  new adv -0.113 t -1.4  mkts+ 1/4     skip saves +4.9 R/yr
+
+nr7 exit close   (1797 trades)
+  ev 3.45  prev_range     = low                    ++++ every era       n   588  net +0.097  old adv +0.151 t +2.8  new adv +0.155 t +2.0  mkts+ 5/6   theory agrees
+  ev 3.08  regime         = vol-low/trend-low      ++++ every era       n   142  net +0.115  old adv +0.143 t +1.6  new adv +0.193 t +1.7  mkts+ 4/4   
+  ev 3.00  prev_range     = mid                    ---- every era       n   573  net -0.119  old adv -0.146 t -3.1  new adv -0.034 t -0.5  mkts+ 1/6     skip saves +6.4 R/yr
+  ev 2.96  weekday        = 3                      ++++ every era       n   300  net +0.082  old adv +0.128 t +2.0  new adv +0.079 t +0.9  mkts+ 6/6   
+  ev 2.59  risk_size      = low                    +-++ all but one era n   639  net +0.035  old adv +0.092 t +1.7  new adv +0.092 t +1.3  mkts+ 5/6   theory agrees
+  ev 2.41  vol            = low                    ++++ every era       n   475  net +0.004  old adv +0.079 t +1.5  new adv +0.024 t +0.3  mkts+ 5/6   AGAINST theory
+  ev 2.21  weekday        = 2                      ---- every era       n   305  net -0.109  old adv -0.065 t -1.0  new adv -0.049 t -0.6  mkts+ 2/6     skip saves +3.1 R/yr
+  ev 2.06  risk_size      = high                   +--- all but one era n   567  net -0.050  old adv -0.004 t -0.1  new adv -0.118 t -1.9  mkts+ 2/6   theory agrees  skip saves +2.7 R/yr
+  ev 2.04  pos20_with     = low                    ---+ all but one era n   597  net -0.076  old adv -0.091 t -1.9  new adv +0.035 t +0.5  mkts+ 2/6   theory agrees  skip saves +4.2 R/yr
+  ev 2.02  weekday        = 0                      +--- all but one era n   363  net -0.068  old adv -0.059 t -1.1  new adv -0.018 t -0.2  mkts+ 1/6     skip saves +2.3 R/yr
+  ev 1.97  pos20_with     = mid                    +++- all but one era n   630  net +0.004  old adv +0.082 t +1.7  new adv -0.052 t -0.8  mkts+ 4/6   
+  ev 1.84  day_move_with  = low                    ++++ every era       n   606  net +0.024  old adv +0.053 t +1.0  new adv +0.003 t +0.0  mkts+ 3/6   AGAINST theory
+
+nyaft exit close   (4109 trades)
+  ev 3.03  gap_with       = low                    ++++ every era       n  1331  net -0.018  old adv +0.077 t +1.6  new adv +0.135 t +2.0  mkts+ 5/6   AGAINST theory
+  ev 2.85  gap_with       = high                   ---- every era       n  1295  net -0.160  old adv -0.064 t -1.2  new adv -0.114 t -1.9  mkts+ 1/6   AGAINST theory  skip saves +19.3 R/yr
+  ev 2.40  vol            = low                    +--- all but one era n  1060  net -0.153  old adv -0.070 t -1.3  new adv -0.083 t -1.1  mkts+ 1/6   theory agrees  skip saves +15.1 R/yr
+  ev 2.25  hour           = 2-5h                   ---- every era       n  1105  net -0.152  old adv -0.070 t -1.4  new adv -0.136 t -2.4  mkts+ 0/0     skip saves +15.6 R/yr
+  ev 2.25  hour           = 5h+                    ++++ every era       n  2953  net -0.074  old adv +0.070 t +1.4  new adv +0.136 t +2.4  mkts+ 0/0   
+  ev 2.20  weekday        = 3                      ++-+ all but one era n   821  net -0.025  old adv +0.058 t +1.1  new adv +0.066 t +0.8  mkts+ 5/6   
+  ev 2.18  risk_size      = high                   -+-- all but one era n  1266  net -0.083  old adv -0.029 t -0.7  new adv -0.092 t -1.6  mkts+ 2/6   theory agrees  skip saves +9.8 R/yr
+  ev 2.09  prev_range     = low                    ++-+ all but one era n  1325  net -0.122  old adv -0.031 t -0.6  new adv +0.095 t +1.5  mkts+ 5/6   theory agrees
+  ev 2.07  with_slope20   = 0                      +--- all but one era n  2000  net -0.082  old adv -0.033 t -0.7  new adv -0.046 t -0.8  mkts+ 1/6   theory agrees  skip saves +15.2 R/yr
+  ev 2.07  with_slope20   = 1                      -+++ all but one era n  2041  net -0.107  old adv +0.033 t +0.7  new adv +0.046 t +0.8  mkts+ 5/6   theory agrees
+  ev 2.07  weekday        = 0                      ---+ all but one era n   802  net -0.174  old adv -0.108 t -2.0  new adv +0.057 t +0.8  mkts+ 2/6     skip saves +13.0 R/yr
+  ev 2.04  nr7            = 0                      +++- all but one era n  3440  net -0.092  old adv +0.125 t +1.9  new adv -0.086 t -1.1  mkts+ 4/6   AGAINST theory
+
+orb30 range close   (13141 trades)
+  ev 2.59  trendy         = low                    ++++ every era       n  4328  net -0.015  old adv +0.064 t +1.2  new adv +0.056 t +1.1  mkts+ 5/6   AGAINST theory
+  ev 2.59  regime         = vol-high/trend-low     ++++ every era       n  1523  net -0.003  old adv +0.118 t +1.9  new adv +0.027 t +0.4  mkts+ 5/6   
+  ev 2.51  trendy         = mid                    ---- every era       n  4427  net -0.055  old adv -0.114 t -1.3  new adv -0.067 t -1.2  mkts+ 2/6     skip saves +22.7 R/yr
+  ev 2.51  weekday        = 0                      ++++ every era       n  2619  net +0.035  old adv +0.088 t +1.7  new adv +0.050 t +0.8  mkts+ 4/6   
+  ev 2.44  risk_size      = mid                    +++- all but one era n  4362  net -0.028  old adv +0.109 t +2.1  new adv -0.083 t -1.6  mkts+ 6/6   
+  ev 2.25  gap_with       = low                    ++++ every era       n  4402  net -0.010  old adv +0.080 t +1.5  new adv +0.041 t +0.7  mkts+ 3/6   AGAINST theory
+  ev 2.22  regime         = vol-high/trend-mid     ---- every era       n  1544  net -0.062  old adv -0.055 t -0.9  new adv -0.020 t -0.3  mkts+ 1/6     skip saves +8.9 R/yr
+  ev 2.06  weekday        = 1                      ++++ every era       n  2641  net +0.002  old adv +0.046 t +0.9  new adv +0.047 t +0.8  mkts+ 3/6   
+  ev 2.01  prev_range     = high                   +++- all but one era n  4426  net -0.014  old adv +0.068 t +1.3  new adv -0.006 t -0.1  mkts+ 5/6   AGAINST theory
+  ev 1.98  hour           = 5h+                    +..+ flips by era    n    70  net +0.152  old adv +0.153 t +1.1  new adv +0.081 t +0.4  mkts+ 1/2   
+  ev 1.82  weekday        = 2                      ---+ all but one era n  2638  net -0.106  old adv -0.065 t -1.2  new adv +0.070 t +1.0  mkts+ 2/6     skip saves +26.1 R/yr
+  ev 1.80  regime         = vol-low/trend-high     +++- all but one era n  1285  net -0.000  old adv +0.076 t +1.2  new adv -0.010 t -0.1  mkts+ 4/6   
+
+orb60 range close   (13008 trades)
+  ev 2.68  vol            = low                    +-++ all but one era n  3421  net +0.014  old adv +0.073 t +1.9  new adv +0.114 t +1.9  mkts+ 4/6   AGAINST theory
+  ev 2.58  pos20_with     = high                   +-++ all but one era n  4289  net +0.009  old adv +0.062 t +1.8  new adv +0.033 t +0.7  mkts+ 6/6   theory agrees
+  ev 2.43  prev_range     = high                   ++++ every era       n  4381  net -0.027  old adv +0.043 t +1.2  new adv +0.023 t +0.5  mkts+ 5/6   AGAINST theory
+  ev 2.23  hour           = 5h+                    +--- all but one era n   340  net -0.135  old adv -0.102 t -1.8  new adv -0.046 t -0.4  mkts+ 1/4     skip saves +4.3 R/yr
+  ev 2.21  regime         = vol-low/trend-mid      +-++ all but one era n  1127  net +0.054  old adv +0.061 t +1.1  new adv +0.176 t +1.7  mkts+ 3/6   
+  ev 2.15  regime         = vol-low/trend-high     +-++ all but one era n  1271  net +0.013  old adv +0.076 t +1.6  new adv +0.060 t +0.6  mkts+ 4/6   
+  ev 2.14  weekday        = 0                      ++++ every era       n  2585  net -0.010  old adv +0.040 t +1.1  new adv +0.017 t +0.3  mkts+ 4/6   
+  ev 2.13  vol            = mid                    -+-- all but one era n  3485  net -0.073  old adv -0.075 t -1.4  new adv -0.012 t -0.2  mkts+ 1/6     skip saves +23.6 R/yr
+  ev 2.05  with_50d       = 0                      ++++ every era       n  6258  net -0.020  old adv +0.036 t +0.9  new adv +0.009 t +0.2  mkts+ 4/6   AGAINST theory
+  ev 2.05  with_50d       = 1                      ---- every era       n  6395  net -0.034  old adv -0.036 t -0.9  new adv -0.009 t -0.2  mkts+ 2/6   AGAINST theory  skip saves +20.5 R/yr
+  ev 2.02  gap_with       = mid                    ---- every era       n  4411  net -0.066  old adv -0.034 t -0.9  new adv -0.005 t -0.1  mkts+ 2/6     skip saves +27.0 R/yr
+  ev 1.96  weekday        = 3                      +++- all but one era n  2611  net +0.011  old adv +0.044 t +1.1  new adv -0.035 t -0.6  mkts+ 5/6   
+
+pdh exit close   (4559 trades)
+  ev 3.38  hour           = pre-open               ++++ every era       n   134  net +0.203  old adv +0.183 t +2.0  new adv +0.325 t +2.2  mkts+ 1/1   
+  ev 3.34  weekday        = 0                      ---- every era       n   901  net -0.110  old adv -0.114 t -3.1  new adv -0.045 t -1.0  mkts+ 0/6     skip saves +9.2 R/yr
+  ev 2.75  weekday        = 2                      +-++ all but one era n   874  net -0.026  old adv +0.073 t +2.0  new adv +0.050 t +1.0  mkts+ 6/6   
+  ev 2.36  risk_size      = low                    -+++ all but one era n  1532  net -0.028  old adv -0.008 t -0.2  new adv +0.126 t +2.8  mkts+ 4/6   theory agrees
+  ev 2.19  risk_size      = high                   +--- all but one era n  1494  net -0.050  old adv -0.002 t -0.1  new adv -0.085 t -2.3  mkts+ 2/6   theory agrees  skip saves +7.0 R/yr
+  ev 2.14  trendy         = high                   -+-- all but one era n  1508  net -0.059  old adv -0.007 t -0.2  new adv -0.083 t -1.9  mkts+ 2/6   AGAINST theory  skip saves +8.3 R/yr
+  ev 2.09  vol            = high                   +--- all but one era n  1589  net -0.046  old adv -0.025 t -0.8  new adv -0.054 t -1.3  mkts+ 2/6   AGAINST theory  skip saves +6.9 R/yr
+  ev 2.06  pos20_with     = high                   +-++ all but one era n  1493  net -0.003  old adv +0.019 t +0.6  new adv +0.056 t +1.3  mkts+ 4/6   theory agrees
+  ev 2.06  hour           = 0-2h                   --+- all but one era n  2554  net -0.042  old adv -0.015 t -0.5  new adv -0.057 t -1.4  mkts+ 2/6     skip saves +9.9 R/yr
+  ev 2.04  gap_with       = mid                    -+-- all but one era n  1341  net -0.058  old adv -0.021 t -0.7  new adv -0.060 t -1.2  mkts+ 2/6     skip saves +7.2 R/yr
+  ev 2.03  trendy         = low                    ++++ every era       n  1482  net -0.029  old adv +0.025 t +0.8  new adv +0.013 t +0.3  mkts+ 4/6   AGAINST theory
+  ev 2.01  gap_with       = low                    +-++ all but one era n  1693  net -0.035  old adv +0.012 t +0.4  new adv +0.056 t +1.4  mkts+ 4/6   AGAINST theory
+
+pdh2 lvl0.25D 5d   (11760 trades)
+  ev 3.50  pos20_with     = high                   ++++ every era       n  3908  net +0.056  old adv +0.146 t +3.1  new adv +0.144 t +2.0  mkts+ 5/6   theory agrees
+  ev 3.15  regime         = vol-low/trend-low      ++++ every era       n   913  net +0.220  old adv +0.226 t +2.5  new adv +0.203 t +1.4  mkts+ 5/6   
+  ev 3.09  pos20_with     = low                    ---- every era       n  3836  net -0.264  old adv -0.198 t -4.4  new adv -0.018 t -0.3  mkts+ 0/6   theory agrees  skip saves +94.3 R/yr
+  ev 3.08  form           = cold                   ++++ every era       n  6204  net +0.051  old adv +0.203 t +4.6  new adv +0.016 t +0.2  mkts+ 6/6   AGAINST theory
+  ev 3.08  form           = hot                    ---- every era       n  5434  net -0.240  old adv -0.203 t -4.6  new adv -0.016 t -0.2  mkts+ 0/6   AGAINST theory  skip saves +121.6 R/yr
+  ev 2.90  vol            = low                    ++++ every era       n  3071  net +0.015  old adv +0.131 t +2.6  new adv +0.051 t +0.6  mkts+ 5/6   AGAINST theory
+  ev 2.90  with_50d       = 0                      ---- every era       n  5023  net -0.183  old adv -0.084 t -1.9  new adv -0.053 t -0.8  mkts+ 0/6   theory agrees  skip saves +85.5 R/yr
+  ev 2.90  with_50d       = 1                      ++++ every era       n  6353  net -0.012  old adv +0.084 t +1.9  new adv +0.053 t +0.8  mkts+ 6/6   theory agrees
+  ev 2.81  regime         = vol-mid/trend-low      ---- every era       n  1160  net -0.326  old adv -0.118 t -1.8  new adv -0.132 t -1.1  mkts+ 1/6     skip saves +35.2 R/yr
+  ev 2.75  regime         = vol-high/trend-mid     ---+ all but one era n  1419  net -0.170  old adv -0.248 t -3.6  new adv +0.057 t +0.6  mkts+ 0/6     skip saves +22.5 R/yr
+  ev 2.74  risk_size      = low                    ++++ every era       n  4023  net -0.029  old adv +0.080 t +1.7  new adv +0.072 t +1.0  mkts+ 5/6   theory agrees
+  ev 2.73  vol            = mid                    --+- all but one era n  3127  net -0.187  old adv -0.022 t -0.4  new adv -0.281 t -3.4  mkts+ 1/6     skip saves +54.5 R/yr
+
+range exit close   (2682 trades)
+  ev 2.90  gap_with       = low                    ---- every era       n   828  net -0.386  old adv -0.278 t -2.3  new adv -0.148 t -1.0  mkts+ 1/5   AGAINST theory  skip saves +29.7 R/yr
+  ev 2.67  regime         = vol-high/trend-low     ++++ every era       n   271  net -0.052  old adv +0.425 t +2.4  new adv +0.050 t +0.2  mkts+ 4/5   
+  ev 2.43  gap_with       = high                   ++++ every era       n   843  net -0.105  old adv +0.186 t +1.5  new adv +0.049 t +0.3  mkts+ 4/5   AGAINST theory
+  ev 2.34  hour           = 0-2h                   ---+ all but one era n  2086  net -0.288  old adv -0.306 t -2.3  new adv +0.087 t +0.5  mkts+ 1/6     skip saves +55.9 R/yr
+  ev 2.30  vol            = low                    --+- all but one era n   645  net -0.343  old adv -0.147 t -1.1  new adv -0.197 t -1.2  mkts+ 1/5   theory agrees  skip saves +20.6 R/yr
+  ev 2.27  prev_range     = high                   ---+ all but one era n   779  net -0.315  old adv -0.263 t -2.2  new adv +0.029 t +0.2  mkts+ 1/5   AGAINST theory  skip saves +22.8 R/yr
+  ev 2.20  pos20_with     = high                   ---+ all but one era n   800  net -0.219  old adv -0.240 t -1.9  new adv +0.114 t +0.7  mkts+ 1/5   theory agrees  skip saves +16.3 R/yr
+  ev 2.14  hour           = 2-5h                   +++- all but one era n   520  net +0.007  old adv +0.300 t +2.2  new adv -0.129 t -0.8  mkts+ 4/6   
+  ev 2.08  day_move_with  = low                    ---+ all but one era n   786  net -0.325  old adv -0.257 t -2.2  new adv +0.231 t +1.7  mkts+ 2/5   AGAINST theory  skip saves +23.8 R/yr
+  ev 2.06  prev_range     = low                    +++- all but one era n   858  net -0.088  old adv +0.267 t +2.1  new adv -0.070 t -0.5  mkts+ 3/5   AGAINST theory
+  ev 2.06  weekday        = 3                      +--- all but one era n   549  net -0.389  old adv -0.057 t -0.4  new adv -0.238 t -1.5  mkts+ 2/6     skip saves +19.8 R/yr
+  ev 2.04  gap_with       = mid                    +-++ all but one era n   794  net -0.168  old adv +0.093 t +0.8  new adv +0.103 t +0.7  mkts+ 4/5   
+
+range2 asia own   (8504 trades)
+  ev 3.31  pos20_with     = mid                    ++++ every era       n  2665  net -0.082  old adv +0.020 t +1.7  new adv +0.048 t +2.2  mkts+ 3/3   
+  ev 2.92  prev_range     = low                    ---- every era       n  2687  net -0.118  old adv -0.026 t -2.3  new adv -0.010 t -0.5  mkts+ 0/3   theory agrees  skip saves +29.6 R/yr
+  ev 2.91  regime         = vol-high/trend-high    ---- every era       n   980  net -0.112  old adv -0.015 t -0.7  new adv -0.064 t -2.0  mkts+ 0/3     skip saves +10.2 R/yr
+  ev 2.75  regime         = vol-high/trend-low     ++-+ all but one era n   866  net -0.044  old adv +0.022 t +1.2  new adv +0.053 t +1.8  mkts+ 3/3   
+  ev 2.73  pos20_with     = high                   ---- every era       n  2659  net -0.113  old adv -0.024 t -2.0  new adv -0.004 t -0.2  mkts+ 0/3   theory agrees  skip saves +27.8 R/yr
+  ev 2.44  regime         = vol-low/trend-mid      -+-- all but one era n   780  net -0.138  old adv +0.003 t +0.2  new adv -0.086 t -2.1  mkts+ 0/3     skip saves +10.0 R/yr
+  ev 2.39  regime         = vol-low/trend-high     +-++ all but one era n   808  net -0.113  old adv +0.016 t +0.8  new adv +0.045 t +1.1  mkts+ 3/3   
+  ev 2.36  day_move_with  = mid                    ++++ every era       n  2628  net -0.101  old adv +0.006 t +0.5  new adv +0.012 t +0.6  mkts+ 3/3   
+  ev 2.31  regime         = vol-low/trend-low      ---+ all but one era n   677  net -0.154  old adv -0.032 t -1.7  new adv +0.014 t +0.3  mkts+ 0/3     skip saves +9.7 R/yr
+  ev 2.21  nr7            = 0                      ++++ every era       n  7253  net -0.093  old adv +0.019 t +1.3  new adv +0.003 t +0.1  mkts+ 3/4   
+  ev 2.21  nr7            = 1                      ---- every era       n  1251  net -0.118  old adv -0.019 t -1.3  new adv -0.003 t -0.1  mkts+ 1/4     skip saves +13.7 R/yr
+  ev 2.14  prev_range     = mid                    ++++ every era       n  2681  net -0.096  old adv +0.014 t +1.2  new adv +0.005 t +0.2  mkts+ 2/3   
+
+retest exit close   (4736 trades)
+  ev 2.96  risk_size      = mid                    ---- every era       n  1477  net -0.157  old adv -0.064 t -1.4  new adv -0.144 t -2.1  mkts+ 1/5     skip saves +21.5 R/yr
+  ev 2.84  weekday        = 0                      ++++ every era       n   855  net +0.044  old adv +0.069 t +1.1  new adv +0.137 t +1.9  mkts+ 5/6   
+  ev 2.53  weekday        = 1                      ---- every era       n   989  net -0.109  old adv -0.073 t -1.3  new adv -0.053 t -0.8  mkts+ 1/6     skip saves +10.0 R/yr
+  ev 2.52  vol            = mid                    +--- all but one era n  1172  net -0.138  old adv -0.093 t -1.8  new adv -0.041 t -0.5  mkts+ 0/5     skip saves +15.0 R/yr
+  ev 2.48  vol            = low                    ++++ every era       n  1209  net -0.018  old adv +0.093 t +1.8  new adv +0.074 t +0.8  mkts+ 3/5   AGAINST theory
+  ev 2.48  gap_with       = mid                    ---- every era       n  1427  net -0.115  old adv -0.067 t -1.3  new adv -0.048 t -0.8  mkts+ 1/5     skip saves +15.3 R/yr
+  ev 2.42  regime         = vol-low/trend-mid      ++++ every era       n   405  net +0.027  old adv +0.105 t +1.4  new adv +0.172 t +1.0  mkts+ 3/5   
+  ev 2.31  pos20_with     = mid                    --+- all but one era n  1511  net -0.138  old adv -0.099 t -2.0  new adv -0.055 t -0.8  mkts+ 2/5     skip saves +19.4 R/yr
+  ev 2.25  weekday        = 4                      --+- all but one era n   890  net -0.073  old adv -0.023 t -0.4  new adv -0.141 t -1.6  mkts+ 1/6     skip saves +6.0 R/yr
+  ev 2.24  pos20_with     = low                    ++-+ all but one era n  1435  net -0.046  old adv +0.049 t +1.0  new adv +0.077 t +1.1  mkts+ 4/5   AGAINST theory
+  ev 2.19  regime         = vol-mid/trend-mid      ---- every era       n   387  net -0.172  old adv -0.070 t -0.9  new adv -0.096 t -0.9  mkts+ 2/5     skip saves +6.2 R/yr
+  ev 2.16  gap_with       = high                   +-++ all but one era n  1454  net -0.024  old adv +0.021 t +0.4  new adv +0.101 t +1.4  mkts+ 4/5   theory agrees
+
+retest2 0.25D close   (7819 trades)
+  ev 3.03  regime         = vol-mid/trend-low      --+- all but one era n   683  net -0.202  old adv -0.115 t -1.9  new adv -0.239 t -2.0  mkts+ 0/4     skip saves +12.8 R/yr
+  ev 2.86  vol            = mid                    ---- every era       n  1900  net -0.157  old adv -0.062 t -1.4  new adv -0.091 t -1.2  mkts+ 0/4     skip saves +27.7 R/yr
+  ev 2.84  weekday        = 4                      ---- every era       n  1509  net -0.157  old adv -0.082 t -1.6  new adv -0.062 t -0.9  mkts+ 0/6     skip saves +22.1 R/yr
+  ev 2.75  pos20_with     = high                   ++++ every era       n  2341  net -0.035  old adv +0.090 t +2.1  new adv +0.011 t +0.1  mkts+ 4/4   theory agrees
+  ev 2.51  risk_size      = mid                    ++++ every era       n  2387  net -0.030  old adv +0.033 t +0.8  new adv +0.095 t +1.5  mkts+ 3/4   
+  ev 2.43  gap_with       = mid                    --+- all but one era n  2070  net -0.175  old adv -0.065 t -1.6  new adv -0.096 t -1.2  mkts+ 1/4     skip saves +33.6 R/yr
+  ev 2.41  vol            = low                    +-++ all but one era n  1960  net -0.048  old adv +0.078 t +1.7  new adv +0.027 t +0.3  mkts+ 4/4   AGAINST theory
+  ev 2.31  risk_size      = high                   ---- every era       n  2302  net -0.116  old adv -0.044 t -1.1  new adv -0.087 t -1.3  mkts+ 2/4   theory agrees  skip saves +24.9 R/yr
+  ev 2.27  weekday        = 3                      ++++ every era       n  1619  net -0.036  old adv +0.053 t +1.1  new adv +0.059 t +0.7  mkts+ 4/6   
+  ev 2.19  weekday        = 0                      -+++ all but one era n  1467  net -0.083  old adv -0.021 t -0.4  new adv +0.150 t +2.3  mkts+ 4/6   
+  ev 2.18  prev_range     = mid                    ++-+ all but one era n  2371  net -0.079  old adv +0.037 t +0.9  new adv +0.080 t +1.2  mkts+ 3/4   
+  ev 2.18  regime         = vol-high/trend-mid     -+-- all but one era n   807  net -0.113  old adv -0.057 t -0.9  new adv -0.032 t -0.4  mkts+ 0/4     skip saves +8.5 R/yr
+
+rsi2 long own   (301 trades)
+  ev 2.56  trendy         = low                    -.-- every era       n    76  net -0.335  old adv -0.475 t -1.9  new adv -0.348 t -0.8  mkts+ 1/3   AGAINST theory  skip saves +2.4 R/yr
+  ev 2.50  pos20_with     = mid                    -.+- all but one era n    81  net -0.281  old adv -0.356 t -1.4  new adv -0.422 t -1.1  mkts+ 0/3     skip saves +2.1 R/yr
+  ev 2.26  trendy         = high                   +.-+ all but one era n    79  net +0.204  old adv +0.259 t +1.1  new adv +0.515 t +1.5  mkts+ 3/4   AGAINST theory
+  ev 2.23  with_slope20   = 0                      ++-+ all but one era n    89  net +0.206  old adv +0.242 t +1.1  new adv +0.104 t +0.3  mkts+ 3/3   AGAINST theory
+  ev 2.23  with_slope20   = 1                      --+- all but one era n   212  net -0.003  old adv -0.242 t -1.1  new adv -0.104 t -0.3  mkts+ 0/3   AGAINST theory  skip saves +0.1 R/yr
+  ev 2.22  day_move_with  = mid                    ++.+ every era       n    78  net +0.155  old adv +0.287 t +1.2  new adv +0.180 t +0.5  mkts+ 2/3   
+  ev 2.07  vol            = high                   +.++ every era       n    83  net +0.104  old adv +0.230 t +0.9  new adv +0.016 t +0.0  mkts+ 3/4   theory agrees
+  ev 2.02  weekday        = 0                      ..++ flips by era    n    62  net +0.031  old adv -0.048 t -0.2  new adv +0.029 t +0.1  mkts+ 2/2   
+  ev 1.98  prev_range     = high                   +.++ every era       n    73  net +0.086  old adv +0.205 t +0.8  new adv +0.084 t +0.2  mkts+ 2/3   theory agrees
+  ev 1.95  pos20_with     = high                   +.-+ all but one era n    75  net +0.111  old adv +0.190 t +0.8  new adv +0.252 t +0.8  mkts+ 3/4   AGAINST theory
+  ev 1.93  prev_range     = mid                    ---+ all but one era n    76  net -0.160  old adv -0.381 t -1.5  new adv +0.359 t +1.1  mkts+ 1/3     skip saves +1.1 R/yr
+  ev 1.89  with_50d       = 0                      ++++ every era       n   144  net +0.115  old adv +0.125 t +0.6  new adv +0.086 t +0.3  mkts+ 3/5   AGAINST theory
+
+rsi2 short own   (204 trades)
+  ev 2.92  risk_size      = low                    ++.. flips by era    n    48  net +0.254  old adv +0.589 t +2.8  new adv      n/a       mkts+ 2/2   
+  ev 2.73  vol            = low                    --.. flips by era    n    51  net -0.397  old adv -0.526 t -2.2  new adv      n/a       mkts+ 0/2   theory agrees  skip saves +1.9 R/yr
+  ev 2.40  prev_range     = mid                    --.. flips by era    n    47  net -0.261  old adv -0.269 t -1.2  new adv      n/a       mkts+ 0/1     skip saves +1.1 R/yr
+  ev 2.03  prev_range     = low                    --.. flips by era    n    53  net -0.243  old adv -0.362 t -1.6  new adv      n/a       mkts+ 1/2   theory agrees  skip saves +1.2 R/yr
+  ev 1.76  risk_size      = high                   --.. flips by era    n    47  net -0.281  old adv -0.559 t -2.3  new adv      n/a       mkts+ 1/1     skip saves +1.2 R/yr
+  ev 1.50  with_slope20   = 0                      ++.. flips by era    n    70  net -0.086  old adv -0.024 t -0.1  new adv      n/a       mkts+ 1/2   AGAINST theory
+  ev 1.50  with_slope20   = 1                      --.. flips by era    n   134  net -0.037  old adv +0.024 t +0.1  new adv      n/a       mkts+ 1/2   AGAINST theory  skip saves +0.5 R/yr
+  ev 1.08  day_move_with  = mid                    --.. flips by era    n    47  net -0.176  old adv -0.057 t -0.2  new adv      n/a       mkts+ 1/1     skip saves +0.8 R/yr
+
+sar exit close   (2243 trades)
+  ev 2.75  gap_with       = high                   -+-- all but one era n   705  net -0.178  old adv -0.051 t -0.9  new adv -0.184 t -2.1  mkts+ 0/5   theory agrees  skip saves +11.6 R/yr
+  ev 2.70  with_slope20   = 0                      ++++ every era       n  1111  net -0.059  old adv +0.130 t +2.5  new adv +0.050 t +0.6  mkts+ 4/6   AGAINST theory
+  ev 2.70  with_slope20   = 1                      ---- every era       n  1097  net -0.146  old adv -0.130 t -2.5  new adv -0.050 t -0.6  mkts+ 2/6   AGAINST theory  skip saves +14.9 R/yr
+  ev 2.58  regime         = vol-high/trend-mid     ---- every era       n   237  net -0.203  old adv -0.102 t -1.3  new adv -0.049 t -0.4  mkts+ 0/4     skip saves +4.5 R/yr
+  ev 2.45  vol            = low                    ++++ every era       n   572  net -0.110  old adv +0.053 t +0.9  new adv +0.045 t +0.4  mkts+ 5/5   AGAINST theory
+  ev 2.36  regime         = vol-low/trend-mid      +-++ all but one era n   191  net +0.011  old adv +0.116 t +1.2  new adv +0.107 t +0.6  mkts+ 3/3   
+  ev 2.28  vol            = high                   ---- every era       n   717  net -0.110  old adv -0.078 t -1.3  new adv -0.014 t -0.1  mkts+ 1/5   AGAINST theory  skip saves +7.3 R/yr
+  ev 2.27  gap_with       = low                    +-++ all but one era n   701  net -0.058  old adv +0.035 t +0.6  new adv +0.146 t +1.6  mkts+ 4/5   theory agrees
+  ev 2.25  day_move_with  = low                    +++- all but one era n   691  net -0.070  old adv +0.128 t +2.1  new adv -0.009 t -0.1  mkts+ 4/5   theory agrees
+  ev 2.12  with_50d       = 0                      ++-+ all but one era n  1120  net -0.079  old adv +0.092 t +1.7  new adv +0.032 t +0.4  mkts+ 4/6   AGAINST theory
+  ev 2.12  with_50d       = 1                      --+- all but one era n  1034  net -0.121  old adv -0.092 t -1.7  new adv -0.032 t -0.4  mkts+ 2/6   AGAINST theory  skip saves +11.7 R/yr
+  ev 2.11  pos20_with     = mid                    -+-- all but one era n   658  net -0.170  old adv -0.117 t -2.1  new adv -0.077 t -0.8  mkts+ 3/5     skip saves +10.4 R/yr
+
+scalp exit close   (5232 trades)
+  ev 3.47  regime         = vol-high/trend-mid     ---- every era       n   606  net -0.270  old adv -0.143 t -1.8  new adv -0.241 t -2.6  mkts+ 0/6     skip saves +15.2 R/yr
+  ev 2.83  vol            = high                   ---- every era       n  1822  net -0.152  old adv -0.084 t -1.5  new adv -0.067 t -1.0  mkts+ 0/6   AGAINST theory  skip saves +25.7 R/yr
+  ev 2.81  regime         = vol-low/trend-mid      ++++ every era       n   429  net -0.079  old adv +0.153 t +2.0  new adv +0.059 t +0.5  mkts+ 6/6   
+  ev 2.39  prev_range     = low                    ---- every era       n  1687  net -0.190  old adv -0.060 t -1.2  new adv -0.071 t -1.0  mkts+ 2/6   AGAINST theory  skip saves +29.9 R/yr
+  ev 2.35  day_move_with  = high                   +++- all but one era n  1726  net -0.094  old adv +0.118 t +2.3  new adv -0.024 t -0.4  mkts+ 5/6   theory agrees
+  ev 2.27  weekday        = 3                      ++-+ all but one era n  1088  net -0.047  old adv +0.094 t +1.5  new adv +0.082 t +1.0  mkts+ 4/6   
+  ev 2.24  day_move_with  = low                    ---- every era       n  1746  net -0.193  old adv -0.074 t -1.4  new adv -0.055 t -0.8  mkts+ 3/6   theory agrees  skip saves +31.3 R/yr
+  ev 2.23  trendy         = mid                    -+-- all but one era n  1703  net -0.180  old adv -0.029 t -0.6  new adv -0.094 t -1.4  mkts+ 1/6     skip saves +28.5 R/yr
+  ev 2.20  prev_range     = high                   +++- all but one era n  1690  net -0.084  old adv +0.100 t +1.9  new adv -0.019 t -0.3  mkts+ 5/6   AGAINST theory
+  ev 2.14  gap_with       = low                    ++-+ all but one era n  1660  net -0.092  old adv +0.046 t +0.9  new adv +0.055 t +0.8  mkts+ 5/6   AGAINST theory
+  ev 2.04  weekday        = 0                      +-++ all but one era n  1007  net -0.128  old adv +0.034 t +0.6  new adv +0.062 t +0.8  mkts+ 5/6   
+  ev 2.03  risk_size      = low                    ---+ all but one era n  1885  net -0.180  old adv -0.102 t -1.8  new adv +0.059 t +0.9  mkts+ 2/6   AGAINST theory  skip saves +31.5 R/yr
+
+swing exit close   (514 trades)
+  ev 2.90  pos20_with     = mid                    ++++ every era       n   149  net +0.063  old adv +0.066 t +2.0  new adv +0.060 t +1.3  mkts+ 4/5   
+  ev 2.59  regime         = vol-low/trend-high     +..+ flips by era    n    58  net +0.079  old adv +0.100 t +1.7  new adv +0.007 t +0.1  mkts+ 1/1   
+  ev 2.54  day_move_with  = mid                    ---+ all but one era n   151  net -0.016  old adv -0.085 t -2.4  new adv +0.016 t +0.4  mkts+ 0/5     skip saves +0.2 R/yr
+  ev 2.47  day_move_with  = high                   -+++ all but one era n   163  net +0.050  old adv +0.049 t +1.4  new adv +0.037 t +0.8  mkts+ 5/5   theory agrees
+  ev 2.41  trendy         = mid                    ++-+ all but one era n   156  net +0.049  old adv +0.012 t +0.4  new adv +0.115 t +2.2  mkts+ 4/5   
+  ev 2.41  weekday        = 1                      +.+- all but one era n   101  net +0.056  old adv +0.086 t +2.2  new adv -0.035 t -0.7  mkts+ 3/3   
+  ev 2.30  pos20_with     = low                    +--- all but one era n   157  net -0.006  old adv -0.023 t -0.7  new adv -0.072 t -1.6  mkts+ 1/5   theory agrees  skip saves +0.1 R/yr
+  ev 2.27  weekday        = 3                      ---+ all but one era n   109  net -0.024  old adv -0.100 t -2.6  new adv +0.062 t +1.3  mkts+ 1/3     skip saves +0.2 R/yr
+  ev 2.08  vol            = mid                    +--- all but one era n   120  net -0.008  old adv -0.024 t -0.6  new adv -0.083 t -1.1  mkts+ 1/4     skip saves +0.1 R/yr
+  ev 2.06  trendy         = low                    +--- all but one era n   154  net -0.002  old adv -0.015 t -0.4  new adv -0.070 t -1.7  mkts+ 2/5   theory agrees  skip saves +0.0 R/yr
+  ev 2.01  weekday        = 4                      -+-- all but one era n   106  net -0.011  old adv -0.027 t -0.7  new adv -0.059 t -1.1  mkts+ 1/3     skip saves +0.1 R/yr
+  ev 1.92  vol            = low                    +++- all but one era n   144  net +0.046  old adv +0.067 t +1.7  new adv -0.012 t -0.2  mkts+ 3/5   AGAINST theory
+
+swing2 stop own   (526 trades)
+  ev 3.45  with_50d       = 0                      ---- every era       n   159  net -0.531  old adv -0.401 t -2.7  new adv -0.413 t -1.7  mkts+ 0/5   theory agrees  skip saves +7.9 R/yr
+  ev 3.45  with_50d       = 1                      ++++ every era       n   351  net -0.216  old adv +0.401 t +2.7  new adv +0.413 t +1.7  mkts+ 5/5   theory agrees
+  ev 2.74  hour           = 0-2h                   ---- every era       n   100  net -0.443  old adv -0.183 t -1.2  new adv -0.422 t -2.0  mkts+ 1/3     skip saves +4.1 R/yr
+  ev 2.70  weekday        = 0                      ---- every era       n   105  net -0.527  old adv -0.403 t -2.9  new adv -0.070 t -0.2  mkts+ 1/3     skip saves +5.2 R/yr
+  ev 2.51  form           = cold                   .+++ every era       n   268  net -0.243  old adv +0.184 t +0.9  new adv +0.154 t +0.6  mkts+ 3/3   AGAINST theory
+  ev 2.51  form           = hot                    .--- every era       n   138  net -0.353  old adv -0.184 t -0.9  new adv -0.154 t -0.6  mkts+ 0/3   AGAINST theory  skip saves +4.5 R/yr
+  ev 2.33  prev_range     = high                   +++- all but one era n   151  net -0.177  old adv +0.385 t +1.7  new adv -0.139 t -0.4  mkts+ 5/5   AGAINST theory
+  ev 2.32  nr7            = 0                      ++++ every era       n   446  net -0.273  old adv +0.277 t +1.8  new adv +0.146 t +0.6  mkts+ 1/2   AGAINST theory
+  ev 2.32  nr7            = 1                      ---- every era       n    80  net -0.478  old adv -0.277 t -1.8  new adv -0.146 t -0.6  mkts+ 1/2   AGAINST theory  skip saves +3.6 R/yr
+  ev 2.27  day_move_with  = low                    +-++ all but one era n   158  net -0.154  old adv +0.158 t +0.8  new adv +0.586 t +1.4  mkts+ 4/5   AGAINST theory
+  ev 2.24  vol            = high                   ---- every era       n   151  net -0.308  old adv -0.120 t -0.6  new adv -0.302 t -0.9  mkts+ 1/4   AGAINST theory  skip saves +4.3 R/yr
+  ev 2.18  trendy         = low                    +--- all but one era n   151  net -0.467  old adv -0.165 t -0.9  new adv -0.279 t -1.0  mkts+ 1/5   theory agrees  skip saves +6.6 R/yr
+
+trend exit close   (9521 trades)
+  ev 3.34  nr7            = 0                      ++++ every era       n  7955  net -0.061  old adv +0.099 t +2.8  new adv +0.068 t +1.3  mkts+ 6/6   AGAINST theory
+  ev 3.34  nr7            = 1                      ---- every era       n  1463  net -0.161  old adv -0.099 t -2.8  new adv -0.068 t -1.3  mkts+ 0/6   AGAINST theory  skip saves +21.9 R/yr
+  ev 3.15  regime         = vol-high/trend-high    ++++ every era       n  1065  net +0.053  old adv +0.079 t +1.8  new adv +0.127 t +2.2  mkts+ 5/6   
+  ev 3.14  pos20_with     = mid                    ---- every era       n  3225  net -0.114  old adv -0.075 t -2.7  new adv -0.051 t -1.2  mkts+ 1/6     skip saves +34.2 R/yr
+  ev 2.75  prev_range     = low                    ---+ all but one era n  3035  net -0.108  old adv -0.086 t -3.0  new adv +0.020 t +0.5  mkts+ 0/6   AGAINST theory  skip saves +30.6 R/yr
+  ev 2.62  weekday        = 4                      +--- all but one era n  1863  net -0.122  old adv -0.045 t -1.5  new adv -0.081 t -1.7  mkts+ 1/6     skip saves +21.2 R/yr
+  ev 2.58  prev_range     = high                   +++- all but one era n  3191  net -0.042  old adv +0.095 t +3.5  new adv -0.025 t -0.6  mkts+ 5/6   AGAINST theory
+  ev 2.55  gap_with       = low                    ++++ every era       n  3108  net -0.060  old adv +0.031 t +1.1  new adv +0.043 t +1.1  mkts+ 5/6   AGAINST theory
+  ev 2.43  regime         = vol-high/trend-mid     ---- every era       n  1136  net -0.111  old adv -0.054 t -1.3  new adv -0.056 t -1.0  mkts+ 2/6     skip saves +11.7 R/yr
+  ev 2.42  day_move_with  = mid                    ++++ every era       n  3070  net -0.050  old adv +0.031 t +1.1  new adv +0.050 t +1.2  mkts+ 4/6   
+  ev 2.41  regime         = vol-mid/trend-low      +--- all but one era n   964  net -0.120  old adv -0.032 t -0.8  new adv -0.110 t -1.7  mkts+ 1/6     skip saves +10.8 R/yr
+  ev 2.28  vol            = mid                    +--- all but one era n  2533  net -0.112  old adv -0.028 t -0.9  new adv -0.076 t -1.7  mkts+ 2/6     skip saves +26.4 R/yr
+
+vwap exit close   (5232 trades)
+  ev 3.29  vol            = low                    ---- every era       n  1348  net -0.350  old adv -0.185 t -3.0  new adv -0.074 t -0.9  mkts+ 0/6   theory agrees  skip saves +43.9 R/yr
+  ev 3.12  vol            = mid                    ++++ every era       n  1434  net -0.169  old adv +0.170 t +2.8  new adv +0.079 t +1.0  mkts+ 5/6   
+  ev 3.01  regime         = vol-mid/trend-low      ++++ every era       n   545  net -0.117  old adv +0.230 t +2.7  new adv +0.038 t +0.3  mkts+ 6/6   
+  ev 2.86  gap_with       = high                   ---- every era       n  1733  net -0.303  old adv -0.132 t -2.3  new adv -0.057 t -0.8  mkts+ 1/6   theory agrees  skip saves +48.9 R/yr
+  ev 2.68  regime         = vol-low/trend-mid      --+- all but one era n   488  net -0.343  old adv -0.116 t -1.4  new adv -0.169 t -1.4  mkts+ 0/6     skip saves +15.6 R/yr
+  ev 2.53  regime         = vol-low/trend-low      ---+ all but one era n   421  net -0.356  old adv -0.202 t -2.4  new adv +0.079 t +0.5  mkts+ 0/5     skip saves +14.0 R/yr
+  ev 2.24  gap_with       = mid                    +-++ all but one era n  1766  net -0.200  old adv +0.091 t +1.6  new adv +0.030 t +0.4  mkts+ 5/6   
+  ev 2.19  weekday        = 4                      ++++ every era       n  1036  net -0.209  old adv +0.108 t +1.6  new adv +0.041 t +0.5  mkts+ 3/6   
+  ev 2.15  hour           = 2-5h                   +--- all but one era n  1967  net -0.299  old adv +0.005 t +0.1  new adv -0.152 t -2.2  mkts+ 2/6     skip saves +54.7 R/yr
+  ev 2.03  weekday        = 3                      ---+ all but one era n  1119  net -0.274  old adv -0.122 t -1.9  new adv +0.014 t +0.2  mkts+ 2/6     skip saves +28.5 R/yr
+  ev 2.01  regime         = vol-mid/trend-mid      +-++ all but one era n   480  net -0.246  old adv +0.050 t +0.6  new adv +0.115 t +1.2  mkts+ 4/6   
+  ev 2.00  regime         = vol-mid/trend-high     ++++ every era       n   409  net -0.146  old adv +0.077 t +0.8  new adv +0.024 t +0.2  mkts+ 4/6   
+
+--------------------------------------------------------------------------------------------------------------
+D. WHEN   month by month (each lane on its own primary exit; markets pooled, each market-month counted once)
+--------------------------------------------------------------------------------------------------------------
+good month = the lane made net R > 0 on that market that month. Columns are averages over those months.
+move = the market's move over the month in daily ATRs (signed with nothing: size only); straight = efficiency
+of the daily closes (1 = one straight line); ATR% = daily ATR as % of price; stop = average stop in daily ATRs;
+win / loss = average R of winning / losing trades; next good = how often the NEXT month was good too.
+TREND MONTHS = the market moved 3+ daily ATRs net with straightness 0.3+ (fixed before looking).
+
+bigcont exit close   20 market-months, 9 good (45%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good           9     +1.33   3.5      0.25   1.71   1.26    81   +0.62   -0.34  -
+  bad           11     -1.16   2.0      0.15  276.72   1.20    33   +0.23   -0.65  100% of 1
+  trend mo       6     +0.67   5.4      0.41   2.02   1.23    62   +0.57   -0.52  good 66%  edge +0.222
+  other mo      14     -0.34   1.5      0.10  217.66   1.23    51   +0.34   -0.56  good 35%  edge -0.045
+  good months by year: 2014 0/1  2015 1/2  2016 1/1  2017 0/1  2020 3/4  2024 0/1  2025 3/7  2026 1/3
+
+bigrev exit close   20 market-months, 9 good (45%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good           9     +1.09   2.5      0.18   2.26   1.15    62   +0.70   -0.28  -
+  bad           11     -1.32   2.9      0.21  276.27   1.29    10   +0.33   -0.50  0% of 1
+  trend mo       6     -0.75   5.4      0.41   2.02   1.23    24   +0.68   -0.47  good 33%  edge -0.222
+  other mo      14     -0.01   1.5      0.10  217.66   1.23    38   +0.55   -0.37  good 50%  edge +0.045
+  good months by year: 2014 1/1  2015 0/2  2016 0/1  2017 1/1  2020 0/4  2024 1/1  2025 4/7  2026 2/3
+
+control exit close   558 market-months, 211 good (38%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         211     +3.13   2.5      0.22   1.48   0.50    50   +1.00   -0.62  42% of 207
+  bad          347     -3.94   2.4      0.23  10.80   0.47    36   +0.68   -0.69  36% of 329
+  trend mo     135     -1.24   5.1      0.45   1.37   0.51    40   +0.84   -0.66  good 33%  edge +0.005
+  other mo     423     -1.27   1.6      0.15   9.16   0.47    42   +0.79   -0.66  good 39%  edge +0.007
+  good months by year: 2014 11/35  2015 16/43  2016 11/34  2017 23/47  2018 15/48  2019 20/47  2020 11/52  2021 21/60  2024 23/66  2025 36/72  2026 24/54
+
+dipx pullback 5d   32 market-months, 12 good (38%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good          12     +2.72   3.9      0.36   1.30   0.74    61   +2.01   -0.83  -
+  bad           20     -1.86   2.3      0.22   1.41   0.82    16   +0.52   -0.80  -
+  trend mo      10     +2.52   5.2      0.49   1.44   0.75    57   +1.85   -0.84  good 70%  edge +0.733
+  other mo      22     -1.35   1.9      0.17   1.34   0.81    22   +0.90   -0.80  good 22%  edge -0.089
+  good months by year: 2014 1/2  2015 1/3  2016 1/2  2017 1/1  2018 0/2  2019 3/6  2020 1/4  2021 1/3  2024 1/4  2025 1/2  2026 1/3
+
+exhaust exit close   470 market-months, 142 good (30%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         142     +4.14   2.2      0.22   1.57   0.18    45   +2.76   -1.02  30% of 134
+  bad          328     -4.32   2.5      0.23   2.06   0.18    21   +1.33   -1.06  31% of 297
+  trend mo     114     -1.62   5.2      0.45   1.41   0.20    29   +1.77   -1.03  good 29%  edge -0.054
+  other mo     356     -1.81   1.6      0.15   2.08   0.17    28   +1.84   -1.06  good 30%  edge -0.095
+  good months by year: 2014 3/23  2015 8/32  2016 8/27  2017 3/30  2018 13/36  2019 16/39  2020 15/47  2021 23/58  2024 18/59  2025 23/67  2026 12/52
+
+fade exit close   541 market-months, 204 good (38%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         204     +5.19   2.3      0.21   2.53   0.27    46   +2.27   -0.91  35% of 190
+  bad          337     -4.82   2.5      0.23  10.37   0.26    25   +1.30   -0.97  39% of 318
+  trend mo     130     -1.78   5.1      0.45   1.36   0.28    32   +1.65   -0.96  good 30%  edge -0.042
+  other mo     411     -0.81   1.6      0.15   9.33   0.26    33   +1.70   -0.95  good 39%  edge +0.029
+  good months by year: 2014 7/33  2015 19/40  2016 13/34  2017 13/40  2018 19/48  2019 23/45  2020 19/51  2021 20/60  2024 19/64  2025 35/72  2026 17/54
+
+gao 0.25D close   615 market-months, 76 good (12%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good          76     +1.71   2.3      0.21   2.36   0.25    54   +0.44   -0.34  27% of 75
+  bad          539     -3.15   2.4      0.23   9.14   0.25    31   +0.22   -0.33  10% of 517
+  trend mo     149     -2.69   5.0      0.45   1.40   0.25    32   +0.24   -0.34  good 9%  edge -0.000
+  other mo     466     -2.51   1.6      0.15  10.51   0.25    34   +0.25   -0.33  good 13%  edge +0.004
+  good months by year: 2014 4/36  2015 6/48  2016 2/44  2017 2/57  2018 10/56  2019 3/58  2020 12/62  2021 9/69  2024 10/62  2025 13/69  2026 5/54
+
+gapfill exit close   82 market-months, 30 good (37%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good          30     +2.90   2.5      0.23   1.44   0.44    64   +2.05   -0.96  28% of 25
+  bad           52     -2.30   2.7      0.24   1.37   0.44    23   +0.64   -1.04  37% of 38
+  trend mo      18     -0.41   5.1      0.48   1.18   0.38    37   +1.51   -1.04  good 38%  edge +0.066
+  other mo      64     -0.39   1.9      0.17   1.45   0.46    39   +1.26   -1.00  good 35%  edge +0.012
+  good months by year: 2016 1/3  2017 3/10  2018 4/9  2019 3/7  2020 6/18  2021 9/23  2024 4/12
+
+london exit close   613 market-months, 212 good (35%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         212     +2.05   2.6      0.23   1.65   0.58    53   +0.80   -0.50  34% of 199
+  bad          401     -2.40   2.4      0.23   9.44   0.58    37   +0.49   -0.55  35% of 379
+  trend mo     147     -0.78   5.1      0.46   1.36   0.60    42   +0.58   -0.54  good 34%  edge -0.017
+  other mo     466     -0.89   1.6      0.16   8.44   0.58    43   +0.61   -0.54  good 34%  edge +0.012
+  good months by year: 2014 13/35  2015 11/42  2016 12/41  2017 24/56  2018 13/58  2019 15/56  2020 24/63  2021 30/72  2024 25/64  2025 29/72  2026 16/54
+
+main exit close   557 market-months, 225 good (40%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         225     +3.17   2.5      0.22  14.95   0.53    52   +1.04   -0.65  41% of 217
+  bad          332     -3.24   2.4      0.23   2.10   0.54    38   +0.72   -0.72  41% of 317
+  trend mo     135     -0.25   5.1      0.45   1.37   0.56    44   +0.88   -0.68  good 40%  edge +0.050
+  other mo     422     -0.78   1.6      0.15   9.18   0.53    43   +0.84   -0.70  good 40%  edge +0.009
+  good months by year: 2014 13/35  2015 18/43  2016 17/34  2017 14/46  2018 11/48  2019 18/47  2020 21/52  2021 27/60  2024 30/66  2025 31/72  2026 25/54
+
+main2 box close   538 market-months, 237 good (44%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         237     +3.56   2.4      0.22   2.46   0.46    52   +1.22   -0.76  41% of 227
+  bad          301     -3.48   2.4      0.23   4.59   0.47    36   +0.90   -0.81  47% of 294
+  trend mo     131     -0.61   5.1      0.45   1.41   0.49    43   +1.02   -0.79  good 42%  edge +0.028
+  other mo     407     -0.31   1.5      0.15   4.37   0.46    43   +1.05   -0.79  good 44%  edge +0.042
+  good months by year: 2014 17/36  2015 27/47  2016 15/35  2017 17/48  2018 17/48  2019 19/48  2020 20/42  2021 20/48  2024 28/60  2025 29/72  2026 28/54
+
+nr7 exit close   365 market-months, 161 good (44%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         161     +1.36   2.3      0.22   1.41   0.64    65   +0.95   -0.49  42% of 88
+  bad          204     -1.28   2.3      0.22   1.40   0.64    29   +0.42   -0.68  42% of 117
+  trend mo      78     -0.24   4.9      0.45   1.24   0.64    42   +0.72   -0.63  good 41%  edge -0.015
+  other mo     287     -0.09   1.5      0.16   1.45   0.64    46   +0.68   -0.60  good 44%  edge +0.016
+  good months by year: 2014 5/12  2015 18/31  2016 15/29  2017 14/37  2018 15/34  2019 12/36  2020 14/34  2021 13/39  2024 16/36  2025 22/44  2026 17/33
+
+nyaft exit close   574 market-months, 198 good (34%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         198     +3.43   2.4      0.21  17.86   0.25    53   +2.04   -0.82  36% of 177
+  bad          376     -2.81   2.4      0.23   1.43   0.26    28   +0.83   -0.85  33% of 339
+  trend mo     133     -0.79   5.1      0.46   1.28   0.27    37   +1.14   -0.83  good 33%  edge +0.082
+  other mo     441     -0.62   1.6      0.15   8.85   0.25    36   +1.32   -0.84  good 34%  edge +0.054
+  good months by year: 2014 9/27  2015 9/39  2016 17/38  2017 17/50  2018 19/53  2019 13/49  2020 25/59  2021 19/72  2024 26/64  2025 26/70  2026 18/53
+
+orb30 range close   615 market-months, 287 good (47%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         287     +7.60   2.5      0.23   5.51   0.22    38   +2.93   -1.03  49% of 278
+  bad          328     -7.82   2.3      0.22  10.75   0.21    25   +2.05   -1.08  45% of 314
+  trend mo     149     +0.28   5.0      0.45   1.40   0.22    31   +2.56   -1.06  good 50%  edge +0.098
+  other mo     466     -0.92   1.6      0.15  10.51   0.22    31   +2.44   -1.06  good 45%  edge +0.035
+  good months by year: 2014 19/36  2015 24/48  2016 14/44  2017 30/57  2018 30/56  2019 22/58  2020 24/62  2021 34/69  2024 28/62  2025 39/69  2026 23/54
+
+orb60 range close   615 market-months, 270 good (44%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         270     +6.13   2.5      0.22   2.19   0.29    43   +2.10   -0.92  45% of 260
+  bad          345     -5.83   2.3      0.23  13.09   0.29    31   +1.39   -0.96  43% of 332
+  trend mo     149     -0.16   5.0      0.45   1.40   0.30    36   +1.74   -0.93  good 44%  edge +0.069
+  other mo     466     -0.71   1.6      0.15  10.51   0.29    36   +1.69   -0.95  good 43%  edge +0.030
+  good months by year: 2014 16/36  2015 22/48  2016 15/44  2017 23/57  2018 27/56  2019 23/58  2020 25/62  2021 33/69  2024 30/62  2025 32/69  2026 24/54
+
+pdh exit close   603 market-months, 254 good (42%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         254     +1.87   2.7      0.23   1.38   0.67    58   +0.89   -0.53  42% of 236
+  bad          349     -1.88   2.3      0.22   1.53   0.65    36   +0.53   -0.65  44% of 326
+  trend mo     143     +0.08   5.1      0.46   1.37   0.69    47   +0.69   -0.59  good 46%  edge +0.070
+  other mo     460     -0.42   1.6      0.16   1.50   0.65    44   +0.68   -0.61  good 40%  edge -0.000
+  good months by year: 2014 10/29  2015 21/39  2016 15/41  2017 21/57  2018 26/58  2019 14/57  2020 27/60  2021 34/72  2024 22/65  2025 40/71  2026 24/54
+
+pdh2 lvl0.25D 5d   638 market-months, 237 good (37%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         237    +12.12   3.0      0.27   2.48   0.28    28   +5.48   -1.08  39% of 234
+  bad          401     -9.75   2.1      0.20  11.34   0.27    15   +2.79   -1.09  37% of 387
+  trend mo     154     +4.33   5.1      0.45   1.39   0.28    22   +4.83   -1.09  good 57%  edge +0.178
+  other mo     484     -3.52   1.6      0.16  10.17   0.27    19   +3.48   -1.08  good 30%  edge -0.018
+  good months by year: 2014 14/36  2015 21/48  2016 12/45  2017 16/60  2018 21/60  2019 20/60  2020 26/65  2021 27/72  2024 29/66  2025 29/72  2026 22/54
+
+range exit close   380 market-months, 115 good (30%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         115     +7.10   2.3      0.22   3.52   0.10    33   +6.58   -1.21  35% of 101
+  bad          265     -5.29   2.4      0.22  13.06   0.10     9   +2.88   -1.20  30% of 226
+  trend mo      84     -1.57   5.2      0.45   1.58   0.11    18   +4.20   -1.21  good 30%  edge -0.148
+  other mo     296     -1.54   1.6      0.15  12.61   0.10    16   +4.75   -1.20  good 30%  edge -0.014
+  good months by year: 2014 3/12  2015 11/30  2016 5/25  2017 5/26  2018 10/33  2019 9/16  2020 9/35  2021 19/43  2024 11/42  2025 17/67  2026 16/51
+
+range2 asia own   402 market-months, 74 good (18%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good          74     +1.22   2.3      0.21   1.22   0.23    69   +0.26   -0.42  25% of 73
+  bad          328     -2.78   2.4      0.22   0.92   0.23    53   +0.22   -0.56  17% of 319
+  trend mo      96     -2.42   5.1      0.45   0.86   0.23    54   +0.23   -0.55  good 17%  edge -0.019
+  other mo     306     -1.93   1.5      0.15   1.01   0.23    57   +0.22   -0.53  good 18%  edge -0.008
+  good months by year: 2014 1/36  2015 6/36  2016 6/30  2017 8/36  2018 5/36  2019 4/36  2020 8/36  2021 11/36  2024 5/36  2025 11/48  2026 9/36
+
+retest exit close   529 market-months, 219 good (41%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         219     +3.86   2.5      0.22   2.50   0.29    51   +2.19   -0.89  46% of 202
+  bad          310     -3.36   2.3      0.22  11.19   0.29    28   +1.08   -0.91  38% of 285
+  trend mo     125     -0.04   5.1      0.45   1.39   0.31    37   +1.68   -0.88  good 41%  edge +0.061
+  other mo     404     -0.47   1.6      0.15   9.51   0.29    37   +1.53   -0.91  good 41%  edge +0.036
+  good months by year: 2014 13/30  2015 8/38  2016 14/34  2017 10/41  2018 17/45  2019 17/45  2020 20/50  2021 28/60  2024 28/62  2025 34/71  2026 30/53
+
+retest2 0.25D close   538 market-months, 210 good (39%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         210     +5.43   2.3      0.21   2.53   0.22    42   +2.58   -1.00  39% of 202
+  bad          328     -5.73   2.5      0.24   4.37   0.22    26   +1.64   -1.07  39% of 319
+  trend mo     131     -1.79   5.1      0.45   1.41   0.22    31   +2.09   -1.06  good 31%  edge +0.019
+  other mo     407     -1.24   1.5      0.15   4.37   0.22    33   +1.99   -1.04  good 41%  edge +0.037
+  good months by year: 2014 17/36  2015 22/47  2016 13/35  2017 16/48  2018 13/48  2019 14/48  2020 17/42  2021 20/48  2024 28/60  2025 29/72  2026 21/54
+
+rsi2 long own   12 market-months, 9 good (75%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good           9     +1.99   2.2      0.16   1.16   0.98    79   +1.15   -0.88  -
+  bad            3     -4.96   3.9      0.30   1.90   0.96    33   +0.85   -2.90  -
+  trend mo       1     -6.41   6.2      0.38   1.43   0.96    33   +1.41   -3.91  good 0%  edge -2.095
+  other mo      11     +0.86   2.3      0.18   1.34   0.98    70   +1.04   -1.32  good 81%  edge +0.358
+  good months by year: 2014 3/3  2017 1/1  2018 1/1  2019 1/2  2020 1/2  2026 2/3
+
+sar exit close   362 market-months, 134 good (37%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         134     +2.15   2.3      0.21   1.13   0.38    57   +1.46   -0.74  33% of 102
+  bad          228     -2.09   2.3      0.22   1.04   0.38    29   +0.69   -0.83  39% of 177
+  trend mo      77     -0.38   4.9      0.44   0.87   0.37    36   +1.12   -0.81  good 31%  edge -0.044
+  other mo     285     -0.56   1.6      0.15   1.13   0.38    41   +0.97   -0.79  good 38%  edge +0.008
+  good months by year: 2014 3/23  2015 11/31  2016 8/19  2017 13/38  2018 13/31  2019 10/28  2020 12/36  2021 16/40  2024 13/41  2025 24/46  2026 11/29
+
+scalp exit close   555 market-months, 200 good (36%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         200     +4.34   2.5      0.21   1.52   0.19    46   +2.48   -1.03  30% of 185
+  bad          355     -4.42   2.4      0.23  10.63   0.17    21   +1.59   -1.07  39% of 322
+  trend mo     128     -1.25   5.2      0.45   1.41   0.19    30   +2.01   -1.07  good 33%  edge -0.009
+  other mo     427     -1.27   1.6      0.16   9.12   0.18    30   +1.92   -1.05  good 36%  edge -0.013
+  good months by year: 2014 8/21  2015 7/33  2016 10/38  2017 13/41  2018 14/46  2019 23/51  2020 23/64  2021 33/72  2024 22/65  2025 31/71  2026 16/53
+
+trend exit close   620 market-months, 231 good (37%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         231     +3.58   2.5      0.22   1.68   0.36    51   +1.39   -0.81  39% of 217
+  bad          389     -3.91   2.4      0.23   9.69   0.36    34   +0.92   -0.86  37% of 370
+  trend mo     147     -1.14   5.1      0.46   1.37   0.38    40   +1.13   -0.84  good 39%  edge +0.050
+  other mo     473     -1.12   1.6      0.16   8.37   0.36    40   +1.09   -0.84  good 36%  edge +0.012
+  good months by year: 2014 9/32  2015 13/44  2016 16/41  2017 16/59  2018 17/59  2019 18/58  2020 26/64  2021 27/72  2024 28/66  2025 34/71  2026 27/54
+
+vwap exit close   554 market-months, 147 good (27%)
+            months  net R/mo  move  straight  ATR%   stop  win%   win R  loss R  next good
+  good         147     +5.12   2.4      0.23   1.53   0.16    43   +3.25   -1.02  26% of 137
+  bad          407     -5.03   2.5      0.23   9.45   0.17    22   +1.43   -1.10  27% of 367
+  trend mo     130     -2.72   5.2      0.46   1.38   0.17    28   +1.72   -1.09  good 24%  edge -0.123
+  other mo     424     -2.22   1.6      0.16   9.17   0.16    27   +2.04   -1.08  good 27%  edge -0.062
+  good months by year: 2014 3/26  2015 10/35  2016 9/36  2017 9/42  2018 12/46  2019 15/50  2020 13/59  2021 21/70  2024 20/65  2025 20/71  2026 15/54
+
+every lane x market x month: months.csv (trades, net R, edge, win rate, win/loss R, stop, move, straightness, ATR%)
+
+per market x era for every cell: power_cells.csv   (runtime 456s)
+
+runtime 456.1s

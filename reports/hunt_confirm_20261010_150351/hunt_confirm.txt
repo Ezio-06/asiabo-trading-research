@@ -1,0 +1,157 @@
+==============================================================================================================
+POCKET HUNT, step 4: the ONE-SHOT CHECK on 2018-19 + B 2024+   (pockets locked 2026-10-10 14:50)
+==============================================================================================================
+Rules: CONFIRMED = same sign as discovered and clustered t >= 2.0 with >= 30 trades inside; WEAK = same sign;
+FAILED = opposite sign. diff = edge inside minus outside (R/trade). Judge each pocket on its own evidence.
+
+--------------------------------------------------------------------------------------------------------------
+brk: 853 check-half trades
+--------------------------------------------------------------------------------------------------------------
+  brk-01  vr120 mid third (0.864 .. 1.02)  AND  form20 mid third (-7.5 discovered diff -0.683 (t -3.5) | check: in  123 diff +0.248 t +1.2 | FAILED    | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] NONE. Middle third x middle third with no mechanism (form20 'mid' = neither hot nor cold); 58% USDJPY. Expect chance -> FAILED/WEAK.
+        check half: edge inside +0.384, outside +0.136
+  brk-02  vr120 low third (<= 0.864)  AND  dist200_with < 0            discovered diff -0.793 (t -2.8) | check: in   77 diff +0.072 t +0.3 | FAILED    | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] brk is a momentum bet (engine D1, t +6.6). A breakout AGAINST the 200-day trend (84% shorts) inside a snap-back regime has both forces against it. Predict holds (bad).
+        check half: edge inside +0.237, outside +0.165
+  brk-03  vr120 low third (<= 0.864)  AND  prev_range high third (> 1. discovered diff -0.561 (t -2.8) | check: in  104 diff -0.103 t -0.6 | WEAK      | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] Snap-back regime + a big previous day: the breakout chases a move that is already stretched and tends to revert (exhaustion). Disguise flag (risk_on keeps 46%), so medium confidence. Predict holds weakly (bad).
+        check half: edge inside +0.081, outside +0.184
+  brk-04  vr120 high third (> 1.02)  AND  usd_up = 1                   discovered diff +0.707 (t +2.8) | check: in   88 diff -0.046 t -0.2 | FAILED    | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] Momentum regime half is causal (D1); usd_up is most likely a proxy for the 2014 dollar rally (USDJPY 2014 = 50%, flagged ONE STRETCH). Predict same sign but weak; the usd_up part has no mechanism.
+        check half: edge inside +0.130, outside +0.176
+  brk-05  day_move_with bottom 10% (<= -0.452)                         discovered diff -0.499 (t -2.7) | check: in   74 diff +0.170 t +0.8 | FAILED    | select-only (half split + yardstick only)
+        theory: [2026-10-10 Claude, before confirm] Entering a breakout after a big move AGAINST it earlier that day = an intraday reversal / whipsaw day. Effect lives only in risk-off days (risk_on=1 stratum ~0, disguise flag). Low confidence; predict WEAK.
+        check half: edge inside +0.327, outside +0.157
+  brk-06  usd_up = 1                                                   discovered diff +0.390 (t +2.6) | check: in  471 diff -0.079 t -0.6 | FAILED    | select-only (half split + yardstick only)
+        theory: [2026-10-10 Claude, before confirm] NONE as a mechanism: usd_up is a period proxy (dollar trend 2014-15; brk 68% long when the dollar rises). Mirror of brk-07. Predict WEAK/FAILED.
+        check half: edge inside +0.136, outside +0.215
+  brk-07  usd_up = 0                                                   discovered diff -0.390 (t -2.6) | check: in  380 diff +0.086 t +0.7 | FAILED    | select-only (half split + yardstick only)
+        theory: [2026-10-10 Claude, before confirm] Mirror of brk-06 (same split, other side). NONE: period proxy. Predict WEAK/FAILED.
+        check half: edge inside +0.219, outside +0.133
+  brk-08  vr120 >= 1  AND  vol high third (> 0.97)                     discovered diff +0.408 (t +2.5) | check: in  132 diff -0.026 t -0.1 | FAILED    | creatable: persist dial (D1)
+        theory: [2026-10-10 Claude, before confirm] Momentum regime (D1) + volatility high vs its own year = trends are moving with size: brk's best season (T1/T4). Disguise flag (risk_on 48%) and USDJPY 2014 = 39%. Predict same sign, moderate.
+        check half: edge inside +0.149, outside +0.175
+
+--------------------------------------------------------------------------------------------------------------
+ins: 582 check-half trades
+--------------------------------------------------------------------------------------------------------------
+  ins-01  vr120 >= 1  AND  prev_range mid third (0.51 .. 0.726)        discovered diff -0.491 (t -3.8) | check: in   55 diff -0.251 t -1.7 | WEAK      | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] NONE. Inside day of middle width in a momentum regime; the engine found ins slightly BETTER with momentum, so no theory points this way. Predict FAILED/WEAK.
+        check half: edge inside -0.112, outside +0.140
+  ins-02  trendy low third (<= 0.116)                                  discovered diff +0.469 (t +3.7) | check: in  192 diff -0.012 t -0.1 | FAILED    | creatable: persist dial (D1)
+        theory: [2026-10-10 Claude, before confirm] Range regime: when the 20-day path is not straight (no trend), the break of a compressed inside day is a fresh impulse rather than noise inside a trend. Disguise flag (works only in risk-off: risk_on keeps 7%). Predict same sign, low-moderate.
+        check half: edge inside +0.108, outside +0.120
+  ins-03  vr120 mid third (0.845 .. 0.991)  AND  market = USDJPY       discovered diff +0.551 (t +3.7) | check: in   72 diff +0.243 t +1.4 | WEAK      | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] USDJPY is where ins works (T14: USDJPY +48R); vr120 middle adds nothing. Select-only. Mechanism guess: yen compression breaks at session handovers. Predict holds via the market part.
+        check half: edge inside +0.329, outside +0.086
+  ins-04  vr120 < 1  AND  trendy low third (<= 0.116)                  discovered diff +0.536 (t +3.6) | check: in  135 diff +0.038 t +0.3 | WEAK      | creatable: persist dial (D1)
+        theory: [2026-10-10 Claude, before confirm] Same family as ins-02 (no trend, non-persistent regime -> compression breaks are fresh). Disguise flag (risk_on 30%). Predict same sign, moderate.
+        check half: edge inside +0.145, outside +0.107
+  ins-05  vr120 < 1  AND  market = USDJPY                              discovered diff +0.410 (t +3.4) | check: in  106 diff +0.243 t +1.8 | WEAK      | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] Same as ins-03/ins-11: the USDJPY effect. Predict holds via the market part.
+        check half: edge inside +0.315, outside +0.072
+  ins-06  vr120 mid third (0.845 .. 0.991)  AND  trendy low third (<=  discovered diff +0.713 (t +3.3) | check: in   70 diff -0.051 t -0.3 | FAILED    | creatable: persist dial (D1)
+        theory: [2026-10-10 Claude, before confirm] Same family as ins-02 (range regime). Disguise flag (risk_on 49%). Predict same sign.
+        check half: edge inside +0.071, outside +0.122
+  ins-07  vr120 < 1  AND  risk_size low third (<= 0.271)               discovered diff +0.524 (t +3.1) | check: in   92 diff +0.113 t +0.7 | WEAK      | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] COMPRESSION WIDTH in disguise: risk_size low = the stop at the middle of a NARROW inside day, i.e. a narrow inside day (why-phase W2: narrow inside days +0.61, t 3.7). Strongest theory in the ins list. Predict CONFIRMED.
+        check half: edge inside +0.211, outside +0.098
+  ins-08  vr120 < 1  AND  market = GERMANY40                           discovered diff -0.479 (t -3.1) | check: in   95 diff -0.237 t -2.2 | CONFIRMED | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] NONE: GERMANY40 2017 = 73% (ONE STRETCH) and risk_on leaves 10% (disguise). Predict FAILED/WEAK.
+        check half: edge inside -0.082, outside +0.155
+  ins-09  vr120 low third (<= 0.845)  AND  form20 >= 0                 discovered diff -0.357 (t -3.0) | check: in   98 diff -0.057 t -0.5 | WEAK      | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] T5 (hot form -> worse trades), found robust for ins in synth batch 1 (form20). Predict holds (bad).
+        check half: edge inside +0.069, outside +0.126
+  ins-10  vr120 low third (<= 0.845)  AND  risk_size mid third (0.271  discovered diff -0.408 (t -3.0) | check: in   81 diff +0.136 t +1.1 | FAILED    | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] Complement-side of ins-07: a WIDER inside day = less compression -> weaker break. Predict same sign, moderate.
+        check half: edge inside +0.233, outside +0.097
+  ins-11  market = USDJPY                                              discovered diff +0.357 (t +3.0) | check: in  181 diff +0.112 t +1.1 | WEAK      | select-only (half split + yardstick only)
+        theory: [2026-10-10 Claude, before confirm] T14's market finding: ins works on USDJPY. Select-only (market list = hindsight risk). Predict same sign.
+        check half: edge inside +0.193, outside +0.081
+  ins-12  vr120 mid third (0.845 .. 0.991)  AND  n_trending low third  discovered diff +0.511 (t +2.9) | check: in   60 diff -0.260 t -1.5 | FAILED    | creatable: persist dial (D1)
+        theory: [2026-10-10 Claude, before confirm] Range regime across markets (no book market trending) = same family as ins-02. Disguise flag (risk_on 49%). Predict same sign, moderate.
+        check half: edge inside -0.117, outside +0.143
+
+--------------------------------------------------------------------------------------------------------------
+fast: 859 check-half trades
+--------------------------------------------------------------------------------------------------------------
+  fast-01  vr120 high third (> 1.06)  AND  ac60 mid third (-0.057 .. 0. discovered diff +0.459 (t +3.3) | check: in   42 diff +0.076 t +0.3 | WEAK      | creatable: persist dial (D1)
+        theory: [2026-10-10 Claude, before confirm] Momentum regime half is causal (D1, t +6.8 for fast); ac60 middle adds nothing. 95% from 2014-17, USDJPY 2014 = 49%. Predict same sign but WEAK.
+        check half: edge inside +0.141, outside +0.065
+  fast-02  usd_up = 0                                                   discovered diff -0.342 (t -3.2) | check: in  363 diff +0.045 t +0.5 | FAILED    | select-only (half split + yardstick only)
+        theory: [2026-10-10 Claude, before confirm] NONE: usd_up is a period proxy (fast is 69% long when the dollar rises). Mirror of fast-03. Predict WEAK/FAILED.
+        check half: edge inside +0.095, outside +0.050
+  fast-03  usd_up = 1                                                   discovered diff +0.342 (t +3.2) | check: in  496 diff -0.045 t -0.5 | FAILED    | select-only (half split + yardstick only)
+        theory: [2026-10-10 Claude, before confirm] Mirror of fast-02. NONE: period proxy. Predict WEAK/FAILED.
+        check half: edge inside +0.050, outside +0.095
+  fast-04  vr120 >= 1  AND  usd_up = 1                                  discovered diff +0.430 (t +3.1) | check: in  106 diff -0.135 t -0.9 | FAILED    | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] Momentum regime half causal (D1); usd_up half a proxy. Disguise flag (risk_on 44%). Predict same sign, weak.
+        check half: edge inside -0.050, outside +0.086
+  fast-05  vr120 >= 1  AND  n_trending low third (<= 1)                 discovered diff +0.398 (t +2.8) | check: in  131 diff +0.080 t +0.6 | WEAK      | creatable: persist dial (D1)
+        theory: [2026-10-10 Claude, before confirm] Momentum in the traded market while few others trend: no mechanism for the cross-market part, and controlling for risk_on REVERSES it (-88%). NONE. Predict FAILED/WEAK.
+        check half: edge inside +0.137, outside +0.057
+  fast-06  mv10_with bottom 10% (<= 1.46)                               discovered diff +0.367 (t +2.7) | check: in  124 diff +0.050 t +0.4 | WEAK      | creatable: persist dial (D1)
+        theory: [2026-10-10 Claude, before confirm] Fresh trends: the 10-day move is small (still positive), so the filter-agreed breakout is early in the trend with room to run, not extended. Disguise flag (risk_on 25%). Low-moderate. Predict same sign.
+        check half: edge inside +0.111, outside +0.062
+  fast-07  vr120 high third (> 1.06)  AND  usd_up = 1                   discovered diff +0.476 (t +2.7) | check: in   60 diff -0.309 t -1.3 | FAILED    | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] Same as fast-04 (momentum causal, usd_up proxy). USDJPY 2014 = 39%. Predict same sign, weak.
+        check half: edge inside -0.219, outside +0.090
+  fast-08  vr120 >= 1  AND  dir = short                                 discovered diff +0.499 (t +2.7) | check: in   66 diff -0.138 t -0.7 | FAILED    | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] Momentum regime (causal) + shorts: mostly the 2014-15 gold bear (T9 macro direction). Controlling for risk_on reverses it (-42%). Low. Predict WEAK.
+        check half: edge inside -0.058, outside +0.079
+  fast-09  vr120 high third (> 1.06)  AND  market = USDJPY              discovered diff +0.566 (t +2.6) | check: in   62 diff -0.214 t -1.1 | FAILED    | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] NONE: USDJPY 2014 = 87% of the excess (Abenomics; ONE STRETCH); without it t +0.8. Predict FAILED/WEAK.
+        check half: edge inside -0.129, outside +0.084
+  fast-10  n_trending bottom 10% (<= 0)                                 discovered diff +0.390 (t +2.6) | check: in  129 diff +0.030 t +0.2 | WEAK      | creatable: persist dial on all markets
+        theory: [2026-10-10 Claude, before confirm] NONE with a clear mechanism: fast does best when NO book market is trending. Weak guess: its own-market filter then catches fresh, uncrowded moves. Predict WEAK.
+        check half: edge inside +0.095, outside +0.064
+  fast-11  form20 high third (> 4.66)                                   discovered diff +0.259 (t +2.6) | check: in  318 diff -0.171 t -1.9 | FAILED    | select-only (half split + yardstick only)
+        theory: [2026-10-10 Claude, before confirm] Hot form -> better, which is AGAINST T5. Likely a proxy for a trending regime (vr120 control keeps only 73%). Predict same sign, weak; if it holds, it is regime persistence, not form.
+        check half: edge inside -0.039, outside +0.132
+  fast-12  vr120 high third (> 1.06)  AND  dir = short                  discovered diff +0.543 (t +2.6) | check: in   44 diff -0.159 t -0.6 | FAILED    | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] Same as fast-08 (momentum + shorts in the gold 2015 bear). Predict WEAK.
+        check half: edge inside -0.082, outside +0.077
+
+--------------------------------------------------------------------------------------------------------------
+dipx: 515 check-half trades
+--------------------------------------------------------------------------------------------------------------
+  dipx-01  vr120 low third (<= 0.677)  AND  eff10_with < 0              discovered diff +0.634 (t +4.2) | check: in   46 diff +0.185 t +1.1 | WEAK      | creatable: persist dial (D1)
+        theory: [2026-10-10 Claude, before confirm] The ORIGINAL dip theory (buy a straight 10-day decline in a snap-back regime), but 99% from 2020-21 and US500 2021 = 58% (ONE STRETCH). The engine said dip prefers momentum overall. Predict WEAK/FAILED.
+        check half: edge inside +0.321, outside +0.137
+  dipx-02  vr120 < 1  AND  day_move_with < 0                            discovered diff -0.557 (t -4.0) | check: in  236 diff +0.048 t +0.3 | FAILED    | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] Gap-up entry: for the next-open dip trades, day_move_with < 0 means today OPENED ABOVE yesterday's close, so part of the bounce happened overnight and the entry is late. In a non-persistent regime the remaining bounce is small. Predict holds (bad).
+        check half: edge inside +0.179, outside +0.131
+  dipx-03  day_move_with >= 0                                           discovered diff +0.477 (t +3.8) | check: in  227 diff -0.170 t -1.0 | FAILED    | select-only (half split + yardstick only)
+        theory: [2026-10-10 Claude, before confirm] Mirror of the gap mechanism: entering at an open AT or BELOW yesterday's close (gap down / no gap) captures the whole bounce. Predict CONFIRMED.
+        check half: edge inside +0.058, outside +0.228
+  dipx-04  day_move_with high third (> 0.0794)                          discovered diff +0.425 (t +3.3) | check: in   88 diff -0.202 t -0.9 | FAILED    | select-only (half split + yardstick only)
+        theory: [2026-10-10 Claude, before confirm] Same gap mechanism, stronger third (opening clearly below yesterday's close). US500 2021 = 51% (stretch flag). Predict same sign.
+        check half: edge inside -0.014, outside +0.188
+  dipx-05  vr120 high third (> 0.872)  AND  spread_R mid third (0.0058  discovered diff +0.614 (t +3.2) | check: in   81 diff -0.442 t -1.2 | FAILED    | creatable: persist dial (D1)
+        theory: [2026-10-10 Claude, before confirm] Momentum half matches the engine (dip likes momentum, D1); the spread middle third has no mechanism (proxy for market / time). Predict same sign, weak.
+        check half: edge inside -0.219, outside +0.223
+  dipx-06  vr120 < 1  AND  form20 >= 0                                  discovered diff -0.607 (t -3.1) | check: in  303 diff +0.085 t +0.5 | FAILED    | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] T5: after good recent form the next dip trades are worse, in a non-persistent regime. Predict holds (bad).
+        check half: edge inside +0.188, outside +0.103
+  dipx-07  vr120 < 1  AND  eff10_with >= 0                              discovered diff -0.499 (t -3.0) | check: in  174 diff -0.163 t -0.8 | WEAK      | creatable: persist dial (D1)
+        theory: [2026-10-10 Claude, before confirm] No real dip: the 10-day path went UP, so the 'dip' is only a short wobble and there is no stretched move to snap back. Predict holds (bad).
+        check half: edge inside +0.045, outside +0.208
+  dipx-08  vr120 mid third (0.677 .. 0.872)  AND  day_move_with < 0     discovered diff -0.785 (t -3.0) | check: in  113 diff +0.352 t +2.0 | FAILED    | partly creatable: persist dial (D1) + a select-only state
+        theory: [2026-10-10 Claude, before confirm] Same gap-up mechanism as dipx-02. Predict holds (bad).
+        check half: edge inside +0.428, outside +0.076
+  dipx-09  eff10_with < 0                                               discovered diff +0.398 (t +2.7) | check: in  305 diff +0.272 t +1.4 | WEAK      | creatable: persist dial (D1)
+        theory: [2026-10-10 Claude, before confirm] Real 10-day decline -> bounce, but DEPTH in disguise (mv10_with control keeps 24%) and ONE STRETCH (US500 2021 56%). Predict WEAK; dipx-11 is the cleaner version.
+        check half: edge inside +0.264, outside -0.008
+  dipx-10  spread_R mid third (0.0058 .. 0.0096)                        discovered diff +0.464 (t +2.7) | check: in  147 diff -0.324 t -1.4 | FAILED    | creatable: spread dial
+        theory: [2026-10-10 Claude, before confirm] NONE: the spread middle third is a market / time proxy (US500 49%); US500 2021 = 57% stretch. Predict FAILED/WEAK.
+        check half: edge inside -0.079, outside +0.246
+  dipx-11  mv10_with low third (<= -1.24)                               discovered diff +0.454 (t +2.6) | check: in  163 diff +0.277 t +1.4 | WEAK      | creatable: persist dial (D1)
+        theory: [2026-10-10 Claude, before confirm] Deeper dip (10-day move <= -1.24 ATR) -> bigger snap-back (why-phase W2 depth idea). Predict holds.
+        check half: edge inside +0.342, outside +0.066
+  dipx-12  mv10_with high third (> 0.39)                                discovered diff -0.395 (t -2.6) | check: in  162 diff -0.137 t -0.8 | WEAK      | creatable: persist dial (D1)
+        theory: [2026-10-10 Claude, before confirm] No real dip (10-day move up) -> weak bounce. Same as dipx-07. Predict holds (bad).
+        check half: edge inside +0.059, outside +0.196
+
+CONFIRMED: 1 of 44 locked pockets. By chance (yardstick, 20 shifted hunts): median 0, 90th percentile 2, max 2.
+Next for the confirmed pockets on CREATABLE states: the engine's matching dial (ideal / nightmare) as the causal
+check. Select-only pockets stand on this split alone.

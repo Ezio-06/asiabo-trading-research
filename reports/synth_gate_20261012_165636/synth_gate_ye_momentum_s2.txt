@@ -1,0 +1,29 @@
+REALISM GATE (make_synth v7, 2026-10-11): D:\coding stuff\Trading research project\synth\ye_momentum_s2.db vs bars.db, markets EURUSD, GERMANY40, US500, USDJPY, XAUUSD, XTIUSD
+
+settings: aging=0.0, bmax=6, bmin=2, bmom=1.0, bsnap=0, drift=0.0, generator=v8, jitter=0.0, lb=40, level=1.0, made=2026-10-12 16:51:06, markets=, persist=0.0, preset=shuffle, regime=, seed=2, shuffle=True, spell=20,130, spread=1.0, unit=week, vol=1.0
+
+  statistic          real    synth      tol          meaning
+  truth_share       0.147    0.275    0.019    OUT   days inside a hindsight 41-close straight stretch (er >= 0.30)  (strong)
+  er20_prec         0.287    0.504    0.039    OUT   er20 >= 0.30 agrees with the hindsight trend  (strong)
+  er40_prec         0.245    0.519    0.081    OUT   er40 >= 0.30 agrees with that hindsight trend  (strong)
+  ac1              -0.058   -0.044    0.051     ok   lag-1 autocorrelation of daily returns (mean of markets)  (strong)
+  vol_prec          0.776    0.708    0.150     ok   atr10 >= 1.25 x 250-day mean TR agrees with the hindsight high-vol state (volatility clustering)  (strong)
+  down3             0.081    0.070    0.021     ok   share of index days (US500, GERMANY40) after 3 down closes (dip's setup)  (strong)
+  spell20_share     0.072    0.102    0.028    OUT   share of er40 spells lasting 20+ days
+  hazard_ratio      0.904    0.480    0.381    OUT   er40 spell hazard, age 21-40 / age 6-20
+  mid20            -0.026    2.228    1.298    OUT   mid-spell (age 10+) move over the next 20 days, in daily ATRs
+  vr20              0.903    0.957    0.169     ok   20-day variance ratio of daily returns (< 1 = mean-reverting)
+  bounce3           0.604    0.618    0.075     ok   share of those index days that close up
+
+per market (real / synth): truth share, ac1
+  EURUSD     truth 0.126 / 0.232   ac1 -0.016 / -0.021
+  GERMANY40  truth 0.133 / 0.287   ac1 -0.097 / -0.076
+  US500      truth 0.158 / 0.496   ac1 -0.221 / -0.184
+  USDJPY     truth 0.129 / 0.231   ac1 -0.025 / +0.016
+  XAUUSD     truth 0.190 / 0.263   ac1 -0.000 / -0.020
+  XTIUSD     truth 0.152 / 0.269   ac1 +0.009 / +0.018
+
+RULE: FAIL if any strong statistic is outside its tolerance, or 2+ of the others.
+KNOWN: v8 worlds sit ~0.10 below real in vol_prec (volatility clustering only partly restored).
+VERDICT: FAIL  (strong out: truth_share, er20_prec, er40_prec; others out: spell20_share, hazard_ratio, mid20)
+gate runtime 113s

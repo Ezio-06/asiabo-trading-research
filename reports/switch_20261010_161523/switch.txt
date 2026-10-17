@@ -1,0 +1,71 @@
+==============================================================================================================
+THE MOMENTUM SWITCH on REAL data: one pre-registered test (rules and predictions: asiabo_switch.py top)
+==============================================================================================================
+Switch: er40 (straightness of the last 40 daily closes) > 0.30, per market, known at the start of the entry day.
+Chosen in synthetic known-truth worlds (regime engine), never used on real data before. brk and fast only.
+
+A. EACH PART, unswitched vs switched (edge = cost-free direction value; net = after real costs; R/yr = net):
+
+  brk
+    2014-17    unswitched n 514 edge +0.135 (t +1.3) net +0.021   +2.7 R/yr | SWITCHED n 118 edge +0.291 (t +1.1) net +0.311   +9.2 R/yr | adaptive n 180 edge +0.429
+    2018-19    unswitched n 282 edge +0.189 (t +1.9) net +0.021   +3.0 R/yr | SWITCHED n  65 edge +0.363 (t +1.7) net +0.264   +8.6 R/yr | adaptive n 128 edge +0.170
+    A 2020-21  unswitched n 373 edge +0.036 (t +0.3) net +0.047   +8.8 R/yr | SWITCHED n  78 edge +0.284 (t +1.3) net +0.464  +18.1 R/yr | adaptive n 127 edge +0.094
+    B 2024+    unswitched n 571 edge +0.162 (t +1.9) net +0.230  +47.7 R/yr | SWITCHED n 168 edge +0.226 (t +1.4) net +0.270  +16.5 R/yr | adaptive n 275 edge +0.161
+    ALL        unswitched n1740 edge +0.132 (t +2.6) net +0.095  +15.4 R/yr | SWITCHED n 429 edge +0.275 (t +2.6) net +0.316  +12.6 R/yr | adaptive n 710 edge +0.219
+    -> switched edge above unswitched in 4 of 4 eras
+
+  fast
+    2014-17    unswitched n 514 edge +0.153 (t +2.0) net +0.010   +1.3 R/yr | SWITCHED n 120 edge +0.258 (t +1.6) net +0.149   +4.5 R/yr | adaptive n 192 edge +0.332
+    2018-19    unswitched n 248 edge +0.086 (t +1.0) net +0.019   +2.4 R/yr | SWITCHED n  52 edge +0.122 (t +0.6) net -0.109   -2.8 R/yr | adaptive n 108 edge +0.087
+    A 2020-21  unswitched n 306 edge +0.171 (t +2.2) net +0.243  +37.1 R/yr | SWITCHED n  75 edge +0.241 (t +1.6) net +0.165   +6.2 R/yr | adaptive n 111 edge +0.148
+    B 2024+    unswitched n 611 edge +0.062 (t +1.1) net +0.145  +32.2 R/yr | SWITCHED n 174 edge +0.110 (t +1.0) net +0.250  +15.8 R/yr | adaptive n 289 edge +0.043
+    ALL        unswitched n1679 edge +0.113 (t +3.2) net +0.103  +16.1 R/yr | SWITCHED n 421 edge +0.177 (t +2.4) net +0.162   +6.3 R/yr | adaptive n 700 edge +0.146
+    -> switched edge above unswitched in 4 of 4 eras
+
+  ins
+    2014-17    unswitched n 405 edge +0.095 (t +1.2) net -0.051   -5.2 R/yr | SWITCHED n 405 edge +0.095 (t +1.2) net -0.051   -5.2 R/yr | adaptive n 405 edge +0.095
+    2018-19    unswitched n 217 edge +0.143 (t +1.8) net +0.019   +2.1 R/yr | SWITCHED n 217 edge +0.143 (t +1.8) net +0.019   +2.1 R/yr | adaptive n 217 edge +0.143
+    A 2020-21  unswitched n 269 edge +0.169 (t +2.1) net +0.155  +20.9 R/yr | SWITCHED n 269 edge +0.169 (t +2.1) net +0.155  +20.9 R/yr | adaptive n 269 edge +0.169
+    B 2024+    unswitched n 365 edge +0.100 (t +1.7) net +0.051   +6.8 R/yr | SWITCHED n 365 edge +0.100 (t +1.7) net +0.051   +6.8 R/yr | adaptive n 365 edge +0.100
+    ALL        unswitched n1256 edge +0.121 (t +3.3) net +0.035   +4.1 R/yr | SWITCHED n1256 edge +0.121 (t +3.3) net +0.035   +4.1 R/yr | adaptive n1256 edge +0.121
+    -> switched edge above unswitched in 0 of 4 eras
+
+  dip
+    2014-17    unswitched n  15 edge +0.283 (t +0.8) net +0.183   +0.7 R/yr | SWITCHED n  15 edge +0.283 (t +0.8) net +0.183   +0.7 R/yr | adaptive n  15 edge +0.283
+    2018-19    unswitched n  14 edge -0.023 (t -0.0) net -0.094   -0.7 R/yr | SWITCHED n  14 edge -0.023 (t -0.0) net -0.094   -0.7 R/yr | adaptive n  14 edge -0.023
+    A 2020-21  unswitched n  49 edge +0.425 (t +1.7) net +0.355   +8.7 R/yr | SWITCHED n  49 edge +0.425 (t +1.7) net +0.355   +8.7 R/yr | adaptive n  49 edge +0.425
+    B 2024+    unswitched n  61 edge +0.503 (t +3.5) net +0.429   +9.5 R/yr | SWITCHED n  61 edge +0.503 (t +3.5) net +0.429   +9.5 R/yr | adaptive n  61 edge +0.503
+    ALL        unswitched n 139 edge +0.399 (t +3.2) net +0.324   +4.2 R/yr | SWITCHED n 139 edge +0.399 (t +3.2) net +0.324   +4.2 R/yr | adaptive n 139 edge +0.399
+    -> switched edge above unswitched in 0 of 4 eras
+
+B. P2: brk trades of the UNSWITCHED book split by the switch on their entry day (kept vs turned away):
+    kept 353 trades edge +0.229 | turned away 1387 trades edge +0.107 | difference +0.122, clustered t +0.9 -> P2 FAILS
+      2014-17    kept  103 edge +0.237 | turned away  411 edge +0.110
+      2018-19    kept   49 edge +0.264 | turned away  233 edge +0.174
+      A 2020-21  kept   66 edge +0.076 | turned away  307 edge +0.027
+      B 2024+    kept  135 edge +0.286 | turned away  436 edge +0.124
+
+C. P4 YARDSTICK: 20 random switches, each keeping the same SHARE of days per market as the real switch:
+    days switched on per market: GERMANY40 13%, US500 16%, USDJPY 13%, XAUUSD 18%
+    brk  real switch edge +0.275 | random switches: median +0.117, 90th percentile +0.231, max +0.293 -> P4 HOLDS
+    fast real switch edge +0.177 | random switches: median +0.135, 90th percentile +0.249, max +0.330
+
+D. THE RULE THAT SHELVED brk (why phase W3), on the SWITCHED brk: net without its best market-year, per era
+    2014-17    n  118 net   +36.7 R | best market-year USDJPY 2014      +50.2 R | without it   -13.5 R
+    2018-19    n   65 net   +17.2 R | best market-year USDJPY 2018      +13.5 R | without it    +3.7 R
+    A 2020-21  n   78 net   +36.2 R | best market-year GERMANY40 2020   +17.2 R | without it   +18.9 R
+    B 2024+    n  168 net   +45.4 R | best market-year XAUUSD 2025      +34.9 R | without it   +10.5 R
+    -> net > 0 without the best market-year in 3 of 4 eras -> W3 PASSED
+
+E. MONEY ($10,000, fixed risk brk 0.25 / ins 0.25 / dip 0.50 / fast 0.10 %, the lab's K4 engine):
+  core now (fast + dip)              $10,000   |14-17  +0.5%/yr dd  4.2% under 25mo m+ 44% small 69 cap 0  |18-19  -0.4%/yr dd  2.1% under 16mo m+ 38% small 83 cap 0  |20-21  +7.3%/yr dd  1.6% under  4mo m+ 75% small 111 cap 0  |2024+  +3.4%/yr dd  3.5% under  7mo m+ 56% small 374 cap 0
+  core, fast switched                $10,000   |14-17  +0.5%/yr dd  1.1% under  7mo m+ 32% small 26 cap 0  |18-19  -0.3%/yr dd  1.1% under 13mo m+ 23% small 25 cap 0  |20-21  +4.1%/yr dd  1.1% under  8mo m+ 64% small 55 cap 0  |2024+  +2.1%/yr dd  2.2% under  6mo m+ 58% small 136 cap 0
+  core switched + brk switched       $10,000   |14-17  +2.9%/yr dd  4.4% under  6mo m+ 32% small 35 cap 0  |18-19  +1.7%/yr dd  2.0% under 10mo m+ 31% small 40 cap 0  |20-21  +6.5%/yr dd  1.5% under  4mo m+ 77% small 78 cap 0  |2024+  +3.5%/yr dd  4.4% under 15mo m+ 41% small 182 cap 0
+  old frozen book (all 4, no switch) $10,000   |14-17  +0.8%/yr dd 23.3% under 26mo m+ 39% small 164 cap 0  |18-19  +1.0%/yr dd 10.6% under 17mo m+ 44% small 212 cap 0  |20-21 +15.8%/yr dd  6.1% under  5mo m+ 71% small 272 cap 0  |2024+ +18.6%/yr dd  3.0% under  5mo m+ 62% small 583 cap 0
+
+==============================================================================================================
+VERDICT (pre-registered): P1 brk HOLDS (4 of 4) | P2 FAILS | P3 fast HOLDS (4 of 4) | P4 HOLDS | W3 on switched brk PASSED
+brk STAYS SHELVED
+fast switch: worth adopting (P3 holds)
+==============================================================================================================
+runtime 245s

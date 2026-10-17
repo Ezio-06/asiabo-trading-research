@@ -1,0 +1,392 @@
+==============================================================================
+DATA COLLECTION  --  every lane in shadow, what was known at entry, what happened after
+==============================================================================
+Nothing here decides anything. It measures, on the two TRAINING periods only.
+Sealed exam years 2022-01-01 .. 2024-01-01: not read by this mode, whatever EXAM_UNLOCK says.
+Lanes: the bot's 16 + swing (20-day breakout, trailing exit) + dip (pullback in a trend) + control.
+
+##############################################################################
+XAUUSD   (costs 1.30 bp round trip, swap long -0.8050 / short -0.0192 per night)
+##############################################################################
+  period A: 2020-01-01 .. 2021-12-31 | 47349 M15 bars | 3353 trades | 3 still open at the end (dropped)
+  period B: 2024-01-01 .. 2026-10-02 | 64559 M15 bars | 5175 trades | 6 still open at the end (dropped)
+  A = before 2022-01-01, B = from 2024-01-01. The years between are sealed and were not read.
+
+------------------------------------------------------------------------------
+1. EVERY LANE IN SHADOW  (R per trade, net of costs; +/- is one standard error)
+------------------------------------------------------------------------------
+  lane       family     period A                   period B                  
+  main       breakout   -0.049 +/-0.044 n=484      +0.030 +/-0.032 n=623     
+  london     breakout   -0.028 +/-0.038 n=455      +0.011 +/-0.035 n=637     
+  pdh        breakout   -0.067 +/-0.094 n=193      +0.117 +/-0.083 n=253     
+  nr7        breakout   +0.050 +/-0.118 n=72       +0.122 +/-0.089 n=95      
+  retest     breakout   -0.086 +/-0.080 n=232      +0.016 +/-0.063 n=325     
+  = breakout            -0.046 +/-0.027 n=1436     +0.037 +/-0.022 n=1933    
+
+  fade       reversal   +0.039 +/-0.073 n=279      -0.121 +/-0.070 n=416     
+  sar        reversal   -0.113 +/-0.071 n=145      -0.110 +/-0.078 n=115     
+  range      reversal   -0.206 +/-0.232 n=33       -0.392 +/-0.095 n=198     
+  exhaust    reversal   -0.198 +/-0.094 n=141      -0.012 +/-0.073 n=251     
+  vwap       reversal   -0.239 +/-0.097 n=151      -0.165 +/-0.080 n=347     
+  gapfill    reversal   +0.121 +/-0.203 n=23       -0.209 +/-0.120 n=64      
+  bigrev     reversal   -0.228 +/-0.166 n=17       -0.044 +/-0.130 n=23      
+  = reversal            -0.098 +/-0.040 n=789      -0.152 +/-0.035 n=1414    
+
+  trend      momentum   -0.056 +/-0.055 n=369      +0.059 +/-0.049 n=564     
+  nyaft      momentum   -0.050 +/-0.063 n=144      -0.047 +/-0.055 n=253     
+  scalp      momentum   -0.155 +/-0.141 n=49       -0.164 +/-0.065 n=234     
+  bigcont    momentum   +0.212 +/-0.166 n=17       +0.031 +/-0.130 n=23      
+  = momentum            -0.055 +/-0.040 n=579      -0.015 +/-0.032 n=1074    
+
+  swing      swing      -0.421 +/-0.180 n=24       +0.091 +/-0.272 n=31      
+  dip        swing      +0.162 +/-0.395 n=12       +0.087 +/-0.370 n=14      
+  = swing               -0.227 +/-0.181 n=36       +0.090 +/-0.218 n=45      
+
+  control    control    -0.035 +/-0.037 n=513      +0.023 +/-0.030 n=709     
+------------------------------------------------------------------------------
+2. SIGNALS WITH A PREDICTED DIRECTION  (top third minus bottom third of the signal, in R)
+------------------------------------------------------------------------------
+  PASS = the predicted way in BOTH periods AND combined z >= 2.0. z is already signed so that
+  positive = the way theory said. A signal that works the opposite way is a fail, not a find.
+
+  breakout
+    setup_range_rel  A -0.11R z-1.53 | B -0.05R z-0.87 | combined z -1.70  -
+                       (setup range small vs recent daily ranges (quiet before expansion))
+    trend20_with     A +0.02R z+0.28 | B +0.15R z+2.72 | combined z +2.12  PASS
+                       (break goes with the 20-day trend)
+    open_hours       A +0.02R z+0.38 | B +0.04R z+1.01 | combined z +0.98  -
+                       (break in the London/New York open hours)
+    bar_extreme      A -0.03R z-0.47 | B -0.10R z-1.77 | combined z -1.58  -
+                       (breakout bar closes near its extreme)
+    room_r           A +0.04R z+0.62 | B +0.03R z+0.55 | combined z +0.83  -
+                       (room before yesterday's high/low)
+
+  reversal
+    er20             A -0.23R z-2.23 | B -0.11R z-1.22 | combined z -2.44  -
+                       (recent days made little net progress)
+    trend20_with     A -0.09R z-0.92 | B +0.09R z+0.99 | combined z +0.05  -
+                       (trade goes with the 20-day trend, not against it)
+    stretch_atr      A -0.24R z-2.60 | B -0.04R z-0.55 | combined z -2.23  -
+                       (bigger stretch from fair value (VWAP))
+    hour             A -0.00R z-0.01 | B +0.15R z+1.68 | combined z +1.18  -
+                       (later in the session)
+
+  momentum
+    trend20_with     A -0.10R z-0.97 | B +0.07R z+0.92 | combined z -0.03  -
+                       (intraday lean matches the 20-day trend)
+    day_used         A -0.09R z-0.91 | B +0.02R z+0.22 | combined z -0.49  -
+                       (day has NOT already used most of its usual range)
+    volrank          A +0.01R z+0.14 | B -0.01R z-0.12 | combined z +0.01  -
+                       (volatility high against its own history)
+
+  swing
+    er20             A +0.36R z+0.78 | B +0.49R z+0.83 | combined z +1.14  -
+                       (market has been moving in a straight line)
+
+  13 signals tested. By luck alone, expect about 0.3 of them to pass.
+
+------------------------------------------------------------------------------
+3. REGIME READS AT TWO SPEEDS  (no direction predicted: looked at both ways, so a stricter bar)
+------------------------------------------------------------------------------
+  er5/er20 = how straight the market moved over 5 / 20 days | vol3rel = last 3 days' range vs 20
+  volrank = volatility vs its own last 120 days | turning = fast and slow trend disagree
+  asia_rel = Asian range vs average day | day_eff = how straight today has moved so far
+  HOLDS = same sign in both periods AND |combined z| >= 2.5
+  read         breakout        reversal        momentum        swing           
+  er5          -0.7/+1.5       +1.2/-2.3       +0.6/+0.8       -1.7/-0.7       
+  er20         -1.3/-2.4 HOLDS +2.2/+1.2       +0.0/+0.4       +0.8/+0.8       
+  trend5_with  -1.6/+1.6       +1.4/+0.1       -0.9/-1.1       -1.7/+0.9       
+  vol3rel      -0.1/-0.6       +0.2/+0.6       +1.3/-0.6       +0.2/+0.1       
+  volrank      -1.5/-1.4       +1.1/+0.6       +0.1/-0.1       -0.2/-1.7       
+  turning      -1.1/-1.3       -0.2/+1.3       -1.7/+0.1       +1.2/+0.9       
+  asia_rel     +2.7/+0.8 HOLDS -1.1/-0.7       +1.8/+1.2       +1.7/-0.5       
+  day_eff      +2.3/+1.8 HOLDS -1.1/-1.1       +1.9/+0.8       -0.2/-1.5       
+  (each cell: z in period A / z in period B; positive = higher read went with better trades)
+  32 cells. By luck alone, expect about 0.4 to hold.
+
+------------------------------------------------------------------------------
+4. DO THE READS PERSIST?  (this week vs next week; a read that doesn't persist can't be a filter)
+------------------------------------------------------------------------------
+  period A (103 weeks): straightness +0.04 | volatility +0.59 | same direction next week 53%
+  period B (143 weeks): straightness +0.03 | volatility +0.53 | same direction next week 52%
+  (first two are correlations: 0 = no memory, 1 = next week is the same; direction: 50% = coin flip)
+
+------------------------------------------------------------------------------
+5. TREND EPISODES: HOW LATE ARE THE READS?  (trend-side families: breakout + momentum + swing)
+------------------------------------------------------------------------------
+  An episode = a stretch that, looking back with hindsight, was a trend (>= 5 days).
+  slow = 20-day read, fast = 5-day read; a read detects on its 2nd day in a row.
+  period A: 10 episodes, median length 7 days, total R earned inside them +0.0
+    slow read: detected 5, missed 5 | median lag 5 days | R before detection -3.6, after +3.7, staying on after the end -20.4
+    fast read: detected 9, missed 1 | median lag 5 days | R before detection +15.0, after -15.0, staying on after the end -31.9
+  period B: 16 episodes, median length 8 days, total R earned inside them -27.4
+    slow read: detected 10, missed 6 | median lag 3 days | R before detection +4.8, after -32.2, staying on after the end -25.5
+    fast read: detected 10, missed 6 | median lag 3 days | R before detection -3.2, after -24.2, staying on after the end +27.2
+
+------------------------------------------------------------------------------
+6. STAND-ASIDE DAYS  (flags known at the open; is every family worse on them?)
+------------------------------------------------------------------------------
+  shock = yesterday's range >= 2x average | gap = big opening gap | turning = fast/slow trend disagree
+  xshock = the OTHER market had a shock day yesterday
+  shock
+    breakout  A: flagged -0.116 (n=61) vs -0.038      | B: flagged +0.130 (n=93) vs +0.043     
+    reversal  A: flagged -0.082 (n=63) vs -0.095      | B: flagged -0.008 (n=95) vs -0.166     
+    momentum  A: flagged -0.090 (n=41) vs -0.055      | B: flagged -0.019 (n=75) vs -0.011     
+    swing     A: flagged too few                      | B: flagged too few                     
+    -> not consistently worse
+  gap
+    breakout  A: flagged +0.316 (n=30) vs -0.053      | B: flagged +0.200 (n=98) vs +0.029     
+    reversal  A: flagged -0.651 (n=30) vs -0.076      | B: flagged -0.173 (n=88) vs -0.151     
+    momentum  A: flagged -0.107 (n=25) vs -0.053      | B: flagged -0.101 (n=63) vs -0.010     
+    swing     A: flagged too few                      | B: flagged too few                     
+    -> not consistently worse
+  turning
+    breakout  A: flagged -0.082 (n=489) vs -0.020     | B: flagged +0.009 (n=660) vs +0.067    
+    reversal  A: flagged -0.104 (n=263) vs -0.088     | B: flagged -0.093 (n=487) vs -0.189    
+    momentum  A: flagged -0.156 (n=194) vs -0.006     | B: flagged -0.008 (n=364) vs -0.014    
+    swing     A: flagged +0.163 (n=10) vs -0.376      | B: flagged +0.341 (n=18) vs -0.078     
+    -> not consistently worse
+  xshock
+    breakout  A: flagged -0.069 (n=109) vs -0.044     | B: flagged +0.294 (n=128) vs +0.019    
+    reversal  A: flagged -0.077 (n=70) vs -0.100      | B: flagged -0.390 (n=96) vs -0.135     
+    momentum  A: flagged -0.204 (n=50) vs -0.041      | B: flagged +0.134 (n=80) vs -0.027     
+    swing     A: flagged too few                      | B: flagged too few                     
+    -> not consistently worse
+
+------------------------------------------------------------------------------
+7. TRUST LOOKUP  (family x the bot's regime label)
+------------------------------------------------------------------------------
+  rung: 'normal' = clearly positive (mean - 1 se > 0) in BOTH periods | 'shadow' = clearly negative
+  in both | 'scout' = everything in between. No rung here ever means 'risk more'.
+  breakout  trending  A -0.081 +/-0.054 n=348      B -0.045 +/-0.047 n=452      -> scout
+  breakout  volatile  A -0.066 +/-0.075 n=199      B +0.080 +/-0.045 n=442      -> scout
+  breakout  choppy    A +0.040 +/-0.054 n=374      B +0.082 +/-0.046 n=441      -> scout
+  breakout  drift     A -0.112 +/-0.048 n=421      B +0.099 +/-0.044 n=490      -> scout
+
+  reversal  trending  A +0.085 +/-0.082 n=186      B -0.118 +/-0.078 n=346      -> scout
+  reversal  volatile  A +0.070 +/-0.116 n=136      B -0.197 +/-0.065 n=352      -> scout
+  reversal  choppy    A -0.260 +/-0.074 n=203      B -0.160 +/-0.072 n=321      -> shadow
+  reversal  drift     A -0.198 +/-0.069 n=226      B -0.197 +/-0.069 n=347      -> shadow
+
+  momentum  trending  A -0.131 +/-0.080 n=148      B +0.046 +/-0.069 n=258      -> scout
+  momentum  volatile  A -0.002 +/-0.114 n=82       B -0.016 +/-0.066 n=267      -> scout
+  momentum  choppy    A -0.093 +/-0.076 n=156      B -0.031 +/-0.069 n=226      -> scout
+  momentum  drift     A +0.006 +/-0.074 n=157      B -0.033 +/-0.060 n=280      -> scout
+
+  swing     trending  A +0.670 +/-0.592 n=5        B +0.152 +/-0.476 n=7        -> scout (too few trades to judge)
+  swing     volatile  A -0.977 +/-0.026 n=5        B -0.277 +/-0.343 n=6        -> scout (too few trades to judge)
+  swing     choppy    A -0.252 +/-0.223 n=16       B -0.311 +/-0.354 n=17       -> scout (too few trades to judge)
+  swing     drift     A -0.164 +/-0.452 n=9        B +0.771 +/-0.442 n=14       -> scout (too few trades to judge)
+
+------------------------------------------------------------------------------
+8. THE FIXED EXIT MENU AND TIMING  (same entries, same stop; only the way out differs)
+------------------------------------------------------------------------------
+  as built = the lane's own exit | 1R = nearer target | hold = no target, stop or the clock
+  trail = after +1R the stop follows 1R behind the best price
+  family          as built         1R       hold      trail |   best R     given     ran on  day used
+  breakout  A       -0.046     -0.048     -0.036     -0.027 |     0.79      0.80       0.52      0.60
+  breakout  B       +0.037     +0.006     +0.041     +0.023 |     0.77      0.71       0.45      0.66
+  reversal  A       -0.098     -0.055     -0.104     -0.081 |     0.88      0.94       1.17      0.78
+  reversal  B       -0.152     -0.096     -0.178     -0.121 |     1.00      1.09       1.83      0.76
+  momentum  A       -0.055     -0.025     -0.040     -0.029 |     0.79      0.81       0.55      0.91
+  momentum  B       -0.015     -0.022     -0.057     -0.032 |     0.84      0.81       0.98      0.86
+  swing     A       -0.227     +0.054     -0.359     +0.041 |     1.19      1.26       0.74      0.92
+  swing     B       +0.090     -0.016     +0.178     +0.291 |     1.57      1.38       0.83      0.99
+  best R = furthest the trade got our way | given = how much of that was handed back by the exit
+  ran on = how far price kept going our way AFTER the exit | day used = share of an average day's
+  range already covered when the trade was entered (1.0 = a full average day)
+
+##############################################################################
+US500   (costs 1.30 bp round trip, swap long -1.0000 / short -0.1000 per night)
+##############################################################################
+  period A: 2020-01-02 .. 2021-12-31 | 26540 M15 bars | 1517 trades | 3 still open at the end (dropped)
+  period B: 2024-01-02 .. 2026-10-02 | 58039 M15 bars | 5080 trades | 4 still open at the end (dropped)
+  A = before 2022-01-01, B = from 2024-01-01. The years between are sealed and were not read.
+  NOTE: the session lanes use GOLD's hours and box rules here; read them as a test bed, not a design.
+
+------------------------------------------------------------------------------
+1. EVERY LANE IN SHADOW  (R per trade, net of costs; +/- is one standard error)
+------------------------------------------------------------------------------
+  lane       family     period A                   period B                  
+  main       breakout         (no trades)          -0.046 +/-0.048 n=527     
+  london     breakout   +0.079 +/-0.105 n=219      -0.047 +/-0.047 n=593     
+  pdh        breakout   -0.071 +/-0.105 n=190      -0.132 +/-0.076 n=279     
+  nr7        breakout   -0.101 +/-0.206 n=50       +0.060 +/-0.106 n=90      
+  retest     breakout         (no trades)          -0.223 +/-0.075 n=269     
+  = breakout            -0.003 +/-0.070 n=459      -0.081 +/-0.028 n=1758    
+
+  fade       reversal         (no trades)          -0.047 +/-0.074 n=398     
+  sar        reversal         (no trades)          +0.013 +/-0.067 n=217     
+  range      reversal         (no trades)          -0.181 +/-0.124 n=146     
+  exhaust    reversal         (no trades)          -0.227 +/-0.087 n=215     
+  vwap       reversal   -0.267 +/-0.154 n=160      -0.144 +/-0.090 n=353     
+  gapfill    reversal   -0.047 +/-0.106 n=89       +0.007 +/-0.098 n=102     
+  bigrev     reversal   -0.116 +/-0.226 n=23       +0.065 +/-0.152 n=31      
+  = reversal            -0.182 +/-0.099 n=272      -0.095 +/-0.037 n=1462    
+
+  trend      momentum   -0.043 +/-0.088 n=333      -0.098 +/-0.056 n=545     
+  nyaft      momentum   +0.019 +/-0.110 n=159      -0.029 +/-0.059 n=298     
+  scalp      momentum   -0.060 +/-0.066 n=227      -0.110 +/-0.051 n=379     
+  bigcont    momentum   +0.058 +/-0.225 n=23       -0.104 +/-0.149 n=31      
+  = momentum            -0.032 +/-0.051 n=742      -0.085 +/-0.033 n=1253    
+
+  swing      swing      -0.138 +/-0.368 n=27       -0.138 +/-0.181 n=38      
+  dip        swing      -0.237 +/-0.334 n=17       -0.218 +/-0.228 n=25      
+  = swing               -0.177 +/-0.258 n=44       -0.170 +/-0.141 n=63      
+
+  control    control          (no trades)          -0.062 +/-0.046 n=544     
+------------------------------------------------------------------------------
+2. SIGNALS WITH A PREDICTED DIRECTION  (top third minus bottom third of the signal, in R)
+------------------------------------------------------------------------------
+  PASS = the predicted way in BOTH periods AND combined z >= 2.0. z is already signed so that
+  positive = the way theory said. A signal that works the opposite way is a fail, not a find.
+
+  breakout
+    setup_range_rel  A -0.22R z-1.22 | B +0.04R z+0.61 | combined z -0.43  -
+                       (setup range small vs recent daily ranges (quiet before expansion))
+    trend20_with     A -0.00R z-0.01 | B +0.14R z+2.05 | combined z +1.44  -
+                       (break goes with the 20-day trend)
+    open_hours       A -0.01R z-0.04 | B +0.08R z+1.47 | combined z +1.01  -
+                       (break in the London/New York open hours)
+    bar_extreme      A -0.03R z-0.18 | B +0.06R z+0.84 | combined z +0.47  -
+                       (breakout bar closes near its extreme)
+    room_r           A -0.05R z-0.31 | B -0.05R z-0.76 | combined z -0.76  -
+                       (room before yesterday's high/low)
+
+  reversal
+    er20             A -0.12R z-0.53 | B -0.10R z-1.14 | combined z -1.18  -
+                       (recent days made little net progress)
+    trend20_with     A -0.22R z-0.84 | B -0.08R z-0.91 | combined z -1.24  -
+                       (trade goes with the 20-day trend, not against it)
+    stretch_atr      A -0.09R z-0.35 | B -0.12R z-1.32 | combined z -1.18  -
+                       (bigger stretch from fair value (VWAP))
+    hour             not enough trades in one of the periods   (later in the session)
+
+  momentum
+    trend20_with     A -0.05R z-0.40 | B -0.04R z-0.44 | combined z -0.59  -
+                       (intraday lean matches the 20-day trend)
+    day_used         A +0.18R z+1.36 | B -0.07R z-0.84 | combined z +0.37  -
+                       (day has NOT already used most of its usual range)
+    volrank          A -0.12R z-0.98 | B +0.06R z+0.69 | combined z -0.21  -
+                       (volatility high against its own history)
+
+  swing
+    er20             A -0.62R z-0.80 | B +0.49R z+1.38 | combined z +0.41  -
+                       (market has been moving in a straight line)
+
+  13 signals tested. By luck alone, expect about 0.3 of them to pass.
+
+------------------------------------------------------------------------------
+3. REGIME READS AT TWO SPEEDS  (no direction predicted: looked at both ways, so a stricter bar)
+------------------------------------------------------------------------------
+  er5/er20 = how straight the market moved over 5 / 20 days | vol3rel = last 3 days' range vs 20
+  volrank = volatility vs its own last 120 days | turning = fast and slow trend disagree
+  asia_rel = Asian range vs average day | day_eff = how straight today has moved so far
+  HOLDS = same sign in both periods AND |combined z| >= 2.5
+  read         breakout        reversal        momentum        swing           
+  er5          -2.9/-1.2 HOLDS +2.6/-0.9       -0.9/-0.6       -0.0/-0.5       
+  er20         -0.1/+1.5       +0.5/+1.1       -2.4/+0.3       -0.8/+1.4       
+  trend5_with  -0.9/+0.3       -1.1/-0.2       +1.7/-0.4       +0.2/-0.2       
+  vol3rel      +2.4/-0.8       -1.5/-0.4       -1.0/+1.6       +0.1/+1.5       
+  volrank      +0.4/-0.3       -0.1/-0.5       -1.0/+0.7       +1.5/+0.5       
+  turning      +2.0/+0.0       -1.3/+0.4       +0.6/-1.2       -1.7/-0.4       
+  asia_rel     n/a             n/a             n/a             n/a             
+  day_eff      -0.8/-0.8       +0.4/-0.0       -1.4/+1.3       +0.8/-0.1       
+  (each cell: z in period A / z in period B; positive = higher read went with better trades)
+  32 cells. By luck alone, expect about 0.4 to hold.
+
+------------------------------------------------------------------------------
+4. DO THE READS PERSIST?  (this week vs next week; a read that doesn't persist can't be a filter)
+------------------------------------------------------------------------------
+  period A (103 weeks): straightness -0.06 | volatility +0.80 | same direction next week 47%
+  period B (143 weeks): straightness -0.01 | volatility +0.64 | same direction next week 47%
+  (first two are correlations: 0 = no memory, 1 = next week is the same; direction: 50% = coin flip)
+
+------------------------------------------------------------------------------
+5. TREND EPISODES: HOW LATE ARE THE READS?  (trend-side families: breakout + momentum + swing)
+------------------------------------------------------------------------------
+  An episode = a stretch that, looking back with hindsight, was a trend (>= 5 days).
+  slow = 20-day read, fast = 5-day read; a read detects on its 2nd day in a row.
+  period A: 11 episodes, median length 9 days, total R earned inside them +23.0
+    slow read: detected 7, missed 4 | median lag 5 days | R before detection +19.6, after +3.5, staying on after the end -51.0
+    fast read: detected 8, missed 3 | median lag 1 days | R before detection -0.4, after +23.5, staying on after the end -14.7
+  period B: 12 episodes, median length 13 days, total R earned inside them -72.3
+    slow read: detected 8, missed 4 | median lag 12 days | R before detection -64.1, after -8.2, staying on after the end -46.1
+    fast read: detected 10, missed 2 | median lag 3 days | R before detection -56.6, after -15.7, staying on after the end +2.9
+
+------------------------------------------------------------------------------
+6. STAND-ASIDE DAYS  (flags known at the open; is every family worse on them?)
+------------------------------------------------------------------------------
+  shock = yesterday's range >= 2x average | gap = big opening gap | turning = fast/slow trend disagree
+  xshock = the OTHER market had a shock day yesterday
+  shock
+    breakout  A: flagged +0.027 (n=41) vs -0.002      | B: flagged -0.026 (n=107) vs -0.087    
+    reversal  A: flagged -0.323 (n=46) vs -0.149      | B: flagged -0.315 (n=119) vs -0.076    
+    momentum  A: flagged -0.015 (n=83) vs -0.036      | B: flagged -0.157 (n=97) vs -0.077     
+    swing     A: flagged too few                      | B: flagged too few                     
+    -> not consistently worse
+  gap
+    breakout  A: flagged -0.028 (n=195) vs +0.016     | B: flagged -0.114 (n=198) vs -0.077    
+    reversal  A: flagged -0.352 (n=136) vs -0.013     | B: flagged -0.078 (n=199) vs -0.098    
+    momentum  A: flagged -0.003 (n=336) vs -0.056     | B: flagged -0.109 (n=172) vs -0.081    
+    swing     A: flagged -0.262 (n=24) vs -0.074      | B: flagged -0.084 (n=11) vs -0.188     
+    -> not consistently worse
+  turning
+    breakout  A: flagged +0.232 (n=120) vs -0.085     | B: flagged -0.083 (n=516) vs -0.084    
+    reversal  A: flagged -0.354 (n=85) vs -0.097      | B: flagged -0.073 (n=457) vs -0.106    
+    momentum  A: flagged +0.009 (n=221) vs -0.052     | B: flagged -0.142 (n=382) vs -0.057    
+    swing     A: flagged -0.682 (n=12) vs +0.013      | B: flagged -0.271 (n=16) vs -0.135     
+    -> not consistently worse
+  xshock
+    breakout  A: flagged -0.017 (n=21) vs -0.002      | B: flagged -0.027 (n=90) vs -0.084     
+    reversal  A: flagged -0.286 (n=12) vs -0.177      | B: flagged -0.083 (n=77) vs -0.096     
+    momentum  A: flagged -0.071 (n=39) vs -0.030      | B: flagged +0.192 (n=66) vs -0.101     
+    swing     A: flagged too few                      | B: flagged too few                     
+    -> not consistently worse
+
+------------------------------------------------------------------------------
+7. TRUST LOOKUP  (family x the bot's regime label)
+------------------------------------------------------------------------------
+  rung: 'normal' = clearly positive (mean - 1 se > 0) in BOTH periods | 'shadow' = clearly negative
+  in both | 'scout' = everything in between. No rung here ever means 'risk more'.
+  breakout  trending  A +0.120 +/-0.130 n=138      B -0.039 +/-0.054 n=448      -> scout
+  breakout  volatile  A -0.026 +/-0.180 n=71       B -0.101 +/-0.056 n=429      -> scout
+  breakout  choppy    A +0.031 +/-0.158 n=92       B -0.057 +/-0.063 n=336      -> scout
+  breakout  drift     A -0.073 +/-0.132 n=124      B -0.119 +/-0.050 n=499      -> scout
+
+  reversal  trending  A -0.139 +/-0.171 n=77       B -0.096 +/-0.075 n=359      -> scout
+  reversal  volatile  A -0.032 +/-0.245 n=45       B -0.115 +/-0.071 n=368      -> scout
+  reversal  choppy    A -0.512 +/-0.159 n=65       B -0.215 +/-0.075 n=315      -> shadow
+  reversal  drift     A +0.051 +/-0.246 n=70       B -0.006 +/-0.074 n=387      -> scout
+
+  momentum  trending  A -0.009 +/-0.104 n=211      B -0.131 +/-0.065 n=310      -> scout
+  momentum  volatile  A -0.089 +/-0.113 n=129      B -0.028 +/-0.067 n=304      -> scout
+  momentum  choppy    A +0.085 +/-0.114 n=144      B +0.009 +/-0.073 n=239      -> scout
+  momentum  drift     A -0.104 +/-0.092 n=207      B -0.166 +/-0.061 n=342      -> shadow
+
+  swing     trending  A -1.024 +/-0.117 n=9        B -0.332 +/-0.272 n=11       -> scout (too few trades to judge)
+  swing     volatile  A +0.118 +/-0.714 n=5        B -0.316 +/-0.250 n=18       -> scout (too few trades to judge)
+  swing     choppy    A +0.108 +/-0.308 n=14       B -0.447 +/-0.233 n=15       -> scout (too few trades to judge)
+  swing     drift     A -0.562 +/-0.220 n=14       B +0.002 +/-0.265 n=17       -> scout (too few trades to judge)
+
+------------------------------------------------------------------------------
+8. THE FIXED EXIT MENU AND TIMING  (same entries, same stop; only the way out differs)
+------------------------------------------------------------------------------
+  as built = the lane's own exit | 1R = nearer target | hold = no target, stop or the clock
+  trail = after +1R the stop follows 1R behind the best price
+  family          as built         1R       hold      trail |   best R     given     ran on  day used
+  breakout  A       -0.003     -0.048     +0.641     -0.022 |     1.14      1.06      18.97      0.51
+  breakout  B       -0.081     -0.077     -0.097     -0.040 |     0.89      0.93       2.42      0.48
+  reversal  A       -0.182     -0.165     +0.019     -0.089 |     1.04      1.15      39.42      0.67
+  reversal  B       -0.095     -0.061     +0.019     -0.070 |     1.14      1.13       5.27      0.56
+  momentum  A       -0.032     -0.031     +0.665     +0.079 |     1.03      0.98      49.52      0.71
+  momentum  B       -0.085     -0.082     +0.011     -0.006 |     0.91      0.91       7.42      0.67
+  swing     A       -0.177     -0.114     +0.068     -0.200 |     1.30      1.33       1.70      0.74
+  swing     B       -0.170     -0.105     -0.161     -0.173 |     0.99      1.06       0.98      0.78
+  best R = furthest the trade got our way | given = how much of that was handed back by the exit
+  ran on = how far price kept going our way AFTER the exit | day used = share of an average day's
+  range already covered when the trade was entered (1.0 = a full average day)
+
+files in this folder: trades_<symbol>.csv (one row per trade), days_<symbol>.csv (daily reads and flags),
+episodes_<symbol>.csv (trend episodes), tests_<symbol>.csv (every signal test with its numbers)
+runtime 412.0s
